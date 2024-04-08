@@ -1,10 +1,6 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import Mypage from "@pages/users/Mypage";
 import Layout from "./components/layout/Layout";
-
-
-
 
 
 const router = createBrowserRouter([
