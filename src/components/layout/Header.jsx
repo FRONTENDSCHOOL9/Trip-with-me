@@ -1,22 +1,23 @@
 import usePageStore from '@zustand/pageName.mjs';
 import { useEffect } from 'react';
+import '@components/style/header.css';
 
 
 function Header() {
+  const { pageName } = usePageStore();
 
-  const {pageName} = usePageStore();
-  console.log(pageName);
-
-  useEffect(()=>{
-
-  }, [pageName]);
+  useEffect(() => {}, [pageName]);
 
   return (
-    <div className="mb-auto">
-      <h1>{pageName}</h1>
+    <div className="header">
+      <div className="header-wrap">
+        <button className="header-back">
+          <i className="ir">뒤로가기</i>
+        </button>
+        <h1 className="header-title">{pageName}</h1>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Header;
-//zustand를 사용하는것보다는 props 를 사용하는게 좋다아~ 

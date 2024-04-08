@@ -1,0 +1,35 @@
+meta {
+  name: 필수-회원 가입
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "test@market.com",
+    "password": "11111111",
+    "name": "테스트계정",
+    "phone": "0118889999",
+    "address": "서울시 강남구 역삼동 123",
+    "type": "seller",
+    "extra": {
+      "birthday": "10",
+      "address": [
+        {
+          "id": 1,
+          "name": "음주가무"
+        },
+        {
+          "id": 2,
+          "name": "맛집탐방"
+        }
+      ]
+    }
+  }
+}
