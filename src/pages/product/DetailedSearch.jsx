@@ -1,5 +1,16 @@
+ import Header from '@components/layout/Header';
+import { Outlet } from 'react-router-dom';
+import '@components/style/layout.css';
+
 function DetailedSearch() {
-  return <div>DetailedSearch</div>;
+  return (
+    <div className="layout">
+      <Header />
+      <div className="scrollbar">
+        <Outlet />
+      </div>
+    </div>
+  );
 }
 
 export default DetailedSearch;
