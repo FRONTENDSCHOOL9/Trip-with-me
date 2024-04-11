@@ -1,16 +1,18 @@
-import Footer from "@components/layout/Footer";
-import Header from "@components/layout/Header";
-import { Outlet } from "react-router-dom";
-
+import Footer from '@components/layout/Footer';
+import Header from '@components/layout/Header';
+import { Outlet } from 'react-router-dom';
+import '@components/style/layout.css';
 
 function Layout() {
-  return ( 
-    <div className="relative mx-auto min-h-screen max-w-[375px] border border-gray-200 flex flex-col">
+  return (
+    <div className="layout">
       <Header />
-      <Outlet />
+      <div className="scrollbar">
+        <Outlet />
+      </div>
       <Footer />
     </div>
-  )
+  );
 }
 
 export default Layout;
