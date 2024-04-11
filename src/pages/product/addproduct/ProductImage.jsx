@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-function ProductImage() {
-  return <div>ProductImage</div>;
-=======
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState } from 'react';
 
@@ -40,7 +36,6 @@ function ProductImage() {
       </form>
     </div>
   );
->>>>>>> a838e2d (Feat: Image 업로드 기능테스트)
 }
 
 export default ProductImage;

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-function ProductContent() {
-  return <div>ProductContent</div>;
-=======
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 
 function ProductContent() {
@@ -31,7 +27,6 @@ function ProductContent() {
       </form>
     </div>
   );
->>>>>>> 8ad5c16 (Feat: Product 상세 설명 기능테스트)
 }
 
 export default ProductContent;

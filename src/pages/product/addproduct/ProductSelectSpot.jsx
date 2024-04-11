@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-function ProductSelectSpot() {
-  return <div>ProductSelectSpot</div>;
-=======
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useEffect, useState } from 'react';
 
@@ -65,7 +61,6 @@ function ProductSelectSpot() {
       </form>
     </div>
   );
->>>>>>> 8e1a95d (Feat: Product Spot Select 기능테스트)
 }
 
 export default ProductSelectSpot;
