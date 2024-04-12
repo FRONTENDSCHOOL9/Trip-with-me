@@ -1,3 +1,7 @@
+:root {
+  font-family: 'noto Sans Kr', 'sans-serif';
+}
+
 .titleBox {
   margin-top: 30px;
   margin-bottom: 12px;
@@ -51,4 +55,76 @@
 
 .img-detailSearch {
   width: 28px;
+}
+
+.subTitleBox {
+  font-weight: 700;
+  display: flex;
+  margin-top: 16px;
+  padding: 0 6px;
+}
+
+.img-heart,
+.img-limit {
+  width: 18px;
+  margin-right: 6px;
+}
+
+.productBox {
+  margin-top: 10px;
+}
+
+.productBox-info {
+  padding: 8px;
+}
+
+.productBox-img {
+  width: 410px;
+  height: 220px;
+  border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.productTitle {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.productBox-limit {
+  display: flex;
+}
+
+.productBox-etc {
+  position: relative;
+  margin-top: 6px;
+}
+
+.tag {
+  background-color: #e9f4fc;
+  border-radius: 4px;
+  margin-right: 6px;
+  padding: 2px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tag:last-child {
+  margin-right: 0;
+}
+
+.productBox-etc_like {
+  width: 60px;
+  font-size: 14px;
+  color: #5c5c5c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: -40px;
+  right: 10px;
+}
+
+.img-like {
+  width: 30px;
 }
