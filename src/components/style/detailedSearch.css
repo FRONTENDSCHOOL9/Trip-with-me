@@ -5,6 +5,11 @@
 .searchBox {
   height: 350px;
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.searchBox:last-child {
+  margin-bottom: unset;
 }
 
 .searchBox-title {
@@ -15,7 +20,6 @@
 }
 
 .searchBox-detail {
-  padding: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -23,7 +27,7 @@
 }
 
 label {
-  width: 100px;
+  width: 110px;
   height: 34px;
   padding: 4px;
   cursor: pointer;
@@ -50,4 +54,30 @@ input[type='checkbox']:hover + label {
 
 input[type='checkbox'] {
   display: none;
+}
+
+.buttonContainer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.searchButton {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: #68a9ed;
+  border-radius: 10px;
+}
+
+.searchButton:hover {
+  background-color: #3d9bff;
+}
+
+.searchButton:active {
+  background-color: #057efe;
 }
