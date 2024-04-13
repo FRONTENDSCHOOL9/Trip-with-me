@@ -12,6 +12,7 @@ import ProductBuyList from '@pages/mypage/ProductBuyList';
 import ProductSellList from '@pages/mypage/ProductSellList';
 import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
+import AddItinerary from '@pages/product/addproduct/AddItinerary';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage/likelist',
         element: <ProductLikeList />,
+      },
+      {
+        path: '/map',
+        element: <AddItinerary />,
       },
     ],
   },
