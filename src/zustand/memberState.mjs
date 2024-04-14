@@ -1,14 +1,19 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const persistState = (key, initialState) => {
-  const storedState = sessionStorage.getItem(key); //getItem은 키에 해당하는 아이템을 가져온다.
-  return storedState ? JSON.parse(storedState) : initialState;
+const persistConfig = {
+  name: 'memberState', // 이 이름으로 스토리지에 저장됩니다.
+  Storage: () => sessionStorage, // localStorage를 사용하여 상태를 저장합니다.
 };
 
-const useMemberState = create(set => ({
-  memberState: persistState('saveUser', null), //storedState값이 저장됨
-
-  setMemberState: newValue => set({ memberState: newValue }),
-}));
+const useMemberState = create(
+  persist(
+    set => ({
+      user: null,
+      setUser: newUser => set({ user: newUser }),
+    }),
+    persistConfig,
+  ),
+);
 
 export default useMemberState;

@@ -1,11 +1,13 @@
+import { Submit } from '@components/style/StyledButton';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import useMemberState from '@zustand/memberState.mjs';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
-
+  const { setUser } = useMemberState();
   const {
     register,
     handleSubmit,
@@ -18,7 +20,16 @@ function Login() {
       const res = await axios.post('users/login', formData);
       console.log(res?.data);
       alert(`${res?.data?.item?.name}님 안녕하세요.`);
-      navigate('/');
+      setUser({
+        _id: res?.data?.item?._id,
+        name: res?.data?.item?.name,
+        profile: res?.data?.item?.profileImage,
+        theme: res?.data?.item?.extra?.address,
+        age: res?.data?.item?.extra?.birthday,
+        gender: res?.data?.item?.address,
+        token: res?.data?.item?.token,
+      });
+      navigate('/product/detail');
     } catch (err) {
       if (err?.response?.status === 403) {
         alert('아이디, 비밀번호를 다시 확인해주세요.');
@@ -28,45 +39,72 @@ function Login() {
   };
 
   return (
-    <div className="relative mx-auto min-h-screen max-w-[375px] border border-gray-200 flex flex-col items-center justify-center">
-      <h1>Trip with me</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">아이디</label>
-        <input
-          id="email"
-          {...register('email')}
-          placeholder="email을 입력하세요"
-          type="text"
-        />
-        <br />
-        <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          {...register('password', {
-            required: '비밀번호를 입력하세요.',
-            minLength: {
-              value: 8,
-              message: '비밀번호 8자리 이상 입력해주세요.',
-            },
-          })}
-          placeholder="password를 입력하세요"
-          type="password"
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-        <br />
-        <button type="submit">로그인</button>
-        <div>
-          <button type="button" id="kakao"></button>
-          <button type="button" id="google"></button>
-          <button type="button" id="naver"></button>
+    <div className="justify-center flex flex-col h-lvh bg-main-bg-color">
+      <div className="p-20 m-auto max-w-[440px] w-full">
+        <div className="py-10 flex flex-col mb-10 w-fit mx-auto">
+          <img
+            className="ml-auto w-14 h-8"
+            src="/src/assets/icons/icon-logo.svg"
+            alt=""
+          />
+          <h1 className="font-['SokchoBadaDotum'] font-bold text-4xl text-center text-main-color">
+            Trip with me
+          </h1>
         </div>
-        <p>
-          <Link to="/">로그인 없이 둘러보기</Link>
-        </p>
-        <p>
-          <Link to="/users/signup">회원가입하기</Link>
-        </p>
-      </form>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <label htmlFor="email">아이디</label> */}
+          <input
+            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
+            id="email"
+            {...register('email')}
+            placeholder="ID"
+            type="text"
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+          <br />
+          {/* <label htmlFor="password">비밀번호</label> */}
+          <input
+            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
+            id="password"
+            {...register('password', {
+              required: '비밀번호를 입력하세요.',
+              minLength: {
+                value: 8,
+                message: '비밀번호 8자리 이상 입력해주세요.',
+              },
+            })}
+            placeholder="PW"
+            type="password"
+          />
+          {errors.password && <p>{errors.password.message}</p>}
+          <br />
+          <Submit>로그인</Submit>
+          <div className="my-5 flex items-center justify-center">
+            <img
+              className="w-10 h-10"
+              src="/src/assets/icons/icon-kakao.svg"
+              alt="카카오 아이콘"
+            />
+            <img
+              className="w-10 h-10 mx-3"
+              src="/src/assets/icons/icon-google.svg"
+              alt="구글 아이콘"
+            />
+            <img
+              className="w-10 h-10"
+              src="/src/assets/icons/icon-naver.svg"
+              alt="네이버 아이콘"
+            />
+          </div>
+          <p className="mb-3 text-center text-xs text-main-color">
+            <Link to="/product/detail">로그인 없이 둘러보기</Link>
+          </p>
+          <p className="mb-3 text-center text-xs">
+            <Link to="/users/signup">회원가입하기</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ButtonStyle = styled.button`
   background-color: ${props =>
-    props.backgroundColor || '#4CAF50'}; /* Green background */
+    props.backgroundColor || '#68A9ED'}; /* Green background */
   border: none; /* Remove borders */
   color: ${props => props.color || 'white'}; /* White text */
   padding: 6px 18px; /* Padding */
@@ -14,10 +14,11 @@ const ButtonStyle = styled.button`
   margin: 4px 2px; /* Margin */
   cursor: pointer; /* Cursor pointer */
   border-radius: 6px; /* Border radius */
+  width: 100%;
 `;
 
 const ButtonStyleBlue = styled(ButtonStyle)`
-  background-color: blue;
+  background-color: #68a9ed;
 `;
 
 Button.propTypes = {

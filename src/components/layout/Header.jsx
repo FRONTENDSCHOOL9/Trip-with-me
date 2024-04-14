@@ -2,7 +2,6 @@ import usePageStore from '@zustand/pageName.mjs';
 import { useEffect } from 'react';
 import '@components/style/header.css';
 
-
 function Header() {
   const { pageName } = usePageStore();
 

@@ -1,3 +1,4 @@
+import { Submit } from '@components/style/StyledButton';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -53,6 +54,8 @@ function Signup() {
     ).length;
     if (e.target.getAttribute('is_active') === 'true') {
       e.target.setAttribute('is_active', 'false');
+      e.target.className =
+        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md';
       count--;
     } else {
       if (selectValid(count) === false) {
@@ -60,6 +63,8 @@ function Signup() {
         return;
       }
       e.target.setAttribute('is_active', 'true');
+      e.target.className =
+        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md';
       count++;
     }
 
@@ -70,8 +75,14 @@ function Signup() {
 
   const setTheme = data => {
     const themeList = data?.map(item => (
-      <button key={item.id} id={item.id} type="button" onClick={handleClick}>
-        {item.name}
+      <button
+        className="hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md"
+        key={item.id}
+        id={item.id}
+        type="button"
+        onClick={handleClick}
+      >
+        #{item.name}
       </button>
     ));
     setThemeData(themeList);
@@ -139,105 +150,163 @@ function Signup() {
 
   //성별값은 API의 address에 저장
   return (
-    <div className="relative mx-auto min-h-screen max-w-[375px] border border-gray-200 flex flex-col items-center justify-center">
-      <div>
-        <h1>Trip with me</h1>
-        <h2>회원가입</h2>
-      </div>
+    <div className="justify-center flex flex-col h-lvh bg-main-bg-color">
+      <div className="p-10 m-auto max-w-[440px]">
+        <div className="mb-10">
+          <div className="flex flex-col w-fit mx-auto">
+            <img
+              className="-mb-1.5 ml-auto w-8 h-6"
+              src="/src/assets/icons/icon-logo.svg"
+              alt="메인 비행기 로고"
+            />
+            <h1 className="font-['SokchoBadaDotum'] font-bold text-xl text-center text-main-color">
+              Trip with me
+            </h1>
+          </div>
+          <h2 className="font-['SokchoBadaDotum'] text-md text-center  text-main-color">
+            회원가입
+          </h2>
+        </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
-        <label htmlFor="email">아이디</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="이메일 형식으로 입력해주세요."
-          {...register('email', {
-            required: '이메일을 입력하세요.',
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: '이메일 형식이 아닙니다.',
-            },
-          })}
-        />
-        <button type="button" onClick={handleEmailCheck}>
-          중복 확인
-        </button>
-        {errors.email && <p>{errors.email.message}</p>}
-        <br />
-        <label htmlFor="password">비밀번호</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="최소 8자리 이상 입력해주세요."
-          {...register('password', {
-            required: '비밀번호를 입력하세요.',
-            minLength: {
-              value: 8,
-              message: '비밀번호 8자리 이상 입력해주세요.',
-            },
-          })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-
-        <br />
-        <label htmlFor="passwordConfirm">비밀번호 재확인</label>
-        <input type="password" id="passwordConfirm" />
-        {error && <p>{error}</p>}
-        {valid && <p>{valid}</p>}
-
-        <br />
-        <label htmlFor="name">닉네임</label>
-        <input
-          type="text"
-          id="name"
-          {...register('name', { required: '닉네임을 입력하세요.' })}
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-        <br />
-        <div className="flex gap-5">
+        <form onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
+          <label className="text-sm font-semibold" htmlFor="email">
+            아이디
+          </label>
+          <div className="flex">
+            <input
+              className="h-10 w-4/5"
+              type="email"
+              id="email"
+              placeholder="이메일 형식으로 입력해주세요."
+              {...register('email', {
+                required: '이메일을 입력하세요.',
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: '이메일 형식이 아닙니다.',
+                },
+              })}
+            />
+            <button
+              className="font-bold text-white text-sm w-1/5 bg-main-color rounded"
+              type="button"
+              onClick={handleEmailCheck}
+            >
+              중복 확인
+            </button>
+          </div>
+          {errors.email && <p>{errors.email.message}</p>}
+          <label className="text-sm font-semibold" htmlFor="password">
+            비밀번호
+          </label>
           <div>
-            <label htmlFor="age">나이</label>
-            <select id="age" {...register('extra.birthday')}>
-              <option defaultValue="10">10대</option>
-              <option value="20">20대</option>
-              <option value="30">30대</option>
-              <option value="40">40대</option>
-              <option value="50">50대</option>
-            </select>
+            <input
+              className="h-10 w-full"
+              type="password"
+              id="password"
+              placeholder="최소 8자리 이상 입력해주세요."
+              {...register('password', {
+                required: '비밀번호를 입력하세요.',
+                minLength: {
+                  value: 8,
+                  message: '비밀번호 8자리 이상 입력해주세요.',
+                },
+              })}
+            />
+          </div>
+          {errors.password && <p>{errors.password.message}</p>}
+
+          <label className="text-sm font-semibold" htmlFor="passwordConfirm">
+            비밀번호 재확인
+          </label>
+          <div>
+            <input
+              className="h-10 w-full"
+              type="password"
+              id="passwordConfirm"
+            />
+          </div>
+          {error && <p>{error}</p>}
+          {valid && <p>{valid}</p>}
+
+          <label className="text-sm font-semibold" htmlFor="name">
+            닉네임
+          </label>
+          <div>
+            <input
+              className="h-10 w-full"
+              type="text"
+              id="name"
+              {...register('name', { required: '닉네임을 입력하세요.' })}
+            />
+          </div>
+          {errors.name && <p>{errors.name.message}</p>}
+          <br />
+          <div className="flex gap-20">
+            <div>
+              <label className="text-sm font-semibold" htmlFor="age">
+                나이
+              </label>
+              <div>
+                <select
+                  className="w-20"
+                  id="age"
+                  {...register('extra.birthday')}
+                >
+                  <option defaultValue="10">10대</option>
+                  <option value="20">20대</option>
+                  <option value="30">30대</option>
+                  <option value="40">40대</option>
+                  <option value="50">50대</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label className="text-sm font-semibold">성별</label>
+
+              <div>
+                <label className="mr-1" htmlFor="female">
+                  여성
+                </label>
+
+                <input
+                  className="mr-5"
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="female"
+                  {...register('address', { required: '성별을 선택하세요.' })}
+                />
+
+                <label className="mr-1" htmlFor="male">
+                  남성
+                </label>
+
+                <input
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  value="male"
+                  {...register('address', { required: '성별을 선택하세요.' })}
+                />
+              </div>
+              {errors.address && <p>{errors.address.message}</p>}
+            </div>
           </div>
           <br />
+          <hr className="my-5 border-none bg-white h-2 color-white" />
           <div>
-            <label>성별</label>
-            <input
-              type="radio"
-              name="gender"
-              id="female"
-              value="female"
-              {...register('address', { required: '성별을 선택하세요.' })}
-            />
-            <label htmlFor="female">여성</label>
-            <input
-              type="radio"
-              name="gender"
-              id="male"
-              value="male"
-              {...register('address', { required: '성별을 선택하세요.' })}
-            />
-            <label htmlFor="male">남성</label>
-            {errors.address && <p>{errors.address.message}</p>}
+            <h3 className="text-lg font-bold text-center mb-3">
+              관심사를 골라주세요 ({checkCount} / 3)
+            </h3>
+            <span>{checkError && checkError}</span>
+            <ul>
+              <li>{themeData}</li>
+            </ul>
           </div>
-        </div>
-        <br />
-        <div>
-          <h3>관심사를 골라주세요 ({checkCount} / 3)</h3>
-          <span>{checkError && checkError}</span>
-          <ul>
-            <li>{themeData}</li>
-          </ul>
-        </div>
 
-        <button type="submit">회원 가입</button>
-      </form>
+          <Submit>회원 가입</Submit>
+        </form>
+      </div>
     </div>
   );
 }
