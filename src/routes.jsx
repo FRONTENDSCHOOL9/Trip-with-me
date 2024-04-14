@@ -11,6 +11,7 @@ import ProductBuyList from '@pages/mypage/ProductBuyList';
 import ProductSellList from '@pages/mypage/ProductSellList';
 import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
+import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
 import MyPageOther from '@pages/mypage/MyPageOther';
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage/likelist',
         element: <ProductLikeList />,
+      },
+      {
+        path: '/map',
+        element: <AddItinerary />,
       },
     ],
   },
