@@ -3,7 +3,8 @@ import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useState } from 'react';
 
 function AddItinerary() {
-  const { addItineraryMap, itineraryMaps } = useItineraryMapStore();
+  const { addItineraryMap, itineraryMaps, removeItineraryMap } =
+    useItineraryMapStore();
 
   const [maps, setMaps] = useState([]);
   const [selectedIndex, setSeletedIndex] = useState(0);
@@ -22,15 +23,29 @@ function AddItinerary() {
 
   const showMap = index => {
     setSeletedIndex(index);
-    console.log(selectedIndex);
-    console.log(itineraryMaps);
+  };
+
+  const removeMap = e => {
+    e.preventDefault();
+    if (maps.length === 0) return;
+
+    const lastIndex = maps.length - 1;
+    const updatedMaps = maps.filter((_, index) => index !== lastIndex);
+    setMaps(updatedMaps);
+
+    removeItineraryMap(lastIndex);
+
+    if (selectedIndex === lastIndex) {
+      setSeletedIndex(selectedIndex > 0 ? selectedIndex - 1 : 0);
+      // 이전 지도를 선택한 상태로 업데이트
+    }
   };
 
   return (
     <div>
       <button type="button" onClick={addMap}>
         Click! <br />
-        여행지도를 추가해보세요
+        여행지도 추가하기
       </button>
 
       <div>
@@ -43,6 +58,7 @@ function AddItinerary() {
         })}
 
         <div>{maps[selectedIndex]}</div>
+        <button onClick={removeMap}>여행지도 삭제하기</button>
       </div>
     </div>
   );

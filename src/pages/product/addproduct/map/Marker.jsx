@@ -12,14 +12,13 @@ const Marker = ({ mapId, markerId, marker }) => {
 
   const handleChangeTitle = e => {
     const newTitle = e.target.value;
-    // setTitle(newTitle); // 로컬 상태 업데이트
     updateMarkerTitle(mapId, markerId, newTitle); // 전역 상태 업데이트
   };
 
   useEffect(() => {
     // 마커가 클릭되었을 때 title을 업데이트
     setIsVisible(false); // 초기화
-  }, [markerId]); // 마커가 업데이트될 때마다 useEffect 호출
+  }, [markerId]);
 
   return (
     <MapMarker

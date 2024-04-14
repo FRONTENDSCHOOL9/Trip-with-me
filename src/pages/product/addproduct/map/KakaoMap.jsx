@@ -17,8 +17,6 @@ function KakaoMap({ id }) {
   });
 
   useEffect(() => {
-    console.log('시범');
-    console.log(itineraryMaps);
     if (!map || !searchKeyword) return;
     const placeService = new kakao.maps.services.Places();
 
@@ -91,7 +89,7 @@ function KakaoMap({ id }) {
         onCreate={setMap}
         onClick={(_, mouseEvent) => createMarker(mouseEvent)}
       >
-        {itineraryMaps[id].markers.map((marker, index) => (
+        {itineraryMaps[id]?.markers.map((marker, index) => (
           <Marker key={index} mapId={id} markerId={index} marker={marker} />
         ))}
       </Map>
