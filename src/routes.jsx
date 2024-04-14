@@ -7,12 +7,13 @@ import DetailedSearch from '@pages/product/DetailedSearch';
 import ProductDetail from '@pages/product/ProductDetail';
 import MyPage from '@pages/mypage/MyPage';
 import Payment from '@pages/product/Payment';
-import EditMyPage from '@pages/mypage/EditMyPage';
 import ProductBuyList from '@pages/mypage/ProductBuyList';
 import ProductSellList from '@pages/mypage/ProductSellList';
 import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
 import AddItinerary from '@pages/product/addproduct/AddItinerary';
+import EditMyPage from '@pages/mypage/EditMyPage';
+import MyPageOther from '@pages/mypage/MyPageOther';
 
 const router = createBrowserRouter([
   {
@@ -21,16 +22,20 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/product/detail',
+        path: '/product/:_id',
         element: <ProductDetail />,
       },
       {
-        path: '/product/payment',
+        path: '/product/:_id/payment',
         element: <Payment />,
       },
       {
         path: '/mypage',
         element: <MyPage />,
+      },
+      {
+        path: '/mypage/:_id',
+        element: <MyPageOther />,
       },
       {
         path: '/mypage/edit',
