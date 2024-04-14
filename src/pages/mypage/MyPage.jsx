@@ -33,29 +33,62 @@ function MyPage() {
   return (
     <>
       {user && (
-        <div className="flex flex-col justify-center items-center border border-black h-full">
-          <div className="m-auto text-center">
-            <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
-            />
-            이미지
-            <p>{user?.name}</p>
-            <p>
-              {user?.age}
-              {user?.gender}
+        <div className="flex flex-col h-full">
+          <div className="flex flex-col w-full m-auto text-center  ">
+            <div className="mb-3 mx-auto overflow-hidden w-32 h-32 rounded-full">
+              <img
+                className="w-full h-full "
+                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+              />
+            </div>
+            <p className="font-bold text-xl ">{user?.name}</p>
+            <p className="mb-3 text-gray-500">
+              <span className="mr-2">{user?.age}대</span>
+              <span>{user?.gender}</span>
             </p>
-            <p>{user?.theme?.map(item => item.name)}</p>
-            <Link to={'/mypage/edit'} state={{ user: user }}>
-              회원 정보 수정
+            <p className="mb-5">
+              {user?.theme?.map(item => (
+                <span
+                  className="p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md"
+                  key="item.id"
+                >
+                  #{item.name}
+                </span>
+              ))}
+            </p>
+            <Link
+              className="mb-10 mx-auto bg-gray-300 rounded-full w-2/3 h-10 flex justify-center items-center"
+              to={'/mypage/edit'}
+              state={{ user: user }}
+            >
+              <p>회원 정보 수정</p>
             </Link>
+
+            <hr className="border-0 h-3 bg-gray-100 w-full" />
             <br />
-            <button type="button">찜 목록</button>
-            <br />
-            <Link to="/mypage/buylist">구매 목록</Link>
-            <br />
-            <button type="button" onClick={handleLogout}>
-              로그아웃
-            </button>
+            <div className="px-10 text-left">
+              <button className="mb-5 text-xl mr-auto" type="button">
+                찜 목록
+              </button>
+              <br />
+              <p className="mb-5">
+                <Link className="text-xl mr-auto" to="/mypage/buylist">
+                  구매 목록
+                </Link>
+              </p>
+              <p className="mb-5">
+                <Link className="text-xl mr-auto" to="/mypage/selllist">
+                  판매 목록
+                </Link>
+              </p>
+              <button
+                className="mb-5 text-xl mr-auto"
+                type="button"
+                onClick={handleLogout}
+              >
+                로그아웃
+              </button>
+            </div>
           </div>
         </div>
       )}
