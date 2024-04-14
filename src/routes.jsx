@@ -13,7 +13,6 @@ import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
 import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
-import MyPageOther from '@pages/mypage/MyPageOther';
 
 const router = createBrowserRouter([
   {
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: '/mypage',
         element: <MyPage />,
-      },
-      {
-        path: '/mypage/:_id',
-        element: <MyPageOther />,
       },
       {
         path: '/mypage/edit',
