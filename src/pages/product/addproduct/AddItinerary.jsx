@@ -44,7 +44,6 @@ function AddItinerary() {
   return (
     <div>
       <button type="button" onClick={addMap}>
-        Click! <br />
         여행지도 추가하기
       </button>
 
