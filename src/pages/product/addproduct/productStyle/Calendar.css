@@ -1,0 +1,66 @@
+.rdrDateDisplayWrapper {
+  height: 120px;
+  background-color: #efeff0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR';
+  border-radius: 8px;
+}
+.rdrDateDisplay {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 44px;
+}
+.rdrDateDisplayItem {
+  color: #68a9ed;
+}
+.rdrDateDisplayWrapper::after {
+  content: '여행 시작일';
+  position: absolute;
+  top: 18%;
+  left: 16%;
+}
+.rdrDateDisplayWrapper::before {
+  content: '여행 종료일';
+  position: absolute;
+  top: 18%;
+  right: 16%;
+}
+
+.rdrMonthAndYearWrapper {
+  margin-top: 26px;
+  box-shadow: 0 -6px 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR';
+}
+.rdrMonths {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+}
+
+.rdrNextPrevButton {
+  background-color: white;
+}
+
+.rdrDays {
+  border-bottom: 1px solid #efeff0;
+  padding-bottom: 10px;
+}
+.rdrWeekDays {
+  color: rgba(60, 60, 67, 3);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR';
+}
+.rdrDayNumber {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Noto Sans KR';
+}
