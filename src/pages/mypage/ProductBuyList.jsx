@@ -18,7 +18,7 @@ function ProductBuyList() {
     const { data } = await axios.get('/orders');
     console.log('data.item=>', data?.item);
     const list = data?.item.map(item => {
-      return <ProductBuyListItem key={data?.item._id} item={item} />;
+      return <ProductBuyListItem key={item._id} item={item} />;
     });
     setOrderData(list);
   };
