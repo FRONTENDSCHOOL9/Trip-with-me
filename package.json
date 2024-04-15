@@ -26,8 +26,8 @@
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.1.1",
     "styled-components": "^6.1.8",
+    "swiper": "^11.1.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

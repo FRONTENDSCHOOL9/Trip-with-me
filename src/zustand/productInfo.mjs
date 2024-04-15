@@ -4,14 +4,17 @@ export const useProductInfostore = create(set => ({
   productInfo: {
     price: 0,
     quantity: 0,
-    buyQuantity: 0,
     show: true,
     active: true,
     name: '',
     mainImages: [],
     content: '',
-    extra: '',
-    selectSpot: [],
+    extra: {
+      date: [],
+      spot: [],
+      themes: [],
+      itineraryMaps: [],
+    },
   },
   setProductInfo: newProductInfo =>
     set(state => ({
