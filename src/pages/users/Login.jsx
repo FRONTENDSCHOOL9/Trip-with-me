@@ -98,7 +98,7 @@ function Login() {
             />
           </div>
           <p className="mb-3 text-center text-xs text-main-color">
-            <Link to="/product/detail">로그인 없이 둘러보기</Link>
+            <Link to="/product/list">로그인 없이 둘러보기</Link>
           </p>
           <p className="mb-3 text-center text-xs">
             <Link to="/users/signup">회원가입하기</Link>
