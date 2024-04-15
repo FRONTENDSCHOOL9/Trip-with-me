@@ -60,9 +60,15 @@ function MyPage() {
                 </span>
               ))}
             </p>
-            <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
-              {user?.introduce}
-            </p>
+            {user?.introduce ? (
+              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
+                {user?.introduce}
+              </p>
+            ) : (
+              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
+                자기소개가 없습니다.
+              </p>
+            )}
 
             <Link
               className="mb-10 mx-auto bg-gray-300 rounded-full w-2/3 h-10 flex justify-center items-center"
