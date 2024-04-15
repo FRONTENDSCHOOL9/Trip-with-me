@@ -29,7 +29,7 @@ function Login() {
         gender: res?.data?.item?.address,
         token: res?.data?.item?.token,
       });
-      navigate('/product/detail');
+      navigate('/product/list');
     } catch (err) {
       if (err?.response?.status === 403) {
         alert('아이디, 비밀번호를 다시 확인해주세요.');
