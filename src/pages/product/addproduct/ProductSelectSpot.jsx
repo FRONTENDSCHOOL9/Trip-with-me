@@ -24,30 +24,34 @@ function ProductSelectSpot() {
   };
 
   const handleCheckboxChange = spot => {
-    const selectedSpots = productInfo.selectSpot.slice(); // 현재 선택된 여행 장소 배열 복제
-    const spotIndex = selectedSpots.indexOf(spot); // 선택한 여행 장소가 이미 선택되었는지 확인
+    const selectedSpots = productInfo.extra.spot.slice();
+    const spotIndex = selectedSpots.indexOf(spot);
 
     if (spotIndex === -1 && selectedSpots.length < 1) {
-      // 선택되지 않은 경우 배열에 추가하고, 선택된 장소의 수가 1개 이하인 경우
       selectedSpots.push(spot);
     } else if (spotIndex !== -1) {
-      // 이미 선택된 경우 배열에서 제거
       selectedSpots.splice(spotIndex, 1);
     }
-    setProductInfo({ selectSpot: selectedSpots });
-    // 상태 업데이트
+    setProductInfo({
+      extra: {
+        ...productInfo.extra,
+        spot: selectedSpots,
+      },
+    });
+    // 여행지를 다시 선택하면 메시지를 숨깁니다.
+    setShowUploadPrompt(false);
   };
 
   // 폼 제출 핸들러
   const handleSubmit = event => {
     event.preventDefault();
-    if (productInfo.selectSpot.length === 0) {
-      setShowUploadPrompt(true); // 여행 장소를 선택하지 않은 경우 안내 문구를 표시합니다.
-    } else {
-      // 여기서 추가적인 작업 수행 가능
+    if (!productInfo.extra.spot || productInfo.extra.spot.length === 0) {
+      setShowUploadPrompt(true);
+      return;
     }
+    // 여행지가 선택되었을 때 다음 단계로 이동
+    setShowUploadPrompt(false);
   };
-
   console.log(productInfo);
 
   return (
@@ -64,7 +68,7 @@ function ProductSelectSpot() {
             <li key={id}>
               <label
                 className={`flex border-2  rounded-full py-1 px-4 cursor-pointer ${
-                  productInfo.selectSpot.includes(spot)
+                  productInfo.extra.spot.includes(spot)
                     ? 'border-main-color border-2 '
                     : 'border-light-gray'
                 }`}
@@ -72,11 +76,11 @@ function ProductSelectSpot() {
                 <input
                   className="hidden"
                   type="checkbox"
-                  checked={productInfo.selectSpot.includes(spot)}
+                  checked={productInfo.extra.spot.includes(spot)}
                   onChange={() => handleCheckboxChange(spot)}
                   disabled={
-                    productInfo.selectSpot.length >= 1 &&
-                    !productInfo.selectSpot.includes(spot)
+                    productInfo.extra.spot.length >= 1 &&
+                    !productInfo.extra.spot.includes(spot)
                   }
                 />
                 {spot.name}
