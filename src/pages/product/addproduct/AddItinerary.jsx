@@ -3,6 +3,8 @@ import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState, useEffect } from 'react';
 
+import './productStyle/Map.css';
+
 function AddItinerary() {
   const { addItineraryMap, itineraryMaps, removeItineraryMap } =
     useItineraryMapStore();
@@ -58,19 +60,34 @@ function AddItinerary() {
   }, [itineraryMaps]);
 
   return (
-    <div>
-      <button type="button" onClick={addMap}>
-        여행지도 추가하기
-      </button>
+    <div className=" w-full flex flex-col justify-center  ">
+      <div className="flex justify-center ">
+        <button
+          className="text-2xl  font-semibold text-main-color mt-20"
+          type="button"
+          onClick={addMap}
+        >
+          여행지도 추가하기
+          <p className=" m-auto text-center w-fit text-sm mt-2 border-2 border-main-color  px-4 py-2 rounded-full ">
+            Click!
+          </p>
+        </button>
+      </div>
 
       <div>
-        {maps.map((_, index) => {
-          return (
-            <button onClick={() => showMap(index)} className="p-2" key={index}>
-              {index + 1}일차
-            </button>
-          );
-        })}
+        <div className="flex flex-wrap">
+          {maps.map((_, index) => {
+            return (
+              <button
+                onClick={() => showMap(index)}
+                className="p-2 text-base  font-semibold text-main-color"
+                key={index}
+              >
+                {index + 1}일차
+              </button>
+            );
+          })}
+        </div>
 
         <div>{maps[selectedIndex]}</div>
         <button onClick={removeMap}>여행지도 삭제하기</button>
