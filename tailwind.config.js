@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/ @type {import('tailwindcss').Config} */;
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
@@ -11,6 +11,7 @@ export default {
       },
       fontFamily: {
         notosans: ['Noto Sans KR'],
+        'main-bg-color': '#F5F5F5',
       },
     },
   },

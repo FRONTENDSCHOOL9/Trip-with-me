@@ -1,3 +1,4 @@
+
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 
 import { DateRange } from 'react-date-range';
@@ -48,6 +49,9 @@ function Calendar() {
       </form>
     </div>
   );
+
+function Calendar() {
+  return <div>Calender</div>;
 }
 
 export default Calendar;

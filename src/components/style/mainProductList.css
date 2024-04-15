@@ -1,0 +1,132 @@
+:root {
+  font-family: 'noto Sans Kr', 'sans-serif';
+}
+
+.titleBox {
+  margin-top: 30px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.scrollbar {
+  box-shadow: inset 0 0 10px blue;
+  padding: 14px;
+}
+
+.title {
+  font-family: 'SokchoBadaDotum';
+  font-size: 20px;
+  color: #68a9ed;
+}
+
+.img-title {
+  width: 24px;
+  position: absolute;
+  top: -12px;
+  left: 108px;
+}
+
+.searhBox {
+  display: flex;
+  gap: 8px;
+}
+
+.searchInput {
+  width: 370px;
+  height: 38px;
+  border-radius: 6px;
+  background-color: #efefef;
+  background-image: url('../src/assets/icons/icon-search.svg');
+  background-size: 20px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  padding-right: 10px;
+  color: #5c5c5c;
+}
+
+.searchInput:focus {
+  outline: 2px solid #68a9ed;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  display: none;
+}
+
+.img-detailSearch {
+  width: 28px;
+}
+
+.subTitleBox {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  margin-top: 16px;
+  padding: 0 6px;
+}
+
+.img-heart,
+.img-limit {
+  width: 18px;
+  margin-right: 6px;
+}
+
+.productBox {
+  margin-top: 10px;
+}
+
+.productBox-info {
+  padding: 8px;
+}
+
+.productBox-img {
+  width: 410px;
+  height: 220px;
+  border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.productTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.productBox-limit {
+  display: flex;
+  font-size: 14px;
+}
+
+.productBox-etc {
+  position: relative;
+  margin-top: 6px;
+}
+
+.tag {
+  background-color: #e9f4fc;
+  border-radius: 4px;
+  margin-right: 6px;
+  padding: 2px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tag:last-child {
+  margin-right: 0;
+}
+
+.productBox-etc_like {
+  width: 60px;
+  font-size: 14px;
+  color: #5c5c5c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: -40px;
+  right: 10px;
+}
+
+.img-like {
+  width: 30px;
+}
