@@ -1,3 +1,4 @@
+import { Submit } from '@components/style/StyledButton';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import useMemberState from '@zustand/memberState.mjs';
 import usePageStore from '@zustand/pageName.mjs';
@@ -11,7 +12,7 @@ function EditMyPage() {
   const setPageName = usePageStore(state => state.setPageName);
   const location = useLocation();
   const propUser = location.state?.user;
-  const [themeData, setThemeData] = useState(0);
+  const [themeData, setThemeData] = useState([]);
   const [checkCount, setCheckCount] = useState(0);
   const [checkError, setCheckError] = useState(null);
   const [themeSelectedArr, setThemeSelectedArr] = useState([]);
@@ -35,9 +36,7 @@ function EditMyPage() {
   };
 
   const setThemeArr = () => {
-    let items = document.querySelectorAll(
-      'button[type=button][class=is_active]',
-    );
+    let items = document.querySelectorAll('button.is_active');
     let themeSelectedItems = Array.from(items).map(item => {
       return {
         id: item.getAttribute('id'),
@@ -48,18 +47,18 @@ function EditMyPage() {
   };
 
   const handleClick = e => {
-    let count = document.querySelectorAll(
-      'button[type=button][class=is_active]',
-    ).length;
+    let count = document.querySelectorAll('button.is_active').length;
     if (e.target.classList.contains('is_active')) {
-      e.target.className = '';
+      e.target.className =
+        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md';
       count--;
     } else {
       if (selectValid(count) === false) {
         count--;
         return;
       }
-      e.target.className = 'is_active';
+      e.target.className =
+        'is_active hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md';
       count++;
     }
 
@@ -85,15 +84,20 @@ function EditMyPage() {
         count++;
         setCheckCount(count);
       }
+      console.log('is_active item', is_active, item);
       themeList.push(
         <button
-          className={is_active ? 'is_active' : ''}
+          className={
+            is_active
+              ? 'is_active hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md'
+              : 'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md'
+          }
           key={item.id}
           id={item.id}
           type="button"
           onClick={handleClick}
         >
-          {item.name}
+          #{item.name}
         </button>,
       );
     });
@@ -166,45 +170,64 @@ function EditMyPage() {
   }, []);
 
   return (
-    <div>
-      <h2>회원 정보</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="flex flex-col h-full justify-center">
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
-            htmlFor="profileImage"
-          >
-            프로필 이미지
-          </label>
+          <div className="mb-3 mx-auto overflow-hidden w-32 h-32 rounded-full">
+            <label className="w-full h-full" htmlFor="profileImage"></label>
+            <img
+              className="w-full h-full"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${propUser?.profile}`}
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = '/public/default-profile.png';
+              }}
+            />
+          </div>
+        </div>
+        <input
+          className="mb-10 hidden"
+          type="file"
+          accept="image/*"
+          id="profileImage"
+          placeholder="이미지를 선택하세요"
+          onChange={onChange}
+          {...register('profileImage')}
+        />
+
+        <h2 className="text-lg font-bold mb-1">회원 정보</h2>
+
+        <div className="mx-auto w-4/5">
+          <div>
+            <label className="text-xs" htmlFor="name">
+              닉네임
+            </label>
+          </div>
           <input
-            type="file"
-            accept="image/*"
-            id="profileImage"
-            placeholder="이미지를 선택하세요"
-            className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700"
+            className="w-full border-b-2 outline-none mb-5 "
+            type="text"
+            id="name"
+            placeholder="닉네임을 입력하세요"
+            defaultValue={propUser.name}
             onChange={onChange}
-            {...register('profileImage')}
+            {...register('name')}
           />
         </div>
 
-        <label htmlFor="name">닉네임</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="닉네임을 입력하세요"
-          defaultValue={propUser.name}
-          onChange={onChange}
-          {...register('name')}
-        />
+        <div className="flex flex-col">
+          <hr className="border-none bg-gray-200 h-2 my-5" />
 
-        <div>
-          <h3>관심사를 골라주세요 ({checkCount} / 3)</h3>
-          <span>{checkError && checkError}</span>
-          <ul>
-            <li>{themeData}</li>
+          <h3 className="text-xl text-center font-bold mb-2">
+            관심사를 골라주세요 ({checkCount} / 3)
+          </h3>
+          <span className="text-center mb-2">{checkError && checkError}</span>
+          <ul className="mb-3">
+            <li className="text-center">{themeData}</li>
           </ul>
         </div>
-        <button type="submit">수정 완료</button>
+        <div className="text-center">
+          <Submit width="200px">수정 완료</Submit>
+        </div>
       </form>
     </div>
   );
