@@ -1,8 +1,14 @@
 import Footer from '@components/layout/Footer';
 import { Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '@components/style/mainProductList.css';
 
 function MainProductList() {
+  const navigate = useNavigate();
+  const onClickDetail = () => {
+    navigate('/product/search');
+  };
+
   return (
     <div className="layout">
       <div className="scrollbar">
@@ -22,7 +28,7 @@ function MainProductList() {
             placeholder="여행지나 키워드를 검색해보세요."
             className="searchInput"
           />
-          <button type="button">
+          <button type="button" onClick={onClickDetail}>
             {' '}
             <img
               src="../src/assets/icons/icon-search-bar.svg"

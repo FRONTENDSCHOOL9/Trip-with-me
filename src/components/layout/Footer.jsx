@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div className="foot">
-      <button className="home footButton">
+      <Link to="/product/list" className="home footButton">
         <i className="ir">Home</i>
-      </button>
-      <button className="add footButton">
+      </Link>
+      <Link to="/product/add" className="add footButton">
         <i className="ir">Add</i>
-      </button>
+      </Link>
       <Link to="/mypage" className="myinfo footButton">
         <i className="ir">Myinfo</i>
       </Link>
