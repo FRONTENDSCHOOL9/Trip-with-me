@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/product/add',
-    element: <ProductSelectSpot />,
+    element: <AddProduct />,
   },
   {
     index: true,
