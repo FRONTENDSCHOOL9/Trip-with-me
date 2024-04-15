@@ -6,6 +6,7 @@
   border-bottom: 1px solid #d9d9d9;
   margin: 0 24px;
   position: relative;
+  flex-shrink: 0;
 }
 .header-back {
   background-image: url('/src/assets/icons/icon-arrow-back.svg');
