@@ -24,23 +24,24 @@ function ProductSelectSpot() {
   };
 
   const handleCheckboxChange = spot => {
-    const selectedSpots = productInfo.extra.spot.slice(); // 현재 선택된 여행 장소 배열 복제
-    const spotIndex = selectedSpots.indexOf(spot); // 선택한 여행 장소가 이미 선택되었는지 확인
+
+    const selectedSpots = productInfo.extra.spot.slice();
+    const spotIndex = selectedSpots.indexOf(spot);
 
     if (spotIndex === -1 && selectedSpots.length < 1) {
-      // 선택되지 않은 경우 배열에 추가하고, 선택된 장소의 수가 1개 이하인 경우
       selectedSpots.push(spot);
     } else if (spotIndex !== -1) {
-      // 이미 선택된 경우 배열에서 제거
       selectedSpots.splice(spotIndex, 1);
     }
-    // 이전 상태의 구조를 유지하면서 extra에 새로운 데이터를 추가
+
     setProductInfo({
       extra: {
         ...productInfo.extra,
         spot: selectedSpots,
       },
     });
+    // 여행지를 다시 선택하면 메시지를 숨깁니다.
+    setShowUploadPrompt(false);
   };
 
   // 폼 제출 핸들러
@@ -50,6 +51,8 @@ function ProductSelectSpot() {
       setShowUploadPrompt(true);
       return;
     }
+    // 여행지가 선택되었을 때 다음 단계로 이동
+    setShowUploadPrompt(false);
   };
   console.log(productInfo);
 

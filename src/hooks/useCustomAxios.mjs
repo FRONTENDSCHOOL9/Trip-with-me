@@ -15,7 +15,7 @@ function useCustomAxios() {
   // ajax 통신에 사용할 공통 설정 지정
   const instance = axios.create({
     baseURL: import.meta.env.VITE_API_SERVER,
-    timeout: 1000 * 10,
+    timeout: 100000 * 10,
     headers: {
       'content-type': 'application/json', // request 데이터 타입
       accept: 'application/json', // response 데이터 타입

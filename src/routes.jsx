@@ -13,6 +13,7 @@ import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
 import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
+import Calendar from '@pages/product/addproduct/Calendar';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
         path: '/map',
         element: <AddItinerary />,
       },
+      {
+        path: '/product/add',
+        element: <AddProduct />,
+      },
+      {
+        path: '/add/Calendar',
+        element: <Calendar />,
+      },
     ],
   },
   {
@@ -62,10 +71,7 @@ const router = createBrowserRouter([
     path: '/product/search',
     element: <DetailedSearch />,
   },
-  {
-    path: '/product/add',
-    element: <AddProduct />,
-  },
+
   {
     index: true,
     element: <Login />,
