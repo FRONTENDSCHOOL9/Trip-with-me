@@ -1,3 +1,4 @@
+import { Button } from '@components/style/StyledButton';
 import KakaoMap from '@pages/product/addproduct/map/KakaoMap';
 import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useProductInfostore } from '@zustand/productInfo.mjs';
@@ -75,7 +76,7 @@ function AddItinerary() {
         <div>{maps[selectedIndex]}</div>
         <button onClick={removeMap}>여행지도 삭제하기</button>
       </div>
-      <button onClick={saveItineraryMaps}>저장</button>
+      <Button onClick={saveItineraryMaps}>다음</Button>
     </div>
   );
 }
