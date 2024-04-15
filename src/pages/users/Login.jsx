@@ -28,6 +28,7 @@ function Login() {
         age: res?.data?.item?.extra?.birthday,
         gender: res?.data?.item?.address,
         token: res?.data?.item?.token,
+        introduce: res?.data?.item?.extra?.introduce,
       });
       navigate('/product/list');
     } catch (err) {
