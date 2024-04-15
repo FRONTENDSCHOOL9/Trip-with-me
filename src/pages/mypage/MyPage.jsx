@@ -39,6 +39,10 @@ function MyPage() {
               <img
                 className="w-full h-full "
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = '/public/default-profile.png';
+                }}
               />
             </div>
             <p className="font-bold text-xl ">{user?.name}</p>
@@ -50,9 +54,9 @@ function MyPage() {
               {user?.theme?.map(item => (
                 <span
                   className="p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md"
-                  key="item.id"
+                  key={item.id}
                 >
-                  #{item.name}
+                  {item.name}
                 </span>
               ))}
             </p>

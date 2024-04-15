@@ -14,7 +14,7 @@ const ButtonStyle = styled.button`
   margin: 4px 2px; /* Margin */
   cursor: pointer; /* Cursor pointer */
   border-radius: 6px; /* Border radius */
-  width: 100%;
+  width: ${props => props.width || '100%'};
 `;
 
 const ButtonStyleBlue = styled(ButtonStyle)`

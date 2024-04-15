@@ -15,6 +15,7 @@ import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
 import Calendar from '@pages/product/addproduct/Calendar';
 
+
 const router = createBrowserRouter([
   {
     path: '/',

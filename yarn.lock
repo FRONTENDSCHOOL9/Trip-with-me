@@ -235,11 +235,6 @@
 "@emotion/unitless@0.8.0":
   version "0.8.0"
 
-"@esbuild/win32-x64@0.20.2":
-  version "0.20.2"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.20.2.tgz"
-  integrity sha512-N49X4lJX27+l9jbLKSqZ6bKNjzQvHaT8IIFUy+YIqmXQdjYCToGWwOItDrfby14c78aDd5NHQl29xingXfCdLQ==
-
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz"
@@ -365,11 +360,6 @@
   version "1.15.3"
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.15.3.tgz"
   integrity sha512-Oy8rmScVrVxWZVOpEF57ovlnhpZ8CCPlnIIumVcV9nFdiSIrus99+Lw78ekXyGvVDlIsFJbSfmSovJUhCWYV3w==
-
-"@rollup/rollup-win32-x64-msvc@4.14.1":
-  version "4.14.1"
-  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.14.1.tgz"
-  integrity sha512-wQGI+LY/Py20zdUPq+XCem7JcPOyzIJBm3dli+56DJsQOHbnXZFEwgmnC6el1TPAfC8lBT3m+z69RmLykNUbew==
 
 "@tanstack/query-core@5.29.0":
   version "5.29.0"

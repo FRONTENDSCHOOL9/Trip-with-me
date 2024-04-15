@@ -24,6 +24,7 @@ function ProductSelectSpot() {
   };
 
   const handleCheckboxChange = spot => {
+
     const selectedSpots = productInfo.extra.spot.slice();
     const spotIndex = selectedSpots.indexOf(spot);
 
@@ -32,6 +33,7 @@ function ProductSelectSpot() {
     } else if (spotIndex !== -1) {
       selectedSpots.splice(spotIndex, 1);
     }
+
     setProductInfo({
       extra: {
         ...productInfo.extra,
@@ -58,12 +60,12 @@ function ProductSelectSpot() {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col items-center justify-center"
       >
-        <p className="text-2xl font-notosans font-semibold text-main-color my-20">
+        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행지를 골라주세요.
         </p>
-        <ul className=" m-6 flex flex-wrap  gap-x-2 gap-y-4 justify-center items-center font-notosans ">
+        <ul className="flex flex-wrap items-center justify-center m-6  gap-x-2 gap-y-4 font-notosans">
           {tripSpots.map((spot, id) => (
             <li key={id}>
               <label
@@ -89,7 +91,7 @@ function ProductSelectSpot() {
           ))}
         </ul>
         {showUploadPrompt && (
-          <p className="text-warning-color font-notosans font-medium text-sm">
+          <p className="text-sm font-medium text-warning-color font-notosans">
             여행지를 선택해주세요.
           </p>
         )}
