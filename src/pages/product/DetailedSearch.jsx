@@ -46,8 +46,14 @@ function DetailedSearch() {
           <ul className="searchBox-detail">
             {tripSpots.map(tripSpot => (
               <li key={tripSpot.id}>
-                <input type="checkbox" id={`area_${tripSpot.id}`} />
-                <label htmlFor={`area_${tripSpot.id}`}>{tripSpot.name}</label>
+                <input
+                  className="input"
+                  type="checkbox"
+                  id={`area_${tripSpot.id}`}
+                />
+                <label className="label" htmlFor={`area_${tripSpot.id}`}>
+                  {tripSpot.name}
+                </label>
               </li>
             ))}
           </ul>
@@ -59,8 +65,12 @@ function DetailedSearch() {
           <ul className="searchBox-detail">
             {tripThemes.map(tripThemes => (
               <li key={tripThemes.id}>
-                <input type="checkbox" id={`theme_${tripThemes.id}`} />
-                <label htmlFor={`theme_${tripThemes.id}`}>
+                <input
+                  type="checkbox"
+                  className="input"
+                  id={`theme_${tripThemes.id}`}
+                />
+                <label className="label" htmlFor={`theme_${tripThemes.id}`}>
                   {tripThemes.name}
                 </label>
               </li>
