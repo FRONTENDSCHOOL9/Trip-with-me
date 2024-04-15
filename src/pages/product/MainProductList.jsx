@@ -1,8 +1,14 @@
 import Footer from '@components/layout/Footer';
 import { Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '@components/style/mainProductList.css';
 
 function MainProductList() {
+  const navigate = useNavigate();
+  const onClickDetail = () => {
+    navigate('/product/search');
+  };
+
   return (
     <div className="layout">
       <div className="scrollbar">
@@ -22,7 +28,7 @@ function MainProductList() {
             placeholder="여행지나 키워드를 검색해보세요."
             className="searchInput"
           />
-          <button type="button">
+          <button type="button" onClick={onClickDetail}>
             {' '}
             <img
               src="../src/assets/icons/icon-search-bar.svg"
@@ -82,80 +88,82 @@ function MainProductList() {
         <div className="subTitleBox">
           <h2 className="likeTitle">최신글</h2>
         </div>
-        <div className="productBox">
-          <div className="productBox-img">
-            {' '}
-            <img
-              src="https://post-phinf.pstatic.net/MjAxNzA3MjBfMTkg/MDAxNTAwNTQwNDU3NTAw.LJc6YXl6wUgUeKZNFoS9VyCKPEeHwlSH1xy_pCt7Fjsg.paVt4u2k5g0OEvdxlQrY4cy2-AoFXoUm51G7N1V-i-sg.PNG/2.png?type=w1200"
-              className="img-product"
-            ></img>
-          </div>
-          <div className="productBox-info">
-            <h3 className="productTitle">국토대장정 가즈아아</h3>
-            <div className="productBox-limit">
+        <ul>
+          <li className="productBox">
+            <div className="productBox-img">
               {' '}
               <img
-                src="../src/assets/icons/icon-group.svg"
-                className="img-limit"
+                src="https://post-phinf.pstatic.net/MjAxNzA3MjBfMTkg/MDAxNTAwNTQwNDU3NTAw.LJc6YXl6wUgUeKZNFoS9VyCKPEeHwlSH1xy_pCt7Fjsg.paVt4u2k5g0OEvdxlQrY4cy2-AoFXoUm51G7N1V-i-sg.PNG/2.png?type=w1200"
+                className="img-product"
               ></img>
-              <p className="limit">1/6</p>
             </div>
-            <div className="productBox-etc">
-              <a href="#" className="tag">
-                # 이색체험
-              </a>
-              <a href="#" className="tag">
-                # 기타
-              </a>
-              <div className="productBox-etc_like">
-                <button type="button">
-                  <img
-                    src="../src/assets/icons/icon-heart-disabled.svg"
-                    className="img-like"
-                  ></img>
-                </button>
-                <p>16</p>
+            <div className="productBox-info">
+              <h3 className="productTitle">국토대장정 가즈아아</h3>
+              <div className="productBox-limit">
+                {' '}
+                <img
+                  src="../src/assets/icons/icon-group.svg"
+                  className="img-limit"
+                ></img>
+                <p className="limit">1/6</p>
+              </div>
+              <div className="productBox-etc">
+                <a href="#" className="tag">
+                  # 이색체험
+                </a>
+                <a href="#" className="tag">
+                  # 기타
+                </a>
+                <div className="productBox-etc_like">
+                  <button type="button">
+                    <img
+                      src="../src/assets/icons/icon-heart-disabled.svg"
+                      className="img-like"
+                    ></img>
+                  </button>
+                  <p>16</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <div className="productBox">
-          <div className="productBox-img">
-            {' '}
-            <img
-              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3626%2Fev0rsnmm7mkzydlx__1080_790.jpg&w=700&q=100"
-              className="img-product"
-            ></img>
-          </div>
-          <div className="productBox-info">
-            <h3 className="productTitle">
-              멋쟁이 사자처럼 커피챗 같이 갈 사람
-            </h3>
-            <div className="productBox-limit">
+          <li className="productBox">
+            <div className="productBox-img">
               {' '}
               <img
-                src="../src/assets/icons/icon-group.svg"
-                className="img-limit"
+                src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3626%2Fev0rsnmm7mkzydlx__1080_790.jpg&w=700&q=100"
+                className="img-product"
               ></img>
-              <p className="limit">11/18</p>
             </div>
-            <div className="productBox-etc">
-              <a href="#" className="tag">
-                # 기타
-              </a>
-              <div className="productBox-etc_like">
-                <button type="button">
-                  <img
-                    src="../src/assets/icons/icon-heart-disabled.svg"
-                    className="img-like"
-                  ></img>
-                </button>
-                <p>40</p>
+            <div className="productBox-info">
+              <h3 className="productTitle">
+                멋쟁이 사자처럼 커피챗 같이 갈 사람
+              </h3>
+              <div className="productBox-limit">
+                {' '}
+                <img
+                  src="../src/assets/icons/icon-group.svg"
+                  className="img-limit"
+                ></img>
+                <p className="limit">11/18</p>
+              </div>
+              <div className="productBox-etc">
+                <a href="#" className="tag">
+                  # 기타
+                </a>
+                <div className="productBox-etc_like">
+                  <button type="button">
+                    <img
+                      src="../src/assets/icons/icon-heart-disabled.svg"
+                      className="img-like"
+                    ></img>
+                  </button>
+                  <p>40</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
       <Footer />
     </div>

@@ -3,9 +3,17 @@ import { Outlet } from 'react-router-dom';
 import '@components/style/detailedSearch.css';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
+import usePageStore from '@zustand/pageName.mjs';
 // import { useNavigate } from 'react-router-dom';
 
 function DetailedSearch() {
+  const page = '상세 검색';
+  const setPageName = usePageStore(state => state.setPageName);
+
+  useEffect(() => {
+    setPageName(page);
+  }, []);
+
   const axios = useCustomAxios();
   const [tripSpots, setTripSpots] = useState([]);
   const [tripThemes, setTripThemes] = useState([]);
