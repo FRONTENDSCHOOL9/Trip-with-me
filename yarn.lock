@@ -2288,6 +2288,8 @@ react-is@^16.13.1:
 
 react-kakao-maps-sdk@^1.1.26:
   version "1.1.26"
+  resolved "https://registry.npmjs.org/react-kakao-maps-sdk/-/react-kakao-maps-sdk-1.1.26.tgz"
+  integrity sha512-rzQLGVPk8LmT8ffZFiPEutQxxufH/K9ffbFgCnE9OqqfvlQ94qmBtl8s5MvTtt3noOJ3W1WBTle1B/Y+Yphuug==
   dependencies:
     "@babel/runtime" "^7.22.15"
     kakao.maps.d.ts "^0.1.39"
