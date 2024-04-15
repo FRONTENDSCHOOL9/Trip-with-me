@@ -13,8 +13,6 @@ import ProductLikeList from '@pages/mypage/ProductLikeList';
 import AddProduct from '@pages/product/AddProduct';
 import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
-import SelectTheme from '@pages/product/addproduct/SelectTheme';
-import ProductSelectSpot from '@pages/product/addproduct/ProductSelectSpot';
 
 const router = createBrowserRouter([
   {

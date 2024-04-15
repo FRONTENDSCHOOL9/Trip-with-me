@@ -1,30 +1,30 @@
 import { useProductInfostore } from '@zustand/productInfo.mjs';
-import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 function ProductName() {
   const { productInfo, setProductInfo } = useProductInfostore();
-  const [name, setName] = useState('');
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  useEffect(() => {
+  const onSubmit = data => {
     setProductInfo({
       ...productInfo,
-      name: name,
-      quantity: quantity,
-      price: price,
+      name: data.name,
+      quantity: data.quantity,
+      price: data.price,
     });
-  }, [name, quantity, price, setProductInfo]);
-
-  const handleSubmit = event => {
-    event.preventDefault();
     console.log(productInfo);
   };
 
+  const oninvalid = errors => console.error(errors);
+
   return (
     <div className="layout">
-      <form>
-        <div className="mb-4">
+      <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
+        <div className="">
           <label
             className="my-20 font-semibold text-md font-notosans text-main-color"
             htmlFor="name"
@@ -34,12 +34,22 @@ function ProductName() {
           <input
             type="text"
             id="name"
-            onChange={e => setName(e.target.value)}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            {...register('name', {
+              required: '제목을 입력해주세요',
+              minLength: {
+                value: 2,
+                message: '두 글자 이상 입력해주세요.',
+              },
+            })}
           />
+          {errors.name && (
+            <p className="text-sm font-medium text-warning-color font-notosans">
+              {errors.name.message}
+            </p>
+          )}
         </div>
-
-        <div className="mb-4">
+        <div className="">
           <label
             className="my-20 font-semibold text-md font-notosans text-main-color"
             htmlFor="quantity"
@@ -47,15 +57,25 @@ function ProductName() {
             최대 인원을 설정해주세요.
           </label>
           <input
-            type="number"
-            min="1"
+            type="text"
             id="quantity"
-            onChange={e => setQuantity(e.target.value)}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            {...register('quantity', {
+              required: '최대 인원을 설정해주세요.',
+              pattern: {
+                value: /^[0-9]*$/,
+                message: '숫자만 입력해주세요',
+              },
+            })}
           />
+          {errors.quantity && (
+            <p className="text-sm font-medium text-warning-color font-notosans">
+              {errors.quantity.message}
+            </p>
+          )}
         </div>
 
-        <div className="mb-4">
+        <div className="">
           <label
             className="my-20 font-semibold text-md font-notosans text-main-color"
             htmlFor="price"
@@ -63,19 +83,28 @@ function ProductName() {
             인당 경비를 입력해주세요.
           </label>
           <input
-            type="number"
-            min="0"
-            onChange={e => setPrice(e.target.value)}
+            type="text"
             id="price"
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            {...register('price', {
+              required: '인당 경비를 입력해주세요.',
+              pattern: {
+                value: /^[0-9]*$/,
+                message: '숫자만 입력해주세요',
+              },
+              minLength: {
+                value: 4,
+                message: '1,000원 이상 입력해주세요.',
+              },
+            })}
           />
+          {errors.price && (
+            <p className="text-sm font-medium text-warning-color font-notosans">
+              {errors.price.message}
+            </p>
+          )}
         </div>
-
-        <div className="flex items-center justify-center mt-14">
-          <button type="submit" onClick={handleSubmit}>
-            다음
-          </button>
-        </div>
+        <button type="submit">다음</button>
       </form>
     </div>
   );
