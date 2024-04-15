@@ -21,11 +21,14 @@ function ProductBuyListItem({ item }) {
     if (isClick === true) setIsClick(false);
   };
   return (
-    <div>
+    <div className="border border-gray-200 shadow mb-2 rounded-lg p-2">
       <Link to={`/product/${item?.products[0]?._id}`}>
-        <p>이미지</p>
-        <p>{item?.products[0]?.name}</p>
-        <p>날짜</p>
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.products[0]?.image?.name}`}
+          alt=""
+        />
+        <p>상품명 : {item?.products[0]?.name}</p>
+        <p>날짜 : {item?.products[0]?.extra?.date}</p>
       </Link>
       <button type="button" onClick={onClick}>
         여행장 리뷰 쓰기{' '}

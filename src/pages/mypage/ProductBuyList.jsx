@@ -25,9 +25,7 @@ function ProductBuyList() {
 
   return (
     <div>
-      <ul>
-        <li>{orderData}</li>
-      </ul>
+      <div>{orderData}</div>
     </div>
   );
 }
