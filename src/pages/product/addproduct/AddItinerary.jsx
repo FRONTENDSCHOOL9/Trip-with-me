@@ -1,4 +1,3 @@
-import { Button } from '@components/style/StyledButton';
 import KakaoMap from '@pages/product/addproduct/map/KakaoMap';
 import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useProductInfostore } from '@zustand/productInfo.mjs';
@@ -50,10 +49,11 @@ function AddItinerary() {
   const saveItineraryMaps = () => {
     setProductInfo({
       extra: {
+        ...productInfo.extra,
         itineraryMaps: itineraryMaps,
       },
-    });
-    console.log(productInfo);
+    }),
+      console.log(productInfo);
   };
 
   useEffect(() => {
@@ -93,7 +93,7 @@ function AddItinerary() {
         <div>{maps[selectedIndex]}</div>
         <button onClick={removeMap}>여행지도 삭제하기</button>
       </div>
-      <Button onClick={saveItineraryMaps}>다음</Button>
+      <button onClick={saveItineraryMaps}>저장</button>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useForm } from 'react-hook-form';
 
-function ProductName() {
-  const { productInfo, setProductInfo } = useProductInfostore();
+function ProductName({ productInfo, setProductInfo }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+  console.log(watch('name'));
 
   const onSubmit = data => {
     setProductInfo({
@@ -16,7 +17,6 @@ function ProductName() {
       quantity: data.quantity,
       price: data.price,
     });
-    console.log(productInfo);
   };
 
   const oninvalid = errors => console.error(errors);
