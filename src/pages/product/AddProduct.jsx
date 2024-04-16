@@ -12,19 +12,34 @@ import ProductContent from './addproduct/ProductContent';
 import ProductAddModal from './addproduct/ProductAddModal';
 
 function AddProduct() {
-  const [productInfo, setProductInfo] = useState({});
-
+  const [productInfo, setProductInfo] = useState({
+    price: 0,
+    quantity: 0,
+    show: true,
+    active: true,
+    name: '',
+    mainImages: [],
+    content: '',
+    extra: {
+      date: [],
+      spot: [],
+      themes: [],
+      itineraryMaps: [],
+    },
+  });
   console.log(productInfo);
-
   return (
     <div className="layout">
       <Header />
       <ProductImage setProductInfo={setProductInfo} />
-      <ProductName setProductInfo={setProductInfo} />
+      <ProductName productInfo={productInfo} setProductInfo={setProductInfo} />
       <Calendar setProductInfo={setProductInfo} />
       <AddItinerary setProductInfo={setProductInfo} />
-      <ProductSelectSpot setProductInfo={setProductInfo} />
-      <SelectTheme setProductInfo={setProductInfo} />
+      <ProductSelectSpot
+        productInfo={productInfo}
+        setProductInfo={setProductInfo}
+      />
+      <SelectTheme productInfo={productInfo} setProductInfo={setProductInfo} />
       <ProductContent setProductInfo={setProductInfo} />
       <ProductAddModal setProductInfo={setProductInfo} />
     </div>
