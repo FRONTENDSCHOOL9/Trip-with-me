@@ -132,6 +132,7 @@ function EditMyPage() {
       formData.extra = formData.extra || {};
       console.log('if themeselected 윗부분');
 
+      formData.extra.birthday = propUser?.age;
       if (themeSelectedArr) {
         formData.extra.address = themeSelectedArr;
       }

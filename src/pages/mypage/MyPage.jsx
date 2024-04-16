@@ -48,7 +48,7 @@ function MyPage() {
             <p className="font-bold text-xl ">{user?.name}</p>
             <p className="mb-3 text-gray-500">
               <span className="mr-2">{user?.age}대</span>
-              <span>{user?.gender}</span>
+              <span>{user?.gender === 'female' ? '여성' : '남성'}</span>
             </p>
             <p className="mb-5">
               {user?.theme?.map(item => (
