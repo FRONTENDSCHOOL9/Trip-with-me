@@ -103,17 +103,17 @@ function ProductName({ productInfo, setProductInfo }) {
             </p>
           )}
         </div>
-        <div className="flex w-96 mt-20 justify-between items-center">
+        <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전
           </button>
           <p className="text-xl font-medium"> 2 / 7</p>
           <button
             type="submit"
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
           </button>

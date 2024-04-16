@@ -60,6 +60,10 @@ const router = createBrowserRouter([
         path: '/mypage/likelist',
         element: <ProductLikeList />,
       },
+      {
+        path: '/map',
+        element: <AddItinerary />,
+      },
     ],
   },
   {

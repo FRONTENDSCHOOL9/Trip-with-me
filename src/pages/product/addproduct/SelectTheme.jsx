@@ -35,6 +35,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
     }
     console.log(selectedThemes);
     setProductInfo({
+      ...productInfo,
       extra: {
         ...productInfo.extra,
         themes: selectedThemes,
@@ -81,15 +82,14 @@ function SelectTheme({ productInfo, setProductInfo }) {
                     ? 'border-main-color border-2 '
                     : 'border-light-gray'
                 }`}
-              >
-                <input
-                  className="hidden"
-                  type="checkbox"
-                  checked={productInfo.extra.themes.includes(theme)}
-                  onChange={() => handleCheckboxChange(theme)}
-                />
-                {theme.name}
-              </label>
+              ></label>
+              <input
+                className="hidden"
+                type="checkbox"
+                checked={productInfo.extra.themes.includes(theme)}
+                onChange={() => handleCheckboxChange(theme)}
+              />
+              {theme.name}
             </li>
           ))}
         </ul>
@@ -98,10 +98,10 @@ function SelectTheme({ productInfo, setProductInfo }) {
             여행테마를 선택해주세요.
           </p>
         )}
-        <div className="flex w-96 mt-20 justify-between items-center">
+        <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
             onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
           >
             이전
@@ -110,7 +110,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
           <button
             type="submit"
             onClick={handleNext}
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
           </button>
