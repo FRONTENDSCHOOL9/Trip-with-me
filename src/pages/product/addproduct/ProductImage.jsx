@@ -1,29 +1,25 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState } from 'react';
 
-function ProductImage() {
-  const navigate = useNavigate();
-  const { setProductInfo } = useProductInfostore();
-
+const ProductImage = ({ setProductInfo }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
 
-  const handleFileChange = event => {
-    setSelectedFile(URL.createObjectURL(event.target.files[0])); //로컬로 이미지 미리보기
-    setShowUploadPrompt(false);
-  };
-
-  const onSubmit = event => {
-    event.preventDefault();
+  const handleImageChange = e => {
+    e.preventDefault();
     if (selectedFile) {
-      setProductInfo({
-        mainImages: [selectedFile],
-      });
-      navigate('/product/add/name');
+      setProductInfo(prevInfo => ({ ...prevInfo, mainImages: [selectedFile] }));
     } else {
       setShowUploadPrompt(true);
     }
+  };
+
+  const handleFileChange = event => {
+    setSelectedFile(URL.createObjectURL(event.target.files[0]));
+    setShowUploadPrompt(false);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
   };
 
   return (
@@ -64,7 +60,8 @@ function ProductImage() {
         <div className="flex w-96 mt-56 justify-between items-center">
           <p className="ml-44 text-xl font-medium"> 1 / 7</p>
           <button
-            type="submit"
+            type="submit" // 폼 제출 버튼으로 변경
+            onClick={handleImageChange}
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
           >
             다음
@@ -73,6 +70,6 @@ function ProductImage() {
       </form>
     </div>
   );
-}
+};
 
 export default ProductImage;

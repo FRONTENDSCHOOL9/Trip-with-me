@@ -1,34 +1,25 @@
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function ProductContent() {
-  const { setProductInfo } = useProductInfostore();
+const ProductContent = ({ setProductInfo }) => {
   const [showUploadContent, setShowUploadPrompt] = useState(false);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const handleContentChange = e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const content = formData.get('content');
-    navigate('/product/add/modal');
 
     if (!content.trim()) {
       setShowUploadPrompt(true);
-    } else {
-      setProductInfo({ content: content });
+      return;
     }
+
+    setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
   };
 
-  const navigate = useNavigate();
-
-  const handlePrevious = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/theme');
-  };
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleContentChange}
         className="flex flex-col justify-center items-center"
       >
         <label htmlFor="content">
@@ -41,7 +32,7 @@ function ProductContent() {
         </label>
         <textarea
           id="content"
-          name="content" // name 속성 추가
+          name="content"
           className="relative w-80 h-96 bg-light-gray  rounded-lg"
           placeholder="상세 정보를 입력해주세요"
         ></textarea>
@@ -54,7 +45,6 @@ function ProductContent() {
           <button
             type="button"
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
-            onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
           >
             이전
           </button>
@@ -69,6 +59,6 @@ function ProductContent() {
       </form>
     </div>
   );
-}
+};
 
 export default ProductContent;
