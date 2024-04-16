@@ -1,26 +1,25 @@
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState } from 'react';
 
-function ProductContent() {
-  const { setProductInfo } = useProductInfostore();
+const ProductContent = ({ setProductInfo }) => {
   const [showUploadContent, setShowUploadPrompt] = useState(false);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const handleContentChange = e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const content = formData.get('content');
 
     if (!content.trim()) {
       setShowUploadPrompt(true);
-    } else {
-      setProductInfo({ content: content });
+      return;
     }
+
+    setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
   };
 
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleContentChange}
         className="flex flex-col justify-center items-center"
       >
         <label htmlFor="content">
@@ -33,7 +32,7 @@ function ProductContent() {
         </label>
         <textarea
           id="content"
-          name="content" // name 속성 추가
+          name="content"
           className="relative w-80 h-96 bg-light-gray  rounded-lg"
           placeholder="상세 정보를 입력해주세요"
         ></textarea>
@@ -42,10 +41,24 @@ function ProductContent() {
             여행 상세 정보를 입력해주세요.
           </p>
         )}
-        <button type="submit">다음</button>
+        <div className="flex w-96 mt-20 justify-between items-center">
+          <button
+            type="button"
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          >
+            이전
+          </button>
+          <p className="text-xl font-medium"> 3 / 7</p>
+          <button
+            type="submit"
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          >
+            다음
+          </button>
+        </div>
       </form>
     </div>
   );
-}
+};
 
 export default ProductContent;

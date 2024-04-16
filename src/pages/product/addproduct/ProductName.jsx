@@ -1,4 +1,3 @@
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useForm } from 'react-hook-form';
 
 function ProductName({ productInfo, setProductInfo }) {
@@ -104,7 +103,21 @@ function ProductName({ productInfo, setProductInfo }) {
             </p>
           )}
         </div>
-        <button type="submit">다음</button>
+        <div className="flex w-96 mt-20 justify-between items-center">
+          <button
+            type="button"
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          >
+            이전
+          </button>
+          <p className="text-xl font-medium"> 2 / 7</p>
+          <button
+            type="submit"
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          >
+            다음
+          </button>
+        </div>
       </form>
     </div>
   );

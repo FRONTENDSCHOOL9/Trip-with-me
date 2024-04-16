@@ -148,7 +148,17 @@ function EditMyPage() {
       };
       //기존 프로필은 있으면서 변경 액션이 없는 경우
 
+
+      // updateUser?.profile &&
+      //   (updateUser?.profile?.length ? '' : delete updateUser?.profile);
+      //값이 지워졌다.
+
+      // if (updateUser?.profile && !updateUser?.profile?.length) {
+      //   if(updateUser.hasOwnProperty())
+      // }
+
       !updateUser?.profile && delete updateUser?.profile;
+
 
       console.log('지워져야 정상updateUser=>', updateUser);
 
