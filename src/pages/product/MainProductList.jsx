@@ -1,6 +1,9 @@
 import Footer from '@components/layout/Footer';
 import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import MainProductListItem from '@pages/product/MainProductListItem';
 import '@components/style/mainProductList.css';
 
 function MainProductList() {
@@ -8,6 +11,24 @@ function MainProductList() {
   const onClickDetail = () => {
     navigate('/product/search');
   };
+  const axios = useCustomAxios();
+  const [products, setProducts] = useState([]);
+  const getProducts = async () => {
+    try {
+      const response = await axios.get('/products');
+      const list = response?.data?.item?.map(item => {
+        return <MainProductListItem key={item?._id} item={item} />;
+      });
+      setProducts(list);
+      console.log('list', list);
+    } catch (error) {
+      console.error('상품 정보 불러오기 실패', error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <div className="layout">
@@ -88,82 +109,8 @@ function MainProductList() {
         <div className="subTitleBox">
           <h2 className="likeTitle">최신글</h2>
         </div>
-        <ul>
-          <li className="productBox">
-            <div className="productBox-img">
-              {' '}
-              <img
-                src="https://post-phinf.pstatic.net/MjAxNzA3MjBfMTkg/MDAxNTAwNTQwNDU3NTAw.LJc6YXl6wUgUeKZNFoS9VyCKPEeHwlSH1xy_pCt7Fjsg.paVt4u2k5g0OEvdxlQrY4cy2-AoFXoUm51G7N1V-i-sg.PNG/2.png?type=w1200"
-                className="img-product"
-              ></img>
-            </div>
-            <div className="productBox-info">
-              <h3 className="productTitle">국토대장정 가즈아아</h3>
-              <div className="productBox-limit">
-                {' '}
-                <img
-                  src="../src/assets/icons/icon-group.svg"
-                  className="img-limit"
-                ></img>
-                <p className="limit">1/6</p>
-              </div>
-              <div className="productBox-etc">
-                <a href="#" className="tag">
-                  # 이색체험
-                </a>
-                <a href="#" className="tag">
-                  # 기타
-                </a>
-                <div className="productBox-etc_like">
-                  <button type="button">
-                    <img
-                      src="../src/assets/icons/icon-heart-disabled.svg"
-                      className="img-like"
-                    ></img>
-                  </button>
-                  <p>16</p>
-                </div>
-              </div>
-            </div>
-          </li>
 
-          <li className="productBox">
-            <div className="productBox-img">
-              {' '}
-              <img
-                src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3626%2Fev0rsnmm7mkzydlx__1080_790.jpg&w=700&q=100"
-                className="img-product"
-              ></img>
-            </div>
-            <div className="productBox-info">
-              <h3 className="productTitle">
-                멋쟁이 사자처럼 커피챗 같이 갈 사람
-              </h3>
-              <div className="productBox-limit">
-                {' '}
-                <img
-                  src="../src/assets/icons/icon-group.svg"
-                  className="img-limit"
-                ></img>
-                <p className="limit">11/18</p>
-              </div>
-              <div className="productBox-etc">
-                <a href="#" className="tag">
-                  # 기타
-                </a>
-                <div className="productBox-etc_like">
-                  <button type="button">
-                    <img
-                      src="../src/assets/icons/icon-heart-disabled.svg"
-                      className="img-like"
-                    ></img>
-                  </button>
-                  <p>40</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <ul>{products}</ul>
       </div>
       <Footer />
     </div>

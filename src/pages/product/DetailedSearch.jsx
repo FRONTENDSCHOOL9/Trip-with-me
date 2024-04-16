@@ -10,10 +10,6 @@ function DetailedSearch() {
   const page = '상세 검색';
   const setPageName = usePageStore(state => state.setPageName);
 
-  useEffect(() => {
-    setPageName(page);
-  }, []);
-
   const axios = useCustomAxios();
   const [tripSpots, setTripSpots] = useState([]);
   const [tripThemes, setTripThemes] = useState([]);
@@ -39,6 +35,7 @@ function DetailedSearch() {
       }
     };
 
+    setPageName(page);
     getSpots();
     getThemes();
   }, []);
