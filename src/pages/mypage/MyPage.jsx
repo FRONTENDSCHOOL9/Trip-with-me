@@ -81,10 +81,15 @@ function MyPage() {
             <hr className="border-0 h-3 bg-gray-100 w-full" />
             <br />
             <div className="px-10 text-left">
-              <button className="mb-5 text-xl mr-auto" type="button">
-                찜 목록
-              </button>
-              <br />
+              <p className="mb-5">
+                <Link
+                  to="/mypage/likelist"
+                  className="text-xl mr-auto"
+                  type="button"
+                >
+                  찜 목록
+                </Link>
+              </p>
               <p className="mb-5">
                 <Link className="text-xl mr-auto" to="/mypage/buylist">
                   구매 목록
