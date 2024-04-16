@@ -8,6 +8,7 @@ export default {
         'light-gray': '#EFEFF0',
         'mid-gray': '#AFB1B6',
         'warning-color': '#E72929',
+        'second-color': '#E9F4FC',
       },
       fontFamily: {
         notosans: ['Noto Sans KR'],
