@@ -20,6 +20,7 @@ import ProductSelectSpot from '@pages/product/addproduct/ProductSelectSpot';
 import SelectTheme from '@pages/product/addproduct/SelectTheme';
 import ProductContent from '@pages/product/addproduct/ProductContent';
 import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
+import MyPageOther from '@pages/mypage/MyPageOther';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage',
         element: <MyPage />,
+      },
+      {
+        path: '/mypage/:_id',
+        element: <MyPageOther />,
       },
       {
         path: '/mypage/edit',

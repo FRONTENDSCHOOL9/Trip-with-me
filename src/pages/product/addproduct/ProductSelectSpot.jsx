@@ -1,10 +1,8 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ProductSelectSpot() {
-  const { productInfo, setProductInfo } = useProductInfostore();
+function ProductSelectSpot({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
 
   const axios = useCustomAxios();
@@ -73,7 +71,7 @@ function ProductSelectSpot() {
         <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행지를 골라주세요.
         </p>
-        <ul className="flex flex-wrap items-center justify-center m-6  gap-x-2 gap-y-4 font-notosans">
+        <ul className="flex flex-wrap items-center justify-center m-6 gap-x-2 gap-y-4 font-notosans">
           {tripSpots.map((spot, id) => (
             <li key={id}>
               <label

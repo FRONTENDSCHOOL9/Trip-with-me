@@ -34,7 +34,7 @@ function MyPage() {
     <>
       {user && (
         <div className="flex flex-col h-full">
-          <div className="flex flex-col w-full m-auto text-center  ">
+          <div className="flex flex-col w-full m-auto text-center">
             <div className="mb-3 mx-auto overflow-hidden w-32 h-32 rounded-full">
               <img
                 className="w-full h-full "
@@ -48,7 +48,7 @@ function MyPage() {
             <p className="font-bold text-xl ">{user?.name}</p>
             <p className="mb-3 text-gray-500">
               <span className="mr-2">{user?.age}대</span>
-              <span>{user?.gender}</span>
+              <span>{user?.gender === 'female' ? '여성' : '남성'}</span>
             </p>
             <p className="mb-5">
               {user?.theme?.map(item => (
@@ -60,6 +60,16 @@ function MyPage() {
                 </span>
               ))}
             </p>
+            {user?.introduce ? (
+              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
+                {user?.introduce}
+              </p>
+            ) : (
+              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
+                자기소개가 없습니다.
+              </p>
+            )}
+
             <Link
               className="mb-10 mx-auto bg-gray-300 rounded-full w-2/3 h-10 flex justify-center items-center"
               to={'/mypage/edit'}

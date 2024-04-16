@@ -28,6 +28,7 @@ function Login() {
         age: res?.data?.item?.extra?.birthday,
         gender: res?.data?.item?.address,
         token: res?.data?.item?.token,
+        introduce: res?.data?.item?.extra?.introduce,
       });
       navigate('/product/list');
     } catch (err) {
@@ -55,6 +56,7 @@ function Login() {
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* <label htmlFor="email">아이디</label> */}
           <input
+            defaultValue="testApp@test.com"
             className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
             id="email"
             {...register('email')}
@@ -65,6 +67,7 @@ function Login() {
           <br />
           {/* <label htmlFor="password">비밀번호</label> */}
           <input
+            defaultValue="11111111"
             className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
             id="password"
             {...register('password', {

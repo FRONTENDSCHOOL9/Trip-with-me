@@ -107,6 +107,7 @@ function AddItinerary() {
         <button onClick={removeMap}>여행지도 삭제하기</button>
       </div>
       <button onClick={saveItineraryMaps}>저장</button>
+
       <div className="flex w-96 mt-20 justify-between items-center">
         <button
           type="button"

@@ -1,11 +1,8 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SelectTheme() {
-  const { productInfo, setProductInfo } = useProductInfostore();
-
+function SelectTheme({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
 
   const axios = useCustomAxios();

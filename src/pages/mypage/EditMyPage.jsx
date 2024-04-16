@@ -124,24 +124,30 @@ function EditMyPage() {
           data: imageFormData,
         });
         formData.profileImage = fileRes.data.item[0].name;
+      } else if (selectedFile.length <= 0) {
+        formData.profileImage = propUser?.profile;
       }
 
       //formData의 extra 객체 생성
       formData.extra = formData.extra || {};
       console.log('if themeselected 윗부분');
 
+      formData.extra.birthday = propUser?.age;
       if (themeSelectedArr) {
         formData.extra.address = themeSelectedArr;
       }
-      console.log('patch 윗부분');
+
+      console.log('현재 보내는 formData => ', formData);
       const res = await axios.patch('/users/' + propUser._id, formData);
 
       const updateUser = {
         name: res?.data?.updated?.name,
         profile: res?.data?.updated?.profileImage,
         theme: res?.data?.updated?.extra?.address,
+        introduce: res?.data?.updated?.extra?.introduce,
       };
       //기존 프로필은 있으면서 변경 액션이 없는 경우
+
 
       // updateUser?.profile &&
       //   (updateUser?.profile?.length ? '' : delete updateUser?.profile);
@@ -151,22 +157,22 @@ function EditMyPage() {
       //   if(updateUser.hasOwnProperty())
       // }
 
-      console.log('updateUser', updateUser?.profile);
+      !updateUser?.profile && delete updateUser?.profile;
 
-      console.log(propUser?.profile);
+
+      console.log('지워져야 정상updateUser=>', updateUser);
+
+      console.log('전역 넘어온 값 propUser =>', propUser);
 
       //updateUser 덮어쓰기
       const newUser = {
         ...propUser,
         ...updateUser,
       };
-      console.log('newUser 아래');
-      console.log('newUser', newUser);
 
-      // console.log('newUser => ', newUser);
+      console.log('newUser =>', newUser);
+
       // 전역 상태 관리 업데이트
-      console.log('setnewUser 위');
-
       setUser(newUser);
 
       alert('수정 완료되었습니다.');
@@ -176,16 +182,6 @@ function EditMyPage() {
       console.log(err.message);
     }
   };
-
-  // const onChange = e => {
-  //   // const { value, name } = e.target;
-  //   // setProfileState({
-  //   //   ...profileState,
-  //   //   [name]: value,
-  //   // });
-  //   // console.log('files=>', e.target.files[0]);
-  //   // setImage(e.target.files[0]);
-  // };
 
   const handleFileChange = e => {
     setViewFile(URL.createObjectURL(e.target.files[0]));
@@ -236,21 +232,33 @@ function EditMyPage() {
           // {...register('profileImage')}
         />
 
-        <h2 className="text-lg font-bold mb-1">회원 정보</h2>
-
         <div className="mx-auto w-4/5">
+          <h2 className="text-lg font-bold mb-1">회원 정보</h2>
           <div>
-            <label className="text-xs" htmlFor="name">
+            <label className="text-sm" htmlFor="name">
               닉네임
             </label>
           </div>
           <input
-            className="w-full border-b-2 outline-none mb-5 "
+            className="w-full border-b-2 outline-none mb-5 px-2 text-sm"
             type="text"
             id="name"
             placeholder="닉네임을 입력하세요"
             defaultValue={propUser.name}
             {...register('name')}
+          />
+          <div>
+            <label className="text-sm" htmlFor="introduce">
+              소개말
+            </label>
+          </div>
+          <input
+            className="w-full border-b-2 outline-none mb-5 px-2 text-sm"
+            type="text"
+            id="introduce"
+            placeholder="자기소개를 입력하세요"
+            defaultValue={propUser.introduce}
+            {...register('extra.introduce')}
           />
         </div>
 
