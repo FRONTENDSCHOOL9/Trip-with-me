@@ -1,6 +1,7 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SelectTheme() {
   const { productInfo, setProductInfo } = useProductInfostore();
@@ -49,11 +50,22 @@ function SelectTheme() {
     event.preventDefault();
     if (productInfo.extra.themes.length === 0) {
       setShowUploadPrompt(true);
-    } else {
-      //
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    // 이전 버튼 클릭 시 이전 페이지로 이동
+    navigate('/product/add/content');
+  };
+
+  const handlePrevious = () => {
+    // 이전 버튼 클릭 시 이전 페이지로 이동
+    navigate('/product/add/calendar');
+  };
+
+  console.log(productInfo);
   return (
     <div>
       <form
@@ -89,7 +101,23 @@ function SelectTheme() {
             여행테마를 선택해주세요.
           </p>
         )}
-        <button type="submit">다음</button>
+        <div className="flex w-96 mt-20 justify-between items-center">
+          <button
+            type="button"
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
+          >
+            이전
+          </button>
+          <p className="text-xl font-medium"> 3 / 7</p>
+          <button
+            type="submit"
+            onClick={handleNext}
+            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          >
+            다음
+          </button>
+        </div>
       </form>
     </div>
   );

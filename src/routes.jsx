@@ -14,6 +14,12 @@ import AddProduct from '@pages/product/AddProduct';
 import AddItinerary from '@pages/product/addproduct/AddItinerary';
 import EditMyPage from '@pages/mypage/EditMyPage';
 import Calendar from '@pages/product/addproduct/Calendar';
+import ProductImage from '@pages/product/addproduct/ProductImage';
+import ProductName from '@pages/product/addproduct/ProductName';
+import ProductSelectSpot from '@pages/product/addproduct/ProductSelectSpot';
+import SelectTheme from '@pages/product/addproduct/SelectTheme';
+import ProductContent from '@pages/product/addproduct/ProductContent';
+import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
 
 const router = createBrowserRouter([
   {
@@ -49,17 +55,43 @@ const router = createBrowserRouter([
         path: '/mypage/likelist',
         element: <ProductLikeList />,
       },
+    ],
+  },
+  {
+    path: '/product/add',
+    element: <AddProduct />,
+    children: [
       {
-        path: '/map',
+        index: true,
+        element: <ProductImage />,
+      },
+      {
+        path: '/product/add/name',
+        element: <ProductName />,
+      },
+      {
+        path: '/product/add/calendar',
+        element: <Calendar />,
+      },
+      {
+        path: '/product/add/map',
         element: <AddItinerary />,
       },
       {
-        path: '/product/add',
-        element: <AddProduct />,
+        path: '/product/add/spot',
+        element: <ProductSelectSpot />,
       },
       {
-        path: '/add/Calendar',
-        element: <Calendar />,
+        path: '/product/add/theme',
+        element: <SelectTheme />,
+      },
+      {
+        path: '/product/add/content',
+        element: <ProductContent />,
+      },
+      {
+        path: '/product/add/modal',
+        element: <ProductAddModal />,
       },
     ],
   },

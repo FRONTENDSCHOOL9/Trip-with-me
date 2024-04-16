@@ -1,8 +1,8 @@
-import { Button } from '@components/style/StyledButton';
 import KakaoMap from '@pages/product/addproduct/map/KakaoMap';
 import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useProductInfostore } from '@zustand/productInfo.mjs';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './productStyle/Map.css';
 
@@ -50,15 +50,28 @@ function AddItinerary() {
   const saveItineraryMaps = () => {
     setProductInfo({
       extra: {
+        ...productInfo.extra,
         itineraryMaps: itineraryMaps,
       },
-    });
-    console.log(productInfo);
+    }),
+      console.log(productInfo);
   };
 
   useEffect(() => {
     saveItineraryMaps();
   }, [itineraryMaps]);
+
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    // 이전 버튼 클릭 시 이전 페이지로 이동
+    navigate('/product/add/spot');
+  };
+
+  const handlePrevious = () => {
+    // 이전 버튼 클릭 시 이전 페이지로 이동
+    navigate('/product/add/calendar');
+  };
 
   return (
     <div className=" w-full flex flex-col justify-center  ">
@@ -93,7 +106,24 @@ function AddItinerary() {
         <div>{maps[selectedIndex]}</div>
         <button onClick={removeMap}>여행지도 삭제하기</button>
       </div>
-      <Button onClick={saveItineraryMaps}>다음</Button>
+      <button onClick={saveItineraryMaps}>저장</button>
+      <div className="flex w-96 mt-20 justify-between items-center">
+        <button
+          type="button"
+          className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
+        >
+          이전
+        </button>
+        <p className="text-xl font-medium"> 4 / 7</p>
+        <button
+          type="button"
+          onClick={handleNext}
+          className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+        >
+          다음
+        </button>
+      </div>
     </div>
   );
 }

@@ -147,9 +147,9 @@ function EditMyPage() {
       //   (updateUser?.profile?.length ? '' : delete updateUser?.profile);
       //값이 지워졌다.
 
-      if (updateUser?.profile && !updateUser?.profile?.length) {
-        if(updateUser.hasOwnProperty())
-      }
+      // if (updateUser?.profile && !updateUser?.profile?.length) {
+      //   if(updateUser.hasOwnProperty())
+      // }
 
       console.log('updateUser', updateUser?.profile);
 

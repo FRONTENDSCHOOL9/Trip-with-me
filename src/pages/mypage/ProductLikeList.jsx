@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import usePageStore from '@zustand/pageName.mjs';
-import '@components/style/productLikeList.css';
+// import '@components/style/productLikeList.css';
 
 function ProductLikeList() {
   const page = '찜 목록';

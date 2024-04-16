@@ -42,12 +42,12 @@ function Calendar() {
         },
       },
     });
-    navigate('/next');
+    navigate('/product/add/map');
   };
 
   const handlePrevious = () => {
     // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add');
+    navigate('/product/add/name');
   };
 
   return (
@@ -66,7 +66,7 @@ function Calendar() {
           moveRangeOnFirstSelection={false}
           ranges={selectedDateRange}
         />
-        <div className="flex w-96 mt-28 justify-between items-center">
+        <div className="flex w-96 mt-20 justify-between items-center">
           <button
             type="button"
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
