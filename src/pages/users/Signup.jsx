@@ -39,7 +39,6 @@ function Signup() {
       'button[type=button][is_active=true]',
     );
     let themeSelectedItems = Array.from(items).map(item => {
-      console.log(item);
       return {
         id: item.getAttribute('id'),
         name: item.textContent,
@@ -68,7 +67,6 @@ function Signup() {
       count++;
     }
 
-    console.log(count);
     setThemeArr();
     setCheckCount(count);
   };
@@ -86,7 +84,6 @@ function Signup() {
       </button>
     ));
     setThemeData(themeList);
-    console.log(themeList);
   };
 
   useEffect(() => {
@@ -105,7 +102,7 @@ function Signup() {
   const onSubmit = async formData => {
     formData.type = 'seller';
     formData.extra.address = themeSelectedArr;
-
+    formData.extra.birthday = parseInt(formData.extra.birthday);
     try {
       const res = await axios.post('/users', formData);
 
@@ -249,14 +246,25 @@ function Signup() {
               <div>
                 <select
                   className="w-20"
-                  id="age"
+                  htmlFor="age"
+                  name="age"
                   {...register('extra.birthday')}
                 >
-                  <option defaultValue="10">10대</option>
-                  <option value="20">20대</option>
-                  <option value="30">30대</option>
-                  <option value="40">40대</option>
-                  <option value="50">50대</option>
+                  <option id="age" defaultValue="10">
+                    10대
+                  </option>
+                  <option id="age" value="20">
+                    20대
+                  </option>
+                  <option id="age" value="30">
+                    30대
+                  </option>
+                  <option id="age" value="40">
+                    40대
+                  </option>
+                  <option id="age" value="50">
+                    50대
+                  </option>
                 </select>
               </div>
             </div>
