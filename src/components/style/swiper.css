@@ -1,0 +1,28 @@
+.swiper-button-prev,
+.swiper-button-next {
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 88%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+}
+.swiper-button-prev {
+  left: 10px;
+  background-image: url('/src/assets/icons/icon-chevron-left.svg');
+}
+.swiper-button-next {
+  right: 10px;
+  background-image: url('/src/assets/icons/icon-chevron-right.svg');
+}
+.swiper-button-disabled {
+  display: none;
+}
+.swiper-slide {
+  display: none;
+}
