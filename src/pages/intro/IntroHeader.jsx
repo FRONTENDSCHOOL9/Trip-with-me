@@ -15,7 +15,7 @@ function IntroHeader({ showSkipButton }) {
           </h1>
         </div>
         {showSkipButton && (
-          <button className="-mb-4 font-semibold">Skip</button>
+          <button className="-mb-3.5 font-semibold">Skip</button>
         )}
       </div>
     </div>

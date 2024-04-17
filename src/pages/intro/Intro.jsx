@@ -12,9 +12,7 @@ function Intro() {
   const [showSkipButton, setShowSkipButton] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState(null);
 
-  // 슬라이드가 변경될 때 호출되는 이벤트 핸들러
   const handleSlideChange = () => {
-    // 슬라이드가 마지막이 아니라면 Skip 버튼 표시
     if (swiperInstance && !swiperInstance.isEnd) {
       setShowSkipButton(true);
     }
@@ -79,7 +77,7 @@ function Intro() {
               <p>즐거운 추억을 만드세요</p>
               <p>동행 종료 후 평가를 남길 수 있어요</p>
             </div>
-            <button className="mt-16 border text-lg font-semibold bg-main-color text-white  w-fit mx-auto px-20 py-1 rounded-full border-main-color ">
+            <button className="mt-12 border text-lg font-semibold bg-main-color text-white  w-fit mx-auto px-20 py-1 rounded-full border-main-color ">
               Done
             </button>
           </div>
