@@ -16,6 +16,7 @@ function Payment() {
   const [productCount, setProductCount] = useState(1);
   const [productPrice, setProductPrice] = useState(0);
   const [productQuantity, setProductQuantity] = useState(0);
+  const [productImage, setProductImage] = useState({});
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ function Payment() {
       console.log('data?.item', data?.item);
       setProductData(data?.item);
       setProductPrice(data?.item?.price);
+      setProductImage(data?.item?.mainImages[0]);
       const leftQuantity = +data?.item.quantity - +data?.item.buyQuantity;
       setProductQuantity(leftQuantity);
     } catch (err) {
@@ -103,7 +105,7 @@ function Payment() {
           <div className="px-1">
             <img
               className="max-h-64 h-full w-full rounded-md mb-2 mx-auto"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productData?.mainImages[0]?.name}`}
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage.name}`}
             />
 
             <p className="mb-2">{productData?.name}</p>
