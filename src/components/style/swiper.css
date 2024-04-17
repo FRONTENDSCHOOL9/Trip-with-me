@@ -1,3 +1,10 @@
+.swiper-layout {
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
 .swiper-button-prev,
 .swiper-button-next {
   width: 50px;
