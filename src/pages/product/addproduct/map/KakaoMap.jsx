@@ -1,10 +1,8 @@
 import Marker from '@pages/product/addproduct/map/Marker';
-import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
 import { useEffect, useState } from 'react';
 import { Map, useKakaoLoader } from 'react-kakao-maps-sdk';
 
-function KakaoMap({ id }) {
-  const { itineraryMaps, addMarker } = useItineraryMapStore();
+function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
   const [map, setMap] = useState();
   const [inputText, setInputText] = useState('');
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -34,6 +32,10 @@ function KakaoMap({ id }) {
     });
   }, [map, searchKeyword]); //searchKeyword도 useEffect의 의존성 배열에 포함시켜야 검색어가 변경될 때마다 새로운 검색을 수행함
 
+  if (!itineraryMaps[id]) {
+    console.log('No map data available for this ID:', id);
+  }
+
   const handleChange = e => {
     setInputText(e.target.value);
   };
@@ -60,7 +62,18 @@ function KakaoMap({ id }) {
       latlng: { lat: latlng.getLat(), lng: latlng.getLng() },
     };
     addMarker(id, marker);
+    console.log(marker);
     console.log(itineraryMaps);
+  };
+
+  const addMarker = (mapIndex, newMarker) => {
+    setItineraryMaps(prevMaps =>
+      prevMaps.map((map, index) =>
+        index === mapIndex
+          ? { ...map, markers: [...map.markers, newMarker] }
+          : map,
+      ),
+    );
   };
 
   return (
@@ -72,8 +85,11 @@ function KakaoMap({ id }) {
           onKeyDown={activeEnter}
           value={inputText}
           placeholder="장소를 상세히 입력해주세요."
+          className="border rounded-md text-main-color"
         />
-        <button type="submit">검색</button>
+        <button type="submit" className="p-2 text-base text-slate-500">
+          검색
+        </button>
       </form>
 
       <Map
@@ -90,7 +106,14 @@ function KakaoMap({ id }) {
         onClick={(_, mouseEvent) => createMarker(mouseEvent)}
       >
         {itineraryMaps[id]?.markers.map((marker, index) => (
-          <Marker key={index} mapId={id} markerId={index} marker={marker} />
+          <Marker
+            key={index}
+            mapId={id}
+            markerId={index}
+            marker={marker}
+            itineraryMaps={itineraryMaps}
+            setItineraryMaps={setItineraryMaps}
+          />
         ))}
       </Map>
     </>
