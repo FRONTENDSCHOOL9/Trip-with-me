@@ -6,7 +6,15 @@ import { useState } from 'react';
 
 import './productStyle/Calendar.css';
 
-const Calendar = ({ setProductInfo }) => {
+function Calendar({ productInfo, setProductInfo }) {
+  const [selectedDateRange, setSelectedDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
+
   const handleCalendarChange = e => {
     e.preventDefault();
     const formattedStartDate = selectedDateRange[0].startDate
@@ -16,30 +24,20 @@ const Calendar = ({ setProductInfo }) => {
       .toLocaleDateString('ko-KR')
       .replace(/\s/g, '');
     if (selectedDateRange) {
-      setProductInfo(prevInfo => ({
-        ...prevInfo,
-        extra: [
-          {
-            date: {
-              startDate: formattedStartDate,
-              endDate: formattedEndDate,
-            },
+      setProductInfo({
+        ...productInfo,
+        extra: {
+          ...productInfo.extra,
+          date: {
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
           },
-        ],
-      }));
+        },
+      });
     } else {
       setShowUploadPrompt(true);
     }
   };
-
-  // 선택한 날짜 범위 상태 관리
-  const [selectedDateRange, setSelectedDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -80,5 +78,5 @@ const Calendar = ({ setProductInfo }) => {
       </form>
     </div>
   );
-};
+}
 export default Calendar;
