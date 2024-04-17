@@ -7,13 +7,15 @@ import '@components/style/swiper.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import IntroHeader from './IntroHeader';
 // import 'swiper/css/bundle';
 
 function Intro() {
   return (
-    <div>
+    <div className="layout">
+      <IntroHeader />
       <Swiper
-        className="layout"
+        className="swiper-layout"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={440}
         slidesPerView={1}
@@ -27,19 +29,6 @@ function Intro() {
       >
         <SwiperSlide className="flex flex-col">
           <div className="flex flex-col justify-center ">
-            <div className="flex mt-6 mb-24 justify-between px-6">
-              <div className="flex flex-col">
-                <img
-                  className="-mb-1.5 ml-auto w-8 h-6"
-                  src="/src/assets/icons/icon-logo.svg"
-                  alt="메인 비행기 로고"
-                />
-                <h1 className="font-['SokchoBadaDotum'] font-bold text-xl text-center text-main-color">
-                  Trip with me
-                </h1>
-              </div>
-              <button className="-mb-4">Skip</button>
-            </div>
             <img
               className="w-96 mb-16 mx-auto"
               src="/src/assets/image/earthIntro.png"
@@ -54,19 +43,6 @@ function Intro() {
         </SwiperSlide>
         <SwiperSlide className="flex flex-col">
           <div className="flex flex-col justify-center ">
-            <div className="flex mt-6 mb-24 justify-between px-6">
-              <div className="flex flex-col">
-                <img
-                  className="-mb-1.5 ml-auto w-8 h-6"
-                  src="/src/assets/icons/icon-logo.svg"
-                  alt="메인 비행기 로고"
-                />
-                <h1 className="font-['SokchoBadaDotum'] font-bold text-xl text-center text-main-color">
-                  Trip with me
-                </h1>
-              </div>
-              <button className="-mb-4">Skip</button>
-            </div>
             <img
               className="w-96 mb-16 mx-auto"
               src="/src/assets/image/personIntro.png"
@@ -83,19 +59,6 @@ function Intro() {
         </SwiperSlide>
         <SwiperSlide className="flex flex-col">
           <div className="flex flex-col justify-center ">
-            <div className="flex mt-6 mb-24 justify-between px-6">
-              <div className="flex flex-col">
-                <img
-                  className="-mb-1.5 ml-auto w-8 h-6"
-                  src="/src/assets/icons/icon-logo.svg"
-                  alt="메인 비행기 로고"
-                />
-                <h1 className="font-['SokchoBadaDotum'] font-bold text-xl text-center text-main-color">
-                  Trip with me
-                </h1>
-              </div>
-              <button className="-mb-4">Skip</button>
-            </div>
             <img
               className="w-96 mb-16 mx-auto"
               src="/src/assets/image/peopleIntro.png"
