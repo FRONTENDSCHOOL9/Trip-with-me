@@ -35,15 +35,11 @@ function Payment() {
 
   const getProductData = async () => {
     try {
-      const { data } = await axios.get('/products');
-      const productItem = data?.item?.filter(item => {
-        return item._id == _id;
-      });
-      console.log('productItem', productItem);
-      setProductData(productItem[0]);
-      setProductPrice(productItem[0]?.price);
-      const leftQuantity =
-        +productItem[0]?.quantity - +productItem[0]?.buyQuantity;
+      const { data } = await axios.get(`/products/${_id}`);
+      console.log('data?.item', data?.item);
+      setProductData(data?.item);
+      setProductPrice(data?.item?.price);
+      const leftQuantity = +data?.item.quantity - +data?.item.buyQuantity;
       setProductQuantity(leftQuantity);
     } catch (err) {
       console.log(err.message);
@@ -104,22 +100,23 @@ function Payment() {
     <>
       {user && (
         <div className="p-2">
-          <div className="h-32 bg-gray-200 rounded-md mb-2">
+          <div className="px-1">
             <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productData?.item?.mainImages?.name}`}
+              className="max-h-64 h-full w-full rounded-md mb-2 mx-auto"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productData?.mainImages[0]?.name}`}
             />
-          </div>
 
-          <p className="mb-2">{productData?.name}</p>
-          <div>
-            {productData?.extra?.themes.map(item => (
-              <span
-                className="p-0.5 mx-1 mb-2 border-2 w-fit border-main-color rounded-md"
-                key={item.id}
-              >
-                {item.name}
-              </span>
-            ))}
+            <p className="mb-2">{productData?.name}</p>
+            <div>
+              {productData?.extra?.themes.map(item => (
+                <span
+                  className="p-0.5 mr-1.5 mb-2 border-2 w-fit border-main-color rounded-md"
+                  key={item.id}
+                >
+                  {item.name}
+                </span>
+              ))}
+            </div>
           </div>
           <hr className="border-0 bg-gray-100 h-2 my-10" />
 
@@ -145,7 +142,6 @@ function Payment() {
               />
             </div>
             <hr className="border-0 bg-gray-100 h-2 my-10" />
-
             <Submit>{productCount * productPrice}원 결제하기</Submit>
           </form>
         </div>
