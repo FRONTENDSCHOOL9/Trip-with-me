@@ -1,31 +1,41 @@
-// Import Swiper React components
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-// Import Swiper styles
 import '@components/style/swiper.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import IntroHeader from './IntroHeader';
-// import 'swiper/css/bundle';
 
 function Intro() {
+  const [showSkipButton, setShowSkipButton] = useState(true);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+
+  // 슬라이드가 변경될 때 호출되는 이벤트 핸들러
+  const handleSlideChange = () => {
+    // 슬라이드가 마지막이 아니라면 Skip 버튼 표시
+    if (swiperInstance && !swiperInstance.isEnd) {
+      setShowSkipButton(true);
+    }
+  };
+
   return (
     <div className="layout">
-      <IntroHeader />
+      <IntroHeader showSkipButton={showSkipButton} />
       <Swiper
         className="swiper-layout"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={440}
         slidesPerView={1}
-        onSlideChange={() => console.log()}
-        onSwiper={swiper => console.log(swiper)}
+        onSlideChange={handleSlideChange}
+        onSwiper={swiper => setSwiperInstance(swiper)}
         navigation
         pagination={{
           dynamicBullets: true,
         }}
         scrollbar={{ draggable: true }}
+        onReachEnd={() => setShowSkipButton(false)}
       >
         <SwiperSlide className="flex flex-col">
           <div className="flex flex-col justify-center ">
@@ -58,7 +68,7 @@ function Intro() {
           </div>
         </SwiperSlide>
         <SwiperSlide className="flex flex-col">
-          <div className="flex flex-col justify-center ">
+          <div className="flex flex-col justify-center">
             <img
               className="w-96 mb-16 mx-auto"
               src="/src/assets/image/peopleIntro.png"
@@ -69,6 +79,9 @@ function Intro() {
               <p>즐거운 추억을 만드세요</p>
               <p>동행 종료 후 평가를 남길 수 있어요</p>
             </div>
+            <button className="mt-16 border text-lg font-semibold bg-main-color text-white  w-fit mx-auto px-20 py-1 rounded-full border-main-color ">
+              Done
+            </button>
           </div>
         </SwiperSlide>
       </Swiper>

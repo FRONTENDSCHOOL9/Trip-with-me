@@ -1,4 +1,6 @@
-function IntroHeader() {
+import React from 'react';
+
+function IntroHeader({ showSkipButton }) {
   return (
     <div>
       <div className="flex mt-6 mb-24 justify-between px-6">
@@ -12,7 +14,9 @@ function IntroHeader() {
             Trip with me
           </h1>
         </div>
-        <button className="-mb-4">Skip</button>
+        {showSkipButton && (
+          <button className="-mb-4 font-semibold">Skip</button>
+        )}
       </div>
     </div>
   );
