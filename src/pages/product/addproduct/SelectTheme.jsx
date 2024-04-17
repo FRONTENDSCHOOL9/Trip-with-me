@@ -20,7 +20,9 @@ function SelectTheme({ productInfo, setProductInfo }) {
   };
 
   const handleCheckboxChange = theme => {
-    const selectedThemes = [...productInfo.extra.themes];
+    const selectedThemes = Array.isArray(productInfo?.extra?.themes)
+      ? [...productInfo.extra.themes]
+      : [];
     const themeIndex = selectedThemes.indexOf(theme);
 
     if (themeIndex === -1) {
@@ -36,6 +38,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
         themes: selectedThemes,
       },
     });
+
     setShowUploadPrompt(false);
   };
 
@@ -60,7 +63,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
             <li key={id}>
               <label
                 className={`flex border-2 rounded-full py-1 px-4 cursor-pointer ${
-                  productInfo.extra.themes.includes(theme)
+                  productInfo?.extra?.themes?.includes(theme)
                     ? 'border-main-color border-2 '
                     : 'border-light-gray'
                 }`}
@@ -68,7 +71,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
                 <input
                   className="hidden"
                   type="checkbox"
-                  checked={productInfo.extra.themes.includes(theme)}
+                  checked={productInfo?.extra?.themes?.includes(theme)}
                   onChange={() => handleCheckboxChange(theme)}
                 />
                 {theme.name}

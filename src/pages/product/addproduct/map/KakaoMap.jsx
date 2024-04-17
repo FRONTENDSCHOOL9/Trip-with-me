@@ -40,7 +40,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
     setInputText(e.target.value);
   };
 
-  const handleSumbit = e => {
+  const handleSubmit = e => {
     if (e === undefined) {
       return; //제출버튼 클릭시 이벤트가 발생을 안하고 진입하는 문제가 있어서 임시처리
     }
@@ -51,7 +51,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
 
   const activeEnter = e => {
     if (e.key === 'Enter') {
-      handleSumbit();
+      handleSubmit();
     }
   };
 
@@ -78,7 +78,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
 
   return (
     <>
-      <form onSubmit={handleSumbit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           onChange={handleChange}
