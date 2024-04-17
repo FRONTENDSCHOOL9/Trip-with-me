@@ -8,10 +8,11 @@ export default {
         'light-gray': '#EFEFF0',
         'mid-gray': '#AFB1B6',
         'warning-color': '#E72929',
+        'second-color': '#E9F4FC',
+        'mainbg-color': '#F5F5F5',
       },
       fontFamily: {
         notosans: ['Noto Sans KR'],
-        'main-bg-color': '#F5F5F5',
       },
     },
   },

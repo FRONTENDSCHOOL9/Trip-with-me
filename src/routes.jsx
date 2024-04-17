@@ -21,6 +21,7 @@ import SelectTheme from '@pages/product/addproduct/SelectTheme';
 import ProductContent from '@pages/product/addproduct/ProductContent';
 import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
 import MyPageOther from '@pages/mypage/MyPageOther';
+import Intro from '@pages/intro/Intro';
 
 const router = createBrowserRouter([
   {
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
   {
     path: '/users/signup',
     element: <Signup />,
+  },
+  {
+    path: '/intro',
+    element: <Intro />,
   },
 ]);
 
