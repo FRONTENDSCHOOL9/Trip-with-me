@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import './productStyle/Calendar.css';
 
-const Calendar = ({ setProductInfo }) => {
+const Calendar = ({ productInfo, setProductInfo }) => {
   const handleCalendarChange = e => {
     e.preventDefault();
     const formattedStartDate = selectedDateRange[0].startDate
@@ -16,23 +16,21 @@ const Calendar = ({ setProductInfo }) => {
       .toLocaleDateString('ko-KR')
       .replace(/\s/g, '');
     if (selectedDateRange) {
-      setProductInfo(prevInfo => ({
-        ...prevInfo,
-        extra: [
-          {
-            date: {
-              startDate: formattedStartDate,
-              endDate: formattedEndDate,
-            },
+      setProductInfo({
+        ...productInfo,
+        extra: {
+          ...productInfo.extra,
+          date: {
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
           },
-        ],
-      }));
+        },
+      });
     } else {
       setShowUploadPrompt(true);
     }
   };
 
-  // 선택한 날짜 범위 상태 관리
   const [selectedDateRange, setSelectedDateRange] = useState([
     {
       startDate: new Date(),
