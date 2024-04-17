@@ -1,11 +1,13 @@
-import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
 
-const Marker = ({ mapId, markerId, marker }) => {
-  const { updateMarkerTitle, removeMarker, itineraryMaps } =
-    useItineraryMapStore();
-
+const Marker = ({
+  mapId,
+  markerId,
+  marker,
+  itineraryMaps,
+  setItineraryMaps,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const title = itineraryMaps[mapId]?.markers[markerId]?.title || '';
@@ -15,16 +17,39 @@ const Marker = ({ mapId, markerId, marker }) => {
     updateMarkerTitle(mapId, markerId, newTitle); // 전역 상태 업데이트
   };
 
+  const updateMarkerTitle = (mapIndex, markerIndex, newTitle) => {
+    setItineraryMaps(prevMaps =>
+      prevMaps.map((map, index) =>
+        index === mapIndex
+          ? {
+              ...map,
+              markers: map.markers.map((marker, idx) =>
+                idx === markerIndex ? { ...marker, title: newTitle } : marker,
+              ),
+            }
+          : map,
+      ),
+    );
+  };
+
+  const removeMarker = (mapIndex, markerIndex) => {
+    setItineraryMaps(prevMaps =>
+      prevMaps.map((map, index) =>
+        index === mapIndex
+          ? {
+              ...map,
+              markers: map.markers.filter((_, idx) => idx !== markerIndex),
+            }
+          : map,
+      ),
+    );
+  };
+
   const activeEnter = e => {
     if (e.key === 'Enter') {
       setIsVisible(false);
     }
   };
-
-  // useEffect(() => {
-  //   // 마커가 클릭되었을 때 title을 업데이트
-  //   setIsVisible(false); // 초기화
-  // }, [markerId]);
 
   return (
     <>
