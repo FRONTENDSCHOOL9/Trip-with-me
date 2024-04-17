@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const ProductImage = ({ setProductInfo }) => {
+function ProductImage({ setProductInfo }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
+
+  const handleFileChange = event => {
+    setSelectedFile(URL.createObjectURL(event.target.files[0]));
+    setShowUploadPrompt(false);
+  };
 
   const handleImageChange = e => {
     e.preventDefault();
@@ -11,11 +16,6 @@ const ProductImage = ({ setProductInfo }) => {
     } else {
       setShowUploadPrompt(true);
     }
-  };
-
-  const handleFileChange = event => {
-    setSelectedFile(URL.createObjectURL(event.target.files[0]));
-    setShowUploadPrompt(false);
   };
 
   const onSubmit = e => {
@@ -70,6 +70,6 @@ const ProductImage = ({ setProductInfo }) => {
       </form>
     </div>
   );
-};
+}
 
 export default ProductImage;

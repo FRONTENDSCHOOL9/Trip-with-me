@@ -1,126 +1,118 @@
 import KakaoMap from '@pages/product/addproduct/map/KakaoMap';
-import { useItineraryMapStore } from '@zustand/itineraryMaps.mjs';
-import { useProductInfostore } from '@zustand/productInfo.mjs';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './productStyle/Map.css';
 
-function AddItinerary() {
-  const { addItineraryMap, itineraryMaps, removeItineraryMap } =
-    useItineraryMapStore();
+AddItinerary.propTypes = {
+  productInfo: PropTypes.object.isRequired,
+  setProductInfo: PropTypes.func,
+};
 
-  const { productInfo, setProductInfo } = useProductInfostore();
+AddItinerary.defaultProps = {
+  productInfo: {},
+  setProductInfo: () => {}, // 빈 함수로 기본값 설정
+};
 
-  const [maps, setMaps] = useState([]);
+function AddItinerary({ productInfo, setProductInfo }) {
+  const [itineraryMaps, setItineraryMaps] = useState([{ markers: [] }]);
+  const [mapLength, setMapLength] = useState(1);
   const [selectedIndex, setSeletedIndex] = useState(0);
 
   const addMap = e => {
     e.preventDefault();
-    addMapComponent(); // 지도 화면 컴포넌트 추가
+    setMapLength(prevLength => prevLength + 1); // 지도 개수 증가
+    setSeletedIndex(mapLength);
     addItineraryMap({ markers: [] }); // 지도 마커 데이터 추가
-    console.log(itineraryMaps);
   };
 
-  const addMapComponent = () => {
-    const index = maps.length;
-    setMaps([...maps, <KakaoMap key={index} id={index} />]); //
-  };
-
-  const showMap = index => {
-    setSeletedIndex(index);
+  const addItineraryMap = newMap => {
+    setItineraryMaps(prevMaps => [...prevMaps, newMap]);
   };
 
   const removeMap = e => {
     e.preventDefault();
-    if (maps.length === 0) return;
-
-    const lastIndex = maps.length - 1;
-    const updatedMaps = maps.filter((_, index) => index !== lastIndex);
-    setMaps(updatedMaps);
-
-    removeItineraryMap(lastIndex);
-
-    if (selectedIndex === lastIndex) {
-      setSeletedIndex(selectedIndex > 0 ? selectedIndex - 1 : 0);
-      // 이전 지도를 선택한 상태로 업데이트
+    if (mapLength === 0) return;
+    setMapLength(prevLength => prevLength - 1); // 지도 개수 감소
+    removeItineraryMap(mapLength - 1); // 마지막 지도 삭제
+    if (selectedIndex === mapLength - 1) {
+      setSeletedIndex(Math.max(0, selectedIndex - 1)); // 선택된 인덱스 조정
     }
   };
 
+  const removeItineraryMap = id => {
+    setItineraryMaps(prevMaps => prevMaps.filter((_, index) => index !== id));
+  };
+
   const saveItineraryMaps = () => {
-    setProductInfo({
-      extra: {
-        ...productInfo.extra,
-        itineraryMaps: itineraryMaps,
-      },
-    }),
-      console.log(productInfo);
-  };
-
-  useEffect(() => {
-    saveItineraryMaps();
-  }, [itineraryMaps]);
-
-  const navigate = useNavigate();
-
-  const handleNext = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/spot');
-  };
-
-  const handlePrevious = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/calendar');
+    if (productInfo && setProductInfo) {
+      setProductInfo({
+        ...productInfo,
+        extra: {
+          ...productInfo.extra,
+          itineraryMaps: itineraryMaps,
+        },
+      });
+    }
   };
 
   return (
-    <div className=" w-full flex flex-col justify-center  ">
+    <div className="flex flex-col justify-center w-full ">
       <div className="flex justify-center ">
         <button
-          className="text-2xl  font-semibold text-main-color mt-20"
+          className="text-2xl font-semibold text-main-color"
           type="button"
           onClick={addMap}
         >
-          여행지도 추가하기
-          <p className=" m-auto text-center w-fit text-sm mt-2 border-2 border-main-color  px-4 py-2 rounded-full ">
+          여행 동선을 표시해보세요.
+          <p className="px-1 py-1 m-auto mt-2 mb-2 text-sm text-center border-2 rounded-full w-fit border-main-color">
             Click!
           </p>
         </button>
       </div>
 
       <div>
-        <div className="flex flex-wrap">
-          {maps.map((_, index) => {
-            return (
+        <div>
+          <div className="flex flex-wrap">
+            {Array.from({ length: mapLength }, (_, index) => (
               <button
-                onClick={() => showMap(index)}
-                className="p-2 text-base  font-semibold text-main-color"
+                onClick={() => setSeletedIndex(index)}
+                className={`p-2 mb-2 text-base ${selectedIndex === index ? 'rounded-full border-2 border-main-color bg-light-gray' : 'border-0'} text-main-color`}
                 key={index}
               >
                 {index + 1}일차
               </button>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        <div>{maps[selectedIndex]}</div>
-        <button onClick={removeMap}>여행지도 삭제하기</button>
+        <KakaoMap
+          key={selectedIndex}
+          id={selectedIndex}
+          setItineraryMaps={setItineraryMaps}
+          itineraryMaps={itineraryMaps}
+        />
+        <button
+          onClick={removeMap}
+          className="p-2 text-base font-semibold text-main-color"
+        >
+          여행지도 삭제하기
+        </button>
       </div>
-      <button onClick={saveItineraryMaps}>저장</button>
+      {/* <button onClick={saveItineraryMaps}>저장</button> */}
 
-      <div className="flex w-96 mt-20 justify-between items-center">
+      <div className="flex items-center justify-between mt-20 w-96">
         <button
           type="button"
-          className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
-          onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
+          className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
         >
           이전
         </button>
         <p className="text-xl font-medium"> 4 / 7</p>
         <button
           type="button"
-          onClick={handleNext}
-          className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+          onClick={saveItineraryMaps}
+          className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
         >
           다음
         </button>

@@ -40,24 +40,23 @@ function Login() {
   };
 
   return (
-    <div className="justify-center flex flex-col h-lvh bg-main-bg-color">
-      <div className="p-20 m-auto max-w-[440px] w-full">
-        <div className="py-10 flex flex-col mb-10 w-fit mx-auto">
+    <div className="justify-center flex flex-col h-lvh bg-mainbg-color">
+      <div className="p-10 m-auto max-w-[440px] w-fit">
+        <div className="py-10 flex flex-col mb-10 max-w-fit mx-auto">
           <img
-            className="ml-auto w-14 h-8"
+            className="ml-auto w-14 h-8 -mb-4"
             src="/src/assets/icons/icon-logo.svg"
             alt=""
           />
-          <h1 className="font-['SokchoBadaDotum'] font-bold text-4xl text-center text-main-color">
+          <h1 className="font-['SokchoBadaDotum'] font-bold text-[40px] text-center text-main-color">
             Trip with me
           </h1>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* <label htmlFor="email">아이디</label> */}
           <input
             defaultValue="testApp@test.com"
-            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
+            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)] "
             id="email"
             {...register('email')}
             placeholder="ID"

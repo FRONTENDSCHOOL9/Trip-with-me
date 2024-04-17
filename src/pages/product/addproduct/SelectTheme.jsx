@@ -1,39 +1,36 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function SelectTheme({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
-
-  const axios = useCustomAxios();
-
   const [tripThemes, setTripThemes] = useState([]);
 
+  const axios = useCustomAxios();
   useEffect(() => {
     getTripThemes();
-    console.log(tripThemes);
   }, []);
 
   const getTripThemes = async () => {
     try {
       const { data } = await axios.get(import.meta.env.VITE_TRAVEL_THEMES_API);
       setTripThemes(data);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
+
   const handleCheckboxChange = theme => {
-    console.log(theme);
-    const selectedThemes = [...productInfo.extra.themes];
+    const selectedThemes = Array.isArray(productInfo?.extra?.themes)
+      ? [...productInfo.extra.themes]
+      : [];
     const themeIndex = selectedThemes.indexOf(theme);
 
     if (themeIndex === -1) {
       selectedThemes.push(theme);
-    } else if (themeIndex !== -1) {
+    } else {
       selectedThemes.splice(themeIndex, 1);
     }
-    console.log(selectedThemes);
+
     setProductInfo({
       ...productInfo,
       extra: {
@@ -41,7 +38,8 @@ function SelectTheme({ productInfo, setProductInfo }) {
         themes: selectedThemes,
       },
     });
-    console.log(productInfo);
+
+    setShowUploadPrompt(false);
   };
 
   const handleSubmit = event => {
@@ -51,19 +49,6 @@ function SelectTheme({ productInfo, setProductInfo }) {
     }
   };
 
-  const navigate = useNavigate();
-
-  const handleNext = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/content');
-  };
-
-  const handlePrevious = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/calendar');
-  };
-
-  console.log(productInfo);
   return (
     <div>
       <form
@@ -77,19 +62,20 @@ function SelectTheme({ productInfo, setProductInfo }) {
           {tripThemes.map((theme, id) => (
             <li key={id}>
               <label
-                className={`flex border-2  rounded-full py-1 px-4 cursor-pointer ${
-                  productInfo.extra.themes.includes(theme)
+                className={`flex border-2 rounded-full py-1 px-4 cursor-pointer ${
+                  productInfo?.extra?.themes?.includes(theme)
                     ? 'border-main-color border-2 '
                     : 'border-light-gray'
                 }`}
-              ></label>
-              <input
-                className="hidden"
-                type="checkbox"
-                checked={productInfo.extra.themes.includes(theme)}
-                onChange={() => handleCheckboxChange(theme)}
-              />
-              {theme.name}
+              >
+                <input
+                  className="hidden"
+                  type="checkbox"
+                  checked={productInfo?.extra?.themes?.includes(theme)}
+                  onChange={() => handleCheckboxChange(theme)}
+                />
+                {theme.name}
+              </label>
             </li>
           ))}
         </ul>
@@ -102,14 +88,12 @@ function SelectTheme({ productInfo, setProductInfo }) {
           <button
             type="button"
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
-            onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 3 / 7</p>
+          <p className="text-xl font-medium"> 6 / 7</p>
           <button
             type="submit"
-            onClick={handleNext}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
