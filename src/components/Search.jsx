@@ -7,17 +7,21 @@ const Search = () => {
   };
 
   return (
-    <div className="searhBox">
+    <div className="flex gap-2 relative">
+      <img
+        src="../src/assets/icons/icon-search.svg"
+        className="w-6 absolute top-2 left-2"
+      ></img>
       <input
         type="search"
         placeholder="여행지나 키워드를 검색해보세요."
-        className="searchInput"
+        className="h-10 w-[370px] rounded-md bg-gray-200 bg-no-repeat pl-10 pr-2 text-gray-700 w-92.5 outline-0.5 outline-main-color"
       />
       <button type="button" onClick={onClickDetail}>
         {' '}
         <img
           src="../src/assets/icons/icon-search-bar.svg"
-          className="img-detailSearch"
+          className="w-6"
         ></img>
       </button>
     </div>

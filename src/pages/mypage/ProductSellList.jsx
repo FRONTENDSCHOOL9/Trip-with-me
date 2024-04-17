@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import usePageStore from '@zustand/pageName.mjs';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import ProductSellListItem from '@pages/mypage/ProductSellListItem';
-import '@components/style/productSellList.css';
 
 function ProductSellList() {
   const page = '판매 목록';
