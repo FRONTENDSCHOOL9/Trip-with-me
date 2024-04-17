@@ -33,7 +33,7 @@ function AddProduct() {
       <Header />
       <ProductImage setProductInfo={setProductInfo} />
       <ProductName productInfo={productInfo} setProductInfo={setProductInfo} />
-      <Calendar setProductInfo={setProductInfo} />
+      <Calendar productInfo={productInfo} setProductInfo={setProductInfo} />
       <AddItinerary setProductInfo={setProductInfo} />
       <ProductSelectSpot
         productInfo={productInfo}
