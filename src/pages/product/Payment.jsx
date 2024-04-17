@@ -104,23 +104,23 @@ function Payment() {
     <>
       {user && (
         <div className="p-2">
-          <div className="h-24 bg-gray-200 rounded-md mb-2">
+          <div className="h-32 bg-gray-200 rounded-md mb-2">
             <img
               src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productData?.item?.mainImages?.name}`}
             />
           </div>
 
           <p className="mb-2">{productData?.name}</p>
-          <p>
+          <div>
             {productData?.extra?.themes.map(item => (
-              <p
-                className="p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md"
+              <span
+                className="p-0.5 mx-1 mb-2 border-2 w-fit border-main-color rounded-md"
                 key={item.id}
               >
                 {item.name}
-              </p>
+              </span>
             ))}
-          </p>
+          </div>
           <hr className="border-0 bg-gray-100 h-2 my-10" />
 
           <form onSubmit={handleSubmit(onSubmit)}>

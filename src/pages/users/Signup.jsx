@@ -147,12 +147,12 @@ function Signup() {
 
   //성별값은 API의 address에 저장
   return (
-    <div className="justify-center flex flex-col h-lvh bg-main-bg-color">
-      <div className="p-10 m-auto max-w-[440px]">
+    <div className="justify-center flex flex-col h-lvh bg-mainbg-color">
+      <div className="p-10 m-auto max-w-[440px] w-full h-full">
         <div className="mb-10">
           <div className="flex flex-col w-fit mx-auto">
             <img
-              className="-mb-1.5 ml-auto w-8 h-6"
+              className="-mb-2.5 ml-auto w-8 h-6"
               src="/src/assets/icons/icon-logo.svg"
               alt="메인 비행기 로고"
             />
@@ -171,7 +171,7 @@ function Signup() {
           </label>
           <div className="flex">
             <input
-              className="h-10 w-4/5"
+              className="h-10 w-4/5 px-2"
               type="email"
               id="email"
               placeholder="이메일 형식으로 입력해주세요."
@@ -197,7 +197,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full"
+              className="h-10 w-full px-2"
               type="password"
               id="password"
               placeholder="최소 8자리 이상 입력해주세요."
@@ -307,7 +307,7 @@ function Signup() {
               관심사를 골라주세요 ({checkCount} / 3)
             </h3>
             <span>{checkError && checkError}</span>
-            <ul>
+            <ul className="text-center">
               <li>{themeData}</li>
             </ul>
           </div>
