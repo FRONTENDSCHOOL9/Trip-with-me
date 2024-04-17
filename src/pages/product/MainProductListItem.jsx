@@ -1,10 +1,25 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 const MainProductListItem = ({ item }) => {
-  console.log('item', item);
+  const isSoldOut = item.buyQuantity >= item.quantity;
   return (
-    <li className="productBox">
+    <li
+      className={classNames('productBox', {
+        relative: isSoldOut,
+      })}
+    >
+      {isSoldOut && (
+        <Link
+          to={`/products/${item.id}`}
+          className="absolute inset-0 flex justify-center items-center"
+        >
+          <div className="bg-black bg-opacity-50 w-full h-full flex justify-center items-center">
+            <p className="text-white text-3xl font-bold">모집 마감되었어요.</p>
+          </div>
+        </Link>
+      )}
       <div className="productBox-img">
         <Link to={`/products/${item.id}`}>
           <img
