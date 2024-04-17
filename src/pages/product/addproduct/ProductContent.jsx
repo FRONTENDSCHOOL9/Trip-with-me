@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const ProductContent = ({ setProductInfo }) => {
+function ProductContent({ setProductInfo }) {
   const [showUploadContent, setShowUploadContent] = useState(false);
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    // 컴포넌트가 마운트될 때마다 content 값이 변경되면서 안내 메시지를 숨깁니다.
     if (content.trim()) {
       setShowUploadContent(false);
     }
@@ -58,7 +57,7 @@ const ProductContent = ({ setProductInfo }) => {
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 3 / 7</p>
+          <p className="text-xl font-medium"> 7 / 7</p>
           <button
             type="submit"
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
@@ -69,6 +68,6 @@ const ProductContent = ({ setProductInfo }) => {
       </form>
     </div>
   );
-};
+}
 
 export default ProductContent;

@@ -6,7 +6,15 @@ import { useState } from 'react';
 
 import './productStyle/Calendar.css';
 
-const Calendar = ({ productInfo, setProductInfo }) => {
+function Calendar({ productInfo, setProductInfo }) {
+  const [selectedDateRange, setSelectedDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
+
   const handleCalendarChange = e => {
     e.preventDefault();
     const formattedStartDate = selectedDateRange[0].startDate
@@ -30,14 +38,6 @@ const Calendar = ({ productInfo, setProductInfo }) => {
       setShowUploadPrompt(true);
     }
   };
-
-  const [selectedDateRange, setSelectedDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -78,5 +78,5 @@ const Calendar = ({ productInfo, setProductInfo }) => {
       </form>
     </div>
   );
-};
+}
 export default Calendar;

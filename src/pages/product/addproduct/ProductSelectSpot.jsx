@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 function ProductSelectSpot({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
-
-  const axios = useCustomAxios();
-
   const [tripSpots, setTripSpots] = useState([]);
 
+  const axios = useCustomAxios();
   useEffect(() => {
     getTripSpot();
   }, []);
@@ -39,28 +37,16 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
         spot: selectedSpots,
       },
     });
-    // 여행지를 다시 선택하면 메시지를 숨깁니다.
     setShowUploadPrompt(false);
   };
 
-  // 폼 제출 핸들러
   const handleSubmit = event => {
     event.preventDefault();
     if (!productInfo.extra.spot || productInfo.extra.spot.length === 0) {
       setShowUploadPrompt(true);
       return;
     }
-    // 여행지가 선택되었을 때 다음 단계로 이동
     setShowUploadPrompt(false);
-    navigate('/product/add/theme');
-  };
-  console.log(productInfo);
-
-  const navigate = useNavigate();
-
-  const handlePrevious = () => {
-    // 이전 버튼 클릭 시 이전 페이지로 이동
-    navigate('/product/add/calendar');
   };
 
   return (
@@ -111,7 +97,6 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
           <button
             type="button"
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
-            onClick={handlePrevious} // 이전 버튼 클릭 시 handlePrevious 함수 실행
           >
             이전
           </button>

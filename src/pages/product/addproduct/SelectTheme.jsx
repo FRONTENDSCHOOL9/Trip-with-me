@@ -3,11 +3,9 @@ import { useEffect, useState } from 'react';
 
 function SelectTheme({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
-
-  const axios = useCustomAxios();
-
   const [tripThemes, setTripThemes] = useState([]);
 
+  const axios = useCustomAxios();
   useEffect(() => {
     getTripThemes();
   }, []);
@@ -90,7 +88,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 3 / 7</p>
+          <p className="text-xl font-medium"> 6 / 7</p>
           <button
             type="submit"
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"

@@ -21,19 +21,16 @@ function ProductName({ productInfo, setProductInfo }) {
   const oninvalid = errors => console.error(errors);
 
   return (
-    <div className="layout">
+    <div>
       <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
-        <div className="">
-          <label
-            className="my-20 font-semibold text-md font-notosans text-main-color"
-            htmlFor="name"
-          >
-            제목을 입력하세요.
+        <div className=" flex flex-col font-semibold text-2xl ">
+          <label className="mt-10 mb-8 text-main-color" htmlFor="name">
+            여행 제목을 입력하세요.
           </label>
           <input
             type="text"
             id="name"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border-b-2 focus:outline-none focus:border-blue-500"
             {...register('name', {
               required: '제목을 입력해주세요',
               minLength: {
@@ -43,67 +40,64 @@ function ProductName({ productInfo, setProductInfo }) {
             })}
           />
           {errors.name && (
-            <p className="text-sm font-medium text-warning-color font-notosans">
+            <p className="text-sm font-medium text-warning-color ">
               {errors.name.message}
             </p>
           )}
-        </div>
-        <div className="">
-          <label
-            className="my-20 font-semibold text-md font-notosans text-main-color"
-            htmlFor="quantity"
-          >
+          <label className="mt-10 mb-8 text-main-color" htmlFor="quantity">
             최대 인원을 설정해주세요.
           </label>
-          <input
-            type="text"
-            id="quantity"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-            {...register('quantity', {
-              required: '최대 인원을 설정해주세요.',
-              pattern: {
-                value: /^[0-9]*$/,
-                message: '숫자만 입력해주세요',
-              },
-            })}
-          />
+          <div className="flex">
+            <input
+              type="text"
+              id="quantity"
+              className="w-full px-3 py-2 border-b-2 focus:outline-none focus:border-blue-500"
+              {...register('quantity', {
+                required: '최대 인원을 설정해주세요.',
+                pattern: {
+                  value: /^[0-9]*$/,
+                  message: '숫자만 입력해주세요',
+                },
+              })}
+            />
+            <span>명</span>
+          </div>
+
           {errors.quantity && (
-            <p className="text-sm font-medium text-warning-color font-notosans">
+            <p className="text-sm font-medium text-warning-color ">
               {errors.quantity.message}
             </p>
           )}
-        </div>
-
-        <div className="">
-          <label
-            className="my-20 font-semibold text-md font-notosans text-main-color"
-            htmlFor="price"
-          >
+          <label className="mt-10 mb-8 text-main-color" htmlFor="price">
             인당 경비를 입력해주세요.
           </label>
-          <input
-            type="text"
-            id="price"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-            {...register('price', {
-              required: '인당 경비를 입력해주세요.',
-              pattern: {
-                value: /^[0-9]*$/,
-                message: '숫자만 입력해주세요',
-              },
-              minLength: {
-                value: 4,
-                message: '1,000원 이상 입력해주세요.',
-              },
-            })}
-          />
+          <div className="flex">
+            <input
+              type="text"
+              id="price"
+              className="w-full px-3 py-2 border-b-2 focus:outline-none focus:border-blue-500"
+              {...register('price', {
+                required: '인당 경비를 입력해주세요.',
+                pattern: {
+                  value: /^[0-9]*$/,
+                  message: '숫자만 입력해주세요',
+                },
+                minLength: {
+                  value: 4,
+                  message: '1,000원 이상 입력해주세요.',
+                },
+              })}
+            />
+            <span>원</span>
+          </div>
+
           {errors.price && (
-            <p className="text-sm font-medium text-warning-color font-notosans">
+            <p className="text-sm font-medium text-warning-color f">
               {errors.price.message}
             </p>
           )}
         </div>
-        <div className="flex items-center justify-between mt-20 w-96">
+        <div className=" mx-auto flex items-center justify-between mt-20 w-96">
           <button
             type="button"
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
