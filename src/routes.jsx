@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     element: <AddProduct />,
     children: [
       {
-        index: true,
+        path: '/product/add/:step',
         element: <ProductImage />,
       },
       {

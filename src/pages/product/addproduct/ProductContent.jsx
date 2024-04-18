@@ -1,3 +1,4 @@
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ function ProductContent({ productInfo, setProductInfo }) {
 
   const [showUploadContent, setShowUploadContent] = useState(false);
   const [content, setContent] = useState('');
+  const axios = useCustomAxios();
 
   useEffect(() => {
     if (content.trim()) {
@@ -18,12 +20,20 @@ function ProductContent({ productInfo, setProductInfo }) {
     setContent(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!content.trim()) {
       setShowUploadContent(true);
       return;
     }
+    try {
+      axios.post('/seller/products');
+    } catch (err) {}
+
+    navigate(`/product/add/${+step + 1}`);
     setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
     navigate(`/product/add/${+step + 1}`);
     console.log(productInfo);
@@ -31,6 +41,10 @@ function ProductContent({ productInfo, setProductInfo }) {
 
   const handlePrevButton = e => {
     e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
+  };
+
+  const handlePrevButton = e => {
     navigate(`/product/add/${+step - 1}`);
   };
 

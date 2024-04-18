@@ -13,6 +13,9 @@ function ProductName({ productInfo, setProductInfo }) {
   } = useForm();
   console.log(watch('name'));
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const onSubmit = data => {
     setProductInfo({
       ...productInfo,
