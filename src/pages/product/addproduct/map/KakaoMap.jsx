@@ -66,13 +66,28 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
     console.log(itineraryMaps);
   };
 
+  // const addMarker = (mapIndex, newMarker) => {
+  //   setItineraryMaps(prevMaps =>
+  //     prevMaps.map((map, index) =>
+  //       index === mapIndex
+  //         ? { ...map, markers: [...map.markers, newMarker] }
+  //         : map,
+  //     ),
+  //   );
+  // };
   const addMarker = (mapIndex, newMarker) => {
     setItineraryMaps(prevMaps =>
-      prevMaps.map((map, index) =>
-        index === mapIndex
-          ? { ...map, markers: [...map.markers, newMarker] }
-          : map,
-      ),
+      prevMaps.map((map, index) => {
+        if (index === mapIndex) {
+          const updatedMap = {
+            ...map,
+            markers: [...map.markers, newMarker],
+            lastMarkerCenter: newMarker.latlng, // 마지막 마커 위치 업데이트
+          };
+          return updatedMap;
+        }
+        return map;
+      }),
     );
   };
 
@@ -85,7 +100,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
           onKeyDown={activeEnter}
           value={inputText}
           placeholder="장소를 상세히 입력해주세요."
-          className="border rounded-md text-main-color"
+          className="border rounded-md text-slate-500"
         />
         <button type="submit" className="p-2 text-base text-slate-500">
           검색
@@ -93,10 +108,12 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
       </form>
 
       <Map
-        center={{
-          lat: 37.566826,
-          lng: 126.9786567,
-        }}
+        center={
+          itineraryMaps[id]?.center || {
+            lat: 37.566826,
+            lng: 126.9786567,
+          }
+        }
         style={{
           width: '100%',
           height: '350px',

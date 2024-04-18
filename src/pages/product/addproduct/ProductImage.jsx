@@ -1,31 +1,59 @@
-import React, { useState } from 'react';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function ProductImage({ setProductInfo }) {
+ProductImage.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
+
+function ProductImage({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
+  const axios = useCustomAxios();
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
+  const [fileNamed, setFileNamed] = useState();
 
-  const handleFileChange = event => {
-    setSelectedFile(URL.createObjectURL(event.target.files[0]));
+  const handleFileChange = e => {
+    console.log('파일출력', e.target.files);
+    setSelectedFile(URL.createObjectURL(e.target.files[0]));
     setShowUploadPrompt(false);
+    setFileNamed(e.target.files[0]);
   };
 
-  const handleImageChange = e => {
+  const onSubmit = async e => {
     e.preventDefault();
-    if (selectedFile) {
-      setProductInfo(prevInfo => ({ ...prevInfo, mainImages: [selectedFile] }));
-      navigate(`/product/add/${+step + 1}`);
-    } else {
-      setShowUploadPrompt(true);
+    try {
+      if (selectedFile) {
+        const imageFormData = new FormData();
+        imageFormData.append('attach', fileNamed);
+        console.log('imageFormData', imageFormData);
+
+        const fileRes = await axios('/files', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          data: imageFormData,
+        });
+        console.log('fileRes', fileRes);
+
+        setProductInfo(prevInfo => ({
+          ...prevInfo,
+          mainImages: {
+            name: fileRes.data.item[0].name,
+          },
+        }));
+        navigate(`/product/add/${+step + 1}`);
+      } else {
+        setShowUploadPrompt(true);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-    navigate(`/product/add/${+step + 1}`);
-  };
-
-  const onSubmit = e => {
-    e.preventDefault();
   };
 
   return (
@@ -67,7 +95,6 @@ function ProductImage({ setProductInfo }) {
           <p className="text-xl font-medium ml-44"> 1 / 7</p>
           <button
             type="submit"
-            onClick={handleImageChange}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
@@ -79,30 +106,3 @@ function ProductImage({ setProductInfo }) {
 }
 
 export default ProductImage;
-
-// //서버로 전송 및 전역 상태 업데이트
-// const onSubmit = async formData => {
-//   try {
-//     //파일 먼저 가져오기
-//     if (selectedFile.length > 0) {
-//       console.log('selectedFile =>', selectedFile);
-
-//       const imageFormData = new FormData();
-//       imageFormData.append('attach', selectedFile[0]);
-
-//       // console.log('formData =>', formData);
-//       console.log('imageFormData=>', imageFormData);
-//       const fileRes = await axios('/files', {
-//         method: 'post',
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//         },
-//         data: imageFormData,
-//       });
-//       formData.profileImage = fileRes.data.item[0].name;
-//     } else if (selectedFile.length <= 0) {
-//       formData.profileImage = propUser?.profile;
-//     }
-
-// 		console.log('현재 보내는 formData => ', formData);
-//     const res = await axios.patch('/users/' + propUser._id, formData);
