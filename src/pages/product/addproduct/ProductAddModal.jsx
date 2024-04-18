@@ -1,5 +1,10 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+ProductAddModal.propTypes = {
+  productInfo: PropTypes.object,
+};
 
 function ProductAddModal({ productInfo }) {
   const navigate = useNavigate();

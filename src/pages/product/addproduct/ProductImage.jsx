@@ -1,6 +1,12 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+ProductImage.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
 
 function ProductImage({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
@@ -37,14 +43,16 @@ function ProductImage({ productInfo, setProductInfo }) {
 
         setProductInfo(prevInfo => ({
           ...prevInfo,
-          mainImages: [fileRes.data.item[0].name],
+          mainImages: {
+            name: fileRes.data.item[0].name,
+          },
         }));
         navigate(`/product/add/${+step + 1}`);
       } else {
         setShowUploadPrompt(true);
       }
     } catch (error) {
-      console.log(err.message);
+      console.log(error.message);
     }
   };
 

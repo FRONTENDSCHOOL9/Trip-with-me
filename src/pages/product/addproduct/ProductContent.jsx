@@ -1,35 +1,31 @@
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useState, useEffect } from 'react';
+// import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+ProductContent.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
 
 function ProductContent({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const [showUploadContent, setShowUploadContent] = useState(false);
-  const [content, setContent] = useState('');
-  const axios = useCustomAxios();
-
-  useEffect(() => {
-    if (content.trim()) {
-      setShowUploadContent(false);
-    }
-  }, [content]);
-
-  const handleContentChange = e => {
-    setContent(e.target.value);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!content.trim()) {
-      setShowUploadContent(true);
-      return;
-    }
+  const onSubmit = formData => {
+    console.log(formData.content);
     navigate(`/product/add/${+step + 1}`);
-    setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
+    const newContent = { ...productInfo, content: formData.content };
+    console.log('newContent=>', newContent);
+
+    setProductInfo(newContent);
+
     navigate(`/product/add/${+step + 1}`);
-    console.log(productInfo);
   };
 
   const handlePrevButton = e => {
@@ -40,7 +36,7 @@ function ProductContent({ productInfo, setProductInfo }) {
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center justify-center"
       >
         <label htmlFor="content">
@@ -56,14 +52,20 @@ function ProductContent({ productInfo, setProductInfo }) {
           name="content"
           className="relative rounded-lg w-80 h-96 bg-light-gray"
           placeholder="상세 정보를 입력해주세요"
-          value={content}
-          onChange={handleContentChange}
+          {...register('content', {
+            required: '상세 정보를 입력해주세요',
+            minLength: {
+              value: 10,
+              message: '상세 정보는 10글자 이상 입력해주세요.',
+            },
+          })}
         ></textarea>
-        {showUploadContent && (
-          <p className="text-sm font-medium text-warning-color font-notosans">
-            여행 상세 정보를 입력해주세요.
+        {errors.content && (
+          <p className="text-sm font-medium text-warning-color ">
+            {errors.content.message}
           </p>
         )}
+
         <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"

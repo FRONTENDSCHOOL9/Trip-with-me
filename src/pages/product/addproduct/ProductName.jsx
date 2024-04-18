@@ -1,5 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+ProductName.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
 
 function ProductName({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
