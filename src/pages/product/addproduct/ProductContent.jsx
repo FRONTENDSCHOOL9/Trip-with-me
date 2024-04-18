@@ -20,9 +20,6 @@ function ProductContent({ productInfo, setProductInfo }) {
     setContent(e.target.value);
   };
 
-  const navigate = useNavigate();
-  const { step } = useParams();
-
   const handleSubmit = async e => {
     e.preventDefault();
     if (!content.trim()) {
@@ -41,10 +38,6 @@ function ProductContent({ productInfo, setProductInfo }) {
 
   const handlePrevButton = e => {
     e.preventDefault();
-    navigate(`/product/add/${+step - 1}`);
-  };
-
-  const handlePrevButton = e => {
     navigate(`/product/add/${+step - 1}`);
   };
 

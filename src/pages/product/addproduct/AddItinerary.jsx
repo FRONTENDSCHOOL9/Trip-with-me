@@ -48,9 +48,6 @@ function AddItinerary({ productInfo, setProductInfo }) {
     setItineraryMaps(prevMaps => prevMaps.filter((_, index) => index !== id));
   };
 
-  const navigate = useNavigate();
-  const { step } = useParams();
-
   const saveItineraryMaps = () => {
     if (productInfo && setProductInfo) {
       navigate(`/product/add/${+step + 1}`);
@@ -67,10 +64,6 @@ function AddItinerary({ productInfo, setProductInfo }) {
 
   const handlePrevButton = e => {
     e.preventDefault();
-    navigate(`/product/add/${+step - 1}`);
-  };
-
-  const handlePrevButton = e => {
     navigate(`/product/add/${+step - 1}`);
   };
 
@@ -118,7 +111,7 @@ function AddItinerary({ productInfo, setProductInfo }) {
         </button>
       </div>
       {/* <button onClick={saveItineraryMaps}>저장</button> */}
-      <div className="mx-auto flex items-center justify-between mt-20 w-96">
+      <div className="flex items-center justify-between mx-auto mt-20 w-96">
         <button
           type="button"
           onClick={handlePrevButton}

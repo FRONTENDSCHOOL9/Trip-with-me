@@ -43,9 +43,6 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
     setShowUploadPrompt(false);
   };
 
-  const navigate = useNavigate();
-  const { step } = useParams();
-
   const handleSubmit = event => {
     event.preventDefault();
     if (!productInfo.extra.spot || productInfo.extra.spot.length === 0) {
@@ -59,10 +56,6 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
 
   const handlePrevButton = e => {
     e.preventDefault();
-    navigate(`/product/add/${+step - 1}`);
-  };
-
-  const handlePrevButton = e => {
     navigate(`/product/add/${+step - 1}`);
   };
 
