@@ -1,6 +1,10 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductName({ productInfo, setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const {
     register,
     handleSubmit,
@@ -16,6 +20,12 @@ function ProductName({ productInfo, setProductInfo }) {
       quantity: data.quantity,
       price: data.price,
     });
+    navigate(`/product/add/${+step + 1}`);
+  };
+
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const oninvalid = errors => console.error(errors);
@@ -23,7 +33,7 @@ function ProductName({ productInfo, setProductInfo }) {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
-        <div className=" flex flex-col font-semibold text-2xl ">
+        <div className="flex flex-col text-2xl font-semibold ">
           <label className="mt-10 mb-8 text-main-color" htmlFor="name">
             여행 제목을 입력하세요.
           </label>
@@ -97,9 +107,10 @@ function ProductName({ productInfo, setProductInfo }) {
             </p>
           )}
         </div>
-        <div className=" mx-auto flex items-center justify-between mt-20 w-96">
+        <div className="flex items-center justify-between mx-auto mt-20 w-96">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전

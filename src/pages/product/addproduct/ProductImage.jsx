@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductImage({ setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
 
@@ -13,9 +17,11 @@ function ProductImage({ setProductInfo }) {
     e.preventDefault();
     if (selectedFile) {
       setProductInfo(prevInfo => ({ ...prevInfo, mainImages: [selectedFile] }));
+      navigate(`/product/add/${+step + 1}`);
     } else {
       setShowUploadPrompt(true);
     }
+    navigate(`/product/add/${+step + 1}`);
   };
 
   const onSubmit = e => {
@@ -25,16 +31,16 @@ function ProductImage({ setProductInfo }) {
   return (
     <div>
       <form
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col items-center justify-center"
         onSubmit={onSubmit}
       >
-        <p className="text-2xl font-notosans font-semibold text-main-color my-20">
+        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행 관련 이미지를 추가해주세요.
         </p>
         <label htmlFor="mainImages" className="relative inline-block">
-          <div className="relative w-80 h-72 bg-light-gray border-mid-gray border-2 rounded-lg">
+          <div className="relative border-2 rounded-lg w-80 h-72 bg-light-gray border-mid-gray">
             <img
-              className="w-full h-full object-cover rounded-lg"
+              className="object-cover w-full h-full rounded-lg"
               src={selectedFile}
               alt=""
             />
@@ -53,16 +59,16 @@ function ProductImage({ setProductInfo }) {
           onChange={handleFileChange}
         />
         {showUploadPrompt && (
-          <p className="text-warning-color font-notosans font-medium text-sm">
+          <p className="text-sm font-medium text-warning-color font-notosans">
             이미지를 업로드해주세요.
           </p>
         )}
-        <div className="flex w-96 mt-56 justify-between items-center">
-          <p className="ml-44 text-xl font-medium"> 1 / 7</p>
+        <div className="flex items-center justify-between mt-56 w-96">
+          <p className="text-xl font-medium ml-44"> 1 / 7</p>
           <button
-            type="submit" // 폼 제출 버튼으로 변경
+            type="submit"
             onClick={handleImageChange}
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
           </button>
@@ -73,3 +79,30 @@ function ProductImage({ setProductInfo }) {
 }
 
 export default ProductImage;
+
+// //서버로 전송 및 전역 상태 업데이트
+// const onSubmit = async formData => {
+//   try {
+//     //파일 먼저 가져오기
+//     if (selectedFile.length > 0) {
+//       console.log('selectedFile =>', selectedFile);
+
+//       const imageFormData = new FormData();
+//       imageFormData.append('attach', selectedFile[0]);
+
+//       // console.log('formData =>', formData);
+//       console.log('imageFormData=>', imageFormData);
+//       const fileRes = await axios('/files', {
+//         method: 'post',
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//         data: imageFormData,
+//       });
+//       formData.profileImage = fileRes.data.item[0].name;
+//     } else if (selectedFile.length <= 0) {
+//       formData.profileImage = propUser?.profile;
+//     }
+
+// 		console.log('현재 보내는 formData => ', formData);
+//     const res = await axios.patch('/users/' + propUser._id, formData);

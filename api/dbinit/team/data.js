@@ -16,6 +16,9 @@ export const initData = async nextSeq => {
     user: [
       {
         _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
         email: 'aaa@aa.aa',
         name: '11',
         extra: {
@@ -43,6 +46,9 @@ export const initData = async nextSeq => {
       },
       {
         _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
         email: 'testApp@test.com',
         name: '공용테스트',
         extra: {
@@ -70,6 +76,9 @@ export const initData = async nextSeq => {
       },
       {
         _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
         email: 'test@test.com',
         name: '공동테스트',
         extra: {
@@ -101,61 +110,88 @@ export const initData = async nextSeq => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 1000,
-        shippingFees: 0,
+        price: 1000, //경비
+        quantity: 10, //인원
+        buyQuantity: 0,
         show: true,
         active: true,
-        name: '동행상품1',
-        quantity: 10,
-        buyQuantity: 0,
+        name: 'ZOZOFO 테이블 게임 축구 보드 사커 게임기 보드게임 2인경기 완구 가족모임 미니 월드컵 스포츠 어린이 크리스마스 선물 생일 선물', //제목
         mainImages: [
+          //이미지업로드
           {
-            path: `/files/01-Trip-with-me/test-image.jpg`,
-            name: 'test-image.jpg',
-            originalname: '테스트이미지.jpg',
+            path: '/files/01-Trip-with-me/test.jpg',
+            name: 'test.jpg',
+            originalname: 'test.jpg',
           },
         ],
-        content: `
-          <div class="product-detail">
-            <p>신나는 여행 저와 함께 가요</p>
-          </div>`,
-        createdAt: getTime(-35, -60 * 60 * 6),
-        updatedAt: getTime(-10, -60 * 19),
+        content: '속초 토박이 여행', //상세설명
         extra: {
-          isNew: true,
-          isBest: true,
-          category: ['PC01', 'PC0103'],
-          sort: 3,
+          date: ['2024-04-15', '2024-04-20'], //날짜
+          spot: [
+            {
+              id: 1,
+              name: '강원도',
+            },
+          ], //지역
+          themes: [
+            {
+              id: 1,
+              name: '음주가무',
+            },
+            {
+              id: 2,
+              name: '친목다짐',
+            },
+            {
+              id: 3,
+              name: '이색체험',
+            },
+          ], //테마
+          itineraryMaps: [], //지도정보
         },
       },
+
       {
         _id: await nextSeq('product'),
-        seller_id: 1,
-        price: 2000,
-        shippingFees: 0,
+        seller_id: 2,
+        price: 50000, //경비
+        quantity: 10, //인원
+        buyQuantity: 0,
         show: true,
         active: true,
-        name: '동행상품2',
-        quantity: 10,
-        buyQuantity: 0,
+        name: 'ZOZOFO 테이블 게임 축구 보드 사커 게임기 보드게임 2인경기 완구 가족모임 미니 월드컵 스포츠 어린이 크리스마스 선물 생일 선물', //제목
         mainImages: [
+          //이미지업로드
           {
-            path: `/files/01-Trip-with-me/test-image.jpg`,
-            name: 'test-image.jpg',
-            originalname: '테스트이미지2.jpg',
+            path: '/files/01-Trip-with-me/test.jpg',
+            name: 'jeonju.jpg',
+            originalname: 'jeonju.jpg',
           },
         ],
-        content: `
-          <div class="product-detail">
-            <p>신나는 여행 저와 함께 가요</p>
-          </div>`,
-        createdAt: getTime(-35, -60 * 60 * 6),
-        updatedAt: getTime(-10, -60 * 19),
+        content: '전주에서 벚꽃 함께 보는 2030 여행', //상세설명
         extra: {
-          isNew: true,
-          isBest: true,
-          category: ['PC01', 'PC0103'],
-          sort: 3,
+          date: ['2024-04-15', '2024-04-20'], //날짜
+          spot: [
+            {
+              id: 1,
+              name: '강원도',
+            },
+          ], //지역
+          themes: [
+            {
+              id: 1,
+              name: '음주가무',
+            },
+            {
+              id: 2,
+              name: '친목다짐',
+            },
+            {
+              id: 3,
+              name: '이색체험',
+            },
+          ], //테마
+          itineraryMaps: [], //지도정보
         },
       },
     ],
