@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 // {
 //   "order_id": 1,
-//   "product_id": 2, -> 여행장 userID
+//   "product_id": 2, -> 상품 번호
 //   "rating": 3,
 //   "content": "친절하셨어요",
 // }
@@ -22,7 +22,7 @@ function ReviewItem({ item }) {
   const onSubmit = async formData => {
     try {
       const orderId = item._id;
-      const prodId = item.products[0].seller_id;
+      const prodId = item.products[0]._id;
       const review = {
         order_id: orderId,
         product_id: prodId,
@@ -43,7 +43,7 @@ function ReviewItem({ item }) {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register('content')} />
+        <textarea {...register('content')} />
         <button type="submit">작성하기</button>
       </form>
     </div>
