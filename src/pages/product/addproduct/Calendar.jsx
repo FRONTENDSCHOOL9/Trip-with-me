@@ -19,9 +19,6 @@ function Calendar({ productInfo, setProductInfo }) {
     },
   ]);
 
-  const navigate = useNavigate();
-  const { step } = useParams();
-
   const handleCalendarChange = e => {
     e.preventDefault();
     const formattedStartDate = selectedDateRange[0].startDate
@@ -46,10 +43,6 @@ function Calendar({ productInfo, setProductInfo }) {
       setShowUploadPrompt(true);
     }
     navigate(`/product/add/${+step + 1}`);
-  };
-
-  const handlePrevButton = e => {
-    navigate(`/product/add/${+step - 1}`);
   };
 
   const handleSubmit = event => {

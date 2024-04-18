@@ -13,9 +13,6 @@ function ProductImage({ setProductInfo }) {
     setShowUploadPrompt(false);
   };
 
-  const navigate = useNavigate();
-  const { step } = useParams();
-
   const handleImageChange = e => {
     e.preventDefault();
     if (selectedFile) {
