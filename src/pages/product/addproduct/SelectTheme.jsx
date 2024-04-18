@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function SelectTheme({ productInfo, setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
   const [tripThemes, setTripThemes] = useState([]);
 
@@ -53,6 +56,12 @@ function SelectTheme({ productInfo, setProductInfo }) {
     } else {
       navigate(`/product/add/${+step + 1}`);
     }
+    navigate(`/product/add/${+step + 1}`);
+  };
+
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const handlePrevButton = e => {

@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductSelectSpot({ productInfo, setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
   const [tripSpots, setTripSpots] = useState([]);
 
@@ -51,6 +54,12 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
     }
     navigate(`/product/add/${+step + 1}`);
     setShowUploadPrompt(false);
+    navigate(`/product/add/${+step + 1}`);
+  };
+
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const handlePrevButton = e => {

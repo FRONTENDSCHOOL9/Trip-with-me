@@ -8,6 +8,9 @@ import './productStyle/Calendar.css';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function Calendar({ productInfo, setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const [selectedDateRange, setSelectedDateRange] = useState([
     {
       startDate: new Date(),
@@ -42,6 +45,7 @@ function Calendar({ productInfo, setProductInfo }) {
     } else {
       setShowUploadPrompt(true);
     }
+    navigate(`/product/add/${+step + 1}`);
   };
 
   const handlePrevButton = e => {
@@ -52,13 +56,18 @@ function Calendar({ productInfo, setProductInfo }) {
     event.preventDefault();
   };
 
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
+  };
+
   return (
     <div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col items-center justify-center"
       >
-        <p className="text-2xl font-notosans font-semibold text-main-color my-20">
+        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행 날짜를 선택해주세요.
         </p>
         <DateRange
@@ -68,11 +77,11 @@ function Calendar({ productInfo, setProductInfo }) {
           moveRangeOnFirstSelection={false}
           ranges={selectedDateRange}
         />
-        <div className="flex w-96 mt-20 justify-between items-center">
+        <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"
             onClick={handlePrevButton}
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전
           </button>
@@ -80,7 +89,7 @@ function Calendar({ productInfo, setProductInfo }) {
           <button
             type="submit"
             onClick={handleCalendarChange}
-            className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
+            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             다음
           </button>

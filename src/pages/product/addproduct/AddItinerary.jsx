@@ -16,6 +16,9 @@ AddItinerary.defaultProps = {
 };
 
 function AddItinerary({ productInfo, setProductInfo }) {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const [itineraryMaps, setItineraryMaps] = useState([{ markers: [] }]);
   const [mapLength, setMapLength] = useState(1);
   const [selectedIndex, setSeletedIndex] = useState(0);
@@ -59,6 +62,12 @@ function AddItinerary({ productInfo, setProductInfo }) {
         },
       });
     }
+    navigate(`/product/add/${+step + 1}`);
+  };
+
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const handlePrevButton = e => {

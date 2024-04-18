@@ -100,7 +100,7 @@ function AddProduct() {
 
   console.log('compo', components);
   useState(() => {}, []);
-  console.log(productInfo);
+
   return (
     <div className="layout">
       <Header />
