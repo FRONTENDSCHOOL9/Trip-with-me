@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { useNavigate } from 'react-router-dom'; // useNavigate 임포트
 
 import '@components/style/swiper.css';
 import 'swiper/css';
@@ -11,11 +12,16 @@ import IntroHeader from './IntroHeader';
 function Intro() {
   const [showSkipButton, setShowSkipButton] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const navigate = useNavigate();
 
   const handleSlideChange = () => {
     if (swiperInstance && !swiperInstance.isEnd) {
       setShowSkipButton(true);
     }
+  };
+
+  const handleDoneClick = () => {
+    navigate('/users/login');
   };
 
   return (
@@ -77,7 +83,10 @@ function Intro() {
               <p>즐거운 추억을 만드세요</p>
               <p>동행 종료 후 평가를 남길 수 있어요</p>
             </div>
-            <button className="mt-12 border text-lg font-semibold bg-main-color text-white  w-fit mx-auto px-20 py-1 rounded-full border-main-color ">
+            <button
+              className="mt-12 border text-lg font-semibold bg-main-color text-white  w-fit mx-auto px-20 py-1 rounded-full border-main-color "
+              onClick={handleDoneClick}
+            >
               Done
             </button>
           </div>
