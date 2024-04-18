@@ -56,10 +56,10 @@ const Marker = ({
       <MapMarker
         position={marker.latlng} // 마커를 표시할 위치
         image={{
-          src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+          src: '/src/assets/icons/icon-map-pin.svg',
           size: {
-            width: 24,
-            height: 35,
+            width: 35,
+            height: 70,
           },
         }}
         title={marker.title}
@@ -87,7 +87,9 @@ const Marker = ({
         )}
       </MapMarker>
       <CustomOverlayMap position={marker.latlng}>
-        <span>{title ? `${markerId + 1}-${title}` : markerId + 1}</span>
+        <span className="p-1 bg-white border rounded-lg border-rose-300">
+          {title ? `${markerId + 1}-${title}` : markerId + 1}
+        </span>
       </CustomOverlayMap>
     </>
   );
