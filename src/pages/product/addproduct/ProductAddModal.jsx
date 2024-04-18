@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 function ProductAddModal() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-center items-center">
       <div className=" flex flex-col justify-center items-center w-4/5 border-4 rounded-3xl">

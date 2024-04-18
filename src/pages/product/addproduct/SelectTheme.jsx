@@ -1,5 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function SelectTheme({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
@@ -42,11 +43,20 @@ function SelectTheme({ productInfo, setProductInfo }) {
     setShowUploadPrompt(false);
   };
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const handleSubmit = event => {
     event.preventDefault();
     if (productInfo.extra.themes.length === 0) {
       setShowUploadPrompt(true);
+    } else {
+      navigate(`/product/add/${+step + 1}`);
     }
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   return (
@@ -87,6 +97,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
         <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전

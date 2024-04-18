@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductContent({ setProductInfo }) {
   const [showUploadContent, setShowUploadContent] = useState(false);
@@ -14,13 +15,21 @@ function ProductContent({ setProductInfo }) {
     setContent(e.target.value);
   };
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const handleSubmit = e => {
     e.preventDefault();
     if (!content.trim()) {
       setShowUploadContent(true);
       return;
     }
+    navigate(`/product/add/${+step + 1}`);
     setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   return (
@@ -53,6 +62,7 @@ function ProductContent({ setProductInfo }) {
         <div className="flex w-96 mt-20 justify-between items-center">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
           >
             이전

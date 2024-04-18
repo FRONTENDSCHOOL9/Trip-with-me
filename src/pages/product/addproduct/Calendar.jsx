@@ -5,6 +5,7 @@ import ko from 'date-fns/locale/ko';
 import { useState } from 'react';
 
 import './productStyle/Calendar.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Calendar({ productInfo, setProductInfo }) {
   const [selectedDateRange, setSelectedDateRange] = useState([
@@ -15,6 +16,9 @@ function Calendar({ productInfo, setProductInfo }) {
     },
   ]);
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const handleCalendarChange = e => {
     e.preventDefault();
     const formattedStartDate = selectedDateRange[0].startDate
@@ -24,6 +28,7 @@ function Calendar({ productInfo, setProductInfo }) {
       .toLocaleDateString('ko-KR')
       .replace(/\s/g, '');
     if (selectedDateRange) {
+      navigate(`/product/add/${+step + 1}`);
       setProductInfo({
         ...productInfo,
         extra: {
@@ -37,6 +42,10 @@ function Calendar({ productInfo, setProductInfo }) {
     } else {
       setShowUploadPrompt(true);
     }
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const handleSubmit = event => {
@@ -62,6 +71,7 @@ function Calendar({ productInfo, setProductInfo }) {
         <div className="flex w-96 mt-20 justify-between items-center">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
           >
             이전
