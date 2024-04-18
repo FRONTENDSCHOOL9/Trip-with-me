@@ -76,31 +76,31 @@ const router = createBrowserRouter([
         element: <ProductImage />,
       },
       {
-        path: '/product/add/name',
+        path: '/product/add/:step',
         element: <ProductName />,
       },
       {
-        path: '/product/add/calendar',
+        path: '/product/add/:step',
         element: <Calendar />,
       },
       {
-        path: '/product/add/map',
+        path: '/product/add/:step',
         element: <AddItinerary />,
       },
       {
-        path: '/product/add/spot',
+        path: '/product/add/:step',
         element: <ProductSelectSpot />,
       },
       {
-        path: '/product/add/theme',
+        path: '/product/add/:step',
         element: <SelectTheme />,
       },
       {
-        path: '/product/add/content',
+        path: '/product/add/:step',
         element: <ProductContent />,
       },
       {
-        path: '/product/add/modal',
+        path: '/product/add/:step',
         element: <ProductAddModal />,
       },
     ],
