@@ -1,54 +1,144 @@
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
 function ProductDetail() {
+  const axios = useCustomAxios();
+  const { _id } = useParams();
+  const [productInfo, setProductInfo] = useState(null);
+
+  const apiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
+
+  useKakaoLoader({
+    appkey: apiKey,
+    libraries: ['clusterer', 'drawing', 'services'],
+  });
+
+  useEffect(() => {
+    getData();
+    console.log(_id);
+  }, []);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(`/products/${_id}`);
+      setProductInfo(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const formattedPrice = productInfo?.item?.price
+    ? new Intl.NumberFormat('ko-KR', {
+        style: 'currency',
+        currency: 'KRW',
+      }).format(productInfo.item.price)
+    : '0원';
+
+  console.log(productInfo?.item?.mainImages);
+  console.log(productInfo?.item?.mainImages[0]);
   return (
     <div className="flex flex-col ">
-      <div className="w-96 h-56 rounded-lg  bg-light-gray mx-auto my-0">
-        이미지
+      <div className="h-56 mx-auto my-0 rounded-lg w-96 bg-light-gray">
+        <img src={productInfo?.item?.mainImages[0]} alt="Loaded Image" />
       </div>
       <div className="flex justify-between mx-3.5 mt-4 text-base font-semibold">
-        <h2>속초 토박이가 추천하는 숨은 명소 투어</h2>
-        <p>150,000 원</p>
+        <h2>{productInfo?.item?.name}</h2>
+        <p>{formattedPrice}원</p>
       </div>
       <div>
-        <ul className="flex my-4 gap-2">
-          <li className="border-2  rounded-full py-1 px-4"># 먹방투어</li>
-          <li className="border-2  rounded-full py-1 px-4"># 역사</li>
-          <li className="border-2  rounded-full py-1 px-4"># 등등</li>
-          <li className="border-2  rounded-full py-1 px-4"># 등등</li>
+        <ul className="flex gap-2 my-4">
+          {productInfo?.item?.extra.themes.map((theme, index) => (
+            <li key={index} className="px-4 py-1 border-2 rounded-full">
+              #{theme.name}
+            </li>
+          ))}
         </ul>
         <button type="button">
           <img src="" alt="" />
           <i className="ir">상품 수정 및 삭제</i>
         </button>
       </div>
-      <div className="flex justify-around border-t-2 pt-6 font-medium">
+      {/* <div className="flex justify-around pt-6 font-medium border-t-2">
+
         <button>상품 설명</button>
         <button>여행장 정보</button>
-      </div>
-      <div>
-        <p className=" font-semibold text-lg">여행일정</p>
-        <div>
-          <ul className=" flex flex-col gap-2 text-xs bg-light-gray rounded-lg p-4">
-            <li>fdf</li>
-            <li>dfdf</li>
-            <li>dfdf</li>
-          </ul>
-        </div>
-      </div>
-      {/* <div></div> 지도 API */}
-      <div>
-        <p className=" font-semibold text-lg">여행소개</p>
-        <div className=" border-b-2 pb-10">
-          <p className="text-sm">쏼ㄹ쏼라</p>
-          <ul className=" flex flex-col gap-2 text-sm rounded-lg p-4">
-            <li>fdf</li>
-            <li>dfdf</li>
-            <li>dfdf</li>
-          </ul>
-        </div>
-      </div>
-      <div>
-        <p className=" font-semibold text-lg">댓글</p>
-      </div>
+      </div> */}
+      <Tabs>
+        <TabList className="flex ">
+          <Tab className="flex-grow py-2 text-center ">상품설명</Tab>
+          <Tab className="flex-grow py-2 text-center">여행장 정보</Tab>
+        </TabList>
+        <TabPanel>
+          <div>
+            <p className="text-lg font-semibold ">여행일정</p>
+            <div>
+              <ul className="flex flex-col gap-2 p-4 text-xs rounded-lg bg-light-gray">
+                <li>{productInfo?.item?.extra.spot[0].name}</li>
+                <li>
+                  {productInfo?.item?.extra.date.startDate.slice(5)}~
+                  {productInfo?.item?.extra.date.endDate.slice(5)}
+                </li>
+                <li>최대 {productInfo?.item?.quantity}명</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <Tabs>
+              <TabList className="flex">
+                {productInfo?.item?.extra.itineraryMaps.map((_, index) => (
+                  <Tab className="p-1 m-1" key={index}>
+                    {index + 1}일차
+                  </Tab>
+                ))}
+              </TabList>
+
+              {productInfo?.item?.extra.itineraryMaps.map((dayPlan, index) => (
+                <TabPanel key={index}>
+                  <Map
+                    center={
+                      dayPlan.markers[0]
+                        ? dayPlan.markers[0].latlng
+                        : { lat: 33.450701, lng: 126.570667 }
+                    }
+                    style={{ width: '100%', height: '300px' }}
+                    level={3}
+                    draggable={false}
+                  >
+                    {dayPlan.markers.map((marker, markerIndex) => (
+                      <MapMarker
+                        key={`${index}-${markerIndex}`}
+                        position={marker.latlng}
+                        title={marker.title || 'No title'}
+                      />
+                    ))}
+                  </Map>
+                </TabPanel>
+              ))}
+            </Tabs>
+          </div>
+          {/* <div></div> 지도 API */}
+          <div>
+            <p className="text-lg font-semibold ">여행소개</p>
+            <div className="pb-10 border-b-2 ">
+              <p className="text-sm">{productInfo?.item?.content}</p>
+              {/* <ul className="flex flex-col gap-2 p-4 text-sm rounded-lg ">
+                <li>fdf</li>
+                <li>dfdf</li>
+                <li>dfdf</li>
+              </ul> */}
+            </div>
+          </div>
+          <div>
+            <p className="text-lg font-semibold ">댓글</p>
+          </div>
+        </TabPanel>
+        <TabPanel>{/* 여행장 정보 내용 */}</TabPanel>
+      </Tabs>
     </div>
   );
 }
