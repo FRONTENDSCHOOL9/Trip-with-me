@@ -41,7 +41,7 @@ function MyPage() {
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
                 onError={e => {
                   e.target.onerror = null;
-                  e.target.src = '/public/default-profile.png';
+                  e.target.src = '/default-profile.png';
                 }}
               />
             </div>
