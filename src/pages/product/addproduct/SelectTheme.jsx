@@ -1,6 +1,12 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+SelectTheme.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
 
 function SelectTheme({ productInfo, setProductInfo }) {
   const navigate = useNavigate();

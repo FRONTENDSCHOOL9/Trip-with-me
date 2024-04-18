@@ -3,9 +3,15 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import ko from 'date-fns/locale/ko';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './productStyle/Calendar.css';
 import { useNavigate, useParams } from 'react-router-dom';
+
+Calendar.propTypes = {
+  productInfo: PropTypes.object,
+  setProductInfo: PropTypes.func,
+};
 
 function Calendar({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
