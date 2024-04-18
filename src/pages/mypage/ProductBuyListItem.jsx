@@ -20,6 +20,8 @@ function ProductBuyListItem({ item }) {
     if (isClick === false) setIsClick(true);
     if (isClick === true) setIsClick(false);
   };
+
+  console.log('listitem=>', item);
   return (
     <div className="border border-gray-200 shadow mb-2 rounded-lg p-2">
       <Link to={`/product/${item?.products[0]?._id}`}>
@@ -28,7 +30,14 @@ function ProductBuyListItem({ item }) {
           alt=""
         />
         <p>상품명 : {item?.products[0]?.name}</p>
-        <p>날짜 : {item?.products[0]?.extra?.date}</p>
+        <p>
+          날짜 : {item?.products[0]?.extra?.date?.startDate} ~{' '}
+          {item?.products[0]?.extra?.date?.endDate}
+        </p>
+        <p>
+          구입 인수 : {item?.products[0]?.quantity} / 결제 금액 :{' '}
+          {item?.products[0]?.price}
+        </p>
       </Link>
       <button type="button" onClick={onClick}>
         여행장 리뷰 쓰기{' '}
