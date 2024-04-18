@@ -1,7 +1,12 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk';
+import {
+  CustomOverlayMap,
+  Map,
+  MapMarker,
+  useKakaoLoader,
+} from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 function ProductDetail() {
@@ -38,12 +43,13 @@ function ProductDetail() {
       }).format(productInfo.item.price)
     : '0원';
 
-  console.log(productInfo?.item?.mainImages);
-  console.log(productInfo?.item?.mainImages[0]);
   return (
     <div className="flex flex-col ">
-      <div className="h-56 mx-auto my-0 rounded-lg w-96 bg-light-gray">
-        <img src={productInfo?.item?.mainImages[0]} alt="Loaded Image" />
+      <div className="h-56 mx-auto my-0 mb-6 rounded-lg w-96 bg-light-gray">
+        <img
+          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0]}`}
+          alt="Loaded Image"
+        />
       </div>
       <div className="flex justify-between mx-3.5 mt-4 text-base font-semibold">
         <h2>{productInfo?.item?.name}</h2>
@@ -110,11 +116,29 @@ function ProductDetail() {
                     draggable={false}
                   >
                     {dayPlan.markers.map((marker, markerIndex) => (
-                      <MapMarker
-                        key={`${index}-${markerIndex}`}
-                        position={marker.latlng}
-                        title={marker.title || 'No title'}
-                      />
+                      <React.Fragment key={`${index}-${markerIndex}`}>
+                        <MapMarker
+                          position={marker.latlng}
+                          title={marker.title || 'No title'}
+                          image={{
+                            src: '/src/assets/icons/icon-map-pin.svg',
+                            size: {
+                              width: 35,
+                              height: 70,
+                            },
+                          }}
+                        />
+                        <CustomOverlayMap
+                          position={marker.latlng}
+                          className=" translate-y-[-100%] "
+                        >
+                          <span className="p-1 bg-white border rounded-lg border-rose-300">
+                            {marker.title
+                              ? `${markerIndex + 1}-${marker.title}`
+                              : markerIndex + 1}
+                          </span>
+                        </CustomOverlayMap>
+                      </React.Fragment>
                     ))}
                   </Map>
                 </TabPanel>

@@ -87,7 +87,7 @@ const Marker = ({
         )}
       </MapMarker>
       <CustomOverlayMap position={marker.latlng}>
-        <span>{title ? `${markerId + 1}<${title}>` : markerId + 1}</span>
+        <span>{title ? `${markerId + 1}-${title}` : markerId + 1}</span>
       </CustomOverlayMap>
     </>
   );
