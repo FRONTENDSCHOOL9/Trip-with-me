@@ -20,16 +20,12 @@ function ProductContent({ productInfo, setProductInfo }) {
     setContent(e.target.value);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (!content.trim()) {
       setShowUploadContent(true);
       return;
     }
-    try {
-      axios.post('/seller/products');
-    } catch (err) {}
-
     navigate(`/product/add/${+step + 1}`);
     setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
     navigate(`/product/add/${+step + 1}`);
