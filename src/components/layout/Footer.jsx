@@ -7,7 +7,7 @@ function Footer() {
       <Link to="/product/list" className="home footButton">
         <i className="ir">Home</i>
       </Link>
-      <Link to="/product/add" className="add footButton">
+      <Link to="/product/add/1" className="add footButton">
         <i className="ir">Add</i>
       </Link>
       <Link to="/mypage" className="myinfo footButton">
