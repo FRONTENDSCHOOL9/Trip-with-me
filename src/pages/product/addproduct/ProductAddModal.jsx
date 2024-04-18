@@ -1,7 +1,19 @@
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate } from 'react-router-dom';
 
-function ProductAddModal() {
+function ProductAddModal({ productInfo }) {
   const navigate = useNavigate();
+  const axios = useCustomAxios();
+
+  const handleSubmit = async () => {
+    try {
+      console.log('product=>', productInfo);
+      const res = await axios.post('/seller/products', productInfo);
+      console.log('res=>', res);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -16,7 +28,10 @@ function ProductAddModal() {
           alt=""
         />
         <p className="text-xl font-medium mb-14">등록 되었습니다.</p>
-        <button className="bg-main-color mb-12 px-6 py-4 rounded-full text-xl font-medium  text-white">
+        <button
+          onClick={handleSubmit}
+          className="bg-main-color mb-12 px-6 py-4 rounded-full text-xl font-medium  text-white"
+        >
           게시글 확인
         </button>
       </div>
