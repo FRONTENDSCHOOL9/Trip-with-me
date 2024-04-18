@@ -1,6 +1,6 @@
 import Header from '@components/layout/Header';
 import '@components/style/layout.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductImage from './addproduct/ProductImage';
 import ProductName from './addproduct/ProductName';
 import Calendar from './addproduct/Calendar';
@@ -9,7 +9,9 @@ import ProductSelectSpot from './addproduct/ProductSelectSpot';
 import SelectTheme from './addproduct/SelectTheme';
 import ProductContent from './addproduct/ProductContent';
 import ProductAddModal from './addproduct/ProductAddModal';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import usePageStore from '@zustand/pageName.mjs';
+import useMemberState from '@zustand/memberState.mjs';
 
 function AddProduct() {
   let { step } = useParams();
@@ -30,6 +32,24 @@ function AddProduct() {
       itineraryMaps: [],
     },
   });
+
+  const page = '게시물 등록';
+  const setPageName = usePageStore(state => state.setPageName);
+  const { user, setUser } = useMemberState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setPageName(page);
+    } else if (!user) {
+      noUser();
+    }
+  }, []);
+
+  function noUser() {
+    alert('로그인 후 이용 가능합니다.');
+    navigate('/users/login');
+  }
 
   function renderStep() {
     switch (step) {

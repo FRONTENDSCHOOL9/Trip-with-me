@@ -30,6 +30,7 @@ function ProductName({ productInfo, setProductInfo }) {
 
   const oninvalid = errors => console.error(errors);
 
+  console.log(productInfo);
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
