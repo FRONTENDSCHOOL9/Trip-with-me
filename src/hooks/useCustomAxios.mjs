@@ -10,7 +10,6 @@ function useCustomAxios() {
 
   // 로그인 된 사용자 정보
   const { user } = useMemberState();
-  console.log(user);
 
   // ajax 통신에 사용할 공통 설정 지정
   const instance = axios.create({
