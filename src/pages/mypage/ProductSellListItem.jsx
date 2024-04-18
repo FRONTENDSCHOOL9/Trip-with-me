@@ -7,50 +7,58 @@ const productSellListItem = ({ item }) => {
 
   return (
     <li
-      className={classNames('productBox', {
+      className={classNames('h-82.5 p-2 mb-1 font-notosans', {
         relative: isSoldOut,
       })}
     >
       {isSoldOut && (
         <Link
-          to={`/products/${item.id}`}
+          to={`/seller/products/${item._id}`}
           className="absolute inset-0 flex justify-center items-center"
         >
-          <div className="bg-black bg-opacity-50 w-full h-full flex justify-center items-center">
-            <p className="text-white text-3xl font-bold">모집 마감되었어요.</p>
+          <div className="bg-black bg-opacity-45 w-full h-full flex justify-center items-center rounded-lg">
+            <p className="text-zinc-200 text-3xl font-bold">
+              모집 마감되었어요.
+            </p>
           </div>
         </Link>
       )}
-      <div className="productBox-img">
-        <Link to={`/products/${item.id}`}>
+      <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
+        <Link to={`/seller/products/${item.id}`}>
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
-            className="img-item"
+            className="size-full object-cover"
           ></img>
         </Link>
       </div>
 
-      <div className="productBox-info">
-        <Link to={`/products/${item.id}`}>
-          <h3 className="productTitle">{item?.name}</h3>
+      <div className="p-2 relative">
+        <Link to={`/seller/products/${item.id}`}>
+          <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+            {item?.name}
+          </h3>
         </Link>
-        <div className="productBox-limit">
+        <div className="flex text-sm">
           <img
             src="../src/assets/icons/icon-group.svg"
-            className="img-limit"
+            className="w-4 mr-1"
           ></img>
           {isSoldOut ? (
-            <p className="limit">마감</p>
+            <p>모집 완료</p>
           ) : (
-            <p className="limit">
+            <p>
               {item?.buyQuantity}/{item?.quantity}
             </p>
           )}
         </div>
 
-        <div className="productBox-etc">
+        <div className="mt-1">
           {item?.extra?.themes?.map(item => {
-            <a href="#" className="tag" key={item.id}>
+            <a
+              href="#"
+              className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
+              key={item.id}
+            >
               # {item.name}
             </a>;
           })}

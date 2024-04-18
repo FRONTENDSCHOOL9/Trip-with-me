@@ -1,10 +1,9 @@
 import Header from '@components/layout/Header';
 import { Outlet } from 'react-router-dom';
-import '@components/style/detailedSearch.css';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import usePageStore from '@zustand/pageName.mjs';
-// import { useNavigate } from 'react-router-dom';
+import StyledLabel from '@components/style/StyledLabel';
 
 function DetailedSearch() {
   const page = '상세 검색';
@@ -43,48 +42,62 @@ function DetailedSearch() {
   return (
     <div className="layout">
       <Header />
-      <div className="scrollbar">
-        <Outlet />
-        <div className="searchBox">
-          <h2 className="searchBox-title">지역을 선택해주세요</h2>
+      <div className="scrollbar flex flex-col justify-center px-5">
+        <div className="font-notosans text-center mb-10 last:mb-0">
+          <h2 className="text-blue-400 text-xl font-semibold mb-5">
+            지역을 선택해주세요
+          </h2>
 
-          <ul className="searchBox-detail">
+          <ul className="flex justify-center flex-wrap gap-2.5">
             {tripSpots.map(tripSpot => (
               <li key={tripSpot.id}>
-                <input
-                  className="input"
-                  type="checkbox"
-                  id={`area_${tripSpot.id}`}
-                />
-                <label className="label" htmlFor={`area_${tripSpot.id}`}>
-                  {tripSpot.name}
-                </label>
+                <StyledLabel>
+                  <input
+                    className="input"
+                    type="checkbox"
+                    id={`area_${tripSpot.id}`}
+                  />
+                  <label
+                    className="label
+                 "
+                    htmlFor={`area_${tripSpot.id}`}
+                  >
+                    {tripSpot.name}
+                  </label>
+                </StyledLabel>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="searchBox">
-          <h2 className="searchBox-title">테마를 선택해주세요</h2>
+        <div className="font-notosans text-center h-[350px] last:mb-0">
+          <h2 className="text-blue-400 text-xl font-semibold mb-5">
+            테마를 선택해주세요
+          </h2>
 
-          <ul className="searchBox-detail">
+          <ul className="flex justify-center flex-wrap gap-2.5">
             {tripThemes.map(tripThemes => (
               <li key={tripThemes.id}>
-                <input
-                  type="checkbox"
-                  className="input"
-                  id={`theme_${tripThemes.id}`}
-                />
-                <label className="label" htmlFor={`theme_${tripThemes.id}`}>
-                  {tripThemes.name}
-                </label>
+                <StyledLabel>
+                  <input
+                    type="checkbox"
+                    className="input"
+                    id={`theme_${tripThemes.id}`}
+                  />
+                  <label className="label" htmlFor={`theme_${tripThemes.id}`}>
+                    {tripThemes.name}
+                  </label>
+                </StyledLabel>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="buttonContainer">
-          <button type="submit" className="searchButton">
+        <div className="text-center">
+          <button
+            type="submit"
+            className="inline-block w-48 h-10 text-xl cursor-pointer text-center text-white font-semibold bg-blue-400 rounded-xl hover:bg-blue-500 active:bg-blue-600"
+          >
             검색
           </button>
         </div>
