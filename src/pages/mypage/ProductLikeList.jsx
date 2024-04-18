@@ -21,6 +21,8 @@ function ProductLikeList() {
     getLikeData();
     setPageName(page);
   }, []);
+
+  // console.log('likeData=>', likeData);
   return <div className="flex flex-col gap-3">{likeData}</div>;
 }
 
