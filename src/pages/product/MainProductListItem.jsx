@@ -6,7 +6,7 @@ const MainProductListItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
 
   return (
-    <li className="h-[330px] p-2">
+    <li className="h-82.5 p-2 mb-1 font-notosans">
       <div
         className={classNames({
           relative: isSoldOut,
@@ -14,7 +14,7 @@ const MainProductListItem = ({ item }) => {
       >
         {isSoldOut && (
           <Link
-            to={`/products/${item.id}`}
+            to={`/products/${item._id}`}
             className="absolute inset-0 flex justify-center items-center"
             style={{ zIndex: 1 }}
           >
@@ -29,6 +29,7 @@ const MainProductListItem = ({ item }) => {
           <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
             <Link to={`/products/${item.id}`}>
               <img
+                className="size-full object-cover"
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
               />
             </Link>
@@ -36,14 +37,16 @@ const MainProductListItem = ({ item }) => {
 
           <div className="p-2 relative">
             <Link to={`/products/${item.id}`}>
-              <h3 className="text-base font-medium">{item.name}</h3>
+              <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+                {item?.name}
+              </h3>
             </Link>
             <div className="flex text-sm">
               <img
                 src="../src/assets/icons/icon-group.svg"
                 className="w-4 mr-1"
               />
-              <p>{`${item.buyQuantity}/${item.quantity}`}</p>
+              <p>{`${item?.buyQuantity}/${item?.quantity}`}</p>
             </div>
 
             <div className="mt-1">
@@ -58,7 +61,7 @@ const MainProductListItem = ({ item }) => {
               ))}
             </div>
 
-            <div className="absolute top-5 right-7 text-center">
+            <div className="absolute top-8 right-7 text-center">
               <button type="button">
                 <img
                   src="../src/assets/icons/icon-heart-disabled.svg"

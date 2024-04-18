@@ -40,17 +40,20 @@ const PopularProductList = () => {
         pagination={false}
         navigation={false}
         slidesPerView={1}
-        loop={true}
+        loop={false}
         speed={900}
         effect="slide"
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {popularProducts.map(item => (
-          <SwiperSlide key={item._id} className="h-[330px] border-b p-2">
+          <SwiperSlide
+            key={item._id}
+            className="h-[330px] border-b p-2 font-notosans"
+          >
             <div>
               <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
-                <Link to={`/products/${item.id}`}>
+                <Link to={`/products/${item._id}`}>
                   <img
                     src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
                   />
@@ -59,7 +62,9 @@ const PopularProductList = () => {
 
               <div className="p-2 relative">
                 <Link to={`/products/${item.id}`}>
-                  <h3 className="text-base font-medium">{item.name}</h3>
+                  <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+                    {item.name}
+                  </h3>
                 </Link>
                 <div className="flex text-sm">
                   <img
@@ -81,7 +86,7 @@ const PopularProductList = () => {
                   ))}
                 </div>
 
-                <div className="absolute top-5 right-7 text-center">
+                <div className="absolute top-8 right-7 text-center">
                   <button type="button">
                     <img
                       src="../src/assets/icons/icon-heart-disabled.svg"
