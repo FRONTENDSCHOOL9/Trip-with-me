@@ -1,6 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductSelectSpot({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
@@ -40,13 +40,21 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
     setShowUploadPrompt(false);
   };
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const handleSubmit = event => {
     event.preventDefault();
     if (!productInfo.extra.spot || productInfo.extra.spot.length === 0) {
       setShowUploadPrompt(true);
       return;
     }
+    navigate(`/product/add/${+step + 1}`);
     setShowUploadPrompt(false);
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   return (
@@ -96,6 +104,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
         <div className="flex items-center justify-between mt-20 w-96">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전

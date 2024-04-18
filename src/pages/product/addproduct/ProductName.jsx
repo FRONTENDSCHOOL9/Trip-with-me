@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductName({ productInfo, setProductInfo }) {
   const {
@@ -9,6 +10,9 @@ function ProductName({ productInfo, setProductInfo }) {
   } = useForm();
   console.log(watch('name'));
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const onSubmit = data => {
     setProductInfo({
       ...productInfo,
@@ -16,6 +20,11 @@ function ProductName({ productInfo, setProductInfo }) {
       quantity: data.quantity,
       price: data.price,
     });
+    navigate(`/product/add/${+step + 1}`);
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   const oninvalid = errors => console.error(errors);
@@ -100,6 +109,7 @@ function ProductName({ productInfo, setProductInfo }) {
         <div className=" mx-auto flex items-center justify-between mt-20 w-96">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
           >
             이전

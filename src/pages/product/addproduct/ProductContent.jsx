@@ -1,8 +1,11 @@
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductContent({ setProductInfo }) {
   const [showUploadContent, setShowUploadContent] = useState(false);
   const [content, setContent] = useState('');
+  const axios = useCustomAxios();
 
   useEffect(() => {
     if (content.trim()) {
@@ -14,13 +17,25 @@ function ProductContent({ setProductInfo }) {
     setContent(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const navigate = useNavigate();
+  const { step } = useParams();
+
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!content.trim()) {
       setShowUploadContent(true);
       return;
     }
+    try {
+      axios.post('/seller/products');
+    } catch (err) {}
+
+    navigate(`/product/add/${+step + 1}`);
     setProductInfo(prevInfo => ({ ...prevInfo, content: content }));
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   return (
@@ -53,6 +68,7 @@ function ProductContent({ setProductInfo }) {
         <div className="flex w-96 mt-20 justify-between items-center">
           <button
             type="button"
+            onClick={handlePrevButton}
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
           >
             이전

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './productStyle/Map.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 AddItinerary.propTypes = {
   productInfo: PropTypes.object.isRequired,
@@ -44,8 +45,12 @@ function AddItinerary({ productInfo, setProductInfo }) {
     setItineraryMaps(prevMaps => prevMaps.filter((_, index) => index !== id));
   };
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const saveItineraryMaps = () => {
     if (productInfo && setProductInfo) {
+      navigate(`/product/add/${+step + 1}`);
       setProductInfo({
         ...productInfo,
         extra: {
@@ -54,6 +59,10 @@ function AddItinerary({ productInfo, setProductInfo }) {
         },
       });
     }
+  };
+
+  const handlePrevButton = e => {
+    navigate(`/product/add/${+step - 1}`);
   };
 
   return (
@@ -100,10 +109,10 @@ function AddItinerary({ productInfo, setProductInfo }) {
         </button>
       </div>
       {/* <button onClick={saveItineraryMaps}>저장</button> */}
-
-      <div className="flex items-center justify-between mt-20 w-96">
+      <div className="mx-auto flex items-center justify-between mt-20 w-96">
         <button
           type="button"
+          onClick={handlePrevButton}
           className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
         >
           이전

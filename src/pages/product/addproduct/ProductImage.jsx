@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function ProductImage({ setProductInfo }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -9,10 +10,14 @@ function ProductImage({ setProductInfo }) {
     setShowUploadPrompt(false);
   };
 
+  const navigate = useNavigate();
+  const { step } = useParams();
+
   const handleImageChange = e => {
     e.preventDefault();
     if (selectedFile) {
       setProductInfo(prevInfo => ({ ...prevInfo, mainImages: [selectedFile] }));
+      navigate(`/product/add/${+step + 1}`);
     } else {
       setShowUploadPrompt(true);
     }
@@ -60,7 +65,7 @@ function ProductImage({ setProductInfo }) {
         <div className="flex w-96 mt-56 justify-between items-center">
           <p className="ml-44 text-xl font-medium"> 1 / 7</p>
           <button
-            type="submit" // 폼 제출 버튼으로 변경
+            type="submit"
             onClick={handleImageChange}
             className="bg-main-color px-10 py-3 rounded-full text-xl font-medium text-white"
           >
@@ -73,3 +78,30 @@ function ProductImage({ setProductInfo }) {
 }
 
 export default ProductImage;
+
+// //서버로 전송 및 전역 상태 업데이트
+// const onSubmit = async formData => {
+//   try {
+//     //파일 먼저 가져오기
+//     if (selectedFile.length > 0) {
+//       console.log('selectedFile =>', selectedFile);
+
+//       const imageFormData = new FormData();
+//       imageFormData.append('attach', selectedFile[0]);
+
+//       // console.log('formData =>', formData);
+//       console.log('imageFormData=>', imageFormData);
+//       const fileRes = await axios('/files', {
+//         method: 'post',
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//         data: imageFormData,
+//       });
+//       formData.profileImage = fileRes.data.item[0].name;
+//     } else if (selectedFile.length <= 0) {
+//       formData.profileImage = propUser?.profile;
+//     }
+
+// 		console.log('현재 보내는 formData => ', formData);
+//     const res = await axios.patch('/users/' + propUser._id, formData);
