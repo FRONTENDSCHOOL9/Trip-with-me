@@ -3,7 +3,7 @@ import ProductBuyListItem from '@pages/mypage/ProductBuyListItem';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import usePageStore from '@zustand/pageName.mjs';
 import { useEffect, useState } from 'react';
-// import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
 
 function ProductBuyList() {
   const page = '구매 목록';

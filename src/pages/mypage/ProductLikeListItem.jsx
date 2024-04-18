@@ -10,6 +10,7 @@ ProductLikeListItem.propTypes = {
 function ProductLikeListItem({ item }) {
   const axios = useCustomAxios();
   const [likeState, setLikeState] = useState(false);
+  const [likeId, setLikeId] = useState(item?._id);
 
   console.log('item=>', item);
   const won = item?.product?.price
@@ -21,8 +22,10 @@ function ProductLikeListItem({ item }) {
     //좋아요를 제거한 경우
     if (likeState === false) {
       try {
-        await axios.delete(`/bookmarks/${item?._id}`);
+        const res = await axios.delete(`/bookmarks/${likeId}`);
         e.target.src = '/src/assets/icons/icon-heart-disabled.svg';
+        console.log(res);
+        console.log('좋아요 제거한 경우 item._id =>', likeId);
       } catch (err) {
         console.log(err);
       }
@@ -30,12 +33,17 @@ function ProductLikeListItem({ item }) {
     //다시 좋아요를 누른 경우
     else if (likeState === true) {
       try {
+        //좋아요 누를 때에는 상품 id를 보낸다.
         const res = await axios.post(
           `/bookmarks/product/${item?.product?._id}`,
           {},
         );
-        console.log('item._id =>', item?._id);
-        console.log('res =>', res);
+        setLikeId(res?.data?.item?._id);
+        console.log(
+          '좋아요 누른 경우 북마크 id 새로 세팅 =>',
+          res?.data?.item?._id,
+        );
+        // console.log('res =>', res);
         e.target.src = '/src/assets/icons/icon-heart-full.svg';
       } catch (err) {
         console.log(err);
