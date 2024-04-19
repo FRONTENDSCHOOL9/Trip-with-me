@@ -9,11 +9,13 @@ import {
 } from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Review from '@pages/product/Review';
+import { BeatLoader } from 'react-spinners';
 
 function ProductDetail() {
   const axios = useCustomAxios();
   const { _id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -28,14 +30,25 @@ function ProductDetail() {
   }, []);
 
   const getData = async () => {
+    setIsLoading(true);
     try {
       const res = await axios.get(`/products/${_id}`);
       setProductInfo(res.data);
-      
+      console.log(res.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.message);
+      setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+        <BeatLoader color="#68A9ED" />
+      </div>
+    );
+  }
 
   const formattedPrice = productInfo?.item?.price
     ? new Intl.NumberFormat('ko-KR', {
@@ -109,7 +122,7 @@ function ProductDetail() {
                         : { lat: 33.450701, lng: 126.570667 }
                     }
                     style={{ width: '100%', height: '300px' }}
-                    level={8}
+                    level={4}
                     draggable={false}
                   >
                     {dayPlan.markers.map((marker, markerIndex) => (
