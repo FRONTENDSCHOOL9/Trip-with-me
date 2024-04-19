@@ -13,7 +13,7 @@ const productSellListItem = ({ item }) => {
     >
       {isSoldOut && (
         <Link
-          to={`/seller/products/${item._id}`}
+          to={`/product/${item._id}`}
           className="absolute inset-0 flex justify-center items-center"
         >
           <div className="bg-black bg-opacity-45 w-full h-full flex justify-center items-center rounded-lg">
@@ -24,7 +24,7 @@ const productSellListItem = ({ item }) => {
         </Link>
       )}
       <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
-        <Link to={`/seller/products/${item.id}`}>
+        <Link to={`/product/${item._id}`}>
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
             className="size-full object-cover"
@@ -33,7 +33,7 @@ const productSellListItem = ({ item }) => {
       </div>
 
       <div className="p-2 relative">
-        <Link to={`/seller/products/${item.id}`}>
+        <Link to={`/product/${item._id}`}>
           <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
             {item?.name}
           </h3>
