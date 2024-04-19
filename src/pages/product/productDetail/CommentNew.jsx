@@ -3,14 +3,19 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 CommentNew.propTypes = {
   commentId: PropTypes.string,
 };
 
-function CommentNew() {
+function CommentNew({refetch}) {
   const axios = useCustomAxios();
   const { _id } = useParams();
+
+  useEffect(()=>{
+
+  })
 
   const {
     register,
@@ -19,19 +24,22 @@ function CommentNew() {
     formState: { errors },
   } = useForm();
 
-  const queryClient = useQueryClient();
-  const addReply = useMutation({
-    mutationFn: formData => axios.post(`/posts`, formData),
-    onSuccess() {
-      queryClient.invalidateQueries(['comments', _id]);
-      reset();
-    },
-  });
 
-  const onSubmit = formData => {
-    formData.type = 'comment';
-    addReply.mutate(formData);
-    console.log('폼데이터',formData);
+  const onSubmit = async (formData) => {
+    try{
+      formData.type = 'comment';
+      formData.product_id = +_id;
+      const res = await axios.post('/posts', formData);
+      const txt = document.querySelector('textarea');
+      txt.value = '';
+      console.log('res', res);
+      reset();
+      refetch();
+    }
+    catch(err){
+      console.log(err.message);
+    }
+
   };
 
   return (
@@ -40,7 +48,7 @@ function CommentNew() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <textarea
-            {...register('comment', {
+            {...register('content', {
               required: '내용을 입력하세요',
               minLength: {
                 value: 2,
