@@ -8,6 +8,7 @@ import {
   useKakaoLoader,
 } from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import Comment from './productDetail/Comment';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -47,7 +48,7 @@ function ProductDetail() {
     <div className="flex flex-col ">
       <div className="h-56 mx-auto my-0 mb-6 rounded-lg w-96 bg-light-gray">
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0]}`}
+          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0].name}`}
           alt="Loaded Image"
         />
       </div>
@@ -157,8 +158,9 @@ function ProductDetail() {
               </ul> */}
             </div>
           </div>
+
           <div>
-            <p className="text-lg font-semibold ">댓글</p>
+            <Comment />
           </div>
         </TabPanel>
         <TabPanel>{/* 여행장 정보 내용 */}</TabPanel>
