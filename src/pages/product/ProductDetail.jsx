@@ -8,6 +8,7 @@ import {
   useKakaoLoader,
 } from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import Comment from './productDetail/Comment';
 import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 
@@ -161,8 +162,9 @@ function ProductDetail() {
               <p className="text-sm">{productInfo?.item?.content}</p>
             </div>
           </div>
+
           <div>
-            <p className="text-lg font-semibold ">댓글</p>
+            <Comment />
           </div>
         </TabPanel>
         <TabPanel>
