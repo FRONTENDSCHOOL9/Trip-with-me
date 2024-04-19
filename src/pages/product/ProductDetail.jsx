@@ -67,11 +67,11 @@ function ProductDetail() {
           className="w-full h-full"
         />
       </div>
-      <div className="flex justify-between mx-3.5 mt-4 text-base font-semibold">
+      <div className="flex justify-between mt-5 ml-6 text-base font-semibold">
         <h2>{productInfo?.item?.name}</h2>
-        <p>{formattedPrice}원</p>
+        <p className="mr-5"> {formattedPrice}원</p>
       </div>
-      <div>
+      <div className="ml-5">
         <ul className="flex gap-2 my-4">
           {productInfo?.item?.extra.themes.map((theme, index) => (
             <li key={theme.id} className="px-4 py-1 border-2 rounded-full">
@@ -84,22 +84,45 @@ function ProductDetail() {
           <i className="ir">상품 수정 및 삭제</i>
         </button>
       </div>
-      <Tabs>
-        <TabList className="flex ">
+      <Tabs className="mx-5">
+        <TabList className="flex mb-4">
           <Tab className="flex-grow py-2 text-center ">상품설명</Tab>
           <Tab className="flex-grow py-2 text-center">여행장 정보</Tab>
         </TabList>
         <TabPanel>
           <div>
-            <p className="text-lg font-semibold ">여행일정</p>
+            <p className="mb-2 text-lg font-semibold">여행일정</p>
             <div>
               <ul className="flex flex-col gap-2 p-4 text-xs rounded-lg bg-light-gray">
-                <li>{productInfo?.item?.extra.spot[0].name}</li>
-                <li>
-                  {productInfo?.item?.extra.date.startDate.slice(5)}~
-                  {productInfo?.item?.extra.date.endDate.slice(5)}
-                </li>
-                <li>최대 {productInfo?.item?.quantity}명</li>
+                <div className="flex ">
+                  <img
+                    className="w-4 h-4 mr-2"
+                    src="/src/assets/icons/icon-map-location.svg"
+                    alt="위치"
+                  />
+                  <span className="shrink">
+                    {productInfo?.item?.extra.spot[0].name}
+                  </span>
+                </div>
+                <div className="flex">
+                  <img
+                    className="w-4 h-4 mr-2"
+                    src="/src/assets/icons/icon-map-date.svg"
+                    alt="위치"
+                  />
+                  <span>
+                    {productInfo?.item?.extra.date.startDate.slice(5)}~
+                    {productInfo?.item?.extra.date.endDate.slice(5)}
+                  </span>
+                </div>
+                <div className="flex">
+                  <img
+                    className="w-4 h-4 mr-2"
+                    src="/src/assets/icons/icon-map-people.svg"
+                    alt="위치"
+                  />
+                  <span>최대 {productInfo?.item?.quantity}명</span>
+                </div>
               </ul>
             </div>
           </div>
@@ -156,9 +179,9 @@ function ProductDetail() {
               ))}
             </Tabs>
           </div>
-          <div>
-            <p className="text-lg font-semibold ">여행소개</p>
-            <div className="pb-10 border-b-2 ">
+          <div className="border-b-2">
+            <p className="mt-2 text-lg font-semibold">여행소개</p>
+            <div className="pb-10 ml-2 ">
               <p className="text-sm">{productInfo?.item?.content}</p>
             </div>
           </div>
@@ -169,7 +192,7 @@ function ProductDetail() {
         </TabPanel>
         <TabPanel>
           <div>
-            <div className="pb-4 mt-5 border-b-2 mb-3">
+            <div className="pb-4 mt-5 mb-3 border-b-2">
               <div className="flex flex-col w-full m-auto mb-3 text-center">
                 <div className="w-32 h-32 mx-auto mb-3 overflow-hidden rounded-full">
                   <img
@@ -189,7 +212,7 @@ function ProductDetail() {
                     : '여성'}
                 </p>
               </div>
-              <div>
+              <div className="ml-3">
                 <p className="text-lg font-semibold ">여행 관심사</p>
                 <ul className="flex gap-2 my-2 text-sm">
                   {productInfo?.item?.seller?.extra.address.map(theme => (
