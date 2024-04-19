@@ -8,6 +8,7 @@ import {
   useKakaoLoader,
 } from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import Review from '@pages/product/Review';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -30,7 +31,7 @@ function ProductDetail() {
     try {
       const res = await axios.get(`/products/${_id}`);
       setProductInfo(res.data);
-      console.log(res.data);
+      
     } catch (error) {
       console.log(error.message);
     }
@@ -153,7 +154,7 @@ function ProductDetail() {
         </TabPanel>
         <TabPanel>
           <div>
-            <div className="pb-4 mt-5 border-b-2">
+            <div className="pb-4 mt-5 border-b-2 mb-3">
               <div className="flex flex-col w-full m-auto mb-3 text-center">
                 <div className="w-32 h-32 mx-auto mb-3 overflow-hidden rounded-full">
                   <img
@@ -188,7 +189,7 @@ function ProductDetail() {
               </div>
             </div>
             <div>
-              <p>받은 동행 후기(77)</p>
+              <Review seller_id={productInfo?.item?.seller_id} />
             </div>
           </div>
         </TabPanel>
