@@ -30,7 +30,7 @@ const PopularProductList = () => {
   console.log('인기상품 정렬', popularProducts);
 
   return (
-    <>
+    <div className="h-[330px] border-b">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -41,21 +41,19 @@ const PopularProductList = () => {
         pagination={false}
         navigation={false}
         slidesPerView={1}
-        loop={false}
+        loop={true}
         speed={900}
         effect="slide"
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {popularProducts.map(item => (
-          <SwiperSlide
-            key={item._id}
-            className="h-[330px] border-b p-2 font-notosans"
-          >
+          <SwiperSlide key={item._id} className="h-[330px]  p-2 font-notosans">
             <div>
               <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
                 <Link to={`/products/${item._id}`}>
                   <img
+                    className="size-full object-cover"
                     src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
                   />
                 </Link>
@@ -94,14 +92,14 @@ const PopularProductList = () => {
                       className="w-8"
                     />
                   </button>
-                  <p className="-mt-2">{item?.bookmarks}</p>
+                  {/* <p className="-mt-2">{item?.bookmarks}</p> */}
                 </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 
