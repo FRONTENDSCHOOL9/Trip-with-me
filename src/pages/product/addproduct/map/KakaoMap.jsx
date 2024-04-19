@@ -66,28 +66,13 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
     console.log(itineraryMaps);
   };
 
-  // const addMarker = (mapIndex, newMarker) => {
-  //   setItineraryMaps(prevMaps =>
-  //     prevMaps.map((map, index) =>
-  //       index === mapIndex
-  //         ? { ...map, markers: [...map.markers, newMarker] }
-  //         : map,
-  //     ),
-  //   );
-  // };
   const addMarker = (mapIndex, newMarker) => {
     setItineraryMaps(prevMaps =>
-      prevMaps.map((map, index) => {
-        if (index === mapIndex) {
-          const updatedMap = {
-            ...map,
-            markers: [...map.markers, newMarker],
-            lastMarkerCenter: newMarker.latlng, // 마지막 마커 위치 업데이트
-          };
-          return updatedMap;
-        }
-        return map;
-      }),
+      prevMaps.map((map, index) =>
+        index === mapIndex
+          ? { ...map, markers: [...map.markers, newMarker] }
+          : map,
+      ),
     );
   };
 
@@ -108,17 +93,16 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
       </form>
 
       <Map
-        center={
-          itineraryMaps[id]?.center || {
-            lat: 37.566826,
-            lng: 126.9786567,
-          }
-        }
+        center={{
+          lat: 37.566826,
+          lng: 126.9786567,
+        }}
         style={{
           width: '100%',
           height: '350px',
         }}
-        level={1}
+        level={4}
+        zoomable={true}
         onCreate={setMap}
         onClick={(_, mouseEvent) => createMarker(mouseEvent)}
       >

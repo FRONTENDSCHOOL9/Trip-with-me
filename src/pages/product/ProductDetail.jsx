@@ -45,10 +45,11 @@ function ProductDetail() {
 
   return (
     <div className="flex flex-col ">
-      <div className="h-56 mx-auto my-0 mb-6 rounded-lg w-96 bg-light-gray">
+      <div className="h-56 mx-auto my-0 mb-6 overflow-hidden rounded-lg w-96 bg-light-gray">
         <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0]}`}
-          alt="Loaded Image"
+          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0].name}`}
+          alt="Loading Image"
+          className="w-full h-full"
         />
       </div>
       <div className="flex justify-between mx-3.5 mt-4 text-base font-semibold">
@@ -58,7 +59,7 @@ function ProductDetail() {
       <div>
         <ul className="flex gap-2 my-4">
           {productInfo?.item?.extra.themes.map((theme, index) => (
-            <li key={index} className="px-4 py-1 border-2 rounded-full">
+            <li key={theme.id} className="px-4 py-1 border-2 rounded-full">
               #{theme.name}
             </li>
           ))}
@@ -68,11 +69,6 @@ function ProductDetail() {
           <i className="ir">상품 수정 및 삭제</i>
         </button>
       </div>
-      {/* <div className="flex justify-around pt-6 font-medium border-t-2">
-
-        <button>상품 설명</button>
-        <button>여행장 정보</button>
-      </div> */}
       <Tabs>
         <TabList className="flex ">
           <Tab className="flex-grow py-2 text-center ">상품설명</Tab>
@@ -112,7 +108,7 @@ function ProductDetail() {
                         : { lat: 33.450701, lng: 126.570667 }
                     }
                     style={{ width: '100%', height: '300px' }}
-                    level={3}
+                    level={8}
                     draggable={false}
                   >
                     {dayPlan.markers.map((marker, markerIndex) => (
@@ -145,23 +141,57 @@ function ProductDetail() {
               ))}
             </Tabs>
           </div>
-          {/* <div></div> 지도 API */}
           <div>
             <p className="text-lg font-semibold ">여행소개</p>
             <div className="pb-10 border-b-2 ">
               <p className="text-sm">{productInfo?.item?.content}</p>
-              {/* <ul className="flex flex-col gap-2 p-4 text-sm rounded-lg ">
-                <li>fdf</li>
-                <li>dfdf</li>
-                <li>dfdf</li>
-              </ul> */}
             </div>
           </div>
           <div>
             <p className="text-lg font-semibold ">댓글</p>
           </div>
         </TabPanel>
-        <TabPanel>{/* 여행장 정보 내용 */}</TabPanel>
+        <TabPanel>
+          <div>
+            <div className="pb-4 mt-5 border-b-2">
+              <div className="flex flex-col w-full m-auto mb-3 text-center">
+                <div className="w-32 h-32 mx-auto mb-3 overflow-hidden rounded-full">
+                  <img
+                    className="w-full h-full"
+                    src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.seller?.profileImage}`}
+                    alt="프로필 이미지"
+                  />
+                </div>
+
+                <p className="text-xl font-semibold ">
+                  {productInfo?.item?.seller?.name}
+                </p>
+                <p className="text-sm text-slate-400">
+                  {productInfo?.item?.seller?.extra.birthday}대{' '}
+                  {productInfo?.item?.seller?.address === 'male'
+                    ? '남성'
+                    : '여성'}
+                </p>
+              </div>
+              <div>
+                <p className="text-lg font-semibold ">여행 관심사</p>
+                <ul className="flex gap-2 my-2 text-sm">
+                  {productInfo?.item?.seller?.extra.address.map(theme => (
+                    <li
+                      key={theme.id}
+                      className="px-4 py-1 border-2 rounded-full"
+                    >
+                      {theme.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div>
+              <p>받은 동행 후기(77)</p>
+            </div>
+          </div>
+        </TabPanel>
       </Tabs>
     </div>
   );
