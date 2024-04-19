@@ -51,25 +51,23 @@ function ProductLikeListItem({ item }) {
     }
   };
   return (
-    <div className="py-2 px-5 max-w-sm w-full mx-auto">
-      <div className=" max-w-80 w-full mx-auto">
+    <div className="py-2 px-5 max-w-sm w-full mx-auto mb-2">
+      <div className="w-full mx-auto">
         <Link to={`/product/${item?.product?._id}`}>
-          <div
-            className="bg-cover h-48 max-w-80 w-full mx-auto rounded-xl mb-1"
-            style={{
-              backgroundImage: `url(${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.product?.image?.name})`,
-            }}
-          ></div>
-          {/* <img
-          className="max-h-36 h-full rounded-xl mb-1"
-          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.product?.image?.name}`}
-        /> */}
+          <div className="w-102.5 h-56 overflow-hidden rounded-xl mb-2">
+            <img
+              className="size-full object-cover"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.product?.image?.name}`}
+            />
+          </div>
         </Link>
         <div className="flex gap-5">
-          <Link to={`/product/${item?.product?._id}`}>
-            <p className="mb-1">{item?.product?.name}</p>
+          <Link to={`/product/${item?.product?._id}`} className="w-full">
+            <p className="mb-1 text-sm ">{item?.product?.name}</p>
           </Link>
-          <p className="mb-1 ml-auto font-bold">{won}원</p>
+          <p className="shrink-0 text-right mb-1 ml-auto font-bold text-sm ">
+            {won}원
+          </p>
         </div>
         <div className="flex items-center">
           {item?.product?.extra?.themes?.map(item => (
