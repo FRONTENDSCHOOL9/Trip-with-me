@@ -113,11 +113,6 @@ const router = createBrowserRouter([
     path: '/product/search',
     element: <DetailedSearch />,
   },
-
-  {
-    index: true,
-    element: <Login />,
-  },
   {
     path: '/users/login',
     element: <Login />,
@@ -127,7 +122,11 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: '/intro',
+    index: true,
+    element: <Intro />,
+  },
+  {
+    path: '/trip-with-me/intro',
     element: <Intro />,
   },
 ]);

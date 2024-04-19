@@ -33,7 +33,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
     const selectedThemes = Array.isArray(productInfo?.extra?.themes)
       ? [...productInfo.extra.themes]
       : [];
-    const themeIndex = selectedThemes.indexOf(theme);
+    const themeIndex = selectedThemes.findIndex(t => t.id === theme.id);
 
     if (themeIndex === -1) {
       selectedThemes.push(theme);
@@ -59,7 +59,6 @@ function SelectTheme({ productInfo, setProductInfo }) {
     } else {
       navigate(`/product/add/${+step + 1}`);
     }
-    navigate(`/product/add/${+step + 1}`);
   };
 
   const handlePrevButton = e => {
@@ -81,7 +80,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
             <li key={id}>
               <label
                 className={`flex border-2 rounded-full py-1 px-4 cursor-pointer ${
-                  productInfo?.extra?.themes?.includes(theme)
+                  productInfo?.extra?.themes?.some(t => t.id === theme.id)
                     ? 'border-main-color border-2 '
                     : 'border-light-gray'
                 }`}
@@ -89,7 +88,9 @@ function SelectTheme({ productInfo, setProductInfo }) {
                 <input
                   className="hidden"
                   type="checkbox"
-                  checked={productInfo?.extra?.themes?.includes(theme)}
+                  checked={productInfo?.extra?.themes?.some(
+                    t => t.id === theme.id,
+                  )}
                   onChange={() => handleCheckboxChange(theme)}
                 />
                 {theme.name}
