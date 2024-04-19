@@ -1,6 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   CustomOverlayMap,
   Map,
@@ -15,6 +15,7 @@ import { BeatLoader } from 'react-spinners';
 function ProductDetail() {
   const axios = useCustomAxios();
   const { _id } = useParams();
+  const navigate = useNavigate();
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,6 +41,15 @@ function ProductDetail() {
     } catch (error) {
       console.log(error.message);
       setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/products/${_id}`);
+      navigate('/product/list');
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -79,10 +89,9 @@ function ProductDetail() {
             </li>
           ))}
         </ul>
-        <button type="button">
-          <img src="" alt="" />
-          <i className="ir">상품 수정 및 삭제</i>
-        </button>
+        <div>
+          <button onClick={handleDelete}>상품 삭제</button>
+        </div>
       </div>
       <Tabs className="mx-5">
         <TabList className="flex mb-4">
