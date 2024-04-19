@@ -27,6 +27,8 @@ const PopularProductList = () => {
     getPopularProducts();
   }, []);
 
+  console.log('인기상품 정렬', popularProducts);
+
   return (
     <>
       <Swiper
