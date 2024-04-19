@@ -6,16 +6,6 @@ Review.propTypes = {
   seller_id : PropTypes.number
 }
 
-// {
-// 게시물 정보 조회 시 :{{url}}/products/1(프로덕트ID)
-// 리뷰 조회 시 : {{url}}/replies/products/2 (여행장ID)
-//   "order_id": 1,
-//   "product_id": 2, -> 여행장 userID
-//   "rating": 3,
-//   "content": "친절하셨어요",
-// }
-
-// {{url}}/replies/seller/2/
 function Review({seller_id}) {
   console.log('sellerId=>', seller_id);
   const axios = useCustomAxios();
