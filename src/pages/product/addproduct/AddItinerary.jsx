@@ -19,18 +19,15 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
 
-  const [itineraryMaps, setItineraryMaps] = useState([
-    { markers: [], center: { lat: 37.566826, lng: 126.9786567 } },
-  ]);
+  const [itineraryMaps, setItineraryMaps] = useState([{ markers: [] }]);
   const [mapLength, setMapLength] = useState(1);
   const [selectedIndex, setSeletedIndex] = useState(0);
 
   const addMap = e => {
     e.preventDefault();
-    const lastMapCenter = itineraryMaps[itineraryMaps.length - 1].lastMapCenter;
     setMapLength(prevLength => prevLength + 1); // 지도 개수 증가
     setSeletedIndex(mapLength);
-    addItineraryMap({ markers: [], center: lastMapCenter }); // 지도 마커 데이터 추가
+    addItineraryMap({ markers: [] }); // 지도 마커 데이터 추가
   };
 
   const addItineraryMap = newMap => {
