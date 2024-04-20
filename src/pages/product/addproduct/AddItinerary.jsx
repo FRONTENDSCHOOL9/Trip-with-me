@@ -28,9 +28,6 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const itineraryDays =
     Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
-  // 1. 예를들어 3이면, 지도가 3일차까지 나오고 더 추가가 안되게 막음
-  // 2. 지도가 3개 미만이면 다음으로 클릭할때 동선을 3일차 만큼 추가해주세요!
-
   const addMap = e => {
     e.preventDefault();
     if (mapLength < itineraryDays) setMapLength(prevLength => prevLength + 1); // 지도가 days(여행일차)보다 작을때만 지도추가
@@ -85,15 +82,11 @@ function AddItinerary({ productInfo, setProductInfo }) {
           disabled={mapLength >= itineraryDays}
         >
           여행 동선을 표시해보세요.
-          {mapLength < itineraryDays ? (
-            <p className="px-1 py-1 m-auto mt-2 mb-2 text-sm text-center border-2 rounded-full w-fit border-main-color">
-              Click!
-            </p>
-          ) : (
-            <p className="px-1 py-1 m-auto mt-2 mb-2 text-sm text-center border-2 rounded-full w-fit text-slate-400">
-              Click!
-            </p>
-          )}
+          <p
+            className={`px-1 py-1 m-auto mt-2 mb-2 text-sm text-center border-2 rounded-full w-fit ${mapLength < itineraryDays ? 'border-main-color' : 'text-slate-400 border-slate-400'}`}
+          >
+            지도 추가
+          </p>
         </button>
       </div>
 
@@ -118,20 +111,22 @@ function AddItinerary({ productInfo, setProductInfo }) {
           setItineraryMaps={setItineraryMaps}
           itineraryMaps={itineraryMaps}
         />
-        {mapLength > 1 ? (
+
+        <div className="flex flex-row justify-end">
           <button
             onClick={removeMap}
-            className="p-2 text-base font-semibold text-main-color"
+            className={`p-2 text-base font-semibold text-main-color ${mapLength > 1 ? '' : 'invisible'}`}
           >
             {mapLength}일차 지도 삭제하기
           </button>
+        </div>
+
+        {mapLength !== itineraryDays ? (
+          <p className="text-sm font-medium text-center text-warning-color ">
+            {itineraryDays}일차 동선까지 추가해주세요.
+          </p>
         ) : (
-          <button
-            onClick={removeMap}
-            className="invisible p-2 text-base font-semibold text-main-color"
-          >
-            {mapLength}일차 지도 삭제하기
-          </button>
+          ''
         )}
       </div>
       {/* <button onClick={saveItineraryMaps}>저장</button> */}
@@ -146,8 +141,9 @@ function AddItinerary({ productInfo, setProductInfo }) {
         <p className="text-xl font-medium"> 4 / 7</p>
         <button
           type="button"
+          disabled={mapLength !== itineraryDays}
           onClick={saveItineraryMaps}
-          className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+          className={`px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color ${mapLength !== itineraryDays ? 'bg-slate-400' : 'bg-main-color'}`}
         >
           다음
         </button>
