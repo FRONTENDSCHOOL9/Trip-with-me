@@ -35,8 +35,8 @@ function MyPage() {
   return (
     <>
       {user && (
-        <div className="flex flex-col  font-notosans ">
-          <div className="  w-full h-full  text-center  bg-mainbg-color ">
+        <div className="flex flex-col h-full  font-notosans bg-mainbg-color">
+          <div className="  w-full text-center  bg-mainbg-color">
             <h2 className="mt-4">
               여행자
               <span className="text-main-color font-bold text-lg px-1">
@@ -100,29 +100,49 @@ function MyPage() {
             <div className="flex flex-col mx-6 mt-4 mb-4 gap-4">
               <Link
                 to="/mypage/likelist"
-                className="mt-4 text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
+                className="flex items-center justify-between mt-4 text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
                 type="button"
               >
                 찜 목록
+                <img
+                  className="w-6 h-6"
+                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  alt=""
+                />
               </Link>
               <Link
                 to="/mypage/buylist"
-                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
+                className="flex items-center justify-between text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
               >
                 구매 목록
+                <img
+                  className="w-6 h-6"
+                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  alt=""
+                />
               </Link>
               <Link
                 to="/mypage/selllist"
-                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px]"
+                className="flex items-center justify-between text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px]"
               >
                 판매 목록
+                <img
+                  className="w-6 h-6"
+                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  alt=""
+                />
               </Link>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2  border-b-[1px]"
+                className=" flex items-center justify-between text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2  border-b-[1px]"
               >
                 로그아웃
+                <img
+                  className="w-6 h-6"
+                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  alt=""
+                />
               </button>
             </div>
           </div>
