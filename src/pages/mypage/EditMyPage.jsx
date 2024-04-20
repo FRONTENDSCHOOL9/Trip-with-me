@@ -88,8 +88,8 @@ function EditMyPage() {
         <button
           className={
             is_active
-              ? 'is_active hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md'
-              : 'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md'
+              ? 'is_active hover:border-main-color border-2 rounded-full py-1 px-2 m-1 border-main-color '
+              : 'hover:border-main-color border-2 rounded-full py-1 px-2 m-1 border-gray-300 '
           }
           key={item.id}
           id={item.id}
@@ -193,19 +193,18 @@ function EditMyPage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-center">
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4">
-          <div className="mb-3 mx-auto overflow-hidden w-32 h-32 rounded-full relative">
-            <label
-              className="inline-block absolute w-full h-full"
-              htmlFor="profileImages"
-            ></label>
+    <div className="font-notosans flex flex-col h-full bg-mainbg-color">
+      <form
+        className="flex flex-col  bg-mainbg-color"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className="text-lg font-bold mt-6 ml-11">회원 정보</h2>
+        <div className="flex flex-col items-center mb-4">
+          <div className=" mt-8 overflow-hidden w-32 h-32 rounded-full relative shadow-lg">
             {viewFile ? (
-              <img className="w-full h-full" src={viewFile} />
+              <img src={viewFile} />
             ) : (
               <img
-                className="w-full h-full"
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${propUser?.profile}`}
                 onError={e => {
                   e.target.onerror = null;
@@ -213,12 +212,13 @@ function EditMyPage() {
                 }}
               />
             )}
-
-            {/* <img
-              className="absolute bottom-0 right-0 -z-1 w-2 h-2"
-              src="/assets/icons/icon-photo.svg"
-            /> */}
           </div>
+          <label
+            className="text-xs font-medium mt-4 mx-8 border-[1px] p-2 bg-main-color text-white rounded-lg shadow-lg"
+            htmlFor="profileImages"
+          >
+            Image Edit and Add
+          </label>
         </div>
         <input
           className="hidden"
@@ -229,16 +229,14 @@ function EditMyPage() {
           onChange={handleFileChange}
           // {...register('profileImage')}
         />
-
-        <div className="mx-auto w-4/5">
-          <h2 className="text-lg font-bold mb-1">회원 정보</h2>
+        <div className="mx-auto w-4/5 ">
           <div>
-            <label className="text-sm" htmlFor="name">
+            <label className="text-sm font-bold" htmlFor="name">
               닉네임
             </label>
           </div>
           <input
-            className="w-full border-b-2 outline-none mb-5 px-2 text-sm"
+            className="w-full h-12 border-b-2 outline-none mb-5 px-2 font-semibold  bg-mainbg-color focus:border-blue-500 "
             type="text"
             id="name"
             placeholder="닉네임을 입력하세요"
@@ -246,14 +244,16 @@ function EditMyPage() {
             {...register('name')}
           />
           <div>
-            <label className="text-sm" htmlFor="introduce">
+            <label className="text-sm font-bold " htmlFor="introduce">
               소개말
             </label>
           </div>
-          <input
-            className="w-full border-b-2 outline-none mb-5 px-2 text-sm"
+          <textarea
+            className="w-full border-b-2 outline-none my-5 px-2 text-sm  shadow-md "
             type="text"
             id="introduce"
+            rows="4"
+            cols="40"
             placeholder="자기소개를 입력하세요"
             defaultValue={propUser.introduce}
             {...register('extra.introduce')}
@@ -261,18 +261,19 @@ function EditMyPage() {
         </div>
 
         <div className="flex flex-col">
-          <hr className="border-none bg-gray-200 h-2 my-5" />
+          <hr className="border-none bg-gray-200 h-[2px] my-5" />
 
           <h3 className="text-xl text-center font-bold mb-2">
             관심사를 골라주세요 ({checkCount} / 3)
           </h3>
-          <span className="text-center mb-2">{checkError && checkError}</span>
-          <ul className="mb-3">
-            <li className="text-center">{themeData}</li>
-          </ul>
+
+          <div className="mb-4">{checkError && checkError}</div>
+          <div className="text-center rounded-full py-1 px-8  border-main-color ">
+            {themeData}
+          </div>
         </div>
-        <div className="text-center">
-          <Submit width="200px">수정 완료</Submit>
+        <div className="flex mx-auto text-center mt-4 mb-8 w-36">
+          <Submit>수정</Submit>
         </div>
       </form>
     </div>
