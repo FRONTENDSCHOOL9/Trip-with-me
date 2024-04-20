@@ -1,6 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   CustomOverlayMap,
   Map,
@@ -237,12 +237,15 @@ function ProductDetail() {
               <div className="profile-box h-[390px] mt-4 mx-6 flex flex-col items-center justify-center mb-4 shadow-xl relative">
                 <h3 className="absolute font-bold top-4 left-4">Trip Card</h3>
                 <div className="w-32 h-32 mx-auto mt-20 mb-3 overflow-hidden rounded-full">
+                  <Link to={`/mypage/${productInfo?.item?.seller?._id}`}>
                   <img
                     className="w-full h-full "
                     src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.seller?.profileImage}`}
                     alt="프로필 이미지"
                   />
+                  </Link>
                 </div>
+                
                 <div className="absolute bottom-[182px] left-4">
                   <p className="text-xl font-semibold text-white ">
                     {productInfo?.item?.seller?.name}
