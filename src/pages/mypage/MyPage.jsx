@@ -38,10 +38,10 @@ function MyPage() {
         <div className="flex flex-col  font-notosans ">
           <div className="  w-full h-full  text-center  bg-mainbg-color ">
             <h2 className="mt-4">
-              여행자{' '}
-              <span className="text-main-color font-bold text-lg">
+              여행자
+              <span className="text-main-color font-bold text-lg px-1">
                 {user?.name}
-              </span>{' '}
+              </span>
               님도 빠니보틀 처럼 될 수 있어요
             </h2>
             <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative ">

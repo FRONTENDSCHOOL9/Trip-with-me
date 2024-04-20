@@ -8,6 +8,18 @@
   );
   border-radius: 20px;
 }
+.profile-box-sub {
+  background: rgb(175, 177, 182);
+  background: linear-gradient(
+    126deg,
+    rgba(175, 177, 182, 1) 5%,
+    rgba(213, 213, 230, 1) 26%,
+    rgba(175, 177, 182, 1) 100%
+  );
+}
 .profile-box-edit-button {
   background-color: rgba(0, 0, 0, 0.2);
+}
+.top-box-shadow {
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.2);
 }
