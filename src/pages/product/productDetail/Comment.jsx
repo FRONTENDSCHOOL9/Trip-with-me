@@ -63,11 +63,15 @@ function Comment() {
 
   let list = comments?.map(item => {
     return (
-      <div key={item?._id}>
-        <img
-          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
-          alt=""
-        />
+      <div className="flex mb-4" key={item?._id}>
+        <div>
+          <img
+            className=" w-14 h-14 border-2 rounded-full"
+            src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+            alt=""
+          />
+        </div>
+
         {editingCommentId === item._id ? (
           <CommentEdit
             comment={item}
@@ -78,29 +82,35 @@ function Comment() {
             }}
           />
         ) : (
-          <>
-            <p>{item?.content}</p>
-            <button onClick={() => setEditingCommentId(item._id)}>수정</button>
+          <div className="flex justify-center items-center">
+            <p className="w-[226px] ml-4">{item?.content}</p>
+            <button
+              className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
+              onClick={() => setEditingCommentId(item._id)}
+            >
+              수정
+            </button>
             <CommentDelete
               commentId={item._id}
               onDelete={handleDeleteComment}
             />
-          </>
+          </div>
         )}
       </div>
     );
   });
 
   return (
-    <section className="mb-8">
-      <h4>댓글</h4>
-
-      <p className="mt-8 mb-4 ml-2">
-        댓글 수 <span>{comments?.length || 0}</span>
-      </p>
+    <div>
       <CommentNew refetch={refetch} />
+      <div className="flex mx-4 text-sm mb-4">
+        <h4 className="mr-1">Comment</h4>
+        <p>
+          <span>({comments?.length || 0})</span>
+        </p>
+      </div>
       {list}
-    </section>
+    </div>
   );
 }
 

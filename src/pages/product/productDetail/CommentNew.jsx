@@ -60,10 +60,10 @@ function CommentNew({ refetch }) {
   };
 
   return (
-    <div className="p-4 rounded-lg">
-      <h4 className="mb-4">새로운 댓글을 추가하세요.</h4>
+    <div className="pt-4 px-4 rounded-lg">
+      <h4 className="mb-4">Comment를 달아주세요</h4>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <textarea
             {...register('content', {
               minLength: {
@@ -75,7 +75,7 @@ function CommentNew({ refetch }) {
             onChange={handleContentChange}
             rows="3"
             cols="40"
-            className="block p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            className="block p-2 pr-20 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
             placeholder="내용을 입력하세요."
           />
           {(errorMessage || errors.content) && (
@@ -83,10 +83,14 @@ function CommentNew({ refetch }) {
               {errorMessage || errors.content.message}
             </p>
           )}
+          <button
+            className="absolute bottom-3 right-4 z-10 py-4"
+            type="submit"
+            onClick={handleButtonClick}
+          >
+            댓글 등록
+          </button>
         </div>
-        <button type="submit" onClick={handleButtonClick}>
-          댓글 등록
-        </button>
       </form>
     </div>
   );
