@@ -13,6 +13,8 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Comment from './productDetail/Comment';
 import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
+import useMemberState from '@zustand/memberState.mjs';
+import ProductLikeButton from '@components/ProductLikeButton';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -20,7 +22,7 @@ function ProductDetail() {
   const navigate = useNavigate();
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { user } = useMemberState();
   const apiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
   useKakaoLoader({
@@ -111,6 +113,10 @@ function ProductDetail() {
             </li>
           ))}
         </ul>
+        {user._id !== productInfo?.item?.seller_id && (
+          <ProductLikeButton item={productInfo?.item} />
+        )}
+
         <div>
           <button onClick={handleDelete}>상품 삭제</button>
         </div>
@@ -238,14 +244,14 @@ function ProductDetail() {
                 <h3 className="absolute font-bold top-4 left-4">Trip Card</h3>
                 <div className="w-32 h-32 mx-auto mt-20 mb-3 overflow-hidden rounded-full">
                   <Link to={`/mypage/${productInfo?.item?.seller?._id}`}>
-                  <img
-                    className="w-full h-full "
-                    src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.seller?.profileImage}`}
-                    alt="프로필 이미지"
-                  />
+                    <img
+                      className="w-full h-full "
+                      src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.seller?.profileImage}`}
+                      alt="프로필 이미지"
+                    />
                   </Link>
                 </div>
-                
+
                 <div className="absolute bottom-[182px] left-4">
                   <p className="text-xl font-semibold text-white ">
                     {productInfo?.item?.seller?.name}
