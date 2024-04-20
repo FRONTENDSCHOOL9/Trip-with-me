@@ -17,23 +17,24 @@ function ProductBuyList() {
       axios.get(`/orders`, {
         params: {
           page: pageParam,
-          limit: 6,
-          sort: JSON.stringify({ _id: -1 }),
-        },
+          limit: 3,
+          sort: JSON.stringify({ _id: -1 })
+        }
       }),
 
     getNextPageParam: (lastPage, allPages) => {
-      console.log('lastPage', lastPage);
+      console.log('lastPage', lastPage, 'allPages', allPages);
       const totalPages = lastPage.data.pagination.totalPages;
       let nextPage = allPages.length < totalPages ? allPages.length + 1 : false;
+      console.log('nextPage', nextPage)
       return nextPage;
     },
   });
 
-  useEffect(() => {
-    // getOrders();
-    setPageName(page);
-  }, []);
+  // useEffect(() => {
+  //   // getOrders();
+    // setPageName(page);
+  // }, [data.length]);
 
   // const getOrders = async () => {
   //   const { data } = await axios.get('/orders');
@@ -50,16 +51,19 @@ function ProductBuyList() {
     )),
   );
   const hasNext =
-    data?.pages.at(-1).data.pagination.page <
-    data?.pages.at(-1).data.pagination.totalPages;
+    (data?.pages.at(-1).data.pagination.page <
+    data?.pages.at(-1).data.pagination.totalPages);
+    console.log('hasNext',hasNext)
 
   return (
-    <div>
-      <InfiniteScroll pageStart={1} loadMore={fetchNextPage} hasMore={hasNext}>
+    <section className="mb-8">
+
+    <InfiniteScroll pageStart={1} loadMore={fetchNextPage} hasMore={hasNext}>
         {/* <div>{orderData}</div> */}
         {list || []}
-      </InfiniteScroll>
-    </div>
+    </InfiniteScroll>
+    </section>
+
   );
 }
 
