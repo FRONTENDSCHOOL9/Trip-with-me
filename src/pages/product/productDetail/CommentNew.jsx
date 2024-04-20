@@ -2,7 +2,6 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
 
 CommentNew.propTypes = {
   commentId: PropTypes.string,
