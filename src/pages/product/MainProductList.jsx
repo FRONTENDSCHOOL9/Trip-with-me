@@ -104,7 +104,7 @@ function MainProductList() {
             title="지금 인기있는 여행지"
           />
           {isLoading ? (
-            <div className="text-center mt-4">
+            <div className="text-center mt-4 flex justify-center items-center h-[330px]">
               <BeatLoader color="#68A9ED" />
             </div>
           ) : (
