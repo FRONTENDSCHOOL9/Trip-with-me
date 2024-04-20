@@ -21,9 +21,8 @@ function ProductBuyListItem({ item }) {
     if (isClick === true) setIsClick(false);
   };
 
-  console.log('listitem=>', item);
   return (
-    <div className="border border-gray-200 shadow mb-2 rounded-lg p-2">
+    <div className="border border-gray-200 shadow mb-2 rounded-lg p-2 min-h-80">
       <Link to={`/product/${item?.products[0]?._id}`}>
         <img
           src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.products[0]?.image?.name}`}
