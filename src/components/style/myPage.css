@@ -20,6 +20,15 @@
 .profile-box-edit-button {
   background-color: rgba(0, 0, 0, 0.2);
 }
+.description-box {
+  background: rgb(221, 221, 221);
+  background: linear-gradient(
+    126deg,
+    rgba(221, 221, 221, 1) 13%,
+    rgba(242, 242, 242, 1) 27%,
+    rgba(208, 208, 208, 1) 100%
+  );
+}
 .top-box-shadow {
   box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.2);
 }
