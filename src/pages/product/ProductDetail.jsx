@@ -1,11 +1,12 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   CustomOverlayMap,
   Map,
   MapMarker,
   useKakaoLoader,
+  useMap,
 } from 'react-kakao-maps-sdk';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Comment from './productDetail/Comment';
@@ -67,6 +68,26 @@ function ProductDetail() {
         currency: 'KRW',
       }).format(productInfo.item.price)
     : '0원';
+
+  const ReSettingMapBounds = ({ markers }) => {
+    const map = useMap();
+    const bounds = useMemo(() => {
+      const bounds = new kakao.maps.LatLngBounds();
+
+      markers.forEach(marker => {
+        bounds.extend(
+          new kakao.maps.LatLng(marker.latlng.lat, marker.latlng.lng),
+        );
+      });
+      return bounds;
+    }, [markers]);
+
+    useEffect(() => {
+      if (map && bounds) {
+        map.setBounds(bounds);
+      }
+    }, [map, bounds]);
+  };
 
   return (
     <div className="flex flex-col bg-mainbg-color font-notosans">
@@ -155,7 +176,7 @@ function ProductDetail() {
                         : { lat: 33.450701, lng: 126.570667 }
                     }
                     style={{ width: '100%', height: '300px' }}
-                    level={4}
+                    level={3}
                     draggable={false}
                   >
                     {dayPlan.markers.map((marker, markerIndex) => (
@@ -183,6 +204,9 @@ function ProductDetail() {
                         </CustomOverlayMap>
                       </React.Fragment>
                     ))}
+                    {dayPlan && (
+                      <ReSettingMapBounds markers={dayPlan.markers} />
+                    )}
                   </Map>
                 </TabPanel>
               ))}
