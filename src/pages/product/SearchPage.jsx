@@ -44,9 +44,9 @@ const SearchPage = () => {
 
   return (
     <div className="layout">
+      <Title />
+      <Search />
       <div className="scrollbar p-4">
-        <Title />
-        <Search />
         <ul>
           {searchResults.length === 0 && (
             <div className="h-80 p-2 flex items-center justify-center">
