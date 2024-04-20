@@ -1,6 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   CustomOverlayMap,
   Map,
@@ -15,6 +15,7 @@ import { BeatLoader } from 'react-spinners';
 function ProductDetail() {
   const axios = useCustomAxios();
   const { _id } = useParams();
+  const navigate = useNavigate();
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,6 +44,15 @@ function ProductDetail() {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/products/${_id}`);
+      navigate('/product/list');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
@@ -59,7 +69,7 @@ function ProductDetail() {
     : '0원';
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col bg-mainbg-color font-notosans">
       <div className="h-56 mx-auto my-0 mb-6 overflow-hidden rounded-lg w-96 bg-light-gray">
         <img
           src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0].name}`}
@@ -79,10 +89,9 @@ function ProductDetail() {
             </li>
           ))}
         </ul>
-        <button type="button">
-          <img src="" alt="" />
-          <i className="ir">상품 수정 및 삭제</i>
-        </button>
+        <div>
+          <button onClick={handleDelete}>상품 삭제</button>
+        </div>
       </div>
       <Tabs className="mx-5">
         <TabList className="flex mb-4">
@@ -192,38 +201,40 @@ function ProductDetail() {
         </TabPanel>
         <TabPanel>
           <div>
-            <div className="pb-4 mt-5 mb-3 border-b-2">
-              <div className="flex flex-col w-full m-auto mb-3 text-center">
-                <div className="w-32 h-32 mx-auto mb-3 overflow-hidden rounded-full">
+            <div className="pb-4 mt-6 mb-3 border-b-2   ">
+              <div className="profile-box h-[390px] mt-4 mx-6 flex flex-col items-center justify-center mb-4 shadow-xl relative">
+                <h3 className="absolute top-4 left-4 font-bold">Trip Card</h3>
+                <div className="w-32 h-32 mx-auto mb-3 mt-20 overflow-hidden rounded-full">
                   <img
-                    className="w-full h-full"
+                    className="w-full h-full "
                     src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.seller?.profileImage}`}
                     alt="프로필 이미지"
                   />
                 </div>
-
-                <p className="text-xl font-semibold ">
-                  {productInfo?.item?.seller?.name}
-                </p>
-                <p className="text-sm text-slate-400">
-                  {productInfo?.item?.seller?.extra.birthday}대{' '}
-                  {productInfo?.item?.seller?.address === 'male'
-                    ? '남성'
-                    : '여성'}
-                </p>
-              </div>
-              <div className="ml-3">
-                <p className="text-lg font-semibold ">여행 관심사</p>
-                <ul className="flex gap-2 my-2 text-sm">
-                  {productInfo?.item?.seller?.extra.address.map(theme => (
-                    <li
-                      key={theme.id}
-                      className="px-4 py-1 border-2 rounded-full"
-                    >
-                      {theme.name}
-                    </li>
-                  ))}
-                </ul>
+                <div className="absolute bottom-[182px] left-4">
+                  <p className="text-xl font-semibold text-white ">
+                    {productInfo?.item?.seller?.name}
+                  </p>
+                  <p className="text-gray-700 font-light text-sm">
+                    {productInfo?.item?.seller?.extra.birthday}대{' '}
+                    {productInfo?.item?.seller?.address === 'male'
+                      ? '남성'
+                      : '여성'}
+                  </p>
+                </div>
+                <div className="w-full p-4 mt-16 bg-gray-300 rounded-2xl top-box-shadow  profile-box-sub">
+                  <p className="text-lg font-semibold">여행 관심사</p>
+                  <ul className="flex justify-center gap-2 my-2 text-sm ">
+                    {productInfo?.item?.seller?.extra.address.map(theme => (
+                      <li
+                        key={theme.id}
+                        className="px-4 py-1 border-2 rounded-full"
+                      >
+                        {theme.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
             <div>
