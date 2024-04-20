@@ -37,7 +37,7 @@ function MyPageOther() {
 
   return (
     <>
-      <div className="flex flex-col font-notosans h-full bg-mainbg-color">
+      <div className="flex flex-col font-notosans bg-mainbg-color">
         <div className="w-full h-full text-center">
         <h2 className="mt-4">
               여행자
@@ -46,21 +46,19 @@ function MyPageOther() {
               </span>
               님과 여행메이트가 되어보세요
             </h2>
-        <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative ">
+        <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative">
               <h3 className="absolute top-4 left-4 font-bold">My Trip Card</h3>
-              <div className="flex flex-col w-[96px] mt-auto mb-6 pl-6">
-                <div>
-                  <p className="font-semibold text-xl text-white ">
+                <div className="absolute bottom-8 left-5 ">
+                  <p className="font-semibold text-xl text-white">
                   {userData?.name}
                   </p>
                   <p className="text-gray-700 font-light text-sm">
                   {userData?.extra?.birthday}대 {userData?.address === 'female' ? '여성' : '남성'}
                   </p>
                 </div>
-              </div>
-              <div className="m-auto overflow-hidden  h-36 rounded-full">
+              <div className="m-auto overflow-hidden h-36 rounded-full">
                 <img
-                  className="w-full h-full "
+                  className="w-full h-full"
                   src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${userData?.profileImage}`}
                   onError={e => {
                     e.target.onerror = null;
@@ -90,7 +88,7 @@ function MyPageOther() {
                 ))}
               </div>
               <div className="w-2/3 bg-gray-300 py-4 px-6 rounded-lg shadow-lg">
-                <h4 className="mb-2 text-lg font-medium ">자기소개</h4>
+                <h4 className="mb-2 text-lg font-medium">자기소개</h4>
                 {userData?.extra?.introduce ? (
                   <p className="h-fit w-full text-sm">{userData?.extra?.introduce}</p>
                 ) : (

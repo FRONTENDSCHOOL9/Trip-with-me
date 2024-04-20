@@ -38,7 +38,7 @@ function ProductBuyListItem({ item }) {
           {item?.products[0]?.extra?.date?.startDate} ~{' '}
           {item?.products[0]?.extra?.date?.endDate}
         </p>
-        <p className='my-auto flex'>
+        <p className='my-auto flex mb-1'>
           <span className='bg-second-color text-xs rounded-md p-1 mr-2'>구매완료</span> 
           {item?.products[0]?.price} 원
         </p>
