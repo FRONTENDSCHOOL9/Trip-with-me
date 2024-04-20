@@ -31,15 +31,20 @@ function Review({ seller_id }) {
 
   return (
     <div>
-      <p className="mb-3 ml-2 font-semibold">받은 동행 후기({review.length})</p>
+      <h4 className="mb-3 ml-2 font-semibold">
+        받은 동행 후기({review.length})
+      </h4>
       <ul className="pl-3">
         {review.map(item => {
           return (
-            <li className="mb-3" key={item._id}>
-              <p>{item.user_name}</p>
-              <p className="text-xs text-gray-400">{item.createdAt}</p>
-
-              <p>{item.content}</p>
+            <li className="border-[1px] rounded-lg mb-6 py-2" key={item._id}>
+              <div className="flex justify-between mb-6 px-4 ">
+                <p>{item.user_name}</p>
+                <p className="text-xs text-gray-400 ">{item.createdAt}</p>
+              </div>
+              <div className="px-4 ">
+                <p>{item.content}</p>
+              </div>
             </li>
           );
         })}

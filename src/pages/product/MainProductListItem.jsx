@@ -12,10 +12,10 @@ const MainProductListItem = ({ item }) => {
 
   console.log('item', item, item?._id);
 
-  const handleLike = async (e) =>{
+  const handleLike = async e => {
     setLikeState(prevState => !prevState);
 
-    if(likeState === false){
+    if (likeState === false) {
       try {
         const res = await axios.delete(`/bookmarks/${likeId}`);
         e.target.src = '/src/assets/icons/icon-heart-disabled.svg';
@@ -24,14 +24,10 @@ const MainProductListItem = ({ item }) => {
       } catch (err) {
         console.log(err);
       }
-    }
-    else if (likeState === true) {
+    } else if (likeState === true) {
       try {
         //좋아요 누를 때에는 상품 id를 보낸다.
-        const res = await axios.post(
-          `/bookmarks/product/${item?._id}`,
-          {},
-        );
+        const res = await axios.post(`/bookmarks/product/${item?._id}`, {});
         setLikeId(res?.data?.item?._id);
         console.log(
           '좋아요 누른 경우 북마크 id 새로 세팅 =>',
@@ -109,7 +105,7 @@ const MainProductListItem = ({ item }) => {
                   className="w-8"
                 />
               </button>
-              <p className="-mt-2">{item?.bookmarks}</p>
+              {/* <p className="-mt-2">{item?.bookmarks}</p> */}
             </div>
           </div>
         </div>
