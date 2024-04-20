@@ -5,6 +5,7 @@ import {
   CustomOverlayMap,
   Map,
   MapMarker,
+  Polyline,
   useKakaoLoader,
   useMap,
 } from 'react-kakao-maps-sdk';
@@ -207,6 +208,13 @@ function ProductDetail() {
                     {dayPlan && (
                       <ReSettingMapBounds markers={dayPlan.markers} />
                     )}
+                    <Polyline
+                      path={dayPlan?.markers.map(marker => marker.latlng)}
+                      strokeWeight={5}
+                      strokeColor={'#FC7C7C'}
+                      strokeOpacity={1}
+                      strokeStyle={'solid'} // 선의 스타일입니다
+                    />
                   </Map>
                 </TabPanel>
               ))}
