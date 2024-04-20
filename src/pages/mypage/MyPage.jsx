@@ -3,6 +3,8 @@ import usePageStore from '@zustand/pageName.mjs';
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import '@components/style/myPage.css';
+
 //마이페이지 정보는 전역 상태 관리 zustand 에서 불러옴
 function MyPage() {
   const page = 'Mypage';
@@ -33,77 +35,92 @@ function MyPage() {
   return (
     <>
       {user && (
-        <div className="flex flex-col h-full">
-          <div className="flex flex-col w-full m-auto text-center">
-            <div className="mb-3 mx-auto overflow-hidden w-32 h-32 rounded-full">
-              <img
-                className="w-full h-full "
-                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
-                onError={e => {
-                  e.target.onerror = null;
-                  e.target.src = '/default-profile.png';
-                }}
-              />
+        <div className="flex flex-col font-notosans bg-mainbg-color">
+          <div className="w-full h-full text-center ">
+            <h2 className="mt-4">
+              여행자
+              <span className="text-main-color font-bold text-lg px-1">
+                {user?.name}
+              </span>
+              님도 빠니보틀 처럼 될 수 있어요
+            </h2>
+            <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative ">
+              <h3 className="absolute top-4 left-4 font-bold">My Trip Card</h3>
+              <div className="flex flex-col w-[96px] mt-auto mb-6 pl-6">
+                <div>
+                  <p className="font-semibold text-xl text-white ">
+                    {user?.name}
+                  </p>
+                  <p className="text-gray-700 font-light text-sm">
+                    {user?.age}대 {user?.gender === 'female' ? '여성' : '남성'}
+                  </p>
+                </div>
+              </div>
+              <div className="m-auto overflow-hidden  h-36 rounded-full">
+                <img
+                  className="w-full h-full "
+                  src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = '/default-profile.png';
+                  }}
+                />
+              </div>
+              <Link
+                className="profile-box-edit-button text-white mt-auto  mb-6 mr-2 rounded-full w-[96px]  h-8 flex justify-center items-center"
+                to={'/mypage/edit'}
+                state={{ user: user }}
+              >
+                <p className="text-xs">회원 정보 수정</p>
+              </Link>
             </div>
-            <p className="font-bold text-xl ">{user?.name}</p>
-            <p className="mb-3 text-gray-500">
-              <span className="mr-2">{user?.age}대</span>
-              <span>{user?.gender === 'female' ? '여성' : '남성'}</span>
-            </p>
-            <p className="mb-5">
-              {user?.theme?.map(item => (
-                <span
-                  className="p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md"
-                  key={item.id}
-                >
-                  {item.name}
-                </span>
-              ))}
-            </p>
-            {user?.introduce ? (
-              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
-                {user?.introduce}
-              </p>
-            ) : (
-              <p className="p-2 h-fit bg-gray-100 mb-5 w-4/5 mx-auto rounded-md shadow-md">
-                자기소개가 없습니다.
-              </p>
-            )}
 
-            <Link
-              className="mb-10 mx-auto bg-gray-300 rounded-full w-2/3 h-10 flex justify-center items-center"
-              to={'/mypage/edit'}
-              state={{ user: user }}
-            >
-              <p>회원 정보 수정</p>
-            </Link>
+            <div className="flex justify-center gap-4 mx-6">
+              <div className="flex flex-col gap-2 bg-gray-300 w-2/4 py-4 px-6 rounded-lg shadow-lg">
+                <h4 className="text-lg font-medium">나의 관심사</h4>
+                {user?.theme?.map(item => (
+                  <p
+                    className="rounded-full py-1 px-4 bg-mainbg-color border-2 text-sm "
+                    key={item.id}
+                  >
+                    {item.name}
+                  </p>
+                ))}
+              </div>
+              <div className="w-2/3 bg-gray-300 py-4 px-6 rounded-lg shadow-lg">
+                <h4 className="mb-2 text-lg font-medium ">자기소개</h4>
+                {user?.introduce ? (
+                  <p className="h-fit w-full text-sm">{user?.introduce}</p>
+                ) : (
+                  <p>자기소개가 없습니다.</p>
+                )}
+              </div>
+            </div>
 
-            <hr className="border-0 h-3 bg-gray-100 w-full" />
-            <br />
-            <div className="px-10 text-left">
-              <p className="mb-5">
-                <Link
-                  to="/mypage/likelist"
-                  className="text-xl mr-auto"
-                  type="button"
-                >
-                  찜 목록
-                </Link>
-              </p>
-              <p className="mb-5">
-                <Link className="text-xl mr-auto" to="/mypage/buylist">
-                  구매 목록
-                </Link>
-              </p>
-              <p className="mb-5">
-                <Link className="text-xl mr-auto" to="/mypage/selllist">
-                  판매 목록
-                </Link>
-              </p>
+            <div className="flex flex-col mx-6 mt-4 mb-4 gap-4">
+              <Link
+                to="/mypage/likelist"
+                className="mt-4 text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
+                type="button"
+              >
+                찜 목록
+              </Link>
+              <Link
+                to="/mypage/buylist"
+                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px] "
+              >
+                구매 목록
+              </Link>
+              <Link
+                to="/mypage/selllist"
+                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2 border-b-[1px]"
+              >
+                판매 목록
+              </Link>
               <button
-                className="mb-5 text-xl mr-auto"
                 type="button"
                 onClick={handleLogout}
+                className="text-lg text-left mr-auto font-semibold  text-black  w-full px-6 py-2  border-b-[1px]"
               >
                 로그아웃
               </button>

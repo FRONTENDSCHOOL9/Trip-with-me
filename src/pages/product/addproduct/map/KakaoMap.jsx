@@ -1,6 +1,6 @@
 import Marker from '@pages/product/addproduct/map/Marker';
 import { useEffect, useState } from 'react';
-import { Map, useKakaoLoader } from 'react-kakao-maps-sdk';
+import { Map, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
   const [map, setMap] = useState();
@@ -116,6 +116,13 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
             setItineraryMaps={setItineraryMaps}
           />
         ))}
+        <Polyline
+          path={itineraryMaps[id]?.markers.map(marker => marker.latlng)}
+          strokeWeight={4}
+          strokeColor={'#FC7C7C'}
+          strokeOpacity={1}
+          strokeStyle={'solid'} // 선의 스타일입니다
+        />
       </Map>
     </>
   );

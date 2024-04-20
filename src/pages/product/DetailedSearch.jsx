@@ -1,5 +1,4 @@
 import Header from '@components/layout/Header';
-import { Outlet } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import usePageStore from '@zustand/pageName.mjs';

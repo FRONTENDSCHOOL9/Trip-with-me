@@ -28,15 +28,16 @@ function CommentItem({ item }) {
     }
   };
 
-  return (
-    <div className="shadow-md rounded-lg p-4 mb-4">
-      {comments.map(comment => (
-        <div key={comment.id} className="whitespace-pre-wrap text-sm">
-          {comment.text}
-        </div>
-      ))}
-    </div>
-  );
+  // return (
+  //   <div className="rounded-lg p-4 mb-4">
+  //     {comments.map(comment => (
+  //       <div key={comment.id} className="whitespace-pre-wrap text-sm">
+  //         {comment.text}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
+
 }
 
 export default CommentItem;
