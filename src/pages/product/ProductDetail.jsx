@@ -48,7 +48,7 @@ function ProductDetail() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/products/${_id}`);
+      await axios.delete(`/seller/products/${_id}`);
       navigate('/product/list');
     } catch (error) {
       console.log(error.message);
