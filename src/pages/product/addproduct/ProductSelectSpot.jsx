@@ -89,7 +89,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col items-center justify-center relative"
       >
         <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행지를 골라주세요.
@@ -120,7 +120,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
           ))}
         </ul>
         {showUploadPrompt && (
-          <p className="text-sm font-medium text-warning-color font-notosans">
+          <p className="absolute bottom-24 text-sm font-medium text-warning-color font-notosans">
             여행지를 선택해주세요.
           </p>
         )}
@@ -128,14 +128,14 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
           <button
             type="button"
             onClick={handlePrevButton}
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 5 / 7</p>
+          <p className="text-m font-semibold"> 5 / 7</p>
           <button
             type="submit"
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>
