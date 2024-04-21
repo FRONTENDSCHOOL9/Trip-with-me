@@ -42,7 +42,7 @@ const MainProductListItem = ({ item }) => {
   };
 
   return (
-    <li className="h-82.5 p-2 mb-1 font-notosans">
+    <li className="h-80 p-2 mb-1 font-notosans">
       <div
         className={classNames({
           relative: isSoldOut,

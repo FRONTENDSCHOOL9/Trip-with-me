@@ -5,6 +5,7 @@ import usePageStore from '@zustand/pageName.mjs';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 
 function EditMyPage() {
   const axios = useCustomAxios();
@@ -191,6 +192,7 @@ function EditMyPage() {
     setPageName(page);
     getTheme();
   }, []);
+
 
   return (
     <div className="font-notosans flex flex-col h-full bg-mainbg-color">

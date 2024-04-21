@@ -1,27 +1,54 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+
   const onClickDetail = () => {
     navigate('/product/search');
   };
 
+  const handleChange = e => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchValue.trim() !== '') {
+      navigate(`/search?q=${searchValue.trim()}`);
+    }
+  };
   return (
-    <div className="flex gap-2 relative font-notosans">
+    <div className="flex gap-2 relative font-notosans ml-4">
       <img
         src="../src/assets/icons/icon-search.svg"
         className="w-6 absolute top-2 left-2"
       ></img>
       <input
-        type="search"
+        type="text"
         placeholder="여행지나 키워드를 검색해보세요."
-        className="h-10 w-[370px] rounded-md bg-gray-200 bg-no-repeat pl-10 pr-2 text-gray-700 w-92.5 outline-0.5 outline-main-color"
+        className="h-10 w-[300px] rounded-md bg-gray-200 bg-no-repeat pl-10 pr-2 text-gray-700 w-92.5 outline-0.5 outline-main-color"
+        value={searchValue}
+        onChange={handleChange}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
       />
+      <button
+        type="button"
+        onClick={handleSearch}
+        className="inline-block w-[50px] h-10 text-xl cursor-pointer text-center text-white font-semibold bg-blue-400 rounded-xl hover:bg-blue-500 active:bg-blue-600"
+      >
+        {' '}
+        검색
+      </button>
       <button type="button" onClick={onClickDetail}>
         {' '}
         <img
           src="../src/assets/icons/icon-search-bar.svg"
-          className="w-6"
+          className="w-8"
         ></img>
       </button>
     </div>

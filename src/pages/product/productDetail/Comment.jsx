@@ -1,5 +1,5 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import CommentNew from './CommentNew';
 import { useEffect, useState } from 'react';
@@ -65,12 +65,15 @@ function Comment() {
     return (
       <div className="flex mb-4" key={item?._id}>
         <div>
-          <img
-            className=" w-14 h-14 border-2 rounded-full"
-            src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
-            alt=""
-          />
+          <Link to={`/mypage/${item?.user?._id}`}>
+            <img
+              className=" w-14 h-14 border-2 rounded-full"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+              alt=""
+            />
+          </Link>
         </div>
+
 
         {editingCommentId === item._id ? (
           <CommentEdit

@@ -1,6 +1,6 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   CustomOverlayMap,
   Map,
@@ -13,6 +13,8 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Comment from './productDetail/Comment';
 import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
+import useMemberState from '@zustand/memberState.mjs';
+import ProductLikeButton from '@components/ProductLikeButton';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -20,7 +22,7 @@ function ProductDetail() {
   const navigate = useNavigate();
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { user } = useMemberState();
   const apiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
   useKakaoLoader({

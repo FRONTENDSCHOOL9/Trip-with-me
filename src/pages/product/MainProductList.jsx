@@ -93,11 +93,10 @@ function MainProductList() {
 
   return (
     <div className="layout">
+      <Title />
+
+      <Search />
       <div className="scrollbar p-4">
-        <Title />
-
-        <Search />
-
         <div>
           <SubTitle
             iconSrc="../src/assets/icons/icon-love.png"
