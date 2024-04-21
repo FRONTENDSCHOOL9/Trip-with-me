@@ -23,6 +23,7 @@ import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
 import MyPageOther from '@pages/mypage/MyPageOther';
 import Intro from '@pages/intro/Intro';
 import SearchPage from '@pages/product/SearchPage';
+import OtherProductSellList from '@pages/mypage/OtherProductSellList';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage/:_id',
         element: <MyPageOther />,
+      },
+      {
+        path: '/mypage/:_id/selllist',
+        element: <OtherProductSellList />,
       },
       {
         path: '/mypage/edit',

@@ -35,8 +35,8 @@ function MyPage() {
   return (
     <>
       {user && (
-        <div className="flex flex-col  font-notosans ">
-          <div className="  w-full h-full  text-center  bg-mainbg-color ">
+        <div className="flex flex-col font-notosans bg-mainbg-color">
+          <div className="w-full h-full text-center ">
             <h2 className="mt-4">
               여행자
               <span className="text-main-color font-bold text-lg px-1">

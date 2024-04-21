@@ -22,23 +22,28 @@ function ProductBuyListItem({ item }) {
   };
 
   return (
-    <div className="border border-gray-200 shadow mb-2 rounded-lg p-2 min-h-80">
+    <div className="py-2 px-5 mb-2 rounded-lg p-2 min-h-80">
       <Link to={`/product/${item?.products[0]?._id}`}>
+        <div className='w-102.5 h-56 overflow-hidden rounded-xl mb-2'>
         <img
+        className='size-full object-cover'
           src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.products[0]?.image?.name}`}
           alt=""
         />
-        <p>상품명 : {item?.products[0]?.name}</p>
-        <p>
-          날짜 : {item?.products[0]?.extra?.date?.startDate} ~{' '}
+        </div>
+        <p className='font-semibold text-sm'>{item?.products[0]?.name}</p>
+        </Link>
+        <div className='h-10flex items-center justify-between'>
+        <p className='text-sm'>
+          {item?.products[0]?.extra?.date?.startDate} ~{' '}
           {item?.products[0]?.extra?.date?.endDate}
         </p>
-        <p>
-          구입 인수 : {item?.products[0]?.quantity} / 결제 금액 :{' '}
-          {item?.products[0]?.price}
+        <p className='my-auto flex mb-1'>
+          <span className='bg-second-color text-xs rounded-md p-1 mr-2'>구매완료</span> 
+          {item?.products[0]?.price} 원
         </p>
-      </Link>
-      <button type="button" onClick={onClick}>
+        </div>
+      <button className="bg-main-color text-white w-full p-1 rounded-lg" type="button" onClick={onClick}>
         여행장 리뷰 쓰기{' '}
       </button>
       {isClick && <ReviewItem key={item._id} item={item} />}
