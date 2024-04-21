@@ -7,61 +7,11 @@ import Search from '@components/Search';
 import SubTitle from '@components/SubTitle';
 import PopularProductList from '@pages/product/PopularProductList';
 import { BeatLoader } from 'react-spinners';
-// import InfiniteScroll from 'react-infinite-scroller';
-// import { useInfiniteQuery } from '@tanstack/react-query';
-// import { v4 as uuidv4 } from 'uuid';
 
 function MainProductList() {
   const axios = useCustomAxios();
   const [isLoading, setIsLoading] = useState(false);
 
-  // const [products, setProducts] = useState([]);
-  // const { data, fetchNextPage } = useInfiniteQuery({
-  //   queryKey: ['products'],
-  //   queryFn: ({ pageParam = 1 }) =>
-  //     axios.get(`/products`, {
-  //       params: {
-  //         page: pageParam,
-  //         limit: 3,
-  //       },
-  //     }),
-
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     console.log('lastPage', lastPage);
-  //     const totalPages = lastPage.data.pagination.totalPages;
-  //     let nextPage =
-  //       allPages.length < totalPages ? allPages.length + 1 : undefined;
-  //     return nextPage;
-  //   },
-  // });
-
-  // // latestProcudts = renderProductItems = productList
-  // const latestProcudts = data?.pages?.flatMap(page =>
-  //   page.data.item.sort((a, b) => {
-  //     const dateA = new Date(a.createdAt);
-  //     const dateB = new Date(b.createdAt);
-  //     return dateB - dateA;
-  //   }),
-  // );
-
-  // const renderProductItems = items => {
-  //   return items.map(item => (
-  //     <MainProductListItem key={uuidv4()} item={item} />
-  //   ));
-  // };
-
-  // useEffect(() => {
-  //   if (data) {
-  //     const productList = renderProductItems(latestProcudts);
-  //     setProducts(productList);
-  //   }
-  // }, [data]);
-
-  // const hasNext =
-  //   data?.pages.at(-1).data.pagination.page <
-  //   data?.pages.at(-1).data.pagination.totalPages;
-
-  // 이전
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     setIsLoading(true);
@@ -116,15 +66,6 @@ function MainProductList() {
             iconSrc="../src/assets/icons/icon-tour-guide.png"
             title="새로 올라왔어요"
           />
-          {/* <ul>
-            <InfiniteScroll
-              pageStart={1}
-              loadMore={fetchNextPage}
-              hasMore={hasNext}
-            >
-              {products}
-            </InfiniteScroll>
-          </ul> */}
 
           {isLoading ? (
             <div className="flex justify-center items-center h-[500px]">

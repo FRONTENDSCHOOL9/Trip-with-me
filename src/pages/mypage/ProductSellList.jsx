@@ -2,46 +2,61 @@ import { useEffect, useState } from 'react';
 import usePageStore from '@zustand/pageName.mjs';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import ProductSellListItem from '@pages/mypage/ProductSellListItem';
-import { BeatLoader } from 'react-spinners';
 
 function ProductSellList() {
   const page = '판매 목록';
   const setPageName = usePageStore(state => state.setPageName);
   const axios = useCustomAxios();
-  const [sellData, setSellData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [pageParam, setPageParam] = useState(1);
+  const [itemList, setItemList] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
 
-  const getSellProduct = async () => {
-    setIsLoading(true);
+  const getSellList = async () => {
     try {
-      const response = await axios.get('/seller/products');
-      const list = response?.data?.item?.map(item => {
+      const res = await axios.get('/seller/products', {
+        params: {
+          page: pageParam,
+          limit: 3,
+        },
+      });
+      const list = res?.data?.item?.map(item => {
         console.log('item', item);
         return <ProductSellListItem key={item?._id} item={item} />;
       });
-      setSellData(list);
-      console.log('list', list);
-      setIsLoading(false);
+      let newItemList = [...itemList, ...list];
+      console.log('newItemList', newItemList);
+      let endPage = res?.data?.pagination?.totalPages;
+      let nowPage = res?.data?.pagination?.page;
+      console.log(endPage);
+      setTotalPages(endPage);
+      setItemList(newItemList);
+      setPageParam(nowPage + 1);
     } catch (error) {
       console.error('상품 정보 불러오기 실패', error);
-      setIsLoading(false);
+    }
+  };
+
+  const handleClick = e => {
+    if (pageParam < totalPages) {
+      getSellList();
+    } else if (pageParam == totalPages) {
+      getSellList();
+      e.target.className = 'hidden';
     }
   };
 
   useEffect(() => {
     setPageName(page);
-    getSellProduct();
+    getSellList();
   }, []);
   return (
-    <div>
-      {isLoading ? (
-        <div className="flex justify-center items-center h-[780px]">
-          <BeatLoader color="#68A9ED" />
-        </div>
-      ) : (
-        <ul>{sellData}</ul>
-      )}
+    <div className='mb-8 flex flex-col'>
+      <ul>{itemList}</ul>
+      <button className='mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest' onClick={handleClick}>
+      <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
+    </button>
     </div>
+    
   );
 }
 
