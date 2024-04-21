@@ -40,8 +40,8 @@ function ProductName({ productInfo, setProductInfo }) {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
-        <div className="flex flex-col text-2xl font-semibold ">
-          <label className="mt-10 mb-8 text-main-color" htmlFor="name">
+        <div className="flex flex-col text-2xl font-semibold mx-6  ">
+          <label className="mt-10 mb-6 text-main-color" htmlFor="name">
             여행 제목을 입력하세요.
           </label>
           <input
@@ -57,11 +57,11 @@ function ProductName({ productInfo, setProductInfo }) {
             })}
           />
           {errors.name && (
-            <p className="text-sm font-medium text-warning-color ">
+            <p className=" text-sm font-medium text-warning-color font-notosans mt-2 ">
               {errors.name.message}
             </p>
           )}
-          <label className="mt-10 mb-8 text-main-color" htmlFor="quantity">
+          <label className="mt-10 mb-6 text-main-color " htmlFor="quantity">
             최대 인원을 설정해주세요.
           </label>
           <div className="flex">
@@ -81,11 +81,11 @@ function ProductName({ productInfo, setProductInfo }) {
           </div>
 
           {errors.quantity && (
-            <p className="text-sm font-medium text-warning-color ">
+            <p className=" text-sm font-medium text-warning-color font-notosans  mt-2">
               {errors.quantity.message}
             </p>
           )}
-          <label className="mt-10 mb-8 text-main-color" htmlFor="price">
+          <label className="mt-10 mb-6 text-main-color" htmlFor="price">
             인당 경비를 입력해주세요.
           </label>
           <div className="flex">
@@ -109,23 +109,23 @@ function ProductName({ productInfo, setProductInfo }) {
           </div>
 
           {errors.price && (
-            <p className="text-sm font-medium text-warning-color f">
+            <p className=" text-sm font-medium text-warning-color font-notosans  mt-2">
               {errors.price.message}
             </p>
           )}
         </div>
-        <div className="flex items-center justify-between mx-auto mt-20 w-96">
+        <div className="flex items-center justify-between mx-auto mt-10 w-96">
           <button
             type="button"
             onClick={handlePrevButton}
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl  font-semibold text-white rounded-full bg-main-color"
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 2 / 7</p>
+          <p className="text-m font-semibold"> 2 / 7</p>
           <button
             type="submit"
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>

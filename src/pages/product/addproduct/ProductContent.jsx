@@ -37,7 +37,7 @@ function ProductContent({ productInfo, setProductInfo }) {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col items-center justify-center relative"
       >
         <label htmlFor="content">
           <p className="mt-20 text-2xl font-semibold font-notosans text-main-color">
@@ -50,7 +50,7 @@ function ProductContent({ productInfo, setProductInfo }) {
         <textarea
           id="content"
           name="content"
-          className="relative rounded-lg w-80 h-96 bg-light-gray"
+          className="relative rounded-lg w-80 h-96 bg-light-gray shadow-lg"
           placeholder="상세 정보를 입력해주세요"
           {...register('content', {
             required: '상세 정보를 입력해주세요',
@@ -61,7 +61,7 @@ function ProductContent({ productInfo, setProductInfo }) {
           })}
         ></textarea>
         {errors.content && (
-          <p className="text-sm font-medium text-warning-color ">
+          <p className="text-sm font-medium text-warning-color absolute bottom-24">
             {errors.content.message}
           </p>
         )}
@@ -70,14 +70,14 @@ function ProductContent({ productInfo, setProductInfo }) {
           <button
             type="button"
             onClick={handlePrevButton}
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 7 / 7</p>
+          <p className="text-m font-semibold"> 7 / 7</p>
           <button
             type="submit"
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>

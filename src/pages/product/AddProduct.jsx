@@ -122,9 +122,11 @@ function AddProduct() {
   useState(() => {}, []);
 
   return (
-    <div className="layout">
-      <Header />
-      {renderStep()}
+    <div className="layout font-notosans">
+      <div className="scrollbar">
+        <Header />
+        {renderStep()}
+      </div>
     </div>
   );
 }
