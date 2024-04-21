@@ -7,7 +7,7 @@ const productSellListItem = ({ item }) => {
 
   return (
     <li
-      className={classNames('h-80 p-7 mb-1 font-notosans', {
+      className={classNames('h-80 p-7 mb-1 font-notosans list-none', {
         relative: isSoldOut,
       })}
     >
