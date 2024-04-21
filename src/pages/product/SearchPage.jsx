@@ -2,9 +2,8 @@ import Search from '@components/Search';
 import Title from '@components/Title';
 import Footer from '@components/layout/Footer';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import classNames from 'classnames';
 import MainProductListItem from '@pages/product/MainProductListItem';
 
 const SearchPage = () => {
