@@ -60,8 +60,8 @@ function OtherProductSellList() {
   return (
     <div className="mb-8 flex flex-col">
     {itemList}
-      <button className='mx-auto bg-gray-300 rounded-lg text-sm text-white tracking-widest' onClick={handleClick}>
-        <img className="w-10" src="/src/assets/icons/icon-more.svg" alt="" /> 더보기
+      <button className='mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest' onClick={handleClick}>
+        <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
       </button>
     </div>
   )
