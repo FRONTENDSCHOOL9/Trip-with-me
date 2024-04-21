@@ -11,13 +11,20 @@ import { BeatLoader } from 'react-spinners';
 function MainProductList() {
   const axios = useCustomAxios();
   const [isLoading, setIsLoading] = useState(false);
+  const [itemList, setItemList] = useState([]);
+  const [pageParam, setPageParam] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
-  const [products, setProducts] = useState([]);
   const getProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('/products');
-      const { item } = response.data;
+      const res = await axios.get('/products', {
+        params: {
+          page: pageParam,
+          limit: 3,
+        },
+      });
+      const { item } = res.data;
 
       const sortedProducts = item.sort((a, b) => {
         const dateA = new Date(a.createdAt);
@@ -25,15 +32,30 @@ function MainProductList() {
         return dateB - dateA;
       });
 
-      const productList = sortedProducts.map(product => (
+      const list = sortedProducts.map(product => (
         <MainProductListItem key={product._id} item={product} />
       ));
+      let newItemList = [...itemList, ...list];
+      console.log('newItemList', newItemList);
+      let endPage = res?.data?.pagination?.totalPages;
+      let nowPage = res?.data?.pagination?.page;
 
-      setProducts(productList);
+      setTotalPages(endPage);
+      setItemList(newItemList);
+      setPageParam(nowPage + 1);
       setIsLoading(false);
     } catch (error) {
       console.error('상품 정보 불러오기 실패', error);
       setIsLoading(false);
+    }
+  };
+
+  const handleClick = e => {
+    if (pageParam < totalPages) {
+      getProducts();
+    } else if (pageParam == totalPages) {
+      getProducts();
+      e.target.className = 'hidden';
     }
   };
 
@@ -72,7 +94,19 @@ function MainProductList() {
               <BeatLoader color="#68A9ED" />
             </div>
           ) : (
-            <ul>{products}</ul>
+            <div className="mb-8 flex flex-col">
+              <ul>{itemList}</ul>
+              <button
+                className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
+                onClick={handleClick}
+              >
+                <img
+                  className="w-8"
+                  src="/src/assets/icons/icon-more.svg"
+                  alt=""
+                />
+              </button>
+            </div>
           )}
         </div>
       </div>
