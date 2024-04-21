@@ -106,7 +106,7 @@ function Comment() {
   return (
     <div>
       <CommentNew refetch={refetch} />
-      <div className="flex mx-4 text-sm mb-4">
+      <div className="flex mx-4 text-sm mb-4 pt-4">
         <h4 className="mr-1">Comment</h4>
         <p>
           <span>({comments?.length || 0})</span>

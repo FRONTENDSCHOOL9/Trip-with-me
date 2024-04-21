@@ -75,20 +75,25 @@ function CommentNew({ refetch }) {
             onChange={handleContentChange}
             rows="3"
             cols="40"
-            className="block w-full p-2 pr-20 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
+            className="block w-full p-2 pr-16 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
             placeholder="내용을 입력하세요."
           />
           {(errorMessage || errors.content) && (
-            <p className="mt-1 ml-2 text-sm text-red-500">
+            <p className="mt-1 ml-2 text-sm text-red-500 bottom--10 absolute">
               {errorMessage || errors.content.message}
             </p>
           )}
           <button
-            className="absolute z-10 py-4 bottom-3 right-4"
+            className="absolute z-10 py-4 bottom-1 right-6"
             type="submit"
             onClick={handleButtonClick}
           >
-            댓글 등록
+            <img
+              className="w-10 h-10 "
+              src="/src/assets/icons/icon-submit.png"
+              alt=""
+            />
+            <i className="ir">댓글 등록</i>
           </button>
         </div>
       </form>
