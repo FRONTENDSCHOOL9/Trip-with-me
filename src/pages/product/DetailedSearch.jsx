@@ -12,6 +12,7 @@ function DetailedSearch() {
   const [tripThemes, setTripThemes] = useState([]);
   const [selectedSpots, setSelectedSpots] = useState([]);
   const [selectedThemes, setSelectedThemes] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const getSpots = async () => {
@@ -39,19 +40,19 @@ function DetailedSearch() {
     getThemes();
   }, []);
 
-  const handleSpotChange = (id) => {
-    setSelectedSpots((prevSelected) =>
+  const handleSpotChange = id => {
+    setSelectedSpots(prevSelected =>
       prevSelected.includes(id)
-        ? prevSelected.filter((spotId) => spotId !== id)
-        : [...prevSelected, id]
+        ? prevSelected.filter(spotId => spotId !== id)
+        : [...prevSelected, id],
     );
   };
 
-  const handleThemeChange = (id) => {
-    setSelectedThemes((prevSelected) =>
+  const handleThemeChange = id => {
+    setSelectedThemes(prevSelected =>
       prevSelected.includes(id)
-        ? prevSelected.filter((themeId) => themeId !== id)
-        : [...prevSelected, id]
+        ? prevSelected.filter(themeId => themeId !== id)
+        : [...prevSelected, id],
     );
   };
 
@@ -61,8 +62,8 @@ function DetailedSearch() {
       const themeIds = selectedThemes.join(',');
       const url = `/products?custom={"extra.spot.id":"${spotIds}","extra.themes.id":"${themeIds}"}`;
       const response = await axios.get(url);
-      console.log('검색 결과:', response.data); // 상품 데이터 로그로 출력 (나중에 화면에 표시하도록 수정 필요)
-      // 여기서 검색 결과를 처리하여 화면에 표시하는 로직을 추가해야 합니다.
+      console.log('검색 결과:', response.data);
+      setSearchResults(response.data);
     } catch (error) {
       console.error('상품 검색 실패', error);
     }
