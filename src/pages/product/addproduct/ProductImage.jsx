@@ -59,13 +59,16 @@ function ProductImage({ productInfo, setProductInfo }) {
   return (
     <div>
       <form
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col items-center justify-cente  "
         onSubmit={onSubmit}
       >
-        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
+        <p className="my-12 text-2xl font-semibold  text-main-color">
           여행 관련 이미지를 추가해주세요.
         </p>
-        <label htmlFor="mainImages" className="relative inline-block">
+        <label
+          htmlFor="mainImages"
+          className="relative inline-block shadow-lg "
+        >
           <div className="relative border-2 rounded-lg w-80 h-72 bg-light-gray border-mid-gray">
             <img
               className="object-cover w-full h-full rounded-lg"
@@ -79,23 +82,25 @@ function ProductImage({ productInfo, setProductInfo }) {
             )}
           </div>
         </label>
-        <input
-          className="hidden"
-          type="file"
-          accept="image/*"
-          id="mainImages"
-          onChange={handleFileChange}
-        />
-        {showUploadPrompt && (
-          <p className="text-sm font-medium text-warning-color font-notosans">
-            이미지를 업로드해주세요.
-          </p>
-        )}
-        <div className="flex items-center justify-between mt-56 w-96">
-          <p className="text-xl font-medium ml-44"> 1 / 7</p>
+        <div className="flex  justify-center items-center relative">
+          <input
+            className="hidden"
+            type="file"
+            accept="image/*"
+            id="mainImages"
+            onChange={handleFileChange}
+          />
+          {showUploadPrompt && (
+            <p className="w-[152px] absolute text-sm font-medium text-warning-color font-notosans mt-8">
+              이미지를 업로드해주세요.
+            </p>
+          )}
+        </div>
+        <div className="flex items-center justify-between mt-20 w-96">
+          <p className="text-m font-semibold ml-44"> 1 / 7</p>
           <button
             type="submit"
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl  font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>

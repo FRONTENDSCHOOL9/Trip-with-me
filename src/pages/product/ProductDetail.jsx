@@ -125,8 +125,12 @@ function ProductDetail() {
         </div>
         <Tabs className="mx-5">
           <TabList className="flex mb-4">
-            <Tab className="flex-grow py-2 text-center ">상품설명</Tab>
-            <Tab className="flex-grow py-2 text-center">여행장 정보</Tab>
+            <Tab className="flex-grow py-2 text-center cursor-pointer ">
+              상품설명
+            </Tab>
+            <Tab className="flex-grow py-2 text-center cursor-pointer">
+              여행장 정보
+            </Tab>
           </TabList>
           <TabPanel>
             <div>
@@ -235,7 +239,7 @@ function ProductDetail() {
               </Tabs>
             </div>
             <div className="border-b-2">
-              <p className="mt-2 mb-4 text-lg font-medium">여행소개</p>
+              <p className="mt-6 mb-2 text-lg font-medium">여행소개</p>
               <div className="mb-8 ml-2 ">
                 <p className="text-sm  bg-gray-200 py-4 px-6 rounded-lg shadow-lg description-box">
                   {productInfo?.item?.content}

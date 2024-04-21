@@ -27,21 +27,17 @@ function ProductAddModal({ productInfo }) {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center w-4/5 border-4 rounded-3xl">
-        <button className="m-4 ml-auto">
-          <i className="ir">닫기</i>
-          <img src="/src/assets/icons/icon-close.png" alt="" />
-        </button>
+    <div className="flex h-full  items-center justify-center modal-box-screen">
+      <div className="flex flex-col items-center justify-center bg-white w-4/5 border-4 rounded-3xl">
         <img
-          className="mb-14"
+          className="my-14"
           src="/src/assets/icons/icon-check-circle.png"
           alt=""
         />
         <p className="text-xl font-medium mb-14">등록 되었습니다.</p>
         <button
           onClick={handleSubmit}
-          className="px-6 py-4 mb-12 text-xl font-medium text-white rounded-full bg-main-color"
+          className="px-6 py-4 mb-12 text-xl font-semibold text-white rounded-full bg-main-color"
         >
           게시글 확인
         </button>

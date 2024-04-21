@@ -3,7 +3,7 @@ import usePageStore from '@zustand/pageName.mjs';
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import '@components/style/myPage.css';
+import '@components/style/cssClassNaming.css';
 
 //마이페이지 정보는 전역 상태 관리 zustand 에서 불러옴
 function MyPage() {

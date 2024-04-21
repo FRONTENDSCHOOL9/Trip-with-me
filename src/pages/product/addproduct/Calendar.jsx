@@ -66,7 +66,7 @@ function Calendar({ productInfo, setProductInfo }) {
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center"
       >
-        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
+        <p className="my-12 text-2xl font-semibold  text-main-color">
           여행 날짜를 선택해주세요.
         </p>
         <DateRange
@@ -76,7 +76,7 @@ function Calendar({ productInfo, setProductInfo }) {
           moveRangeOnFirstSelection={false}
           ranges={selectedDateRange}
         />
-        <div className="flex items-center justify-between mt-20 w-96">
+        <div className="flex items-center justify-between mt-20 mb-12 w-96">
           <button
             type="button"
             onClick={handlePrevButton}
@@ -84,11 +84,11 @@ function Calendar({ productInfo, setProductInfo }) {
           >
             이전
           </button>
-          <p className="text-xl font-medium"> 3 / 7</p>
+          <p className="text-m font-semibold"> 3 / 7</p>
           <button
             type="submit"
             onClick={handleCalendarChange}
-            className="px-10 py-3 text-xl font-medium text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>
