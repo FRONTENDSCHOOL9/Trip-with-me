@@ -19,7 +19,7 @@ const Search = () => {
     }
   };
   return (
-    <div className="flex gap-2 relative font-notosans ml-4">
+    <div className="flex gap-2 relative font-notosans ml-5">
       <img
         src="../src/assets/icons/icon-search.svg"
         className="w-6 absolute top-2 left-2"
@@ -27,7 +27,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="여행지나 키워드를 검색해보세요."
-        className="h-10 w-[300px] rounded-md bg-gray-200 bg-no-repeat pl-10 pr-2 text-gray-700 w-92.5 outline-0.5 outline-main-color"
+        className="h-10 w-[350px] rounded-md bg-gray-200 bg-no-repeat pl-10 pr-2 text-gray-700 w-92.5 outline-0.5 outline-main-color"
         value={searchValue}
         onChange={handleChange}
         onKeyDown={e => {
@@ -36,16 +36,7 @@ const Search = () => {
           }
         }}
       />
-      <button
-        type="button"
-        onClick={handleSearch}
-        className="inline-block w-[50px] h-10 text-xl cursor-pointer text-center text-white font-semibold bg-blue-400 rounded-xl hover:bg-blue-500 active:bg-blue-600"
-      >
-        {' '}
-        검색
-      </button>
       <button type="button" onClick={onClickDetail}>
-        {' '}
         <img
           src="../src/assets/icons/icon-search-bar.svg"
           className="w-8"

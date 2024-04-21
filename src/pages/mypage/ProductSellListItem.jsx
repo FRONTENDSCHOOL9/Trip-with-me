@@ -1,28 +1,11 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 
 const productSellListItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
 
   return (
-    <li
-      className={classNames('h-80 p-7 mb-1 font-notosans list-none', {
-        relative: isSoldOut,
-      })}
-    >
-      {isSoldOut && (
-        <Link
-          to={`/product/${item._id}`}
-          className="absolute inset-0 flex justify-center items-center"
-        >
-          <div className="bg-black bg-opacity-45 w-full h-full flex justify-center items-center rounded-lg">
-            <p className="text-zinc-200 text-3xl font-bold">
-              모집 마감되었어요.
-            </p>
-          </div>
-        </Link>
-      )}
+    <li className="h-80 p-7 mb-5 font-notosans">
       <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
         <Link to={`/product/${item._id}`}>
           <img
@@ -44,7 +27,9 @@ const productSellListItem = ({ item }) => {
             className="w-4 mr-1"
           ></img>
           {isSoldOut ? (
-            <p>모집 완료</p>
+            <p className="bg-second-color text-xs rounded-md p-1 mr-2">
+              모집 완료
+            </p>
           ) : (
             <p>
               {item?.buyQuantity}/{item?.quantity}
@@ -52,16 +37,11 @@ const productSellListItem = ({ item }) => {
           )}
         </div>
 
-        <div className="mt-1">
-          {item?.extra?.themes?.map(item => {
-            <a
-              href="#"
-              className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
-              key={item.id}
-            >
-              # {item.name}
-            </a>;
-          })}
+        <div className="h-10flex items-center justify-between">
+          <p className="text-sm">
+            {item?.extra?.date?.startDate} ~ {item?.extra?.date?.endDate}
+          </p>
+          <p className="my-auto flex mb-1">{item?.price} 원</p>
         </div>
       </div>
     </li>
