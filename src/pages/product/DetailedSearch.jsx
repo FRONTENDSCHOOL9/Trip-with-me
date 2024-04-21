@@ -7,10 +7,11 @@ import StyledLabel from '@components/style/StyledLabel';
 function DetailedSearch() {
   const page = '상세 검색';
   const setPageName = usePageStore(state => state.setPageName);
-
   const axios = useCustomAxios();
   const [tripSpots, setTripSpots] = useState([]);
   const [tripThemes, setTripThemes] = useState([]);
+  const [selectedSpots, setSelectedSpots] = useState([]);
+  const [selectedThemes, setSelectedThemes] = useState([]);
 
   useEffect(() => {
     const getSpots = async () => {
@@ -38,6 +39,35 @@ function DetailedSearch() {
     getThemes();
   }, []);
 
+  const handleSpotChange = (id) => {
+    setSelectedSpots((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((spotId) => spotId !== id)
+        : [...prevSelected, id]
+    );
+  };
+
+  const handleThemeChange = (id) => {
+    setSelectedThemes((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((themeId) => themeId !== id)
+        : [...prevSelected, id]
+    );
+  };
+
+  const handleSearch = async () => {
+    try {
+      const spotIds = selectedSpots.join(',');
+      const themeIds = selectedThemes.join(',');
+      const url = `/products?custom={"extra.spot.id":"${spotIds}","extra.themes.id":"${themeIds}"}`;
+      const response = await axios.get(url);
+      console.log('검색 결과:', response.data); // 상품 데이터 로그로 출력 (나중에 화면에 표시하도록 수정 필요)
+      // 여기서 검색 결과를 처리하여 화면에 표시하는 로직을 추가해야 합니다.
+    } catch (error) {
+      console.error('상품 검색 실패', error);
+    }
+  };
+
   return (
     <div className="layout">
       <Header />
@@ -55,6 +85,7 @@ function DetailedSearch() {
                     className="input"
                     type="checkbox"
                     id={`area_${tripSpot.id}`}
+                    onChange={() => handleSpotChange(tripSpot.id)}
                   />
                   <label
                     className="label
@@ -82,6 +113,7 @@ function DetailedSearch() {
                     type="checkbox"
                     className="input"
                     id={`theme_${tripThemes.id}`}
+                    onChange={() => handleThemeChange(tripThemes.id)}
                   />
                   <label className="label" htmlFor={`theme_${tripThemes.id}`}>
                     {tripThemes.name}
@@ -95,6 +127,7 @@ function DetailedSearch() {
         <div className="text-center">
           <button
             type="submit"
+            onClick={handleSearch}
             className="inline-block w-48 h-10 text-xl cursor-pointer text-center text-white font-semibold bg-blue-400 rounded-xl hover:bg-blue-500 active:bg-blue-600"
           >
             검색
