@@ -37,20 +37,20 @@ function ProductAddModal({ productInfo }) {
       <div className="flex flex-col items-center justify-center w-4/5 bg-white border-4 rounded-3xl">
         <img
           className="my-14"
-          src="/src/assets/icons/icon-check-circle.png"
+          src="/src/assets/icons/icon-smile-modal.svg"
           alt=""
         />
         <p className="text-xl font-medium mb-14">등록 하시겠습니까?</p>
         <div>
           <button
             onClick={handlePrevButton}
-            className="px-6 py-4 mb-12 text-xl font-semibold text-white rounded-full bg-main-color"
+            className="py-3 mb-12 mr-10 text-xl font-semibold text-white rounded-full px-9 bg-main-color"
           >
             이전
           </button>
           <button
             onClick={handleSubmit}
-            className="px-6 py-4 mb-12 text-xl font-semibold text-white rounded-full bg-main-color"
+            className="py-3 mb-12 text-xl font-semibold text-white rounded-full px-9 bg-main-color"
           >
             등록
           </button>
