@@ -58,9 +58,28 @@ function DetailedSearch() {
 
   const handleSearch = async () => {
     try {
-      const spotIds = selectedSpots.join(',');
-      const themeIds = selectedThemes.join(',');
-      const url = `/products?custom={"extra.spot.id":"${spotIds}","extra.themes.id":"${themeIds}"}`;
+      let queryParams = {};
+
+      // 선택된 spotIds 배열이 비어있지 않은지 확인
+      if (selectedSpots.length > 0) {
+        const spotIds = selectedSpots.join(',');
+        queryParams['extra.spot.id'] = spotIds;
+      }
+
+      // 선택된 themeIds 배열이 비어있지 않은지 확인
+      if (selectedThemes.length > 0) {
+        const themeIds = selectedThemes.join(',');
+        queryParams['extra.themes.id'] = themeIds;
+      }
+
+      // queryParams를 기반으로 쿼리 문자열 생성
+      const queryString = Object.keys(queryParams)
+        .map(key => `"${key}":"${queryParams[key]}"`)
+        .join(',');
+      console.log('queryString', queryString);
+
+      // API 요청 URL 생성
+      const url = `/products?custom={${queryString}}`;
       const response = await axios.get(url);
       console.log('검색 결과:', response.data);
       setSearchResults(response.data);
@@ -68,7 +87,6 @@ function DetailedSearch() {
       console.error('상품 검색 실패', error);
     }
   };
-
   return (
     <div className="layout">
       <Header />
