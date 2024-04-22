@@ -69,13 +69,14 @@ function CommentNew({ refetch }) {
               minLength: {
                 value: 2,
                 message: '2글자 이상 입력하세요',
+                resize: 'none',
               },
             })}
             value={content}
             onChange={handleContentChange}
             rows="3"
             cols="40"
-            className="block w-full p-2 pr-16 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
+            className="resize-none block w-full p-2 pr-16 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
             placeholder="내용을 입력하세요."
           />
           {(errorMessage || errors.content) && (

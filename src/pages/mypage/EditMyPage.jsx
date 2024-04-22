@@ -27,7 +27,7 @@ function EditMyPage() {
 
   const selectValid = count => {
     if (count >= MAX_CHECKED) {
-      alert('3개만 선택 가능합니다.');
+      // alert('3개만 선택 가능합니다.');
       setCheckError('3개까지만 선택 가능합니다.');
       return false;
     } else {
@@ -50,7 +50,7 @@ function EditMyPage() {
     let count = document.querySelectorAll('button.is_active').length;
     if (e.target.classList.contains('is_active')) {
       e.target.className =
-        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md';
+        ' border-2 rounded-full py-1 px-2 m-1 border-gray-300';
       count--;
     } else {
       if (selectValid(count) === false) {
@@ -58,7 +58,7 @@ function EditMyPage() {
         return;
       }
       e.target.className =
-        'is_active hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md';
+        'is_active border-main-color border-2 rounded-full py-1 px-2 m-1 border-main-color';
       count++;
     }
 
@@ -89,8 +89,8 @@ function EditMyPage() {
         <button
           className={
             is_active
-              ? 'is_active hover:border-main-color border-2 rounded-full py-1 px-2 m-1 border-main-color '
-              : 'hover:border-main-color border-2 rounded-full py-1 px-2 m-1 border-gray-300 '
+              ? 'is_active border-2 rounded-full py-1 px-2 m-1 border-main-color '
+              : ' border-2 rounded-full py-1 px-2 m-1 border-gray-300 '
           }
           key={item.id}
           id={item.id}
@@ -193,7 +193,6 @@ function EditMyPage() {
     getTheme();
   }, []);
 
-
   return (
     <div className="font-notosans flex flex-col h-full bg-mainbg-color">
       <form
@@ -262,14 +261,19 @@ function EditMyPage() {
           />
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <hr className="border-none bg-gray-200 h-[2px] my-5" />
 
-          <h3 className="text-xl text-center font-bold mb-2">
-            관심사를 골라주세요 ({checkCount} / 3)
-          </h3>
+          <div className=" relative">
+            <h3 className="text-xl text-center font-bold mb-10">
+              관심사를 골라주세요 ({checkCount} / 3)
+            </h3>
 
-          <div className="mb-4">{checkError && checkError}</div>
+            <div className=" absolute top-8 left-36 mb-4 text-sm font-medium text-warning-color">
+              {checkError && checkError}
+            </div>
+          </div>
+
           <div className="text-center rounded-full py-1 px-8  border-main-color ">
             {themeData}
           </div>

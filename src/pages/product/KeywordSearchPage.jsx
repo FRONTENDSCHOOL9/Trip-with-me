@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import MainProductItem from '@pages/product/MainProductItem';
 
-const SearchPage = () => {
+const KeywordSearchPage = () => {
   const axios = useCustomAxios();
   const [searchResults, setSearchResults] = useState([]);
   const [noResultsMessage, setNoResultsMessage] = useState('');
@@ -63,4 +63,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default KeywordSearchPage;

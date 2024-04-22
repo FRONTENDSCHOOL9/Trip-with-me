@@ -1,19 +1,25 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import CommentNew from './CommentNew';
 import { useEffect, useState } from 'react';
 import useMemberState from '@zustand/memberState.mjs';
 import CommentEdit from './CommentEdit';
 import CommentDelete from './CommentDelete';
+import usePageStore from '@zustand/pageName.mjs';
 
 function Comment() {
+  const page = 'Mypage';
   const axios = useCustomAxios();
   const { _id } = useParams();
-  const { user, setUser } = useMemberState();
+  const { user } = useMemberState();
+
+  const setPageName = usePageStore(state => state.setPageName);
   const [comments, setComments] = useState([]);
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editCommentText, setEditCommentText] = useState('');
+
+  const navigate = useNavigate();
 
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ['comments', _id],
@@ -34,6 +40,19 @@ function Comment() {
       setComments(data.item);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (user) {
+      setPageName(page);
+    } else {
+      noUser();
+    }
+  }, []);
+
+  function noUser() {
+    alert('로그인 후 이용 가능합니다.');
+    navigate('/users/login');
+  }
 
   const handleEditComment = async (commentId, editedText) => {
     try {
@@ -61,19 +80,22 @@ function Comment() {
     }
   };
 
-  let list = comments?.map(item => {
+  const list = comments?.map(item => {
+    const isCommentOwner = item.user?._id === user?._id;
     return (
       <div className="flex mb-4" key={item?._id}>
-        <div>
+        <div className="flex flex-col justify-center">
           <Link to={`/mypage/${item?.user?._id}`}>
             <img
-              className=" w-14 h-14 border-2 rounded-full"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+              className="w-14 h-14 border-2 rounded-full"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.user?.profile}`}
               alt=""
             />
           </Link>
+          <p className="text-center text-gray-500 text-sm mt-1">
+            {item?.user?.name}
+          </p>
         </div>
-
 
         {editingCommentId === item._id ? (
           <CommentEdit
@@ -85,18 +107,22 @@ function Comment() {
             }}
           />
         ) : (
-          <div className="flex justify-center items-center">
-            <p className="w-[226px] ml-4">{item?.content}</p>
-            <button
-              className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
-              onClick={() => setEditingCommentId(item._id)}
-            >
-              수정
-            </button>
-            <CommentDelete
-              commentId={item._id}
-              onDelete={handleDeleteComment}
-            />
+          <div className="flex justify-center items-center mb-3">
+            <p className="w-[226px] ml-4 ">{item?.content}</p>
+            {isCommentOwner && (
+              <>
+                <button
+                  className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
+                  onClick={() => setEditingCommentId(item._id)}
+                >
+                  수정
+                </button>
+                <CommentDelete
+                  commentId={item._id}
+                  onDelete={handleDeleteComment}
+                />
+              </>
+            )}
           </div>
         )}
       </div>

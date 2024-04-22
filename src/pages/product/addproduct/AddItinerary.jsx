@@ -74,9 +74,9 @@ function AddItinerary({ productInfo, setProductInfo }) {
 
   return (
     <div className="flex flex-col justify-center w-full ">
-      <div className="flex justify-center ">
+      <div className="flex flex-col justify-center">
         <button
-          className="my-12 text-2xl font-semibold  text-main-color"
+          className="my-5 text-2xl font-semibold text-main-color"
           type="button"
           onClick={addMap}
           disabled={mapLength >= itineraryDays}
@@ -88,6 +88,17 @@ function AddItinerary({ productInfo, setProductInfo }) {
             지도 추가
           </p>
         </button>
+        <div className="w-full mb-5 ml-4 text-left">
+          <p className="text-sm text-slate-400">
+            - 지도를 추가하여 날짜별 경로를 그려주세요.
+          </p>
+          <p className="text-sm text-slate-400">
+            - 지도 안의 원하는 장소를 클릭하여 동선을 표시해보세요.
+          </p>
+          <p className="text-sm text-slate-400">
+            - 마커를 한번 더 클릭하면 내용을 입력 할 수 있어요.
+          </p>
+        </div>
       </div>
 
       <div>
@@ -96,7 +107,7 @@ function AddItinerary({ productInfo, setProductInfo }) {
             {Array.from({ length: mapLength }, (_, index) => (
               <button
                 onClick={() => setSeletedIndex(index)}
-                className={`px-4 py-2 text-sm ${selectedIndex === index ? 'rounded-full border-2 border-main-color' : 'rounded-full border-2 '} text-main-color`}
+                className={`px-3 py-1 text-sm ${selectedIndex === index ? 'rounded-full border-2 border-main-color' : 'rounded-full border-2 '} text-main-color`}
                 key={index}
               >
                 {index + 1}일차
@@ -112,12 +123,12 @@ function AddItinerary({ productInfo, setProductInfo }) {
           itineraryMaps={itineraryMaps}
         />
 
-        <div className="flex justify-center">
+        <div className="flex justify-end">
           <button
             onClick={removeMap}
-            className={`border-2 my-4 px-4 py-2 rounded-full border-main-color text-sm font-semibold text-main-color ${mapLength > 1 ? '' : 'invisible'}`}
+            className={`border-2 my-4 px-3 py-1 rounded-full border-main-color text-sm font-semibold text-main-color ${mapLength > 1 ? '' : 'invisible'}`}
           >
-            {mapLength}일차 지도 삭제하기
+            삭제
           </button>
         </div>
 
@@ -134,11 +145,11 @@ function AddItinerary({ productInfo, setProductInfo }) {
         <button
           type="button"
           onClick={handlePrevButton}
-          className="px-10 py-3 text-xl  font-semibold text-white rounded-full bg-main-color"
+          className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
         >
           이전
         </button>
-        <p className="text-m font-semibold"> 4 / 7</p>
+        <p className="font-semibold text-m"> 4 / 7</p>
         <button
           type="button"
           disabled={mapLength !== itineraryDays}

@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Login from '@pages/users/Login';
 import Signup from '@pages/users/Signup';
-import MainProductList from '@pages/product/MainProductList';
 import DetailedSearch from '@pages/product/DetailedSearch';
 import ProductDetail from '@pages/product/ProductDetail';
 import MyPage from '@pages/mypage/MyPage';
@@ -22,8 +21,9 @@ import ProductContent from '@pages/product/addproduct/ProductContent';
 import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
 import MyPageOther from '@pages/mypage/MyPageOther';
 import Intro from '@pages/intro/Intro';
-import SearchPage from '@pages/product/SearchPage';
 import OtherProductSellList from '@pages/mypage/OtherProductSellList';
+import KeywordSearchPage from '@pages/product/KeywordSearchPage';
+import MainProductPage from '@pages/product/MainProductPage';
 
 const router = createBrowserRouter([
   {
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/product/list',
-    element: <MainProductList />,
+    element: <MainProductPage />,
   },
   {
     path: '/product/search',
@@ -137,7 +137,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/search',
-    element: <SearchPage />,
+    element: <KeywordSearchPage />,
   },
 ]);
 

@@ -15,11 +15,14 @@ import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
 import ProductLikeButton from '@components/ProductLikeButton';
+import usePageStore from '@zustand/pageName.mjs';
 
 function ProductDetail() {
   const axios = useCustomAxios();
   const { _id } = useParams();
   const navigate = useNavigate();
+  const page = '게시물 상세 페이지';
+  const setPageName = usePageStore(state => state.setPageName);
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useMemberState();
@@ -32,6 +35,7 @@ function ProductDetail() {
 
   useEffect(() => {
     getData();
+
     console.log(_id);
   }, []);
 
@@ -65,6 +69,8 @@ function ProductDetail() {
     );
   }
 
+  const isSeller = productInfo?.item?.seller?._id === user?._id;
+
   const formattedPrice = productInfo?.item?.price
     ? new Intl.NumberFormat('ko-KR', {
         style: 'currency',
@@ -88,40 +94,44 @@ function ProductDetail() {
     useEffect(() => {
       if (map && bounds) {
         map.setBounds(bounds);
+        setPageName(page);
       }
     }, [map, bounds]);
   };
 
   return (
-    <div className=" h-full bg-mainbg-color font-notosans ">
-      <div className="flex flex-col  bg-mainbg-color ">
-        <div className="h-56 mx-auto mt-6 mb-6 rounded-2xl w-96 bg-light-gray shadow-xl border-2 border-gray-300">
+    <div className="h-full bg-mainbg-color font-notosans">
+      <div className="flex flex-col bg-mainbg-color ">
+        <div className="h-56 mx-auto mt-6 mb-6 border-2 border-gray-300 shadow-xl rounded-2xl w-96 bg-light-gray">
           <img
             src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productInfo?.item?.mainImages[0].name}`}
             alt="Loading Image"
             className="w-full h-full rounded-2xl"
           />
         </div>
-        <div className="flex justify-between items-center mt-2 ml-6">
+        <div className="flex items-center justify-between mt-2 ml-6">
           <h2 className="text-2xl font-bold">{productInfo?.item?.name}</h2>
-          <p className="font-semibold mr-5">{formattedPrice}원</p>
+          <p className="mr-5 font-semibold">{formattedPrice}원</p>
         </div>
-        <div className=" flex justify-between items-center ml-5">
+        <div className="flex items-center justify-between ml-5 ">
           <ul className="flex gap-2 my-4">
             {productInfo?.item?.extra.themes.map((theme, index) => (
               <li
                 key={theme.id}
-                className="text-sm font-medium px-4 py-1 border-2 rounded-full"
+                className="px-4 py-1 text-sm font-medium border-2 rounded-full"
               >
                 #{theme.name}
               </li>
             ))}
           </ul>
-          <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-warning-color border-warning-color ">
-            <button className="text-sm" onClick={handleDelete}>
-              상품 삭제
-            </button>
-          </div>
+
+          {isSeller && (
+            <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-warning-color border-warning-color ">
+              <button className="text-sm" onClick={handleDelete}>
+                상품 삭제
+              </button>
+            </div>
+          )}
         </div>
         <Tabs className="mx-5">
           <TabList className="flex mb-4">
@@ -172,10 +182,10 @@ function ProductDetail() {
 
             <div className="flex flex-col">
               <Tabs>
-                <TabList className="flex mt-6 mb-2 gap-1 ">
+                <TabList className="flex gap-1 mt-6 mb-2 ">
                   {productInfo?.item?.extra.itineraryMaps.map((_, index) => (
                     <Tab
-                      className="px-4 py-1 border-2 text-sm rounded-full"
+                      className="px-4 py-1 text-sm border-2 rounded-full"
                       key={index}
                     >
                       {index + 1}일차
@@ -187,7 +197,7 @@ function ProductDetail() {
                   (dayPlan, index) => (
                     <TabPanel key={index}>
                       <Map
-                        className="rounded-xl shadow-lg"
+                        className="shadow-lg rounded-xl"
                         center={
                           dayPlan.markers[0]
                             ? dayPlan.markers[0].latlng
@@ -241,7 +251,7 @@ function ProductDetail() {
             <div className="border-b-2">
               <p className="mt-6 mb-2 text-lg font-medium">여행소개</p>
               <div className="mb-8 ml-2 ">
-                <p className="text-sm  bg-gray-200 py-4 px-6 rounded-lg shadow-lg description-box">
+                <p className="px-6 py-4 text-sm bg-gray-200 rounded-lg shadow-lg description-box">
                   {productInfo?.item?.content}
                 </p>
               </div>

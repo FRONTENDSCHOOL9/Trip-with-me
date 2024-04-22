@@ -40,7 +40,7 @@ function Login() {
   };
 
   return (
-    <div className="justify-center flex flex-col h-lvh bg-mainbg-color">
+    <div className="justify-center flex flex-col h-lvh bg-mainbg-color font-notosans">
       <div className="p-10 m-auto max-w-[440px] w-fit">
         <div className="py-10 flex flex-col mb-10 max-w-fit mx-auto">
           <img
@@ -56,7 +56,7 @@ function Login() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             defaultValue="testApp@test.com"
-            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)] "
+            className="px-2 mb-2 w-full h-10 rounded-md shadow-md "
             id="email"
             {...register('email')}
             placeholder="ID"
@@ -67,7 +67,7 @@ function Login() {
           {/* <label htmlFor="password">비밀번호</label> */}
           <input
             defaultValue="11111111"
-            className="px-2 mb-2 w-full h-10 rounded-md shadow-[1px_3px_0_0_rgba(0,0,0,0.1)]"
+            className="px-2 mb-2 w-full h-10 rounded-md shadow-md"
             id="password"
             {...register('password', {
               required: '비밀번호를 입력하세요.',
@@ -99,10 +99,10 @@ function Login() {
               alt="네이버 아이콘"
             />
           </div>
-          <p className="mb-3 text-center text-xs text-main-color">
+          <p className="mb-3 text-center text-sm text-main-color">
             <Link to="/product/list">로그인 없이 둘러보기</Link>
           </p>
-          <p className="mb-3 text-center text-xs">
+          <p className="mb-3 text-center text-sm">
             <Link to="/users/signup">회원가입하기</Link>
           </p>
         </form>

@@ -54,7 +54,7 @@ function Signup() {
     if (e.target.getAttribute('is_active') === 'true') {
       e.target.setAttribute('is_active', 'false');
       e.target.className =
-        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md';
+        '  border-2 rounded-full py-1 px-2 m-1  border-main-color';
       count--;
     } else {
       if (selectValid(count) === false) {
@@ -63,7 +63,7 @@ function Signup() {
       }
       e.target.setAttribute('is_active', 'true');
       e.target.className =
-        'hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-main-color rounded-md';
+        ' border-main-color border-2 rounded-full py-1 px-2 m-1  border-gray-300';
       count++;
     }
 
@@ -74,7 +74,7 @@ function Signup() {
   const setTheme = data => {
     const themeList = data?.map(item => (
       <button
-        className="hover:border-main-color p-0.5 mx-1 mb-2 border-2 border-gray-300 rounded-md"
+        className="border-2 rounded-full py-1 px-2 m-1"
         key={item.id}
         id={item.id}
         type="button"
@@ -147,8 +147,8 @@ function Signup() {
 
   //성별값은 API의 address에 저장
   return (
-    <div className="justify-center flex flex-col h-lvh bg-mainbg-color">
-      <div className="p-10 m-auto max-w-[440px] w-full h-full">
+    <div className="justify-center flex flex-col  bg-mainbg-color font-notosans layout ">
+      <div className="p-10 m-auto max-w-[440px] w-full bg-mainbg-color scrollbar ">
         <div className="mb-10">
           <div className="flex flex-col w-fit mx-auto">
             <img
@@ -156,22 +156,26 @@ function Signup() {
               src="/src/assets/icons/icon-logo.svg"
               alt="메인 비행기 로고"
             />
-            <h1 className="font-['SokchoBadaDotum'] font-bold text-xl text-center text-main-color">
+            <h1 className="font-['SokchoBadaDotum'] font-bold text-3xl text-center text-main-color">
               Trip with me
             </h1>
           </div>
-          <h2 className="font-['SokchoBadaDotum'] text-md text-center  text-main-color">
+          <h2 className="font-['SokchoBadaDotum'] text-xl text-center  text-main-color mt-2">
             회원가입
           </h2>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          onChange={onChange}
+          className="flex flex-col gap-3"
+        >
           <label className="text-sm font-semibold" htmlFor="email">
             아이디
           </label>
           <div className="flex">
             <input
-              className="h-10 w-4/5 px-2"
+              className="h-10 w-4/5 px-2 rounded-lg mr-2"
               type="email"
               id="email"
               placeholder="이메일 형식으로 입력해주세요."
@@ -197,7 +201,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full px-2"
+              className="h-10 w-full px-2 rounded-lg"
               type="password"
               id="password"
               placeholder="최소 8자리 이상 입력해주세요."
@@ -217,7 +221,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full"
+              className="h-10 w-full rounded-lg"
               type="password"
               id="passwordConfirm"
             />
@@ -225,12 +229,12 @@ function Signup() {
           {error && <p>{error}</p>}
           {valid && <p>{valid}</p>}
 
-          <label className="text-sm font-semibold" htmlFor="name">
+          <label className="text-sm font-semibold " htmlFor="name">
             닉네임
           </label>
           <div>
             <input
-              className="h-10 w-full"
+              className="h-10 w-full rounded-lg"
               type="text"
               id="name"
               {...register('name', { required: '닉네임을 입력하세요.' })}
@@ -238,6 +242,7 @@ function Signup() {
           </div>
           {errors.name && <p>{errors.name.message}</p>}
           <br />
+          <hr className="  border-b-[1px] border-white my-6" />
           <div className="flex gap-20">
             <div>
               <label className="text-sm font-semibold" htmlFor="age">
@@ -300,14 +305,20 @@ function Signup() {
               {errors.address && <p>{errors.address.message}</p>}
             </div>
           </div>
+          <hr className="  border-b-[1px] border-white  mt-6" />
           <br />
-          <hr className="my-5 border-none bg-white h-2 color-white" />
           <div>
-            <h3 className="text-lg font-bold text-center mb-3">
-              관심사를 골라주세요 ({checkCount} / 3)
-            </h3>
-            <span>{checkError && checkError}</span>
-            <ul className="text-center">
+            <div className=" relative">
+              <h3 className="text-xl text-center font-bold mb-10">
+                관심사를 골라주세요 ({checkCount} / 3)
+              </h3>
+
+              <div className=" absolute top-10 left-24 mb-4 text-sm font-medium text-warning-color">
+                {checkError && checkError}
+              </div>
+            </div>
+
+            <ul className="text-center rounded-full py-1 px-8  border-main-color">
               <li>{themeData}</li>
             </ul>
           </div>
