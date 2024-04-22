@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Login from '@pages/users/Login';
 import Signup from '@pages/users/Signup';
-import MainProductList from '@pages/product/MainProductList';
 import DetailedSearch from '@pages/product/DetailedSearch';
 import ProductDetail from '@pages/product/ProductDetail';
 import MyPage from '@pages/mypage/MyPage';
@@ -24,6 +23,7 @@ import MyPageOther from '@pages/mypage/MyPageOther';
 import Intro from '@pages/intro/Intro';
 import OtherProductSellList from '@pages/mypage/OtherProductSellList';
 import KeywordSearchPage from '@pages/product/KeywordSearchPage';
+import MainProductPage from '@pages/product/MainProductPage';
 
 const router = createBrowserRouter([
   {
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/product/list',
-    element: <MainProductList />,
+    element: <MainProductPage />,
   },
   {
     path: '/product/search',

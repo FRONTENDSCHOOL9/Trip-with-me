@@ -9,6 +9,8 @@ import 'swiper/css/pagination';
 const PopularProductList = () => {
   const axios = useCustomAxios();
   const [popularProducts, setPopularProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const getPopularProducts = async () => {
     try {
       const response = await axios.get('/products');
@@ -18,14 +20,31 @@ const PopularProductList = () => {
         .slice(0, 5);
 
       setPopularProducts(filteredItems);
+      setIsLoading(false);
     } catch (error) {
       console.error('인기 상품 정보 불러오기 실패', error);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getPopularProducts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-[6px]">
+        <div className="card">
+          <div className="spinner"></div>
+        </div>
+        <div className="cardDescription flex flex-col gap-3 justify-center">
+          <span className="line line-1"></span>
+          <span className="line line-1"></span>
+          <span className="line line-2"></span>
+        </div>
+      </div>
+    );
+  }
 
   console.log('인기상품 정렬', popularProducts);
 
@@ -55,7 +74,7 @@ const PopularProductList = () => {
             >
               <div>
                 <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
-                  <Link to={`/products/${item._id}`}>
+                  <Link to={`/product/${item._id}`}>
                     <img
                       className="size-full object-cover"
                       src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
@@ -64,7 +83,7 @@ const PopularProductList = () => {
                 </div>
 
                 <div className="p-2 relative">
-                  <Link to={`/products/${item.id}`}>
+                  <Link to={`/product/${item.id}`}>
                     <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                       {item.name}
                     </h3>

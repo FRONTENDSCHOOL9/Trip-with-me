@@ -1,7 +1,7 @@
 import Search from '@components/Search';
 import Title from '@components/Title';
 import Footer from '@components/layout/Footer';
-import MainProductListItem from '@pages/product/MainProductListItem';
+import MainProductItem from '@pages/product/MainProductItem';
 
 const FilterSearchPage = () => {
   return (
@@ -10,7 +10,7 @@ const FilterSearchPage = () => {
       <Search />
       <div className="scrollbar p-4">
         <ul>
-          <MainProductListItem key={item._id} item={item} />
+          <MainProductItem key={item._id} item={item} />
         </ul>
       </div>
       <Footer />

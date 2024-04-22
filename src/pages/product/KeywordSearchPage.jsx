@@ -4,7 +4,7 @@ import Footer from '@components/layout/Footer';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import MainProductListItem from '@pages/product/MainProductListItem';
+import MainProductItem from '@pages/product/MainProductItem';
 
 const KeywordSearchPage = () => {
   const axios = useCustomAxios();
@@ -54,7 +54,7 @@ const KeywordSearchPage = () => {
             </div>
           )}
           {searchResults.map(item => (
-            <MainProductListItem key={item._id} item={item} />
+            <MainProductItem key={item._id} item={item} />
           ))}
         </ul>
       </div>
