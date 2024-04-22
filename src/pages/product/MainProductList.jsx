@@ -7,6 +7,8 @@ import Search from '@components/Search';
 import SubTitle from '@components/SubTitle';
 import PopularProductList from '@pages/product/PopularProductList';
 import { BeatLoader } from 'react-spinners';
+import '@components/style/spinners.css';
+
 // import InfiniteScroll from 'react-infinite-scroller';
 // import { useInfiniteQuery } from '@tanstack/react-query';
 // import { v4 as uuidv4 } from 'uuid';
@@ -103,8 +105,17 @@ function MainProductList() {
             title="지금 인기있는 여행지"
           />
           {isLoading ? (
-            <div className="text-center mt-4 flex justify-center items-center h-[330px]">
-              <BeatLoader color="#68A9ED" />
+            <div className=" flex flex-col gap-[6px]">
+              <div className="card">
+                <div className="spinner">
+                  {/* <BeatLoader size={15} color="#3c4048" /> */}
+                </div>
+              </div>
+              <div className="cardDescription flex flex-col gap-3 justify-center ">
+                <span className="line line-1"></span>
+                <span className="line line-1"></span>
+                <span className="line line-2"></span>
+              </div>
             </div>
           ) : (
             <PopularProductList />
@@ -127,10 +138,22 @@ function MainProductList() {
           </ul> */}
 
           {isLoading ? (
-            <div className="flex justify-center items-center h-[500px]">
-              <BeatLoader color="#68A9ED" />
+            <div className=" flex flex-col gap-[6px]">
+              <div className="card">
+                <div className="spinner">
+                  {/* <BeatLoader size={15} color="#3c4048" /> */}
+                </div>
+              </div>
+              <div className="cardDescription flex flex-col gap-3 justify-center ">
+                <span className="line line-1"></span>
+                <span className="line line-1"></span>
+                <span className="line line-2"></span>
+              </div>
             </div>
           ) : (
+            // <div className="flex justify-center items-center h-[500px]">
+            //   <BeatLoader color="#68A9ED" />
+            // </div>
             <ul>{products}</ul>
           )}
         </div>
