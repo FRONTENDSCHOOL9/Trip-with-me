@@ -85,9 +85,9 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
           onKeyDown={activeEnter}
           value={inputText}
           placeholder="장소를 상세히 입력해주세요."
-          className="border rounded-md text-slate-500 ml-4"
+          className="p-1 mt-1 mb-1 ml-2 text-sm border rounded-md text-slate-500"
         />
-        <button type="submit" className="p-2 text-base text-slate-500">
+        <button type="submit" className="p-1 text-base text-slate-500">
           검색
         </button>
       </form>
@@ -121,7 +121,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
           strokeWeight={4}
           strokeColor={'#FC7C7C'}
           strokeOpacity={1}
-          strokeStyle={'solid'} // 선의 스타일입니다
+          strokeStyle={'solid'}
         />
       </Map>
     </>

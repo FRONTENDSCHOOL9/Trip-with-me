@@ -105,7 +105,7 @@ function AddItinerary({ productInfo, setProductInfo }) {
         </button>
         <div className="w-full mb-5 ml-4 text-left">
           <p className="text-sm text-slate-400">
-            - 지도를 추가하여 날짜별 경로를 그려주세요.
+            - 여행 일차만큼 지도를 추가해주세요.
           </p>
           <p className="text-sm text-slate-400">
             - 지도 안의 원하는 장소를 클릭하여 동선을 표시해보세요.
