@@ -88,7 +88,7 @@ function Comment() {
           <Link to={`/mypage/${item?.user?._id}`}>
             <img
               className="w-14 h-14 border-2 rounded-full"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.user?.profile}`}
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
               alt=""
             />
           </Link>
