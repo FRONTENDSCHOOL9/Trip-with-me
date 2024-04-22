@@ -15,11 +15,14 @@ import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
 import ProductLikeButton from '@components/ProductLikeButton';
+import usePageStore from '@zustand/pageName.mjs';
 
 function ProductDetail() {
   const axios = useCustomAxios();
   const { _id } = useParams();
   const navigate = useNavigate();
+  const page = '게시물 상세 페이지';
+  const setPageName = usePageStore(state => state.setPageName);
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useMemberState();
@@ -32,6 +35,7 @@ function ProductDetail() {
 
   useEffect(() => {
     getData();
+
     console.log(_id);
   }, []);
 
@@ -88,6 +92,7 @@ function ProductDetail() {
     useEffect(() => {
       if (map && bounds) {
         map.setBounds(bounds);
+        setPageName(page);
       }
     }, [map, bounds]);
   };
