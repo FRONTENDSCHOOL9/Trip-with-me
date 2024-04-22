@@ -1764,7 +1764,7 @@ export const initData = async nextSeq => {
     // 코드
     code: [
       {
-        _id: 'TravelSpot',
+        _id: 'travelSpot',
         title: '여행지',
         codes: [
           {
