@@ -22,8 +22,8 @@ import ProductContent from '@pages/product/addproduct/ProductContent';
 import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
 import MyPageOther from '@pages/mypage/MyPageOther';
 import Intro from '@pages/intro/Intro';
-import SearchPage from '@pages/product/SearchPage';
 import OtherProductSellList from '@pages/mypage/OtherProductSellList';
+import KeywordSearchPage from '@pages/product/KeywordSearchPage';
 
 const router = createBrowserRouter([
   {
@@ -137,7 +137,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/search',
-    element: <SearchPage />,
+    element: <KeywordSearchPage />,
   },
 ]);
 
