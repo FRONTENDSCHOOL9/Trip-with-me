@@ -24,6 +24,8 @@ function ProductImage({ productInfo, setProductInfo }) {
     setFileNamed(e.target.files[0]);
   };
 
+  console.log(productInfo);
+
   const onSubmit = async e => {
     e.preventDefault();
     try {
@@ -59,10 +61,10 @@ function ProductImage({ productInfo, setProductInfo }) {
   return (
     <div>
       <form
-        className="flex flex-col items-center justify-cente  "
+        className="flex flex-col items-center justify-cente "
         onSubmit={onSubmit}
       >
-        <p className="my-12 text-2xl font-semibold  text-main-color">
+        <p className="my-12 text-2xl font-semibold text-main-color">
           여행 관련 이미지를 추가해주세요.
         </p>
         <label
@@ -82,7 +84,7 @@ function ProductImage({ productInfo, setProductInfo }) {
             )}
           </div>
         </label>
-        <div className="flex  justify-center items-center relative">
+        <div className="relative flex items-center justify-center">
           <input
             className="hidden"
             type="file"
@@ -97,10 +99,10 @@ function ProductImage({ productInfo, setProductInfo }) {
           )}
         </div>
         <div className="flex items-center justify-between mt-20 w-96">
-          <p className="text-m font-semibold ml-44"> 1 / 7</p>
+          <p className="font-semibold text-m ml-44"> 1 / 7</p>
           <button
             type="submit"
-            className="px-10 py-3 text-xl  font-semibold text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             다음
           </button>

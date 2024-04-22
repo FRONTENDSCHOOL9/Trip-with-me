@@ -115,7 +115,7 @@ function ProductDetail() {
         </div>
         <div className="flex items-center justify-between ml-5 ">
           <ul className="flex gap-2 my-4">
-            {productInfo?.item?.extra.themes.map((theme, index) => (
+            {productInfo?.item?.extra?.themes.map((theme, index) => (
               <li
                 key={theme.id}
                 className="px-4 py-1 text-sm font-medium border-2 rounded-full"
@@ -154,7 +154,7 @@ function ProductDetail() {
                       alt="위치"
                     />
                     <p className="shrink">
-                      {productInfo?.item?.extra.spot[0].name}
+                      {productInfo?.item?.extra?.spot[0].name}
                     </p>
                   </div>
                   <div className="flex items-center">
@@ -164,8 +164,8 @@ function ProductDetail() {
                       alt="위치"
                     />
                     <p>
-                      {productInfo?.item?.extra.date.startDate.slice(5)}~
-                      {productInfo?.item?.extra.date.endDate.slice(5)}
+                      {productInfo?.item?.extra?.date.startDate.slice(5)}~
+                      {productInfo?.item?.extra?.date.endDate.slice(5)}
                     </p>
                   </div>
                   <div className="flex items-center">
@@ -183,7 +183,7 @@ function ProductDetail() {
             <div className="flex flex-col">
               <Tabs>
                 <TabList className="flex gap-1 mt-6 mb-2 ">
-                  {productInfo?.item?.extra.itineraryMaps.map((_, index) => (
+                  {productInfo?.item?.extra?.itineraryMaps.map((_, index) => (
                     <Tab
                       className="px-4 py-1 text-sm border-2 rounded-full"
                       key={index}
@@ -193,7 +193,7 @@ function ProductDetail() {
                   ))}
                 </TabList>
 
-                {productInfo?.item?.extra.itineraryMaps.map(
+                {productInfo?.item?.extra?.itineraryMaps.map(
                   (dayPlan, index) => (
                     <TabPanel key={index}>
                       <Map
