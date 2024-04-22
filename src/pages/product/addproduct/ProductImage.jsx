@@ -1,5 +1,5 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -17,13 +17,22 @@ function ProductImage({ productInfo, setProductInfo }) {
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
   const [fileNamed, setFileNamed] = useState();
 
-  const handleFileChange = e => {
-    console.log('파일출력', e.target.files);
-    setSelectedFile(URL.createObjectURL(e.target.files[0]));
-    setShowUploadPrompt(false);
-    setFileNamed(e.target.files[0]);
-  };
+  useEffect(() => {
+    // 페이지 이동 시 sessionStorage에서 선택한 파일 데이터를 가져와서 설정합니다.
+    const storedFile = sessionStorage.getItem('selectedFile');
+    if (storedFile) {
+      setSelectedFile(storedFile);
+    }
+  }, []); // 컴포넌트가 마운트될 때 한 번만 실행합니다.
 
+  const handleFileChange = e => {
+    // 선택한 파일 데이터를 sessionStorage에 저장합니다.
+    const file = e.target.files[0];
+    sessionStorage.setItem('selectedFile', URL.createObjectURL(file));
+    setSelectedFile(URL.createObjectURL(file));
+    setShowUploadPrompt(false);
+    setFileNamed(file);
+  };
   console.log(productInfo);
 
   const onSubmit = async e => {
@@ -41,17 +50,14 @@ function ProductImage({ productInfo, setProductInfo }) {
           },
           data: imageFormData,
         });
-        console.log('fileRes', fileRes);
+
+        const fileName = fileRes.data.item[0]?.name || '';
 
         setProductInfo(prevInfo => ({
           ...prevInfo,
-          mainImages: {
-            name: fileRes.data.item[0].name,
-          },
+          mainImages: [{ name: fileName }], // 새 이미지로 덮어쓰기
         }));
         navigate(`/product/add/${+step + 1}`);
-      } else {
-        setShowUploadPrompt(true);
       }
     } catch (error) {
       console.log(error.message);
