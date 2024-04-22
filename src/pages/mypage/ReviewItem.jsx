@@ -62,11 +62,14 @@ function ReviewItem({ item }) {
           {[1, 2, 3, 4, 5].map(num => (
             <button
               key={num}
-              className={`bg-[url('/src/assets/icons/icon-star${num <= rating ? '-full' : ''}.svg')] w-6 h-6 mr-2 mb-1`}
+              className={`center no-repeat bg-[url('/src/assets/icons/icon-star${num <= rating ? '-full' : ''}.svg')] w-6 h-6 mr-2 mb-1`}
+              // className={`center no-repeat bg-[url('/src/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1`}
               type="button"
               data-num={num}
               onClick={handleStar}
-            ></button>
+            >
+              {' '}
+            </button>
           ))}
         </div>
         <div className="h-20 order border border-gray-300 flex">
