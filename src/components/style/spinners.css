@@ -1,0 +1,43 @@
+.card {
+  width: 391px;
+  height: 224px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #ccc, #a8a7a7); /* 그라디언트 추가 */
+  animation: moveGradient 2s infinite linear; /* 그라디언트 애니메이션 추가 */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.cardDescription {
+  width: 391px;
+  height: 98px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.line {
+  display: block;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-left: 18px;
+}
+.line-1 {
+  width: 340px;
+}
+.line-2 {
+  width: 280px;
+}
+
+@keyframes moveGradient {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
