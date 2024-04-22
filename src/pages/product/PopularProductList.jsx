@@ -9,6 +9,8 @@ import 'swiper/css/pagination';
 const PopularProductList = () => {
   const axios = useCustomAxios();
   const [popularProducts, setPopularProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const getPopularProducts = async () => {
     try {
       const response = await axios.get('/products');
@@ -18,14 +20,31 @@ const PopularProductList = () => {
         .slice(0, 5);
 
       setPopularProducts(filteredItems);
+      setIsLoading(false);
     } catch (error) {
       console.error('인기 상품 정보 불러오기 실패', error);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getPopularProducts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-[6px]">
+        <div className="card">
+          <div className="spinner"></div>
+        </div>
+        <div className="cardDescription flex flex-col gap-3 justify-center">
+          <span className="line line-1"></span>
+          <span className="line line-1"></span>
+          <span className="line line-2"></span>
+        </div>
+      </div>
+    );
+  }
 
   console.log('인기상품 정렬', popularProducts);
 
