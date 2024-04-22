@@ -62,7 +62,11 @@ function Login() {
             placeholder="ID"
             type="text"
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-sm font-medium text-warning-color">
+              {errors.email.message}
+            </p>
+          )}
           <br />
           {/* <label htmlFor="password">비밀번호</label> */}
           <input
@@ -79,7 +83,11 @@ function Login() {
             placeholder="PW"
             type="password"
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-sm font-medium text-warning-color">
+              {errors.password.message}
+            </p>
+          )}
           <br />
           <Submit>로그인</Submit>
           <div className="my-5 flex items-center justify-center">
