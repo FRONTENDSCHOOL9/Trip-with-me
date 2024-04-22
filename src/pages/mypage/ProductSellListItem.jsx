@@ -5,7 +5,7 @@ const productSellListItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
 
   return (
-    <li className="h-80 p-7 mb-5 font-notosans">
+    <li className="h-80 p-7 mb-5 font-notosans list-none">
       <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
         <Link to={`/product/${item._id}`}>
           <img
