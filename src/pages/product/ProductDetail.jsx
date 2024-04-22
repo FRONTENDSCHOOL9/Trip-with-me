@@ -54,8 +54,12 @@ function ProductDetail() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/seller/products/${_id}`);
-      navigate('/product/list');
+      const userConfirmed = confirm('정말 삭제하시겠습니까?');
+
+      if (userConfirmed) {
+        await axios.delete(`/seller/products/${_id}`);
+        navigate('/mypage/selllist');
+      }
     } catch (error) {
       console.log(error.message);
     }
