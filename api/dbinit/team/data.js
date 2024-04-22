@@ -1678,7 +1678,7 @@ export const initData = async nextSeq => {
         user: {
           _id: 3,
           name: '박팀장',
-          profile: 'user3.jpg',
+          profile: 'user3.png',
         },
       },
       {
@@ -1689,7 +1689,6 @@ export const initData = async nextSeq => {
         user: {
           _id: 4,
           name: '류팀원',
-          profile: 'user3.jpg',
         },
       },
       {
@@ -1700,7 +1699,6 @@ export const initData = async nextSeq => {
         user: {
           _id: 4,
           name: '류팀원',
-          profile: 'user3.jpg',
         },
       },
       {
@@ -1711,7 +1709,6 @@ export const initData = async nextSeq => {
         user: {
           _id: 5,
           name: '김긴급',
-          profile: 'user5.jpg',
         },
       },
     ],

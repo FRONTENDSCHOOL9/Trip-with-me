@@ -25,13 +25,25 @@ function ProductImage({ productInfo, setProductInfo }) {
     }
   }, []); // 컴포넌트가 마운트될 때 한 번만 실행합니다.
 
+  function handlePageUnload() {
+    // sessionStorage에 저장된 데이터 삭제
+    sessionStorage.removeItem('selectedFile');
+  }
+
+  window.addEventListener('beforeunload', handlePageUnload);
+
   const handleFileChange = e => {
     // 선택한 파일 데이터를 sessionStorage에 저장합니다.
+    console.log('file=>', e.target.files[0]);
     const file = e.target.files[0];
-    sessionStorage.setItem('selectedFile', URL.createObjectURL(file));
-    setSelectedFile(URL.createObjectURL(file));
-    setShowUploadPrompt(false);
+    const imgUrl = URL.createObjectURL(file);
+    // console.log(imgUrl);/
+    // sessionStorage.setItem('selectedFile', URL.createObjectURL(file));
+    // setSelectedFile(URL.createObjectURL(file));
+    console.log('pr-imgview');
+    setSelectedFile(imgUrl);
     setFileNamed(file);
+    setShowUploadPrompt(false);
   };
   console.log(productInfo);
 
@@ -41,7 +53,8 @@ function ProductImage({ productInfo, setProductInfo }) {
       if (selectedFile) {
         const imageFormData = new FormData();
         imageFormData.append('attach', fileNamed);
-        console.log('imageFormData', imageFormData);
+        // console.log('imageFormData', imageFormData);
+        console.log('selectedFile 안쪽 실행');
 
         const fileRes = await axios('/files', {
           method: 'post',
@@ -56,7 +69,30 @@ function ProductImage({ productInfo, setProductInfo }) {
         setProductInfo(prevInfo => ({
           ...prevInfo,
           mainImages: [{ name: fileName }], // 새 이미지로 덮어쓰기
+          imageView: selectedFile,
+          fileName: fileNamed,
         }));
+        navigate(`/product/add/${+step + 1}`);
+      } else if (!selectedFile && productInfo.imageView) {
+        // const imageFormData = new FormData();
+        // imageFormData.append('attach', productInfo.fileNamed);
+        // // console.log('imageFormData', imageFormData);
+        // console.log('elseif 안쪽 실행');
+
+        // const fileRes = await axios('/files', {
+        //   method: 'post',
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //   },
+        //   data: imageFormData,
+        // });
+
+        // const fileName = fileRes.data.item[0]?.name || '';
+
+        // setProductInfo(prevInfo => ({
+        //   ...prevInfo,
+        //   mainImages: [{ name: fileName }], // 새 이미지로 덮어쓰기
+        // }));
         navigate(`/product/add/${+step + 1}`);
       }
     } catch (error) {
@@ -80,7 +116,11 @@ function ProductImage({ productInfo, setProductInfo }) {
           <div className="relative border-2 rounded-lg w-80 h-72 bg-light-gray border-mid-gray">
             <img
               className="object-cover w-full h-full rounded-lg"
-              src={selectedFile}
+              src={
+                !selectedFile && productInfo.imageView
+                  ? productInfo.imageView
+                  : selectedFile
+              }
               alt=""
             />
             {!selectedFile && (
