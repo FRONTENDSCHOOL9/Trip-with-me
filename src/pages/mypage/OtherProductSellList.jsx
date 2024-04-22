@@ -15,7 +15,7 @@ function OtherProductSellList() {
   const [itemList, setItemList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isEnd, setIsEnd] = useState(false);
   useEffect(() => {
     getSellList();
     setPageName(page);
@@ -38,6 +38,7 @@ function OtherProductSellList() {
 
       let endPage = res?.data?.pagination?.totalPages;
       let nowPage = res?.data?.pagination?.page;
+      setIsEnd(endPage === nowPage);
 
       setItemList(newItemList);
       setTotalPages(endPage);
@@ -72,7 +73,7 @@ function OtherProductSellList() {
         </div>
       )}
       {itemList}
-      {!isLoading && (
+      {!isLoading && !isEnd && (
         <button
           className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
           onClick={handleClick}

@@ -12,11 +12,20 @@ function ProductBuyList() {
   const [itemList, setItemList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isEnd, setIsEnd] = useState(false);
   useEffect(() => {
     getBuyList();
     setPageName(page);
   }, []);
+
+  const handleClick = e => {
+    if (pageParam < totalPages) {
+      getBuyList();
+    } else if (pageParam === totalPages) {
+      getBuyList();
+      e.target.className = 'hidden';
+    }
+  };
 
   const getBuyList = async () => {
     try {
@@ -36,6 +45,8 @@ function ProductBuyList() {
       // console.log('res', res);
       let endPage = res?.data?.pagination?.totalPages;
       let nowPage = res?.data?.pagination?.page;
+      setIsEnd(endPage === nowPage);
+
       console.log(endPage);
       setTotalPages(endPage);
       setItemList(newItemList);
@@ -43,15 +54,6 @@ function ProductBuyList() {
       setIsLoading(false);
     } catch (err) {
       console.log(err.message);
-    }
-  };
-
-  const handleClick = e => {
-    if (pageParam < totalPages) {
-      getBuyList();
-    } else if (pageParam == totalPages) {
-      getBuyList();
-      e.target.className = 'hidden';
     }
   };
 
@@ -70,8 +72,11 @@ function ProductBuyList() {
         </div>
       )}
       {itemList}
-      {!isLoading && (
+      {/* {isLoading && } */}
+
+      {!isLoading && !isEnd && (
         <button
+          id="more"
           className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
           onClick={handleClick}
         >

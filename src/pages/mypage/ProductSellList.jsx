@@ -12,6 +12,7 @@ function ProductSellList() {
   const [itemList, setItemList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
 
   const getSellList = async () => {
     setIsLoading(true);
@@ -30,6 +31,7 @@ function ProductSellList() {
       console.log('newItemList', newItemList);
       let endPage = res?.data?.pagination?.totalPages;
       let nowPage = res?.data?.pagination?.page;
+      setIsEnd(endPage === nowPage);
       console.log(endPage);
       setTotalPages(endPage);
       setItemList(newItemList);
@@ -62,7 +64,7 @@ function ProductSellList() {
           <BeatLoader color="#68A9ED" />
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && !isEnd && (
         <button
           className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
           onClick={handleClick}
