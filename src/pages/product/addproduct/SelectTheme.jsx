@@ -36,7 +36,9 @@ function SelectTheme({ productInfo, setProductInfo }) {
     const themeIndex = selectedThemes.findIndex(t => t.id === theme.id);
 
     if (themeIndex === -1) {
-      selectedThemes.push(theme);
+      if (selectedThemes.length < 3) {
+        selectedThemes.push(theme);
+      }
     } else {
       selectedThemes.splice(themeIndex, 1);
     }
@@ -70,7 +72,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center relative"
+        className="relative flex flex-col items-center justify-center"
       >
         <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행테마를 골라주세요.
@@ -99,7 +101,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
           ))}
         </ul>
         {showUploadPrompt && (
-          <p className="absolute bottom-24 text-sm font-medium text-warning-color font-notosans">
+          <p className="absolute text-sm font-medium bottom-24 text-warning-color font-notosans">
             여행테마를 선택해주세요.
           </p>
         )}
@@ -111,7 +113,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
           >
             이전
           </button>
-          <p className="text-m font-semibold"> 6 / 7</p>
+          <p className="font-semibold text-m"> 6 / 7</p>
           <button
             type="submit"
             className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
