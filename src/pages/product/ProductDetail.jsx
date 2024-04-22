@@ -69,7 +69,7 @@ function ProductDetail() {
     );
   }
 
-  const isSeller = productInfo?.item?.seller._id === user._id;
+  const isSeller = productInfo?.item?.seller?._id === user?._id;
 
   const formattedPrice = productInfo?.item?.price
     ? new Intl.NumberFormat('ko-KR', {
