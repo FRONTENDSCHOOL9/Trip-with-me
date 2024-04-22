@@ -16,7 +16,13 @@ function ProductName({ productInfo, setProductInfo }) {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: productInfo.name,
+      quantity: productInfo.quantity || '', // 0이면 빈문자열로
+      price: productInfo.price || '',
+    },
+  });
   console.log(watch('name'));
 
   const onSubmit = data => {
@@ -40,7 +46,7 @@ function ProductName({ productInfo, setProductInfo }) {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit, oninvalid)}>
-        <div className="flex flex-col text-2xl font-semibold mx-6  ">
+        <div className="flex flex-col mx-6 text-2xl font-semibold ">
           <label className="mt-10 mb-6 text-main-color" htmlFor="name">
             여행 제목을 입력하세요.
           </label>
@@ -57,7 +63,7 @@ function ProductName({ productInfo, setProductInfo }) {
             })}
           />
           {errors.name && (
-            <p className=" text-sm font-medium text-warning-color font-notosans mt-2 ">
+            <p className="mt-2 text-sm font-medium text-warning-color font-notosans">
               {errors.name.message}
             </p>
           )}
@@ -81,7 +87,7 @@ function ProductName({ productInfo, setProductInfo }) {
           </div>
 
           {errors.quantity && (
-            <p className=" text-sm font-medium text-warning-color font-notosans  mt-2">
+            <p className="mt-2 text-sm font-medium text-warning-color font-notosans">
               {errors.quantity.message}
             </p>
           )}
@@ -109,7 +115,7 @@ function ProductName({ productInfo, setProductInfo }) {
           </div>
 
           {errors.price && (
-            <p className=" text-sm font-medium text-warning-color font-notosans  mt-2">
+            <p className="mt-2 text-sm font-medium text-warning-color font-notosans">
               {errors.price.message}
             </p>
           )}
@@ -118,11 +124,11 @@ function ProductName({ productInfo, setProductInfo }) {
           <button
             type="button"
             onClick={handlePrevButton}
-            className="px-10 py-3 text-xl  font-semibold text-white rounded-full bg-main-color"
+            className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
           >
             이전
           </button>
-          <p className="text-m font-semibold"> 2 / 7</p>
+          <p className="font-semibold text-m"> 2 / 7</p>
           <button
             type="submit"
             className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"

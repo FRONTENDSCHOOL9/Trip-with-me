@@ -54,7 +54,7 @@ function Signup() {
     if (e.target.getAttribute('is_active') === 'true') {
       e.target.setAttribute('is_active', 'false');
       e.target.className =
-        '  border-2 rounded-full py-1 px-2 m-1  border-main-color';
+        'is_active  border-2 rounded-full py-1 px-2 m-1  border-gray-300 ';
       count--;
     } else {
       if (selectValid(count) === false) {
@@ -63,7 +63,7 @@ function Signup() {
       }
       e.target.setAttribute('is_active', 'true');
       e.target.className =
-        ' border-main-color border-2 rounded-full py-1 px-2 m-1  border-gray-300';
+        ' border-main-color border-2 rounded-full py-1 px-2 m-1  border-main-color ';
       count++;
     }
 
@@ -195,7 +195,11 @@ function Signup() {
               중복 확인
             </button>
           </div>
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <p className=" text-sm font-medium text-warning-color">
+              {errors.email.message}
+            </p>
+          )}
           <label className="text-sm font-semibold" htmlFor="password">
             비밀번호
           </label>
@@ -214,7 +218,11 @@ function Signup() {
               })}
             />
           </div>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-sm font-medium text-warning-color">
+              {errors.password.message}
+            </p>
+          )}
 
           <label className="text-sm font-semibold" htmlFor="passwordConfirm">
             비밀번호 재확인
@@ -226,8 +234,12 @@ function Signup() {
               id="passwordConfirm"
             />
           </div>
-          {error && <p>{error}</p>}
-          {valid && <p>{valid}</p>}
+          {error && (
+            <p className="text-sm font-medium text-warning-color">{error}</p>
+          )}
+          {valid && (
+            <p className="text-sm font-medium text-main-color">{valid}</p>
+          )}
 
           <label className="text-sm font-semibold " htmlFor="name">
             닉네임
@@ -240,7 +252,11 @@ function Signup() {
               {...register('name', { required: '닉네임을 입력하세요.' })}
             />
           </div>
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-sm font-medium text-warning-color">
+              {errors.name.message}
+            </p>
+          )}
           <br />
           <hr className="  border-b-[1px] border-white my-6" />
           <div className="flex gap-20">
@@ -302,7 +318,11 @@ function Signup() {
                   {...register('address', { required: '성별을 선택하세요.' })}
                 />
               </div>
-              {errors.address && <p>{errors.address.message}</p>}
+              {errors.address && (
+                <p className="text-sm font-medium text-warning-color">
+                  {errors.address.message}
+                </p>
+              )}
             </div>
           </div>
           <hr className="  border-b-[1px] border-white  mt-6" />
@@ -318,7 +338,7 @@ function Signup() {
               </div>
             </div>
 
-            <ul className="text-center rounded-full py-1 px-8  border-main-color">
+            <ul className="flex text-center rounded-full py-1 px-4  border-main-color">
               <li>{themeData}</li>
             </ul>
           </div>

@@ -11,9 +11,8 @@ function ProductLikeList() {
   const [likeData, setLikeData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const getLikeData = async () => {
-    try{
+    try {
       setIsLoading(true);
       const res = await axios.get('/bookmarks/product');
       const likeList = res?.data?.item?.map(item => {
@@ -21,8 +20,7 @@ function ProductLikeList() {
       });
       setLikeData(likeList);
       setIsLoading(false);
-    }
-    catch(err){
+    } catch (err) {
       console.log(err.message);
     }
   };
@@ -34,14 +32,14 @@ function ProductLikeList() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75 ">
         <BeatLoader color="#68A9ED" />
       </div>
     );
   }
 
   // console.log('likeData=>', likeData);
-  return <div className="flex flex-col gap-3">{likeData}</div>;
+  return <div className="flex flex-col gap-3s">{likeData}</div>;
 }
 
 export default ProductLikeList;

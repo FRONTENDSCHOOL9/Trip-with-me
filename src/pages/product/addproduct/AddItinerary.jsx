@@ -1,5 +1,5 @@
 import KakaoMap from '@pages/product/addproduct/map/KakaoMap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './productStyle/Map.css';
@@ -19,14 +19,29 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
 
-  const [itineraryMaps, setItineraryMaps] = useState([{ markers: [] }]);
-  const [mapLength, setMapLength] = useState(1);
+  const [itineraryMaps, setItineraryMaps] = useState(() => {
+    return productInfo.extra.itineraryMaps &&
+      productInfo.extra.itineraryMaps.length > 0
+      ? productInfo.extra.itineraryMaps
+      : [{ markers: [] }];
+  });
+  const [mapLength, setMapLength] = useState(itineraryMaps.length);
   const [selectedIndex, setSeletedIndex] = useState(0);
 
   const startDate = new Date(productInfo.extra.date.startDate);
   const endDate = new Date(productInfo.extra.date.endDate);
   const itineraryDays =
     Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+  useEffect(() => {
+    if (
+      productInfo.extra.itineraryMaps &&
+      productInfo.extra.itineraryMaps.length > 0
+    ) {
+      setItineraryMaps(productInfo.extra.itineraryMaps);
+      setMapLength(productInfo.extra.itineraryMaps.length);
+    }
+  }, [productInfo]);
 
   const addMap = e => {
     e.preventDefault();

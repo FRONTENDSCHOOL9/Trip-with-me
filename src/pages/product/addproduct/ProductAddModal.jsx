@@ -1,5 +1,5 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 ProductAddModal.propTypes = {
@@ -9,6 +9,7 @@ ProductAddModal.propTypes = {
 function ProductAddModal({ productInfo }) {
   const navigate = useNavigate();
   const axios = useCustomAxios();
+  const { step } = useParams();
 
   const handleSubmit = async () => {
     try {
@@ -26,21 +27,34 @@ function ProductAddModal({ productInfo }) {
     }
   };
 
+  const handlePrevButton = e => {
+    e.preventDefault();
+    navigate(`/product/add/${+step - 1}`);
+  };
+
   return (
-    <div className="flex h-full  items-center justify-center modal-box-screen">
-      <div className="flex flex-col items-center justify-center bg-white w-4/5 border-4 rounded-3xl">
+    <div className="flex items-center justify-center h-full modal-box-screen">
+      <div className="flex flex-col items-center justify-center w-4/5 bg-white border-4 rounded-3xl">
         <img
           className="my-14"
-          src="/src/assets/icons/icon-check-circle.png"
+          src="/src/assets/icons/icon-smile-modal.svg"
           alt=""
         />
-        <p className="text-xl font-medium mb-14">등록 되었습니다.</p>
-        <button
-          onClick={handleSubmit}
-          className="px-6 py-4 mb-12 text-xl font-semibold text-white rounded-full bg-main-color"
-        >
-          게시글 확인
-        </button>
+        <p className="text-xl font-medium mb-14">등록 하시겠습니까?</p>
+        <div>
+          <button
+            onClick={handlePrevButton}
+            className="py-3 mb-12 mr-10 text-xl font-semibold text-white rounded-full px-9 bg-main-color"
+          >
+            이전
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="py-3 mb-12 text-xl font-semibold text-white rounded-full px-9 bg-main-color"
+          >
+            등록
+          </button>
+        </div>
       </div>
     </div>
   );

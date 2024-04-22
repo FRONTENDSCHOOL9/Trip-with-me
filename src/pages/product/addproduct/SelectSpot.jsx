@@ -3,18 +3,24 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-ProductSelectSpot.propTypes = {
+SelectSpot.propTypes = {
   productInfo: PropTypes.object,
   setProductInfo: PropTypes.func,
 };
 
-function ProductSelectSpot({ productInfo, setProductInfo }) {
+function SelectSpot({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
 
   const [showUploadPrompt, setShowUploadPrompt] = useState(false);
   const [tripSpots, setTripSpots] = useState([]);
-  const [selectedSpots, setSelectedSpots] = useState([]);
+  const [selectedSpots, setSelectedSpots] = useState(
+    productInfo?.extra?.spot || [],
+  );
+
+  useEffect(() => {
+    setSelectedSpots(productInfo?.extra?.spot || []);
+  }, [productInfo?.extra?.spot]);
 
   const axios = useCustomAxios();
 
@@ -89,7 +95,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center relative"
+        className="relative flex flex-col items-center justify-center"
       >
         <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
           여행지를 골라주세요.
@@ -120,7 +126,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
           ))}
         </ul>
         {showUploadPrompt && (
-          <p className="absolute bottom-24 text-sm font-medium text-warning-color font-notosans">
+          <p className="absolute text-sm font-medium bottom-24 text-warning-color font-notosans">
             여행지를 선택해주세요.
           </p>
         )}
@@ -132,7 +138,7 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
           >
             이전
           </button>
-          <p className="text-m font-semibold"> 5 / 7</p>
+          <p className="font-semibold text-m"> 5 / 7</p>
           <button
             type="submit"
             className="px-10 py-3 text-xl font-semibold text-white rounded-full bg-main-color"
@@ -145,4 +151,4 @@ function ProductSelectSpot({ productInfo, setProductInfo }) {
   );
 }
 
-export default ProductSelectSpot;
+export default SelectSpot;
