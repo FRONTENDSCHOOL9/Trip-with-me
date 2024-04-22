@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 
-const MainProductListItem = ({ item }) => {
+const MainProductItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
   const [likeState, setLikeState] = useState(true);
   const [likeId, setLikeId] = useState(item?._id);
@@ -114,8 +114,8 @@ const MainProductListItem = ({ item }) => {
   );
 };
 
-MainProductListItem.propTypes = {
+MainProductItem.propTypes = {
   item: PropTypes.object,
 };
 
-export default MainProductListItem;
+export default MainProductItem;

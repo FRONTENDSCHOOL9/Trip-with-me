@@ -6,7 +6,7 @@ import PopularProductList from '@pages/product/PopularProductList';
 import '@components/style/spinners.css';
 import NewProduct from '@pages/product/NewProductList';
 
-function MainProductList() {
+function MainProductPage() {
   return (
     <div className="layout">
       <Title />
@@ -35,4 +35,4 @@ function MainProductList() {
   );
 }
 
-export default MainProductList;
+export default MainProductPage;

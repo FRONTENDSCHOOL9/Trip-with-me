@@ -1,5 +1,5 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import MainProductListItem from '@pages/product/MainProductListItem';
+import MainProductItem from '@pages/product/MainProductItem';
 import { useEffect, useState } from 'react';
 
 const NewProduct = () => {
@@ -20,7 +20,7 @@ const NewProduct = () => {
       const { item } = res.data;
 
       const list = item.map(product => (
-        <MainProductListItem key={product._id} item={product} />
+        <MainProductItem key={product._id} item={product} />
       ));
       let newItemList = [...itemList, ...list];
       console.log('newItemList', newItemList);

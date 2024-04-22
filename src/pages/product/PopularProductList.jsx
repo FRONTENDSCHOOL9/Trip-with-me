@@ -74,7 +74,7 @@ const PopularProductList = () => {
             >
               <div>
                 <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
-                  <Link to={`/products/${item._id}`}>
+                  <Link to={`/product/${item._id}`}>
                     <img
                       className="size-full object-cover"
                       src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
@@ -83,7 +83,7 @@ const PopularProductList = () => {
                 </div>
 
                 <div className="p-2 relative">
-                  <Link to={`/products/${item.id}`}>
+                  <Link to={`/product/${item.id}`}>
                     <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                       {item.name}
                     </h3>
