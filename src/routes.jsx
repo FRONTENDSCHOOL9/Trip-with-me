@@ -16,7 +16,7 @@ import EditMyPage from '@pages/mypage/EditMyPage';
 import Calendar from '@pages/product/addproduct/Calendar';
 import ProductImage from '@pages/product/addproduct/ProductImage';
 import ProductName from '@pages/product/addproduct/ProductName';
-import ProductSelectSpot from '@pages/product/addproduct/ProductSelectSpot';
+import SelectSpot from '@pages/product/addproduct/SelectSpot';
 import SelectTheme from '@pages/product/addproduct/SelectTheme';
 import ProductContent from '@pages/product/addproduct/ProductContent';
 import ProductAddModal from '@pages/product/addproduct/ProductAddModal';
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/product/add/:step',
-        element: <ProductSelectSpot />,
+        element: <SelectSpot />,
       },
       {
         path: '/product/add/:step',

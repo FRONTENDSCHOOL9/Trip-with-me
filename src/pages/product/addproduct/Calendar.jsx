@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import './productStyle/Calendar.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import ProductImage from '@pages/product/addproduct/ProductImage';
 
 Calendar.propTypes = {
   productInfo: PropTypes.object,
@@ -17,13 +18,16 @@ function Calendar({ productInfo, setProductInfo }) {
   const navigate = useNavigate();
   const { step } = useParams();
 
-  const [selectedDateRange, setSelectedDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
+  const [selectedDateRange, setSelectedDateRange] = useState(() => {
+    const { startDate, endDate } = productInfo.extra.date;
+    return [
+      {
+        startDate: startDate ? new Date(startDate) : new Date(),
+        endDate: endDate ? new Date(endDate) : new Date(),
+        key: 'selection',
+      },
+    ];
+  });
 
   const handleCalendarChange = e => {
     e.preventDefault();
@@ -58,15 +62,16 @@ function Calendar({ productInfo, setProductInfo }) {
   const handlePrevButton = e => {
     e.preventDefault();
     navigate(`/product/add/${+step - 1}`);
+    // <ProductImage productInfo={productInfo} setProductInfo={setProductInfo} />;
   };
-
+  console.log(productInfo);
   return (
     <div>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center"
       >
-        <p className="my-12 text-2xl font-semibold  text-main-color">
+        <p className="my-12 text-2xl font-semibold text-main-color">
           여행 날짜를 선택해주세요.
         </p>
         <DateRange
@@ -84,7 +89,7 @@ function Calendar({ productInfo, setProductInfo }) {
           >
             이전
           </button>
-          <p className="text-m font-semibold"> 3 / 7</p>
+          <p className="font-semibold text-m"> 3 / 7</p>
           <button
             type="submit"
             onClick={handleCalendarChange}

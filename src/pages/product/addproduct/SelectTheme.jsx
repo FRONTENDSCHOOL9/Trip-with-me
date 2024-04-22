@@ -1,5 +1,5 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -16,6 +16,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
   const [tripThemes, setTripThemes] = useState([]);
 
   const axios = useCustomAxios();
+
   useEffect(() => {
     getTripThemes();
   }, []);
@@ -23,7 +24,13 @@ function SelectTheme({ productInfo, setProductInfo }) {
   const getTripThemes = async () => {
     try {
       const { data } = await axios.get(import.meta.env.VITE_TRAVEL_THEMES_API);
-      setTripThemes(data);
+      setTripThemes(
+        data.map(theme => ({
+          ...theme,
+          isSelected:
+            productInfo?.extra?.themes?.some(t => t.id === theme.id) ?? false,
+        })),
+      );
     } catch (err) {
       console.log(err);
     }
@@ -74,9 +81,10 @@ function SelectTheme({ productInfo, setProductInfo }) {
         onSubmit={handleSubmit}
         className="relative flex flex-col items-center justify-center"
       >
-        <p className="my-20 text-2xl font-semibold font-notosans text-main-color">
+        <p className="mt-20 text-2xl font-semibold font-notosans text-main-color">
           여행테마를 골라주세요.
         </p>
+        <p className="mt-3 mb-10 text-sm text-slate-400">(최대 3개)</p>
         <ul className="flex flex-wrap items-center justify-center m-6 gap-x-2 gap-y-4 font-notosans">
           {tripThemes.map((theme, id) => (
             <li key={id}>
@@ -90,9 +98,7 @@ function SelectTheme({ productInfo, setProductInfo }) {
                 <input
                   className="hidden"
                   type="checkbox"
-                  checked={productInfo?.extra?.themes?.some(
-                    t => t.id === theme.id,
-                  )}
+                  checked={theme.isSelected}
                   onChange={() => handleCheckboxChange(theme)}
                 />
                 {theme.name}

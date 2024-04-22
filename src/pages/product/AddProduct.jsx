@@ -5,7 +5,7 @@ import ProductImage from './addproduct/ProductImage';
 import ProductName from './addproduct/ProductName';
 import Calendar from './addproduct/Calendar';
 import AddItinerary from './addproduct/AddItinerary';
-import ProductSelectSpot from './addproduct/ProductSelectSpot';
+import ProductSelectSpot from './addproduct/SelectSpot';
 import SelectTheme from './addproduct/SelectTheme';
 import ProductContent from './addproduct/ProductContent';
 import ProductAddModal from './addproduct/ProductAddModal';
