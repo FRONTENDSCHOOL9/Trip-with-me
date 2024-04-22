@@ -35,3 +35,15 @@
 .modal-box-screen {
   background-color: rgba(0, 0, 0, 0.3);
 }
+.like-card {
+  background: rgb(138, 226, 74);
+  background: linear-gradient(
+    126deg,
+    rgba(138, 226, 74, 1) 16%,
+    rgba(147, 255, 156, 1) 32%,
+    rgba(116, 255, 80, 1) 76%
+  );
+}
+.shadow-top {
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.15);
+}
