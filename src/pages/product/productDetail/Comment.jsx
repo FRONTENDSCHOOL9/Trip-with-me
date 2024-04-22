@@ -89,7 +89,11 @@ function Comment() {
             <img
               className="w-14 h-14 border-2 rounded-full"
               src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.user?.profile}`}
-              alt=""
+              alt="프로필 이미지"
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = '/default-profile.png';
+              }}
             />
           </Link>
           <p className="text-center text-gray-500 text-sm mt-1">
