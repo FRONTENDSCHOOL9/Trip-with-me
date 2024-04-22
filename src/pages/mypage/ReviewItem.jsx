@@ -59,15 +59,25 @@ function ReviewItem({ item }) {
     <div>
       <form className="flex flex-col mt-1" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex">
-          {[1, 2, 3, 4, 5].map(num => (
-            <button
-              key={num}
-              className={`bg-[url('/src/assets/icons/icon-star${num <= rating ? '-full' : ''}.svg')] w-6 h-6 mr-2 mb-1`}
-              type="button"
-              data-num={num}
-              onClick={handleStar}
-            ></button>
-          ))}
+          {[1, 2, 3, 4, 5].map(num =>
+            num <= rating ? (
+              <button
+                key={num}
+                className={`bg-[url('/src/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1`}
+                type="button"
+                data-num={num}
+                onClick={handleStar}
+              ></button>
+            ) : (
+              <button
+                key={num}
+                className={`bg-[url('/src/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1`}
+                type="button"
+                data-num={num}
+                onClick={handleStar}
+              ></button>
+            ),
+          )}
         </div>
         <div className="h-20 order border border-gray-300 flex">
           <textarea
