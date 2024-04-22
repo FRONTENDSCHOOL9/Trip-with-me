@@ -14,7 +14,9 @@ function ProductLikeListItem({ item }) {
 
   return (
     <div className="py-16 px-5 max-w-sm w-full h-[460px] mx-auto mt-6 mb-2 font-notosans relative  shadow-xl rounded-2xl like-card overflow-hidden">
-      <h3 className="absolute top-5 left-6 font-bold">My Like Trip Card</h3>
+      <h3 className="absolute top-5 left-6 text-lg font-bold">
+        My Like Trip Card
+      </h3>
       <div className="w-full mx-auto ">
         <Link to={`/product/${item?.product?._id}`}>
           <div className="w-102.5 h-56 overflow-hidden rounded-xl mb-2 shadow-xl">
