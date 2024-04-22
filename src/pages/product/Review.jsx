@@ -25,6 +25,25 @@ function Review({ seller_id }) {
     }
   };
 
+  const renderRating = rating => {
+    [1, 2, 3, 4, 5].map(i => {
+      if (i <= rating)
+        return (
+          <p
+            key={i}
+            className="bg-[url('/src/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1"
+          ></p>
+        );
+      else if (i > rating)
+        return (
+          <p
+            key={i}
+            className="bg-[url('/src/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1"
+          ></p>
+        );
+    });
+  };
+
   useEffect(() => {
     getReview();
   }, []);
@@ -40,6 +59,22 @@ function Review({ seller_id }) {
             <li className="border-[1px] rounded-lg mb-6 py-2" key={item._id}>
               <div className="flex justify-between mb-6 px-4 ">
                 <p>{item.user_name}</p>
+                <div className="flex ml-3 mr-auto">
+                  {Array.from({ length: 5 }, (_, i) =>
+                    i <= item.rating ? (
+                      <p
+                        key={i}
+                        className="bg-[url('/src/assets/icons/icon-star-full.svg')] w-4 h-4  mb-1"
+                      ></p>
+                    ) : (
+                      <p
+                        key={i}
+                        className="bg-[url('/src/assets/icons/icon-star.svg')] w-4 h-4 mb-1"
+                      ></p>
+                    ),
+                  )}
+                </div>
+
                 <p className="text-xs text-gray-400 ">{item.createdAt}</p>
               </div>
               <div className="px-4 ">
