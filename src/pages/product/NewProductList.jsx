@@ -11,7 +11,7 @@ const NewProduct = () => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get('/products', {
+      const res = await axios.get('/products?sort={"createdAt": -1}', {
         params: {
           page: pageParam,
           limit: 3,
@@ -19,13 +19,7 @@ const NewProduct = () => {
       });
       const { item } = res.data;
 
-      const sortedProducts = item.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB - dateA;
-      });
-
-      const list = sortedProducts.map(product => (
+      const list = item.map(product => (
         <MainProductListItem key={product._id} item={product} />
       ));
       let newItemList = [...itemList, ...list];
