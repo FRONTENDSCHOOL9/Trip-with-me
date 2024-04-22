@@ -3,6 +3,7 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import usePageStore from '@zustand/pageName.mjs';
 import StyledLabel from '@components/style/StyledLabel';
+import { useNavigate } from 'react-router-dom';
 
 function DetailedSearch() {
   const page = '상세 검색';
@@ -13,6 +14,7 @@ function DetailedSearch() {
   const [selectedSpots, setSelectedSpots] = useState([]);
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSpots = async () => {
@@ -83,6 +85,7 @@ function DetailedSearch() {
       const response = await axios.get(url);
       console.log('검색 결과:', response.data);
       setSearchResults(response.data);
+      navigate('/product/search/result', { state: response?.data });
     } catch (error) {
       console.error('상품 검색 실패', error);
     }

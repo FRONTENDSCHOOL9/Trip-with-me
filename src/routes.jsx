@@ -24,6 +24,7 @@ import Intro from '@pages/intro/Intro';
 import OtherProductSellList from '@pages/mypage/OtherProductSellList';
 import KeywordSearchPage from '@pages/product/KeywordSearchPage';
 import MainProductPage from '@pages/product/MainProductPage';
+import FilterSearchPage from '@pages/product/FilterSearchPage';
 
 const router = createBrowserRouter([
   {
@@ -118,6 +119,10 @@ const router = createBrowserRouter([
   {
     path: '/product/search',
     element: <DetailedSearch />,
+  },
+  {
+    path: '/product/search/result',
+    element: <FilterSearchPage />,
   },
   {
     path: '/users/login',

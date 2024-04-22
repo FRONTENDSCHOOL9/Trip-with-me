@@ -18,7 +18,7 @@ const NewProduct = () => {
         },
       });
       const { item } = res.data;
-
+      console.log('new', item);
       const list = item.map(product => (
         <MainProductItem key={product._id} item={product} />
       ));
