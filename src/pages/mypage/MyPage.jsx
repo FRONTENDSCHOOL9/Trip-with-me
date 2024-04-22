@@ -56,7 +56,7 @@ function MyPage() {
                   </p>
                 </div>
               </div>
-              <div className="m-auto overflow-hidden  h-36 rounded-full">
+              <div className="m-auto overflow-hidden w-36  h-36 rounded-full">
                 <img
                   className="w-full h-full "
                   src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
