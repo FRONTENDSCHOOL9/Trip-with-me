@@ -10,7 +10,7 @@ function CommentEdit({ comment, onSave, onCancel }) {
   return (
     <div className="flex items-center">
       <textarea
-        className="w-52 mx-4"
+        className="mx-4 w-52"
         rows="4"
         cols="40"
         value={editText}
@@ -20,13 +20,13 @@ function CommentEdit({ comment, onSave, onCancel }) {
         className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
         onClick={handleSave}
       >
-        저장
+        <img src="/src/assets/icons/icon-check-line.svg" alt="저장" />
       </button>
       <button
         className="px-2 py-1 border-[1px] rounded-md text-warning-color"
         onClick={onCancel}
       >
-        취소
+        <img src="/src/assets/icons/icon-close-line.svg" alt="취소" />
       </button>
     </div>
   );
