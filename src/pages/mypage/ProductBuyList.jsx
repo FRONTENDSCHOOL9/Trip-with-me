@@ -65,7 +65,7 @@ function ProductBuyList() {
   //   );
   // }
   return (
-    <div className="mb-8 flex flex-col">
+    <div className="mb-8 flex flex-col font-notosans">
       {isLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
           <BeatLoader color="#68A9ED" />

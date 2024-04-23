@@ -22,31 +22,55 @@ function ProductBuyListItem({ item }) {
   };
 
   return (
-    <div className="py-2 px-5 mb-2 rounded-lg p-2 min-h-80">
-      <Link to={`/product/${item?.products[0]?._id}`}>
-        <div className='w-102.5 h-56 overflow-hidden rounded-xl mb-2'>
-        <img
-        className='size-full object-cover'
-          src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.products[0]?.image?.name}`}
-          alt=""
-        />
+    <div className="font-notosans ">
+      <div className=" py-16 px-5 max-w-sm w-full h-[440px] mx-auto mt-6 mb-2 relative  shadow-xl rounded-2xl buy-card overflow-hidden">
+        <h3 className="absolute top-5 left-6 text-lg font-bold">
+          My Buy Tirp Card
+        </h3>
+        <div className="w-full mx-auto">
+          <Link to={`/product/${item?.products[0]?._id}`}>
+            <div className="w-102.5 h-56 overflow-hidden rounded-xl mb-2 shadow-xl">
+              <img
+                className="size-full object-cover"
+                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.products[0]?.image?.name}`}
+                alt=""
+              />
+            </div>
+          </Link>
         </div>
-        <p className='font-semibold text-sm'>{item?.products[0]?.name}</p>
-        </Link>
-        <div className='h-10flex items-center justify-between'>
-        <p className='text-sm'>
-          {item?.products[0]?.extra?.date?.startDate} ~{' '}
-          {item?.products[0]?.extra?.date?.endDate}
-        </p>
-        <p className='my-auto flex mb-1'>
-          <span className='bg-second-color text-xs rounded-md p-1 mr-2'>구매완료</span> 
-          {item?.products[0]?.price} 원
-        </p>
+        <div className="border-2 w-[320px] h-full rounded-tr-[44px] absolute top-[312px] left-0 bg-light-gray z-20 shadow-top">
+          <div className="flex flex-col justify-start  pt-4 px-6 mb-4">
+            <h4 className="mb-1 text-lg font-semibold  line-clamp-1">
+              {item?.products[0]?.name}
+            </h4>
+          </div>
         </div>
-      <button className="bg-main-color text-white w-full p-1 rounded-lg" type="button" onClick={onClick}>
-        여행장 리뷰 쓰기{' '}
-      </button>
-      {isClick && <ReviewItem key={item._id} item={item} />}
+        <div className="absolute w-[384px] h-full top-[364px] left-0 bg-light-gray z-30">
+          <div className="flex  justify-center items-center gap-4 mt-6">
+            <p className="text-lg font-bold">
+              {item?.products[0]?.extra?.date?.startDate} ~{' '}
+              {item?.products[0]?.extra?.date?.endDate}
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="bg-second-color text-xs rounded-md p-2 mr-2 ">
+                구매완료
+              </span>
+              <p className="font-semibold">{item?.products[0]?.price} 원</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col mb-4">
+        <button
+          className=" bottom-1 bg-main-color text-white w-36 px-4 py-2 rounded-lg ml-auto mr-[27.5px]"
+          type="button"
+          onClick={onClick}
+        >
+          여행장 리뷰 쓰기{' '}
+        </button>
+        {isClick && <ReviewItem key={item._id} item={item} />}
+      </div>
     </div>
   );
 }
