@@ -57,7 +57,7 @@ function ProductSellList() {
     getSellList();
   }, []);
   return (
-    <div className="mb-8 flex flex-col font-notosans">
+    <div className="mb-8 flex flex-col h-full font-notosans">
       {itemList.length === 0 && !isLoading && (
         <div className="flex flex-col justify-center items-center h-[780px] text-lg">
           <p className="text-center mt-4">{`${page}에 아무것도 없어요..`}</p>
@@ -68,7 +68,7 @@ function ProductSellList() {
       {itemList.length > 0 && <ul>{itemList}</ul>}
 
       {isLoading && (
-        <div className="flex justify-center items-center h-[780px]">
+        <div className="my-auto flex justify-center items-center">
           <BeatLoader color="#68A9ED" />
         </div>
       )}

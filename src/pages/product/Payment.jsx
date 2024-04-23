@@ -112,7 +112,7 @@ function Payment() {
             <div>
               {productData?.extra?.themes.map(item => (
                 <span
-                  className="p-0.5 mr-1.5 mb-2 border-2 w-fit border-main-color rounded-md"
+                  className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
                   key={item.id}
                 >
                   {item.name}
