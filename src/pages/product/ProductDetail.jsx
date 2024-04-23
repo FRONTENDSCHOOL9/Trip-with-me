@@ -139,7 +139,7 @@ function ProductDetail() {
             </div>
           )}
         </div>
-        <Tabs className="mx-5">
+        <Tabs className="mx-5 mt-5">
           <TabList className="flex mb-4">
             <Tab className="flex-grow py-2 text-center cursor-pointer ">
               상품설명
