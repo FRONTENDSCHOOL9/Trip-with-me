@@ -42,7 +42,7 @@ const MainProductItem = ({ item }) => {
   };
 
   return (
-    <li className="h-80 p-2 mb-1 font-notosans">
+    <li className="h-80 p-2 mb-8 font-notosans">
       <div
         className={classNames({
           relative: isSoldOut,
@@ -54,15 +54,15 @@ const MainProductItem = ({ item }) => {
             className="absolute inset-0 flex justify-center items-center"
             style={{ zIndex: 1 }}
           >
-            <div className="bg-black bg-opacity-45 w-full h-full flex justify-center items-center rounded-lg">
+            <div className="bg-black bg-opacity-45 w-full h-full flex justify-center items-center ">
               <p className="text-zinc-200 text-3xl font-bold">
                 모집 마감되었어요.
               </p>
             </div>
           </Link>
         )}
-        <div>
-          <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
+        <div className=" border-[1px] rounded-2xl bg-gray-100 ">
+          <div className="w-102.5 h-56 overflow-hidden rounded-t-lg">
             <Link to={`/product/${item._id}`}>
               <img
                 className="size-full object-cover"
@@ -71,25 +71,25 @@ const MainProductItem = ({ item }) => {
             </Link>
           </div>
 
-          <div className="p-2 relative">
+          <div className="p-3 relative flex flex-col gap-1 ">
             <Link to={`/product/${item._id}`}>
-              <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+              <h3 className="text-lg font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                 {item?.name}
               </h3>
             </Link>
-            <div className="flex text-sm">
+            <div className="flex text-sm ">
               <img
                 src="../src/assets/icons/icon-group.svg"
-                className="w-4 mr-1"
+                className="w-5 mr-1"
               />
-              <p>{`${item?.buyQuantity}/${item?.quantity}`}</p>
+              <p className="text-sm">{`${item?.buyQuantity}/${item?.quantity}`}</p>
             </div>
 
             <div className="mt-1">
               {item.extra?.themes?.map(theme => (
                 <a
                   href="#"
-                  className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
+                  className="bg-indigo-100  mr-2 px-1 py-1 text-center text-sm font-medium rounded-lg"
                   key={theme.id}
                 >
                   {theme.name}
