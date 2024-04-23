@@ -12,7 +12,7 @@ AddItinerary.propTypes = {
 
 AddItinerary.defaultProps = {
   productInfo: {},
-  setProductInfo: () => {}, // 빈 함수로 기본값 설정
+  setProductInfo: () => {},
 };
 
 function AddItinerary({ productInfo, setProductInfo }) {
@@ -20,13 +20,13 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const { step } = useParams();
 
   const [itineraryMaps, setItineraryMaps] = useState(() => {
-    return productInfo.extra.itineraryMaps &&
-      productInfo.extra.itineraryMaps.length > 0
-      ? productInfo.extra.itineraryMaps
+    return productInfo?.extra?.itineraryMaps &&
+      productInfo?.extra?.itineraryMaps.length > 0
+      ? productInfo?.extra?.itineraryMaps
       : [{ markers: [] }];
   });
   const [mapLength, setMapLength] = useState(itineraryMaps.length);
-  const [selectedIndex, setSeletedIndex] = useState(0);
+  const [selectedIndex, setSeletedIndex] = useState(0); //지도추가,삭제 시 개수 조정할때 필요함
 
   const startDate = new Date(productInfo.extra.date.startDate);
   const endDate = new Date(productInfo.extra.date.endDate);
@@ -35,11 +35,11 @@ function AddItinerary({ productInfo, setProductInfo }) {
 
   useEffect(() => {
     if (
-      productInfo.extra.itineraryMaps &&
-      productInfo.extra.itineraryMaps.length > 0
+      productInfo?.extra?.itineraryMaps &&
+      productInfo?.extra?.itineraryMaps.length > 0
     ) {
-      setItineraryMaps(productInfo.extra.itineraryMaps);
-      setMapLength(productInfo.extra.itineraryMaps.length);
+      setItineraryMaps(productInfo?.extra?.itineraryMaps);
+      setMapLength(productInfo?.extra?.itineraryMaps.length);
     }
   }, [productInfo]);
 
@@ -47,7 +47,7 @@ function AddItinerary({ productInfo, setProductInfo }) {
     e.preventDefault();
     if (mapLength < itineraryDays) setMapLength(prevLength => prevLength + 1); // 지도가 days(여행일차)보다 작을때만 지도추가
     setSeletedIndex(mapLength);
-    addItineraryMap({ markers: [] }); // 지도 마커 데이터 추가
+    addItineraryMap({ markers: [] });
   };
 
   const addItineraryMap = newMap => {
@@ -57,10 +57,11 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const removeMap = e => {
     e.preventDefault();
     if (mapLength === 0) return;
+
     setMapLength(prevLength => prevLength - 1); // 지도 개수 감소
     removeItineraryMap(mapLength - 1); // 마지막 지도 삭제
     if (selectedIndex === mapLength - 1) {
-      setSeletedIndex(Math.max(0, selectedIndex - 1)); // 선택된 인덱스 조정
+      setSeletedIndex(Math.max(0, selectedIndex - 1)); // setSeletedIndex가 0보다 작아지지 않게
     }
   };
 

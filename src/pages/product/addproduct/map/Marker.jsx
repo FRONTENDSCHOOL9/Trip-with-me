@@ -54,7 +54,7 @@ const Marker = ({
   return (
     <>
       <MapMarker
-        position={marker.latlng} // 마커를 표시할 위치
+        position={marker.latlng}
         image={{
           src: '/src/assets/icons/icon-map-pin.svg',
           size: {
