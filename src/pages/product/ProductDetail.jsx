@@ -17,7 +17,6 @@ import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
 import usePageStore from '@zustand/pageName.mjs';
-import { Button } from '@components/style/StyledButton';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -114,9 +113,11 @@ function ProductDetail() {
             className="w-full h-full rounded-2xl"
           />
         </div>
-        <div className="flex items-center justify-between mt-2 ml-6">
-          <h2 className="text-2xl font-bold">{productInfo?.item?.name}</h2>
-          <p className="mr-5 font-semibold">{formattedPrice}원</p>
+        <div className="flex items-center justify-between mt-2 ml-6 gap-2">
+          <h2 className="text-2xl font-bold ">{productInfo?.item?.name}</h2>
+          <p className="font-semibold w-fit shrink-0 ml-auto mr-6">
+            {formattedPrice}원
+          </p>
         </div>
         <div className="flex items-center justify-between ml-5 ">
           <ul className="flex gap-2 my-4">
@@ -310,13 +311,15 @@ function ProductDetail() {
             </div>
           </TabPanel>
         </Tabs>
-        <div className="flex">
+        <div className="flex items-center justify-center gap-5 mx-5">
           <Link
             to={`/product/${_id}/payment`}
-            className="text-white mx-auto w-full bg-main-color h-10 text-center rounded-md"
+            className="flex items-center text-white w-full bg-main-color h-10 text-center rounded-md"
             state={{ item: productInfo?.item }}
           >
-            구매하기
+            <p className="tracking-widest text-center mx-auto text-lg">
+              구매하기
+            </p>
           </Link>
 
           <ProductLikeButton item={productInfo?.item} />
