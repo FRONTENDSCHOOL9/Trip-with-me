@@ -1,8 +1,9 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import MainProductItem from '@pages/product/MainProductItem';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-const NewProduct = () => {
+const NewProductList = () => {
   const axios = useCustomAxios();
   const [itemList, setItemList] = useState([]);
   const [pageParam, setPageParam] = useState(1);
@@ -20,7 +21,7 @@ const NewProduct = () => {
       const { item } = res.data;
       console.log('new', item);
       const list = item.map(product => (
-        <MainProductItem key={product._id} item={product} />
+        <MainProductItem key={uuidv4()} item={product} />
       ));
       let newItemList = [...itemList, ...list];
       console.log('newItemList', newItemList);
@@ -78,4 +79,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default NewProductList;
