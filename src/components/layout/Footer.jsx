@@ -18,7 +18,7 @@ function Footer() {
   };
 
   return (
-    <footer className="foot">
+    <footer className="footer">
       <Link
         to="/product/list"
         className={`home footButton ${activeButton === 'home' ? 'footer-isactive' : ''}`}
