@@ -35,6 +35,7 @@ function Comment() {
     select: res => res.data,
   });
 
+  console.log('data', data);
   useEffect(() => {
     if (data) {
       setComments(data.item);
@@ -88,8 +89,12 @@ function Comment() {
           <Link to={`/mypage/${item?.user?._id}`}>
             <img
               className="border-2 rounded-full w-14 h-14"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.user?.profile}`}
               alt=""
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = '/default-profile.png';
+              }}
             />
           </Link>
           <p className="mt-1 text-sm text-center text-gray-500">
