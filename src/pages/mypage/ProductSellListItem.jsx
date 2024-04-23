@@ -45,7 +45,12 @@ const productSellListItem = ({ item }) => {
             <p className=" font-semibold">
               {item?.extra?.date?.startDate} ~ {item?.extra?.date?.endDate}
             </p>
-            <p className="my-auto flex mb-1 font-semibold">{item?.price} 원</p>
+            <p className="my-auto flex mb-1 font-semibold">
+              {item?.price
+                .toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+              원
+            </p>
           </div>
         </div>
       </div>

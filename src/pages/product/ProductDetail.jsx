@@ -68,7 +68,7 @@ function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col h-screen mb-8 font-notosans">
+      <div className="flex flex-col h-full font-notosans">
         <div className="flex items-center justify-center my-auto">
           <BeatLoader color="#68A9ED" />
         </div>
@@ -79,12 +79,8 @@ function ProductDetail() {
   const isSeller = productInfo?.item?.seller?._id === user?._id;
 
   const formattedPrice = productInfo?.item?.price
-    ? new Intl.NumberFormat('ko-KR', {
-        style: 'currency',
-        currency: 'KRW',
-        currencyDisplay: 'symbol', // 통화 기호만 표시
-      }).format(productInfo.item.price)
-    : '0';
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
   const ReSettingMapBounds = ({ markers }) => {
     const map = useMap();
