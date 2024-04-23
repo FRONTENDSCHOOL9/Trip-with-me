@@ -95,7 +95,7 @@ function DetailedSearch() {
       <Header />
       <div className="scrollbar flex flex-col justify-center px-5">
         <div className="font-notosans text-center mb-10 last:mb-0">
-          <h2 className="text-blue-400 text-xl font-semibold mb-5">
+          <h2 className="my-6 text-2xl font-semibold font-notosans text-main-color">
             지역을 선택해주세요
           </h2>
 
@@ -104,14 +104,13 @@ function DetailedSearch() {
               <li key={tripSpot.id}>
                 <StyledLabel>
                   <input
-                    className="input"
+                    className="hidden"
                     type="checkbox"
                     id={`area_${tripSpot.id}`}
                     onChange={() => handleSpotChange(tripSpot.id)}
                   />
                   <label
-                    className="label
-                 "
+                    className={`flex border-2 rounded-full py-1 px-4 cursor-pointer ${selectedSpots.includes(tripSpot.id) ? 'border-main-color' : ''}`}
                     htmlFor={`area_${tripSpot.id}`}
                   >
                     {tripSpot.name}
@@ -123,7 +122,7 @@ function DetailedSearch() {
         </div>
 
         <div className="font-notosans text-center h-[350px] last:mb-0">
-          <h2 className="text-blue-400 text-xl font-semibold mb-5">
+          <h2 className="my-6 text-2xl font-semibold font-notosans text-main-color">
             테마를 선택해주세요
           </h2>
 
@@ -133,11 +132,14 @@ function DetailedSearch() {
                 <StyledLabel>
                   <input
                     type="checkbox"
-                    className="input"
+                    className="hidden"
                     id={`theme_${tripThemes.id}`}
                     onChange={() => handleThemeChange(tripThemes.id)}
                   />
-                  <label className="label" htmlFor={`theme_${tripThemes.id}`}>
+                  <label
+                    className={`flex border-2 rounded-full py-1 px-4 cursor-pointer ${selectedThemes.includes(tripThemes.id) ? 'border-main-color' : ''}`}
+                    htmlFor={`theme_${tripThemes.id}`}
+                  >
                     {tripThemes.name}
                   </label>
                 </StyledLabel>
