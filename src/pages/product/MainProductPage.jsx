@@ -20,7 +20,7 @@ function MainProductPage() {
           />
           <PopularProductList />
         </div>
-
+        <hr className="w-full h-[2px] bg-light-gray mt-2" />
         <div className="mt-6">
           <SubTitle
             iconSrc="../src/assets/icons/icon-tour-guide.png"
