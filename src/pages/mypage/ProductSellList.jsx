@@ -73,12 +73,14 @@ function ProductSellList() {
         </div>
       )}
       {!isLoading && !isEnd && itemList.length > 0 && (
-        <button
-          className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
-          onClick={handleClick}
-        >
-          <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
-        </button>
+        <div className="flex flex-col justify-center items-center">
+          <button
+            className="bg-blue-500 py-2 px-4 rounded-lg animate-pulse text-sm font-medium text-white mt-6"
+            onClick={handleClick}
+          >
+            더 보기
+          </button>
+        </div>
       )}
     </div>
   );

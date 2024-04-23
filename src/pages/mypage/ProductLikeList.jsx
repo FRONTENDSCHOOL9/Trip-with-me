@@ -39,7 +39,7 @@ function ProductLikeList() {
   }
 
   // console.log('likeData=>', likeData);
-  return <div className="flex flex-col gap-3s">{likeData}</div>;
+  return <div className="flex flex-col gap-3s ">{likeData}</div>;
 }
 
 export default ProductLikeList;
