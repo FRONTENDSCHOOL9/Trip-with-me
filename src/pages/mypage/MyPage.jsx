@@ -1,17 +1,19 @@
 import useMemberState from '@zustand/memberState.mjs';
 import usePageStore from '@zustand/pageName.mjs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getRandomPhrase } from '../../randomNameData/randomData'; // randomData 파일 가져오기
 
 import '@components/style/cssClassNaming.css';
 
-//마이페이지 정보는 전역 상태 관리 zustand 에서 불러옴
 function MyPage() {
   const page = 'Mypage';
   const setPageName = usePageStore(state => state.setPageName);
   const clearUserIdStorage = useMemberState.persist.clearStorage;
   const { user, setUser } = useMemberState();
   const navigate = useNavigate();
+
+  const [randomPhrase, setRandomPhrase] = useState('');
 
   const handleLogout = () => {
     setUser(null);
@@ -22,10 +24,11 @@ function MyPage() {
   useEffect(() => {
     if (user) {
       setPageName(page);
-    } else if (!user) {
+      setRandomPhrase(getRandomPhrase()); // 페이지가 새로 고침될 때마다 랜덤 문구 설정
+    } else {
       noUser();
     }
-  }, []);
+  }, [user]); // user 상태가 변경될 때만 useEffect 실행
 
   function noUser() {
     alert('로그인 후 이용 가능합니다.');
@@ -42,7 +45,13 @@ function MyPage() {
               <span className="text-main-color font-bold text-lg px-1">
                 {user?.name}
               </span>
-              님도 빠니보틀 처럼 될 수 있어요
+              님도{' '}
+              {
+                <span className="text-main-color font-bold">
+                  {randomPhrase}
+                </span>
+              }{' '}
+              처럼 될 수 있어요 !
             </h2>
             <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative ">
               <h3 className="absolute top-4 left-4 font-bold">My Trip Card</h3>

@@ -112,10 +112,10 @@ function Comment() {
             {isCommentOwner && (
               <>
                 <button
-                  className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
+                  className="px-3 py-2 mr-1 text-main-color border-[1px] rounded-md"
                   onClick={() => setEditingCommentId(item._id)}
                 >
-                  <img src="/src/assets/icons/icon-edit-pen.svg" alt="삭제" />
+                  <img src="/src/assets/icons/icon-edit-pen.svg" alt="수정" />
                 </button>
                 <CommentDelete
                   commentId={item._id}

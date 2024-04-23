@@ -110,51 +110,56 @@ function Payment() {
   return (
     <>
       {user && (
-        <div className="p-2">
-          <div className="px-1">
-            <img
-              className="max-h-64 h-full w-full rounded-md mb-2 mx-auto"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage}`}
-            />
-
-            <p className="mb-2">{productData?.name}</p>
-            <div>
-              {productData?.extra?.themes.map(item => (
-                <span
-                  className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
-                  key={item.id}
-                >
-                  {item.name}
-                </span>
-              ))}
-            </div>
-          </div>
-          <hr className="border-0 bg-gray-100 h-2 my-10" />
-
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <p className="font-bold">인원 선택</p>
-            <div className="flex gap-20 h-10 bg-gray-200 items-center mx-auto justify-center rounded">
-              <button type="button" onClick={handleDown}>
-                ▽
-              </button>
-              <p>{productCount}</p>
-              <button type="button" onClick={handleUp}>
-                △
-              </button>
-            </div>
-            <hr className="border-0 bg-gray-100 h-2 my-10" />
-            <div>
-              <p className="font-bold">기타 요청 사항</p>
-              <input
-                className="h-20 bg-gray-200 w-full rounded-md"
-                type="text"
-                id="request"
-                {...register('address.value')}
+        <div className="font-notosans h-full  bg-mainbg-color">
+          <div className="flex flex-col gap-28 bg-mainbg-color">
+            <div className="h-56 mx-auto mt-6 mb-6 border-2  bg-mainbg-color border-gray-300 shadow-xl rounded-2xl w-96 ">
+              <img
+                className="w-full h-full rounded-2xl"
+                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage.name}`}
               />
+              <p className="my-4 text-2xl font-bold">{productData?.name}</p>
+              <div className="flex gap-2">
+                {productData?.extra?.themes.map(item => (
+                  <span
+                    className="px-3 py-1 text-sm font-medium border-2 rounded-full shadow-lg"
+                    key={item.id}
+                  >
+                    {item.name}
+                  </span>
+                ))}
+              </div>
             </div>
-            <hr className="border-0 bg-gray-100 h-2 my-10" />
-            <Submit>{productCount * productPrice}원 결제하기</Submit>
-          </form>
+            <form className=" mx-auto w-96" onSubmit={handleSubmit(onSubmit)}>
+              <p className="font-semibold text-lg mb-3">인원 선택</p>
+              <div className="flex gap-10 h-10 bg-gray-200 items-center mx-auto justify-end pr-5 rounded-lg mb-12 shadow-lg">
+                <p className="text-xs pl-5 text-gray-400">
+                  <span>여행은 다른 문화, 다른 사람을 만나고 </span>
+                  <span>결국에는 자기 자신을 만나는 것이다.</span>
+                </p>
+                <div className="flex justify-between w-[220px] font-semibold text-xl ">
+                  <button type="button" onClick={handleDown}>
+                    ▽
+                  </button>
+                  <p>{productCount}</p>
+                  <button type="button" onClick={handleUp}>
+                    △
+                  </button>
+                </div>
+              </div>
+              <div>
+                <p className="font-semibold text-lg mb-3">기타 요청 사항</p>
+                <textarea
+                  className="h-28 bg-gray-200 w-full rounded-lg shadow-lg mb-10 resize-none" // 여기서 resize-none 추가
+                  type="text"
+                  id="request"
+                  {...register('address.value')}
+                />
+              </div>
+              <div className="mb-4">
+                <Submit>{productCount * productPrice}원 결제하기</Submit>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </>

@@ -1,21 +1,29 @@
 .header {
   height: 80px;
   display: flex;
-  justify-content: center;
   align-items: center;
   border-bottom: 1px solid #d9d9d9;
   margin: 0 24px;
   position: relative;
   flex-shrink: 0;
 }
+/* .header-wrap {
+  display: flex;
+  justify-content: center;
+} */
 .header-back {
   background-image: url('/src/assets/icons/icon-arrow-back.svg');
   background-repeat: no-repeat;
-  margin-left: auto;
+  background-position: left 0px;
+  width: 24px;
+  height: 24px;
 }
 .header-title {
   font-size: 20px;
   font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
 }
 .ir {
