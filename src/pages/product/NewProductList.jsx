@@ -1,8 +1,9 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import MainProductItem from '@pages/product/MainProductItem';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-const NewProduct = () => {
+const NewProductList = () => {
   const axios = useCustomAxios();
   const [itemList, setItemList] = useState([]);
   const [pageParam, setPageParam] = useState(1);
@@ -20,7 +21,7 @@ const NewProduct = () => {
       const { item } = res.data;
       console.log('new', item);
       const list = item.map(product => (
-        <MainProductItem key={product._id} item={product} />
+        <MainProductItem key={uuidv4()} item={product} />
       ));
       let newItemList = [...itemList, ...list];
       console.log('newItemList', newItemList);
@@ -52,8 +53,8 @@ const NewProduct = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-[6px]">
-        <div className="card">
+      <div className="flex flex-col gap-[6px] ml-2">
+        <div className="card ">
           <div className="spinner"></div>
         </div>
         <div className="cardDescription flex flex-col gap-3 justify-center">
@@ -66,16 +67,18 @@ const NewProduct = () => {
   }
 
   return (
-    <div className="mb-8 flex flex-col">
+    <div className="mb-8 flex flex-col font-notosans">
       <ul>{itemList}</ul>
-      <button
-        className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
-        onClick={handleClick}
-      >
-        <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
-      </button>
+      <div className="flex flex-col justify-center items-center">
+        <button
+          className="bg-blue-500 py-2 px-4 rounded-lg animate-pulse text-sm font-medium text-white mt-6"
+          onClick={handleClick}
+        >
+          더 보기
+        </button>
+      </div>
     </div>
   );
 };
 
-export default NewProduct;
+export default NewProductList;

@@ -57,8 +57,8 @@ function ReviewItem({ item }) {
 
   return (
     <div>
-      <form className="flex flex-col mt-1" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex">
+      <form className="flex flex-col mt-1 " onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex mx-6 items-center">
           {[1, 2, 3, 4, 5].map(num =>
             num <= rating ? (
               <button
@@ -78,15 +78,16 @@ function ReviewItem({ item }) {
               ></button>
             ),
           )}
+          <p className="text-sm font-normal">별점을 주세요!</p>
         </div>
-        <div className="h-20 order border border-gray-300 flex">
+        <div className="h-20 order border border-gray-300 flex mx-6">
           <textarea
             className="w-4/5 outline-none resize-none"
             {...register('content', { required: '후기를 입력하세요.' })}
           />
 
           <button
-            className="w-1/5 h-8 mt-auto mx-1 mb-1 bg-gray-200 rounded-lg"
+            className="w-1/5 h-8 mt-auto mx-1 mb-1 bg-main-color rounded-lg text-white"
             type="submit"
           >
             작성

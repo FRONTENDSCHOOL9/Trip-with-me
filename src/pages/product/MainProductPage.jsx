@@ -12,7 +12,7 @@ function MainProductPage() {
       <Title />
 
       <Search />
-      <div className="scrollbar p-4">
+      <div className="scrollbar px-4 pb-4">
         <div>
           <SubTitle
             iconSrc="../src/assets/icons/icon-love.png"
@@ -21,7 +21,7 @@ function MainProductPage() {
           <PopularProductList />
         </div>
 
-        <div>
+        <div className="mt-6">
           <SubTitle
             iconSrc="../src/assets/icons/icon-tour-guide.png"
             title="새로 올라왔어요"

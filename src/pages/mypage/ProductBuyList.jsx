@@ -57,31 +57,31 @@ function ProductBuyList() {
     }
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
-  //       <BeatLoader color="#68A9ED" />
-  //     </div>
-  //   );
-  // }
   return (
-    <div className="mb-8 flex flex-col">
+    <div className="flex flex-col h-full font-notosan">
+      {itemList.length === 0 && !isLoading && (
+        <div className="flex flex-col justify-center items-center h-[780px] text-lg">
+          <p className="text-center mt-4">{`${page}에 아무것도 없어요..`}</p>
+          <p>{`같이 여행을 떠날 동행 메이트를 모집해보세요😄`}</p>
+        </div>
+      )}
+      {itemList.length > 0 && <ul>{itemList}</ul>}
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+        <div className="my-auto flex justify-center items-center">
           <BeatLoader color="#68A9ED" />
         </div>
       )}
-      {itemList}
       {/* {isLoading && } */}
 
       {!isLoading && !isEnd && (
-        <button
-          id="more"
-          className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
-          onClick={handleClick}
-        >
-          <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
-        </button>
+        <div className="flex flex-col justify-center items-center">
+          <button
+            className="bg-blue-500 py-2 px-4 rounded-lg animate-pulse text-sm font-medium text-white mt-6 mb-6"
+            onClick={handleClick}
+          >
+            더 보기
+          </button>
+        </div>
       )}
     </div>
   );

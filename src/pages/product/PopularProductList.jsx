@@ -33,7 +33,7 @@ const PopularProductList = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-[6px]">
+      <div className="flex flex-col gap-[6px] ml-2">
         <div className="card">
           <div className="spinner"></div>
         </div>
@@ -49,7 +49,7 @@ const PopularProductList = () => {
   console.log('인기상품 정렬', popularProducts);
 
   return (
-    <div className="h-[330px] border-b">
+    <div className="h-[330px] border-b my-5">
       {popularProducts.length > 0 && (
         <Swiper
           spaceBetween={30}
@@ -103,7 +103,7 @@ const PopularProductList = () => {
                         className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
                         key={theme.id}
                       >
-                        # {theme.name}
+                        {theme.name}
                       </a>
                     ))}
                   </div>

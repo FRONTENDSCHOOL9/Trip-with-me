@@ -1,6 +1,8 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import ProductLikeButton from '@components/ProductLikeButton';
+
 import {
   CustomOverlayMap,
   Map,
@@ -14,7 +16,6 @@ import Comment from './productDetail/Comment';
 import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
-import ProductLikeButton from '@components/ProductLikeButton';
 import usePageStore from '@zustand/pageName.mjs';
 
 function ProductDetail() {
@@ -44,7 +45,7 @@ function ProductDetail() {
     try {
       const res = await axios.get(`/products/${_id}`);
       setProductInfo(res.data);
-      console.log(res.data);
+      console.log('res.data', res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -67,8 +68,10 @@ function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
-        <BeatLoader color="#68A9ED" />
+      <div className="flex flex-col h-full font-notosans">
+        <div className="flex items-center justify-center my-auto">
+          <BeatLoader color="#68A9ED" />
+        </div>
       </div>
     );
   }
@@ -76,11 +79,8 @@ function ProductDetail() {
   const isSeller = productInfo?.item?.seller?._id === user?._id;
 
   const formattedPrice = productInfo?.item?.price
-    ? new Intl.NumberFormat('ko-KR', {
-        style: 'currency',
-        currency: 'KRW',
-      }).format(productInfo.item.price)
-    : '0원';
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
   const ReSettingMapBounds = ({ markers }) => {
     const map = useMap();
@@ -104,7 +104,7 @@ function ProductDetail() {
   };
 
   return (
-    <div className="h-full bg-mainbg-color font-notosans">
+    <div className="h-full bg-mainbg-color font-notosans ">
       <div className="flex flex-col bg-mainbg-color ">
         <div className="h-56 mx-auto mt-6 mb-6 border-2 border-gray-300 shadow-xl rounded-2xl w-96 bg-light-gray">
           <img
@@ -122,17 +122,19 @@ function ProductDetail() {
             {productInfo?.item?.extra?.themes.map((theme, index) => (
               <li
                 key={theme.id}
-                className="px-4 py-1 text-sm font-medium border-2 rounded-full"
+                className="px-3 py-1 text-sm font-medium border-2 rounded-full "
               >
-                #{theme.name}
+                {theme.name}
               </li>
             ))}
           </ul>
+          {/* 
+          <ProductLikeButton item={productInfo?.item} /> */}
 
           {isSeller && (
-            <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-warning-color border-warning-color ">
+            <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-gray-400 border-gray-400 border-dotted ">
               <button className="text-sm" onClick={handleDelete}>
-                상품 삭제
+                상품삭제
               </button>
             </div>
           )}

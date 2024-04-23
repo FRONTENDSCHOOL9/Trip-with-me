@@ -33,7 +33,7 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
   }, [map, searchKeyword]); //searchKeyword도 useEffect의 의존성 배열에 포함시켜야 검색어가 변경될 때마다 새로운 검색을 수행함
 
   if (!itineraryMaps[id]) {
-    console.log('No map data available for this ID:', id);
+    console.log('이 id에 해당하는 지도가 없음', id);
   }
 
   const handleChange = e => {
@@ -41,18 +41,9 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
   };
 
   const handleSubmit = e => {
-    if (e === undefined) {
-      return; //제출버튼 클릭시 이벤트가 발생을 안하고 진입하는 문제가 있어서 임시처리
-    }
     e.preventDefault();
     setSearchKeyword(inputText);
     setInputText('');
-  };
-
-  const activeEnter = e => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
   };
 
   const createMarker = mouseEvent => {
@@ -62,8 +53,6 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
       latlng: { lat: latlng.getLat(), lng: latlng.getLng() },
     };
     addMarker(id, marker);
-    console.log(marker);
-    console.log(itineraryMaps);
   };
 
   const addMarker = (mapIndex, newMarker) => {
@@ -82,7 +71,6 @@ function KakaoMap({ id, setItineraryMaps, itineraryMaps }) {
         <input
           type="text"
           onChange={handleChange}
-          onKeyDown={activeEnter}
           value={inputText}
           placeholder="장소를 상세히 입력해주세요."
           className="p-1 mt-1 mb-1 ml-2 text-sm border rounded-md text-slate-500"
