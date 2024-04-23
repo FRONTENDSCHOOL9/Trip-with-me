@@ -46,9 +46,9 @@ function MyPage() {
             </h2>
             <div className="profile-box mt-4 mx-6 flex h-64 mb-4 shadow-xl relative ">
               <h3 className="absolute top-4 left-4 font-bold">My Trip Card</h3>
-              <div className="flex flex-col w-[96px] mt-auto mb-6 pl-6">
+              <div className="flex flex-col w-[96px] mt-auto mb-6 pl-2">
                 <div>
-                  <p className="font-semibold text-lg text-white ">
+                  <p className="font-semibold text-xl text-white ">
                     {user?.name}
                   </p>
                   <p className="text-gray-700 font-light text-sm">
