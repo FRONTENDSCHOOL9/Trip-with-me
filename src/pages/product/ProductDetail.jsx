@@ -1,6 +1,8 @@
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import ProductLikeButton from '@components/ProductLikeButton';
+
 import {
   CustomOverlayMap,
   Map,
@@ -14,7 +16,6 @@ import Comment from './productDetail/Comment';
 import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
-import ProductLikeButton from '@components/ProductLikeButton';
 import usePageStore from '@zustand/pageName.mjs';
 
 function ProductDetail() {
@@ -44,7 +45,7 @@ function ProductDetail() {
     try {
       const res = await axios.get(`/products/${_id}`);
       setProductInfo(res.data);
-      console.log(res.data);
+      console.log('res.data', res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -128,6 +129,8 @@ function ProductDetail() {
               </li>
             ))}
           </ul>
+
+          <ProductLikeButton item={productInfo?.item} />
 
           {isSeller && (
             <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-warning-color border-warning-color ">
