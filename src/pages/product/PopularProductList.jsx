@@ -103,7 +103,7 @@ const PopularProductList = () => {
                         className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
                         key={theme.id}
                       >
-                        # {theme.name}
+                        {theme.name}
                       </a>
                     ))}
                   </div>
