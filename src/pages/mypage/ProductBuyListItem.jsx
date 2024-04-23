@@ -23,7 +23,7 @@ function ProductBuyListItem({ item }) {
 
   return (
     <div className="font-notosans ">
-      <div className=" py-16 px-5 max-w-sm w-full h-[440px] mx-auto mt-6 mb-2 relative  shadow-xl rounded-2xl buy-card overflow-hidden">
+      <div className=" py-16 px-5 max-w-sm w-full h-[450px] mx-auto mt-6 mb-2 relative  shadow-xl rounded-2xl buy-card overflow-hidden">
         <h3 className="absolute top-5 left-6 text-lg font-bold">
           My Buy Tirp Card
         </h3>
@@ -40,22 +40,24 @@ function ProductBuyListItem({ item }) {
         </div>
         <div className="border-2 w-[320px] h-full rounded-tr-[44px] absolute top-[312px] left-0 bg-light-gray z-20 shadow-top">
           <div className="flex flex-col justify-start  pt-4 px-6 mb-4">
-            <h4 className="mb-1 text-lg font-semibold  line-clamp-1">
+            <h4 className="mb-1 text-lg  font-semibold  line-clamp-1">
               {item?.products[0]?.name}
             </h4>
           </div>
         </div>
-        <div className="absolute w-[384px] h-full top-[364px] left-0 bg-light-gray z-30">
-          <div className="flex  justify-center items-center gap-4 mt-6">
-            <p className="text-lg font-bold">
+        <div className="absolute w-[384px] h-full top-[364px] left-0 bg-light-gray z-30 ">
+          <div className="flex text-sm  justify-center items-center gap-6 mt-6 mx-2">
+            <p className=" font-semibold">
               {item?.products[0]?.extra?.date?.startDate} ~{' '}
               {item?.products[0]?.extra?.date?.endDate}
             </p>
             <div className="flex items-center gap-2">
-              <span className="bg-second-color text-xs rounded-md p-2 mr-2 ">
+              <span className=" bg-second-color rounded-md p-2 mr-2 ">
                 구매완료
               </span>
-              <p className="font-semibold">{item?.products[0]?.price} 원</p>
+              <p className="font-sm font-semibold">
+                {item?.products[0]?.price} 원
+              </p>
             </div>
           </div>
         </div>

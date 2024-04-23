@@ -5,8 +5,8 @@ const productSellListItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
 
   return (
-    <li className="font-notosans list-none">
-      <div className="py-16 px-5 max-w-sm w-full h-[440px] mx-auto mt-6 mb-2 relative  shadow-xl rounded-2xl sell-card overflow-hidden">
+    <li className="font-notosans list-none ">
+      <div className="py-16 px-5  max-w-sm w-full h-[440px] mx-auto mt-6 mb-10 relative  shadow-xl rounded-2xl sell-card overflow-hidden">
         <h3 className="absolute top-5 left-6 text-lg font-bold">
           My Sell Trip Cards
         </h3>
@@ -26,26 +26,26 @@ const productSellListItem = ({ item }) => {
           </Link>
         </div>
         <div className="absolute w-[384px] h-full top-[364px] left-0 bg-light-gray z-30">
-          <div className="flex justify-between items-center gap-3 text-sm mx-4 mt-6">
+          <div className="flex justify-between items-center gap-3 text-sm mx-6 mt-6">
             <div className="flex">
               <img
                 src="../src/assets/icons/icon-group.svg"
                 className="w-5 mr-1"
               ></img>
               {isSoldOut ? (
-                <p className="bg-second-color text-base rounded-md p-1 mr-2">
+                <p className="bg-second-color font-semibold rounded-md p-1 mr-2">
                   모집 완료
                 </p>
               ) : (
-                <p className="text-lg">
+                <p className="font-semibold">
                   {item?.buyQuantity}/{item?.quantity}
                 </p>
               )}
             </div>
-            <p className=" text-base">
+            <p className=" font-semibold">
               {item?.extra?.date?.startDate} ~ {item?.extra?.date?.endDate}
             </p>
-            <p className="my-auto flex mb-1 text-base">{item?.price} 원</p>
+            <p className="my-auto flex mb-1 font-semibold">{item?.price} 원</p>
           </div>
         </div>
       </div>
