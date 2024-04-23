@@ -49,7 +49,7 @@ const PopularProductList = () => {
   console.log('인기상품 정렬', popularProducts);
 
   return (
-    <div className="h-[330px] border-b">
+    <div className="h-[330px] border-b my-5">
       {popularProducts.length > 0 && (
         <Swiper
           spaceBetween={30}
