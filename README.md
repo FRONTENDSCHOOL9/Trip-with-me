@@ -1,23 +1,25 @@
 ## 📎 목차
 
-1. [프로젝트 팀 소개](#프로젝트-팀-소개)
-2. [프로젝트 소개](#프로젝트-소개)
-3. [기술 스택](#기술-스택)
-4. [컨벤션](#컨벤션)
-5. [담당 페이지 및 기능](#담당-페이지-및-기능)
-6. [주요 기능 및 코드](#주요-기능-및-코드)
-7. [화면 구성](#화면-구성)
-8. [추가하고싶은 페이지 및 기능](#추가하고싶은-페이지-및-기능)
-9. [프로젝트 소감](#프로젝트-소감)
+1. [프로젝트 팀 소개](#-프로젝트-팀-소개)
+2. [프로젝트 소개](#-프로젝트-소개)
+3. [기술 스택](#-기술-스택)
+4. [컨벤션](#-컨벤션)
+5. [담당 페이지 및 기능](#-담당-페이지-및-기능)
+6. [주요 기능 및 코드](#-주요-기능-및-코드)
+7. [화면 구성](#-화면-구성)
+8. [추가하고싶은 페이지 및 기능](#-추가하고싶은-페이지-및-기능)
+9. [프로젝트 소감](#-프로젝트-소감)
 
 ---
+
+<br>
 
 ## 😀 프로젝트 팀 소개
 
 <b>1조 원더독(onederdog)</b>
 | [박지민(팀장)](https://github.com/aksenmi) | [류채영](https://github.com/chaeyoungg) | [양준호](https://github.com/yanggengjelly) | [김도하](https://github.com/D0-HA) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="200" height="150" src="./src/assets/readme/user-junho.JPG" /> | <img width="200" height="150" src="./src/assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./src/assets/readme/user-junho.JPG" /> | <img width="200" height="150" src="./src/assets/readme/user-doha.JPG" /> |
+| <img width="200" height="150" src="./src/assets/readme/user-junho.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./src/assets/readme/user-junho.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-doha.jpg" /> |
 
 ---
 
@@ -48,25 +50,25 @@
 
 <br>
 
-#### Library
+### Library
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=blue">
  <img src="https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white">
 <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white">
 <img src="https://img.shields.io/badge/kakao Map-FFCD00?style=for-the-badge&logo=kakao&logoColor=black">
 
-#### Tools
+### Tools
 
 <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 
-#### Setting
+### Setting
 
 <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white" /> <img src="https://img.shields.io/badge/Prettier-20B2AA?style=for-the-badge&logo=Prettier&logoColor=white" />
 
-#### Package Manager
+### Package Manager
 
 <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" /> <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=JSON&logoColor=white" /> <img src="https://img.shields.io/badge/vite-ACF3FF?style=for-the-badge&logo=vite&logoColor=black">
 
@@ -74,7 +76,7 @@
 
 ## 📢 컨벤션
 
-#### Git
+### Git
 
 ```JavaScript
 Feat (타입) : 로그인 기능 구현 (제목)
@@ -104,7 +106,7 @@ Remove : 파일을 삭제하는 작업만 수행하는 경우
 
 <br>
 
-#### Code
+### Code
 
 ```JavaScript
 
@@ -165,8 +167,8 @@ Remove : 파일을 삭제하는 작업만 수행하는 경우
 
 - 상품 찜하기 기능
 - 상품 예약하기 기능
-  <br>
 
+<br>
 <b>양준호</b>
 
 - 시작 화면
@@ -184,8 +186,8 @@ Remove : 파일을 삭제하는 작업만 수행하는 경우
   - 상품 상세 정보 렌더링
   - 상품 삭제 기능
   - 댓글 등록, 수정, 삭제 기능
-    <br>
 
+<br>
 <b>김도하</b>
 
 - 메인 페이지
@@ -219,31 +221,31 @@ const onederdog = "어쩌구저쩌구";
 
 |                    시작화면                     |              둘러보기(메인 페이지)               |                    회원가입                     |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                     로그인                      |                   키워드 검색                    |                   필터링 검색                   |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                상품 상세 페이지                 |                 여행장 정보 조회                 |                  상품 예약하기                  |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                    댓글 등록                    |                    댓글 수정                     |                    댓글 삭제                    |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                     찜하기                      |                    마이페이지                    |                  회원정보 수정                  |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                 찜 목록 페이지                  |                 구매 목록 페이지                 |                판매 목록 페이지                 |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 |                등록한 상품 삭제                 |                타유저 프로필 조회                |              타유저 판매 목록 조회              |
 | :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.JPG" /> | <img  src="./src/assets/readme/user-doha.JPG" /> | <img src="./src/assets/readme/user-doha.JPG" /> |
+| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
 
 ---
 
@@ -279,5 +281,9 @@ const onederdog = "어쩌구저쩌구";
 ```
 협업 할 때 생길 수 있는 다양한 이슈들을 미리 겪어볼 수 있어서 좋았습니다.
 많이 부족한 실력으로 프로젝트를 진행하게 되었는데,
-팀원분들의 큰 도움으로 느끼고, 배운 것이 많아요. 감사드립니다.
+팀원분들의 큰 도움으로 느끼고 배운 것이 많아요. 감사드립니다.
 ```
+
+<br>
+
+**[⬆️ 위로 올라갈래 ⬆️](#-목차)**
