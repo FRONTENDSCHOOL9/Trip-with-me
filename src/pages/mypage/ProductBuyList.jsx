@@ -57,15 +57,8 @@ function ProductBuyList() {
     }
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
-  //       <BeatLoader color="#68A9ED" />
-  //     </div>
-  //   );
-  // }
   return (
-    <div className="mb-8 flex flex-col h-full font-notosan">
+    <div className="flex flex-col h-full font-notosan">
       {itemList.length === 0 && !isLoading && (
         <div className="flex flex-col justify-center items-center h-[780px] text-lg">
           <p className="text-center mt-4">{`${page}에 아무것도 없어요..`}</p>

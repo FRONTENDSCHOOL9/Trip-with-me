@@ -56,7 +56,10 @@ function ProductBuyListItem({ item }) {
                 구매완료
               </span>
               <p className="font-sm font-semibold">
-                {item?.products[0]?.price} 원
+                {item?.products[0]?.price
+                  .toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                원
               </p>
             </div>
           </div>

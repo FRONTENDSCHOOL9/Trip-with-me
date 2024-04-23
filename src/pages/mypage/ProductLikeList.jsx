@@ -31,7 +31,7 @@ function ProductLikeList() {
   }, []);
 
   return (
-    <div className="mb-8 flex flex-col h-full font-notosans">
+    <div className="flex flex-col h-full font-notosans">
       {likeData.length > 0 && likeData}
       {likeData.length === 0 && !isLoading && (
         <div className="flex flex-col justify-center items-center h-[780px] text-lg">
