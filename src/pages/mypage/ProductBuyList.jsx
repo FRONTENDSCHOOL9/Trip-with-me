@@ -73,7 +73,7 @@ function ProductBuyList() {
       )}
       {/* {isLoading && } */}
 
-      {!isLoading && !isEnd && (
+      {!isLoading && !isEnd && itemList.length > 0 && (
         <div className="flex flex-col justify-center items-center">
           <button
             className="bg-blue-500 py-2 px-4 rounded-lg animate-pulse text-sm font-medium text-white mt-6 mb-6"
