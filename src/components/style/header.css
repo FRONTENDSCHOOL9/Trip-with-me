@@ -11,16 +11,12 @@
 .header-back {
   background-image: url('/src/assets/icons/icon-arrow-back.svg');
   background-repeat: no-repeat;
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 20px;
-  width: 30px;
-  height: 30px;
+  margin-left: auto;
 }
 .header-title {
   font-size: 20px;
   font-weight: 700;
+  position: absolute;
 }
 .ir {
   position: absolute;

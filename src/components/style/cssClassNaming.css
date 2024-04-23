@@ -71,3 +71,7 @@
   border-bottom: 2px solid #afb1b6;
   font-weight: 600;
 }
+
+.react-tabs__tab--selected:focus {
+  outline: none;
+}
