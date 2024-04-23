@@ -72,8 +72,8 @@ const PopularProductList = () => {
               key={item._id}
               className="h-[330px]  p-2 font-notosans"
             >
-              <div>
-                <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
+              <div className="border-[1px] rounded-2xl bg-gray-100 ">
+                <div className="w-102.5 h-56 overflow-hidden rounded-t-lg ">
                   <Link to={`/product/${item._id}`}>
                     <img
                       className="size-full object-cover"
@@ -82,25 +82,25 @@ const PopularProductList = () => {
                   </Link>
                 </div>
 
-                <div className="p-2 relative">
+                <div className="p-3 relative rounded-b-xl ">
                   <Link to={`/product/${item.id}`}>
-                    <h3 className="text-base font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+                    <h3 className="text-lg font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                       {item.name}
                     </h3>
                   </Link>
                   <div className="flex text-sm">
                     <img
                       src="../src/assets/icons/icon-group.svg"
-                      className="w-4 mr-1"
+                      className="w-5 mr-1"
                     />
-                    <p>{`${item.buyQuantity}/${item.quantity}`}</p>
+                    <p className="text-sm">{`${item.buyQuantity}/${item.quantity}`}</p>
                   </div>
 
                   <div className="mt-1">
                     {item.extra?.themes?.map(theme => (
                       <a
                         href="#"
-                        className="bg-indigo-100 rounded mr-1 pb-0.5 px-0.5 text-sm font-medium"
+                        className="bg-indigo-100  mr-2 px-1 py-1 text-center text-sm font-medium rounded-lg"
                         key={theme.id}
                       >
                         {theme.name}
@@ -108,7 +108,7 @@ const PopularProductList = () => {
                     ))}
                   </div>
 
-                  <div className="absolute top-8 right-7 text-center">
+                  <div className="absolute top-8 right-7 text-center ">
                     <button type="button">
                       <img
                         src="../src/assets/icons/icon-heart-disabled.svg"
