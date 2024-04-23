@@ -73,7 +73,7 @@ const MainProductItem = ({ item }) => {
 
           <div className="p-3 relative flex flex-col gap-1 ">
             <Link to={`/product/${item._id}`}>
-              <h3 className="text-lg font-medium max-w-70 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+              <h3 className="text-lg font-medium w-10/12 flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                 {item?.name}
               </h3>
             </Link>
