@@ -4,7 +4,7 @@ import useMemberState from '@zustand/memberState.mjs';
 import usePageStore from '@zustand/pageName.mjs';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 function Payment() {
   const { _id } = useParams();
@@ -19,11 +19,20 @@ function Payment() {
   const [productImage, setProductImage] = useState({});
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const item = useLocation();
 
+  console.log('item', item?.state?.item);
+  const leftQuantity =
+    +item?.state?.item.quantity - +item?.state?.item.buyQuantity;
+  //
   useEffect(() => {
     if (user) {
       setPageName(page);
-      getProductData();
+      setProductData(item?.state?.item);
+      setProductImage(item?.state?.item?.mainImages[0]?.name);
+      setProductPrice(item?.state?.item?.price);
+      setProductQuantity(leftQuantity);
+      // getProductData();
     } else if (!user) {
       alert('로그인 후 이용 가능합니다.');
       noUser();
@@ -34,19 +43,19 @@ function Payment() {
     navigate('/users/login');
   }
 
-  const getProductData = async () => {
-    try {
-      const { data } = await axios.get(`/products/${_id}`);
-      console.log('data?.item', data?.item);
-      setProductData(data?.item);
-      setProductPrice(data?.item?.price);
-      setProductImage(data?.item?.mainImages[0]);
-      const leftQuantity = +data?.item.quantity - +data?.item.buyQuantity;
-      setProductQuantity(leftQuantity);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  // const getProductData = async () => {
+  //   try {
+  //     const { data } = await axios.get(`/products/${_id}`);
+  //     console.log('data?.item', data?.item);
+  //     setProductData(data?.item);
+  //     setProductPrice(data?.item?.price);
+  //     setProductImage(data?.item?.mainImages[0]);
+  //     const leftQuantity = +data?.item.quantity - +data?.item.buyQuantity;
+  //     setProductQuantity(leftQuantity);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // };
 
   const checkUpCount = () => {
     console.log(productQuantity);
@@ -105,7 +114,7 @@ function Payment() {
           <div className="px-1">
             <img
               className="max-h-64 h-full w-full rounded-md mb-2 mx-auto"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage.name}`}
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage}`}
             />
 
             <p className="mb-2">{productData?.name}</p>
