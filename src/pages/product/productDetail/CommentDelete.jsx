@@ -7,7 +7,7 @@ function CommentDelete({ commentId, onDelete }) {
 
   return (
     <button
-      className=" px-2 py-1 border-[1px] rounded-md text-warning-color"
+      className=" px-3 py-2 border-[1px] rounded-md text-warning-color"
       onClick={handleDelete}
     >
       <img src="/src/assets/icons/icon-delete-bin.svg" alt="삭제" />
