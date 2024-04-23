@@ -65,13 +65,19 @@ function ProductBuyList() {
   //   );
   // }
   return (
-    <div className="mb-8 flex flex-col font-notosans  ">
+    <div className="mb-8 flex flex-col h-full font-notosan">
+      {itemList.length === 0 && !isLoading && (
+        <div className="flex flex-col justify-center items-center h-[780px] text-lg">
+          <p className="text-center mt-4">{`${page}에 아무것도 없어요..`}</p>
+          <p>{`같이 여행을 떠날 동행 메이트를 모집해보세요😄`}</p>
+        </div>
+      )}
+      {itemList.length > 0 && <ul>{itemList}</ul>}
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
+        <div className="my-auto flex justify-center items-center">
           <BeatLoader color="#68A9ED" />
         </div>
       )}
-      {itemList}
       {/* {isLoading && } */}
 
       {!isLoading && !isEnd && (
