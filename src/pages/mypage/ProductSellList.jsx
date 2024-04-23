@@ -57,7 +57,7 @@ function ProductSellList() {
     getSellList();
   }, []);
   return (
-    <div className="mb-8 flex flex-col">
+    <div className="mb-8 flex flex-col font-notosans">
       {itemList.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[780px] text-lg">
           <p className="text-center mt-4">{`${page}에 아무것도 없어요..`}</p>

@@ -36,14 +36,20 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 .like-card {
-  background: rgb(138, 226, 74);
-  background: linear-gradient(
-    126deg,
-    rgba(138, 226, 74, 1) 16%,
-    rgba(147, 255, 156, 1) 32%,
-    rgba(116, 255, 80, 1) 76%
-  );
+  background-color: #faaca8;
+  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
 }
 .shadow-top {
   box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.buy-card {
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+.sell-card {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }

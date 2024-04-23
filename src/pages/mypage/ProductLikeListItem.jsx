@@ -27,7 +27,7 @@ function ProductLikeListItem({ item }) {
           </div>
         </Link>
         <div className="border-2 w-[320px] h-full rounded-tr-[44px] absolute top-[312px] left-0 bg-light-gray z-20 shadow-top">
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <Link to={`/product/${item?.product?._id}`} className="w-full">
               <div className="flex flex-col justify-start  pt-4 px-6 mb-4 ">
                 <h4 className="mb-1 text-lg font-semibold  line-clamp-1 ">
