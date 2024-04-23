@@ -17,6 +17,7 @@ import Review from '@pages/product/Review';
 import { BeatLoader } from 'react-spinners';
 import useMemberState from '@zustand/memberState.mjs';
 import usePageStore from '@zustand/pageName.mjs';
+import { Button } from '@components/style/StyledButton';
 
 function ProductDetail() {
   const axios = useCustomAxios();
@@ -128,8 +129,6 @@ function ProductDetail() {
               </li>
             ))}
           </ul>
-          {/* 
-          <ProductLikeButton item={productInfo?.item} /> */}
 
           {isSeller && (
             <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-gray-400 border-gray-400 border-dotted ">
@@ -311,6 +310,17 @@ function ProductDetail() {
             </div>
           </TabPanel>
         </Tabs>
+        <div className="flex">
+          <Link
+            to={`/product/${_id}/payment`}
+            className="text-white mx-auto w-full bg-main-color h-10 text-center rounded-md"
+            state={{ item: productInfo?.item }}
+          >
+            구매하기
+          </Link>
+
+          <ProductLikeButton item={productInfo?.item} />
+        </div>
       </div>
     </div>
   );
