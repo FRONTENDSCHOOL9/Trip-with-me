@@ -87,16 +87,12 @@ function Comment() {
         <div className="flex flex-col justify-center">
           <Link to={`/mypage/${item?.user?._id}`}>
             <img
-              className="w-14 h-14 border-2 rounded-full"
-              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.user?.profile}`}
-              alt="프로필 이미지"
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = '/default-profile.png';
-              }}
+              className="border-2 rounded-full w-14 h-14"
+              src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${user?.profile}`}
+              alt=""
             />
           </Link>
-          <p className="text-center text-gray-500 text-sm mt-1">
+          <p className="mt-1 text-sm text-center text-gray-500">
             {item?.user?.name}
           </p>
         </div>
@@ -111,7 +107,7 @@ function Comment() {
             }}
           />
         ) : (
-          <div className="flex justify-center items-center mb-3">
+          <div className="flex items-center justify-center mb-3">
             <p className="w-[226px] ml-4 ">{item?.content}</p>
             {isCommentOwner && (
               <>
@@ -119,7 +115,7 @@ function Comment() {
                   className="px-2 py-1 mr-1 text-main-color border-[1px] rounded-md"
                   onClick={() => setEditingCommentId(item._id)}
                 >
-                  수정
+                  <img src="/src/assets/icons/icon-edit-pen.svg" alt="삭제" />
                 </button>
                 <CommentDelete
                   commentId={item._id}
@@ -136,7 +132,7 @@ function Comment() {
   return (
     <div>
       <CommentNew refetch={refetch} />
-      <div className="flex mx-4 text-sm mb-4 pt-4">
+      <div className="flex pt-4 mx-4 mb-4 text-sm">
         <h4 className="mr-1">Comment</h4>
         <p>
           <span>({comments?.length || 0})</span>

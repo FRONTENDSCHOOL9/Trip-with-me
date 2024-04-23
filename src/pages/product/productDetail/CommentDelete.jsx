@@ -1,6 +1,8 @@
 function CommentDelete({ commentId, onDelete }) {
   const handleDelete = () => {
-    onDelete(commentId);
+    if (window.confirm('댓글을 삭제하시겠습니까?')) {
+      onDelete(commentId);
+    }
   };
 
   return (
@@ -8,7 +10,7 @@ function CommentDelete({ commentId, onDelete }) {
       className=" px-2 py-1 border-[1px] rounded-md text-warning-color"
       onClick={handleDelete}
     >
-      삭제
+      <img src="/src/assets/icons/icon-delete-bin.svg" alt="삭제" />
     </button>
   );
 }
