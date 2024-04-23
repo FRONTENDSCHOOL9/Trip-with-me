@@ -12,7 +12,7 @@ function MainProductPage() {
       <Title />
 
       <Search />
-      <div className="scrollbar p-4">
+      <div className="scrollbar px-4 pb-4">
         <div>
           <SubTitle
             iconSrc="../src/assets/icons/icon-love.png"

@@ -33,7 +33,7 @@ const PopularProductList = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-[6px]">
+      <div className="flex flex-col gap-[6px] ml-2">
         <div className="card">
           <div className="spinner"></div>
         </div>

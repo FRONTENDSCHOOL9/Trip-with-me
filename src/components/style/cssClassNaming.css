@@ -53,3 +53,21 @@
     rgba(148, 187, 233, 1) 100%
   );
 }
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+.react-tabs__tab--selected {
+  border-bottom: 2px solid #afb1b6;
+  font-weight: 600;
+}

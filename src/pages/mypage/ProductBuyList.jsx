@@ -65,7 +65,7 @@ function ProductBuyList() {
   //   );
   // }
   return (
-    <div className="mb-8 flex flex-col font-notosans">
+    <div className="mb-8 flex flex-col font-notosans  ">
       {isLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
           <BeatLoader color="#68A9ED" />
@@ -75,13 +75,14 @@ function ProductBuyList() {
       {/* {isLoading && } */}
 
       {!isLoading && !isEnd && (
-        <button
-          id="more"
-          className="mx-auto border border-main-color rounded-lg text-sm text-white tracking-widest"
-          onClick={handleClick}
-        >
-          <img className="w-8" src="/src/assets/icons/icon-more.svg" alt="" />
-        </button>
+        <div className="flex flex-col justify-center items-center">
+          <button
+            className="bg-blue-500 py-2 px-4 rounded-lg animate-pulse text-sm font-medium text-white mt-6"
+            onClick={handleClick}
+          >
+            더 보기
+          </button>
+        </div>
       )}
     </div>
   );
