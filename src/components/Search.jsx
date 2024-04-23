@@ -19,7 +19,7 @@ const Search = () => {
     }
   };
   return (
-    <div className="flex gap-2 relative font-notosans ml-5">
+    <div className="flex gap-2 relative font-notosans ml-5 pb-8">
       <img
         src="../src/assets/icons/icon-search.svg"
         className="w-6 absolute top-2 left-2"
