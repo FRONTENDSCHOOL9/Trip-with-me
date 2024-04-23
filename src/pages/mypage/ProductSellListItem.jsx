@@ -8,7 +8,7 @@ const productSellListItem = ({ item }) => {
     <li className="font-notosans list-none ">
       <div className="py-16 px-5  max-w-sm w-full h-[440px] mx-auto mt-6 mb-10 relative  shadow-xl rounded-2xl sell-card overflow-hidden">
         <h3 className="absolute top-5 left-6 text-lg font-bold">
-          My Sell Trip Cards
+          My Sell Trip Card
         </h3>
         <div className="w-102.5 h-56 overflow-hidden rounded-[10px]">
           <Link to={`/product/${item._id}`}>
