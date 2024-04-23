@@ -21,7 +21,7 @@ function MainProductPage() {
           <PopularProductList />
         </div>
 
-        <div>
+        <div className="mt-6">
           <SubTitle
             iconSrc="../src/assets/icons/icon-tour-guide.png"
             title="새로 올라왔어요"
