@@ -294,8 +294,8 @@ export const initData = async nextSeq => {
           },
           spot: [
             {
-              name: '경상북도',
-              id: '6',
+              name: '전북도',
+              id: '8',
             },
           ],
           themes: [
@@ -306,12 +306,10 @@ export const initData = async nextSeq => {
             {
               name: '🍀힐링투어',
               id: '4',
-              isSelected: false,
             },
             {
               name: '📸사진여행',
               id: '11',
-              isSelected: false,
             },
           ], //테마
           itineraryMaps: [
@@ -354,7 +352,7 @@ export const initData = async nextSeq => {
           ], //지도정보
         },
         seller_id: 1,
-        buyQuantity: 10,
+        buyQuantity: 2,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         seller: {
@@ -967,12 +965,10 @@ export const initData = async nextSeq => {
             {
               name: '🍀힐링투어',
               id: '4',
-              isSelected: false,
             },
             {
               name: '📸사진여행',
               id: '11',
-              isSelected: false,
             },
           ], //테마
           itineraryMaps: [
@@ -1188,17 +1184,14 @@ export const initData = async nextSeq => {
             {
               name: '🍖맛집탐방',
               id: '2',
-              isSelected: false,
             },
             {
               name: '🍀힐링투어',
               id: '4',
-              isSelected: false,
             },
             {
               name: '📸사진여행',
               id: '11',
-              isSelected: false,
             },
           ], //테마
           itineraryMaps: [
