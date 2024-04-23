@@ -68,8 +68,10 @@ function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75">
-        <BeatLoader color="#68A9ED" />
+      <div className="flex flex-col h-screen mb-8 font-notosans">
+        <div className="flex items-center justify-center my-auto">
+          <BeatLoader color="#68A9ED" />
+        </div>
       </div>
     );
   }
@@ -80,8 +82,9 @@ function ProductDetail() {
     ? new Intl.NumberFormat('ko-KR', {
         style: 'currency',
         currency: 'KRW',
+        currencyDisplay: 'symbol', // 통화 기호만 표시
       }).format(productInfo.item.price)
-    : '0원';
+    : '0';
 
   const ReSettingMapBounds = ({ markers }) => {
     const map = useMap();
@@ -105,7 +108,7 @@ function ProductDetail() {
   };
 
   return (
-    <div className="h-full bg-mainbg-color font-notosans">
+    <div className="h-full bg-mainbg-color font-notosans ">
       <div className="flex flex-col bg-mainbg-color ">
         <div className="h-56 mx-auto mt-6 mb-6 border-2 border-gray-300 shadow-xl rounded-2xl w-96 bg-light-gray">
           <img
@@ -123,19 +126,19 @@ function ProductDetail() {
             {productInfo?.item?.extra?.themes.map((theme, index) => (
               <li
                 key={theme.id}
-                className="px-4 py-1 text-sm font-medium border-2 rounded-full"
+                className="px-3 py-1 text-sm font-medium border-2 rounded-full "
               >
-                #{theme.name}
+                {theme.name}
               </li>
             ))}
           </ul>
-
-          <ProductLikeButton item={productInfo?.item} />
+          {/* 
+          <ProductLikeButton item={productInfo?.item} /> */}
 
           {isSeller && (
-            <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-warning-color border-warning-color ">
+            <div className="mr-5 px-2 py-1 border-[1px] rounded-lg text-gray-400 border-gray-400 border-dotted ">
               <button className="text-sm" onClick={handleDelete}>
-                상품 삭제
+                상품삭제
               </button>
             </div>
           )}
