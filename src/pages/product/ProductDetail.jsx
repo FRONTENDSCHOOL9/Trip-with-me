@@ -310,7 +310,7 @@ function ProductDetail() {
             </div>
           </TabPanel>
         </Tabs>
-        <div className="flex">
+        <div className="flex w-82">
           <Link
             to={`/product/${_id}/payment`}
             className="text-white mx-auto w-full bg-main-color h-10 text-center rounded-md"
