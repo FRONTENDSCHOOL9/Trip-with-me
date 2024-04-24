@@ -19,7 +19,7 @@
 <b>1조 원더독(onederdog)</b>
 | [박지민(팀장)](https://github.com/aksenmi) | [류채영](https://github.com/chaeyoungg) | [양준호](https://github.com/yanggengjelly) | [김도하](https://github.com/D0-HA) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="200" height="150" src="./src/assets/readme/user-junho.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./src/assets/readme/user-junho.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-doha.jpg" /> |
+| <img width="200" height="150" src="./src/assets/readme/user-jimin.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./src/assets/readme/user-junho.png" /> | <img width="200" height="150" src="./src/assets/readme/user-doha.png" /> |
 
 ---
 
