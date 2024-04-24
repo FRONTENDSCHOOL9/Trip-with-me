@@ -115,7 +115,6 @@ const PopularProductList = () => {
                         className="w-8"
                       />
                     </button>
-                    {/* <p className="-mt-2">{item?.bookmarks}</p> */}
                   </div>
                 </div>
               </div>
