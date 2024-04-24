@@ -229,10 +229,299 @@ Remove : 파일을 삭제하는 작업만 수행하는 경우
 
 ## 📌 주요 기능 및 코드
 
-- 어쩌구저쩌구 기능
+- 본인이 작성한 댓글일 경우에만 수정/삭제 버튼 생성
+
+```
+저희 게시글은 ‘상품’ API 를 사용하기 때문에 기본적인 댓글 기능이 붙어있지 않았는데요,
+댓글 기능을 구현하기 위해서 게시판 API의 type을 ‘comment’와 댓글을 노출할 product_id를 쿼리의 파라미터로 지정합니다.
+작성한 댓글은 zustand의 user 상태를 통해 로그인 된 사용자가 작성한 게시글에 한하여 수정/삭제 버튼을 노출하고 해당기능을 수행합니다.
+```
 
 ```JavaScript
-const onederdog = "어쩌구저쩌구";
+const { data, isLoading, refetch, error } = useQuery({
+    queryKey: ['comments', _id],
+    queryFn: async () => {
+      const res = await axios.get('/posts', {
+        params: {
+          type: 'comment',
+          custom: `{ "product_id" : ${_id}}`,
+        },
+      });
+      return res;
+    },
+    select: res => res.data,
+  });
+;
+```
+
+```
+댓글의 프로필 이미지를 클릭하면 타인의 프로필과 판매하는 상품 목록을 열람할 수 있습니다.
+```
+
+```Javascript
+{editingCommentId === item._id ? (
+          <CommentEdit
+            comment={item}
+            onSave={handleEditComment}
+            onCancel={() => {
+              setEditingCommentId(null);
+              setEditCommentText('');
+            }}
+
+```
+
+<br>
+
+- 상품 구매하기
+
+```
+상품 상세 페이지에서 넘어온 prop 값을 기반으로 구매를 진행합니다.
+이 때 구매 가능한 quantity 보다 넘은 주문을 방지하기 위하여 버튼 클릭 이벤트에 validation 을 진행합니다.
+```
+
+```Javascript
+  const checkUpCount = () => {
+    console.log(productQuantity);
+    if (productCount >= productQuantity) {
+      alert('모집 가능 인원을 초과하였습니다.');
+      setProductCount(prevCount => prevCount - 1);
+    }
+  };
+  const checkDownCount = () => {
+    if (productCount <= 1) {
+      alert('1명 이상만 예약 가능합니다.');
+      setProductCount(prevCount => prevCount + 1);
+    }
+  };
+
+  const handleUp = () => {
+    checkUpCount();
+    setProductCount(prevCount => prevCount + 1);
+  };
+  const handleDown = () => {
+    checkDownCount();
+    setProductCount(prevCount => prevCount - 1);
+  };
+```
+
+<br>
+
+- 구매 목록 페이지
+
+```
+구매가 진행되면 마이페이지의 구매 목록으로 이동합니다.
+이 페이지에서는 사용자가 구매했던 구매 목록을 전부 불러옵니다.
+최근 구매한 3개만큼의 상품을 서버에서 가져와 구매 목록에 쌓이게 되며
+하단의 더보기 버튼 클릭 시 다음 데이터를 추가로 받아와 렌더링을 진행합니다.
+모든 페이지의 로딩이 끝나면 더보기 버튼은 사라집니다.
+
+판매 목록, 구매 목록, 찜 목록 모두 동일하게 데이터가 없는 경우에는
+화면에 메시지가 렌더링 되도록, 서버에서 데이터를 받아오는 도중에는 스피너가 생성되도록 작성하여 ux 안정감을 부여하였습니다.
+```
+
+```Javascript
+ const handleClick = e => {
+    if (pageParam < totalPages) {
+      getBuyList();
+    } else if (pageParam === totalPages) {
+      getBuyList();
+      e.target.className = 'hidden';
+    }
+  };
+
+  const getBuyList = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios.get('/orders', {
+        params: {
+          sort: `{ "products.extra.date.endDate": -1 }`,
+          page: pageParam,
+          limit: 3,
+        },
+      });
+      const list = res?.data?.item?.map(item => {
+        return <ProductBuyListItem key={item?._id} item={item} />;
+      });
+      let newItemList = [...itemList, ...list];
+      console.log('newItemList', newItemList);
+      // console.log('res', res);
+      let endPage = res?.data?.pagination?.totalPages;
+      let nowPage = res?.data?.pagination?.page;
+      setIsEnd(endPage === nowPage);
+
+      console.log(endPage);
+      setTotalPages(endPage);
+      setItemList(newItemList);
+      setPageParam(nowPage + 1);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+```
+
+<br>
+
+- 찜 목록 페이지
+
+```
+찜 목록은 상품 메인, 상품 상세, 찜 목록에서 수행되는 하트 아이콘 클릭 action 을 기반으로, 서버에 좋아요 등록 및 해제가 수행됩니다.
+재사용성을 위해 해당 아이콘 버튼을 컴포넌트로 관리를 하였습니다.
+
+어떤 페이지에서 좋아요 기능을 원하는 경우, 상품의 정보 객체를 넘겨주면, 좋아요 기능을 붙일 수 있도록 개발하였습니다.
+```
+
+```Javascript
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+
+ProductLikeButton.propTypes = {
+  item: PropTypes.object,
+};
+
+function ProductLikeButton({ item }) {
+  // console.log('좋아요item', item);
+  // const [likeState, setLikeState] = useState(false);
+  let likeState = false;
+  // const [productLikeId, setProductLikeId] = useState(0);
+  let productLikeId = 0;
+  const axios = useCustomAxios();
+  const [initLikeState, setInitLikeState] = useState(false);
+  //icon-heart-full.svg
+
+  useEffect(() => {
+    checkInit();
+  }, []);
+
+  const checkInit = () => {
+    if (item?.myBookmarkId) {
+      setInitLikeState(
+        <img
+          onClick={handleLikeProduct}
+          className="w-6 h-6 ml-auto mr-2 cursor-pointer"
+          src="/assets/icons/icon-heart-full.svg"
+          alt=""
+        />,
+      );
+      // setLikeState(false);
+      likeState = false;
+      productLikeId = item?.myBookmarkId;
+    } else {
+      // console.log('false');
+      setInitLikeState(
+        <img
+          onClick={handleLikeProduct}
+          className="w-6 h-6 ml-auto mr-2 cursor-pointer"
+          src="/assets/icons/icon-heart-disabled.svg"
+          alt=""
+        />,
+      );
+      // setLikeState(true);
+      likeState = true;
+    }
+  };
+
+  const handleLikeProduct = async e => {
+    console.log('변경 실행됨');
+    // console.log('item',item?.bookmarks);
+    console.log('state 상태', likeState);
+    if (likeState === false) {
+      try {
+        await axios.delete(`/bookmarks/${productLikeId}`);
+        e.target.src = '/assets/icons/icon-heart-disabled.svg';
+        console.log('좋아요 제거한 경우 item._id =>', productLikeId);
+        likeState = !likeState;
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (likeState === true) {
+      try {
+        //좋아요 누를 때에는 상품 id를 보낸다.
+        const res = await axios.post(`/bookmarks/product/${item?._id}`, {});
+        productLikeId = res?.data?.item?._id;
+        console.log(
+          '좋아요 누른 경우 북마크 id 새로 세팅 =>',
+          res?.data?.item?._id,
+        );
+        // console.log('res =>', res);
+        e.target.src = '/assets/icons/icon-heart-full.svg';
+        // setLikeState(prevState => !prevState);
+        likeState = !likeState;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  return <>{initLikeState}</>;
+}
+
+export default ProductLikeButton;
+```
+
+<br>
+
+- 회원 정보 수정하기
+
+```
+마이페이지 메인의 회원정보수정 버튼을 클릭하면 이 곳에서 프로필 이미지, 닉네임, 자기소개글, 여행 관심사를 재설정할 수 있습니다.
+수정 버튼 클릭 시, 기존에 사용자가 등록했던 정보를 불러오기 위해서 기존 사용자의 정보에 담긴 데이터들을 불러옵니다.
+Input text나 TextArea의 경우에는 defaultValue값을 통해 쉽게 기존 정보를 세팅할 수 있지만,
+이미지와 테마의 경우에는 세부적인 작업이 필요합니다.
+이미지의 경우에는 URL.createObjectURL 메서드를 통해 파일 객체의 임시 URL을 설정해줍니다.
+해당 이미지 URL은 상태값으로 관리되어 이미지 ui에 보여지게 됩니다.
+테마의 경우에는 테마 API에서 가져온 값과 사용자의 테마 id를 비교하여 클릭되어진 효과를 주고, 클릭 이벤트 함수를 통해 값을 변경하게 됩니다.
+
+전체적으로 변경된 formData를 서버에 patch 함으로써 수정이 진행되고,
+이 때 zustand 로 관리하는 user의 정보도 함께 업데이트를 해줍니다.
+수정이 완료되면 메인 페이지에서 변경된 값으로 노출되는 마이페이지를 확인할 수 있습니다.
+```
+
+```Javascript
+  //서버로 전송 및 전역 상태 업데이트
+  const onSubmit = async formData => {
+    try {
+      //파일 먼저 가져오기
+      if (selectedFile.length > 0) {
+        console.log('selectedFile =>', selectedFile);
+
+        const imageFormData = new FormData();
+        imageFormData.append('attach', selectedFile[0]);
+
+        // console.log('formData =>', formData);
+        console.log('imageFormData=>', imageFormData);
+        const fileRes = await axios('/files', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          data: imageFormData,
+        });
+        formData.profileImage = fileRes.data.item[0].name;
+      } else if (selectedFile.length <= 0) {
+        formData.profileImage = propUser?.profile;
+      }
+
+      //formData의 extra 객체 생성
+      formData.extra = formData.extra || {};
+      console.log('if themeselected 윗부분');
+
+      formData.extra.birthday = propUser?.age;
+      if (themeSelectedArr) {
+        formData.extra.address = themeSelectedArr;
+      }
+
+      console.log('현재 보내는 formData => ', formData);
+      const res = await axios.patch('/users/' + propUser._id, formData);
+
+      const updateUser = {
+        name: res?.data?.updated?.name,
+        profile: res?.data?.updated?.profileImage,
+        theme: res?.data?.updated?.extra?.address,
+        introduce: res?.data?.updated?.extra?.introduce,
+      };
+
 ```
 
 ---
@@ -291,7 +580,9 @@ const onederdog = "어쩌구저쩌구";
 #### 류채영
 
 ```
-
+프로젝트를 진행하는 3주 동안 다양한 코드, 에러와 싸우면서 그 어느때보다 크게 성장할 수 있었다고 생각합니다.
+의욕적으로 함께 달려와준 팀원들에게 감사드리며,
+이제 프로젝트 진행하면서 급격히 늘은 체중은 어떻게 효율적으로 뺄지 고민해봐야겠습니다~!!!
 ```
 
 #### 양준호
