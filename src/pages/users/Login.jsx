@@ -45,7 +45,7 @@ function Login() {
         <div className="py-10 flex flex-col mb-10 max-w-fit mx-auto">
           <img
             className="ml-auto w-14 h-8 -mb-4"
-            src="/src/assets/icons/icon-logo.svg"
+            src="/assets/icons/icon-logo.svg"
             alt=""
           />
           <h1 className="font-['SokchoBadaDotum'] font-bold text-[40px] text-center text-main-color">
@@ -93,17 +93,17 @@ function Login() {
           <div className="my-5 flex items-center justify-center">
             <img
               className="w-10 h-10"
-              src="/src/assets/icons/icon-kakao.svg"
+              src="/assets/icons/icon-kakao.svg"
               alt="카카오 아이콘"
             />
             <img
               className="w-10 h-10 mx-3"
-              src="/src/assets/icons/icon-google.svg"
+              src="/assets/icons/icon-google.svg"
               alt="구글 아이콘"
             />
             <img
               className="w-10 h-10"
-              src="/src/assets/icons/icon-naver.svg"
+              src="/assets/icons/icon-naver.svg"
               alt="네이버 아이콘"
             />
           </div>

@@ -115,7 +115,7 @@ function MyPage() {
                 찜 목록
                 <img
                   className="w-6 h-6"
-                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  src="/assets/icons/icon-chevron-right-black.svg"
                   alt=""
                 />
               </Link>
@@ -126,7 +126,7 @@ function MyPage() {
                 구매 목록
                 <img
                   className="w-6 h-6"
-                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  src="/assets/icons/icon-chevron-right-black.svg"
                   alt=""
                 />
               </Link>
@@ -137,7 +137,7 @@ function MyPage() {
                 판매 목록
                 <img
                   className="w-6 h-6"
-                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  src="/assets/icons/icon-chevron-right-black.svg"
                   alt=""
                 />
               </Link>
@@ -149,7 +149,7 @@ function MyPage() {
                 로그아웃
                 <img
                   className="w-6 h-6"
-                  src="src/assets/icons/icon-chevron-right-black.svg"
+                  src="/assets/icons/icon-chevron-right-black.svg"
                   alt=""
                 />
               </button>

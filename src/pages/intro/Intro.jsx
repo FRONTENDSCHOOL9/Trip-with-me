@@ -46,7 +46,7 @@ function Intro() {
             <div className="flex flex-col justify-center ">
               <img
                 className="w-96 mb-16 mx-auto"
-                src="/src/assets/image/earthIntro.png"
+                src="/assets/image/earthIntro.png"
                 alt=""
               />
               <h2 className="mx-auto text-2xl font-semibold mb-6 ">
@@ -62,7 +62,7 @@ function Intro() {
             <div className="flex flex-col justify-center ">
               <img
                 className="w-96 mb-16 mx-auto"
-                src="/src/assets/image/personIntro.png"
+                src="/assets/image/personIntro.png"
                 alt=""
               />
               <h2 className="mx-auto text-2xl font-semibold mb-6 ">
@@ -78,7 +78,7 @@ function Intro() {
             <div className="flex flex-col justify-center">
               <img
                 className="w-96 mb-16 mx-auto"
-                src="/src/assets/image/peopleIntro.png"
+                src="/assets/image/peopleIntro.png"
                 alt=""
               />
               <h2 className="mx-auto text-2xl font-semibold mb-6 ">

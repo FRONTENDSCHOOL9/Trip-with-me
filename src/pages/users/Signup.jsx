@@ -155,13 +155,13 @@ function Signup() {
     <div className="flex flex-col justify-center bg-mainbg-color font-notosans layout ">
       <div className="p-10 m-auto max-w-[440px] w-full bg-mainbg-color scrollbar ">
         <button type="button " onClick={handlePrevButton}>
-          <img src="/src/assets/icons/icon-arrow-back.svg" />
+          <img src="/assets/icons/icon-arrow-back.svg" />
         </button>
         <div className="mb-10">
           <div className="flex flex-col mx-auto w-fit">
             <img
               className="-mb-2.5 ml-auto w-8 h-6"
-              src="/src/assets/icons/icon-logo.svg"
+              src="/assets/icons/icon-logo.svg"
               alt="메인 비행기 로고"
             />
             <h1 className="font-['SokchoBadaDotum'] font-bold text-3xl text-center text-main-color">

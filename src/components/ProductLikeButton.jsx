@@ -26,7 +26,7 @@ function ProductLikeButton({ item }) {
         <img
           onClick={handleLikeProduct}
           className="w-6 h-6 ml-auto mr-2 cursor-pointer"
-          src="/src/assets/icons/icon-heart-full.svg"
+          src="/assets/icons/icon-heart-full.svg"
           alt=""
         />,
       );
@@ -39,7 +39,7 @@ function ProductLikeButton({ item }) {
         <img
           onClick={handleLikeProduct}
           className="w-6 h-6 ml-auto mr-2 cursor-pointer"
-          src="/src/assets/icons/icon-heart-disabled.svg"
+          src="/assets/icons/icon-heart-disabled.svg"
           alt=""
         />,
       );
@@ -55,7 +55,7 @@ function ProductLikeButton({ item }) {
     if (likeState === false) {
       try {
         await axios.delete(`/bookmarks/${productLikeId}`);
-        e.target.src = '/src/assets/icons/icon-heart-disabled.svg';
+        e.target.src = '/assets/icons/icon-heart-disabled.svg';
         console.log('좋아요 제거한 경우 item._id =>', productLikeId);
         likeState = !likeState;
       } catch (err) {
@@ -71,7 +71,7 @@ function ProductLikeButton({ item }) {
           res?.data?.item?._id,
         );
         // console.log('res =>', res);
-        e.target.src = '/src/assets/icons/icon-heart-full.svg';
+        e.target.src = '/assets/icons/icon-heart-full.svg';
         // setLikeState(prevState => !prevState);
         likeState = !likeState;
       } catch (err) {
