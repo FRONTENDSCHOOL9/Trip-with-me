@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <div className="header">
+    <div className="header font-notosans">
       <div className="header-wrap">
         <button
           className="header-back"
@@ -34,7 +34,7 @@ function Header() {
         >
           <i className="ir">뒤로가기</i>
         </button>
-        <h1 className="header-title">{pageName}</h1>
+        <h1 className="header-title  text-lg">{pageName}</h1>
       </div>
     </div>
   );
