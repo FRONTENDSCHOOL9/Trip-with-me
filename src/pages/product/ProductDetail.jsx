@@ -121,7 +121,7 @@ function ProductDetail() {
         </div>
         <div className="flex items-center justify-between ml-5 ">
           <ul className="flex gap-2 my-4">
-            {productInfo?.item?.extra?.themes.map((theme, index) => (
+            {productInfo?.item?.extra?.themes?.map((theme, index) => (
               <li
                 key={theme.id}
                 className="px-3 py-1 text-sm font-medium border-2 rounded-full "
