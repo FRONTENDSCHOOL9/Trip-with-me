@@ -61,7 +61,7 @@ function Review({ seller_id }) {
                 <p>{item.user_name}</p>
                 <div className="flex ml-3 mr-auto">
                   {Array.from({ length: 5 }, (_, i) =>
-                    i <= item.rating ? (
+                    i < item.rating ? (
                       <p
                         key={i}
                         className="bg-[url('/assets/icons/icon-star-full.svg')] w-4 h-4  mb-1"

@@ -63,17 +63,10 @@ function MyPageOther() {
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${userData?.profileImage}`}
                 onError={e => {
                   e.target.onerror = null;
-                  e.target.src = '/public/default-profile.png';
+                  e.target.src = '/default-profile.png';
                 }}
               />
             </div>
-            {/* <Link
-                className="profile-box-edit-button text-white mt-auto  mb-6 mr-2 rounded-full w-[96px]  h-8 flex justify-center items-center"
-                to={'/mypage/edit'}
-                state={{ user: user }}
-              >
-                <p className="text-xs">회원 정보 수정</p>
-              </Link> */}
           </div>
 
           <div className="flex justify-center gap-4 mx-6">
