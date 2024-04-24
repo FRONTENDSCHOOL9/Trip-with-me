@@ -27,15 +27,15 @@ export const initData = async nextSeq => {
           address: [
             {
               id: '4',
-              name: '#힐링투어',
+              name: '🍀힐링투어',
             },
             {
               id: '5',
-              name: '#무박일정',
+              name: '🔥무박일정',
             },
             {
               id: '6',
-              name: '#성지순례',
+              name: '🚶🏻성지순례',
             },
           ],
         },
@@ -59,15 +59,15 @@ export const initData = async nextSeq => {
           address: [
             {
               id: '2',
-              name: '#맛집탐방',
+              name: '🍖맛집탐방',
             },
             {
               id: '6',
-              name: '#성지순례',
+              name: '🚶🏻성지순례',
             },
             {
               id: '14',
-              name: '#별자리 관측',
+              name: '🔭별자리 관측',
             },
           ],
         },
@@ -91,15 +91,15 @@ export const initData = async nextSeq => {
           address: [
             {
               id: '4',
-              name: '#힐링투어',
+              name: '🍀힐링투어',
             },
             {
               id: '5',
-              name: '#무박일정',
+              name: '🔥무박일정',
             },
             {
               id: '6',
-              name: '#성지순례',
+              name: '🚶🏻성지순례',
             },
           ],
         },
@@ -123,15 +123,15 @@ export const initData = async nextSeq => {
           address: [
             {
               id: '4',
-              name: '#힐링투어',
+              name: '🍀힐링투어',
             },
             {
               id: '5',
-              name: '#무박일정',
+              name: '🔥무박일정',
             },
             {
               id: '6',
-              name: '#성지순례',
+              name: '🚶🏻성지순례',
             },
           ],
         },
@@ -154,15 +154,15 @@ export const initData = async nextSeq => {
           address: [
             {
               id: '1',
-              name: '#음주가무',
+              name: '🍺음주가무',
             },
             {
               id: '2',
-              name: '#맛집탐방',
+              name: '🍖맛집탐방',
             },
             {
               id: '3',
-              name: '#이색체험',
+              name: '🎪이색체험',
             },
           ],
         },
@@ -171,6 +171,102 @@ export const initData = async nextSeq => {
         loginType: 'email',
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
+        email: 'testApp6@test.com',
+        name: '빔캠프',
+        extra: {
+          introduce: '50분이 되면 칼같이 출발한다. 안...녕',
+          birthday: 40,
+          address: [
+            {
+              id: '7',
+              name: '🏔️트레킹',
+            },
+            {
+              id: '8',
+              name: '🏖️물놀이',
+            },
+            {
+              id: '10',
+              name: '🎇축제',
+            },
+          ],
+        },
+        address: 'male',
+        type: 'seller',
+        loginType: 'email',
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        profileImage: 'user6.jpg',
+      },
+      {
+        _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
+        email: 'testApp7@test.com',
+        name: '신선범',
+        extra: {
+          introduce: '안녕? 놀이터를 좋아하는 내 이름은 신..선범',
+          birthday: 30,
+          address: [
+            {
+              id: '1',
+              name: '🍺음주가무',
+            },
+            {
+              id: '9',
+              name: '#🐟낚시',
+            },
+            {
+              id: '11',
+              name: '📸사진여행',
+            },
+          ],
+        },
+        address: 'male',
+        type: 'seller',
+        loginType: 'email',
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        profileImage: 'user7.jpg',
+      },
+      {
+        _id: await nextSeq('user'),
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+
+        email: 'testApp8@test.com',
+        name: 'GD',
+        extra: {
+          introduce: '짭GD 아니고 제가 진짜GD',
+          birthday: 40,
+          address: [
+            {
+              id: '11',
+              name: '📸사진여행',
+            },
+            {
+              id: '14',
+              name: '#🔭별자리 관측',
+            },
+            {
+              id: '13',
+              name: '⛷️스키/보드',
+            },
+          ],
+        },
+        address: 'male',
+        type: 'seller',
+        loginType: 'email',
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        profileImage: 'user8.jpg',
       },
     ],
     // 상품
@@ -198,14 +294,22 @@ export const initData = async nextSeq => {
           },
           spot: [
             {
-              name: '경상북도',
-              id: '6',
+              name: '전북도',
+              id: '8',
             },
           ],
           themes: [
             {
-              name: '성지순례',
+              name: '🚶🏻성지순례',
               id: '6',
+            },
+            {
+              name: '🍀힐링투어',
+              id: '4',
+            },
+            {
+              name: '📸사진여행',
+              id: '11',
             },
           ], //테마
           itineraryMaps: [
@@ -248,7 +352,7 @@ export const initData = async nextSeq => {
           ], //지도정보
         },
         seller_id: 1,
-        buyQuantity: 10,
+        buyQuantity: 2,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         seller: {
@@ -261,15 +365,15 @@ export const initData = async nextSeq => {
             address: [
               {
                 id: '4',
-                name: '#힐링투어',
+                name: '🍀힐링투어',
               },
               {
                 id: '5',
-                name: '#무박일정',
+                name: '🔥무박일정',
               },
               {
                 id: '6',
-                name: '#성지순례',
+                name: '🚶🏻성지순례',
               },
             ],
           },
@@ -330,7 +434,7 @@ export const initData = async nextSeq => {
           ],
           themes: [
             {
-              name: '맛집탐방',
+              name: '🍖맛집탐방',
               id: '2',
             },
           ],
@@ -392,7 +496,7 @@ export const initData = async nextSeq => {
           ], //지도정보
         },
         seller_id: 1,
-        buyQuantity: 4,
+        buyQuantity: 0,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         seller: {
@@ -405,15 +509,15 @@ export const initData = async nextSeq => {
             address: [
               {
                 id: '4',
-                name: '#힐링투어',
+                name: '🍀힐링투어',
               },
               {
                 id: '5',
-                name: '#무박일정',
+                name: '🔥무박일정',
               },
               {
                 id: '6',
-                name: '#성지순례',
+                name: '🚶🏻성지순례',
               },
             ],
           },
@@ -474,7 +578,7 @@ export const initData = async nextSeq => {
           ],
           themes: [
             {
-              name: '맛집탐방',
+              name: '🍖맛집탐방',
               id: '2',
             },
           ],
@@ -548,16 +652,16 @@ export const initData = async nextSeq => {
             birthday: '20',
             address: [
               {
-                id: '4',
-                name: '#힐링투어',
+                id: '1',
+                name: '🍺음주가무',
               },
               {
-                id: '5',
-                name: '#무박일정',
+                id: '2',
+                name: '🍖맛집탐방',
               },
               {
-                id: '6',
-                name: '#성지순례',
+                id: '3',
+                name: '🎪이색체험',
               },
             ],
           },
@@ -619,11 +723,11 @@ export const initData = async nextSeq => {
           ],
           themes: [
             {
-              name: '기타',
+              name: '💭기타',
               id: '15',
             },
             {
-              name: '축제',
+              name: '🎇축제',
               id: '10',
             },
           ], //테마
@@ -673,15 +777,15 @@ export const initData = async nextSeq => {
             address: [
               {
                 id: '4',
-                name: '#힐링투어',
+                name: '🍀힐링투어',
               },
               {
                 id: '5',
-                name: '#무박일정',
+                name: '🔥무박일정',
               },
               {
                 id: '6',
-                name: '#성지순례',
+                name: '🚶🏻성지순례',
               },
             ],
           },
@@ -737,17 +841,17 @@ export const initData = async nextSeq => {
           },
           spot: [
             {
-              name: '충청북도',
-              id: '4',
+              name: '서울시',
+              id: '1',
             },
           ],
           themes: [
             {
-              name: '기타',
+              name: '💭기타',
               id: '15',
             },
             {
-              name: '축제',
+              name: '🎇축제',
               id: '10',
             },
           ], //테마
@@ -755,17 +859,17 @@ export const initData = async nextSeq => {
             {
               markers: [
                 {
-                  title: '',
+                  title: '남산야경🌆',
                   latlng: {
-                    lat: 35.84836235279856,
-                    lng: 127.06494919899522,
+                    lat: 37.54874265219565,
+                    lng: 126.98952108573636,
                   },
                 },
                 {
-                  title: '',
+                  title: '남산돈까스(저녁)',
                   latlng: {
-                    lat: 35.81631727834969,
-                    lng: 127.10953850900516,
+                    lat: 37.55775195022113,
+                    lng: 126.98354408688576,
                   },
                 },
               ],
@@ -786,15 +890,15 @@ export const initData = async nextSeq => {
             address: [
               {
                 id: '4',
-                name: '#힐링투어',
+                name: '🍀힐링투어',
               },
               {
                 id: '5',
-                name: '#무박일정',
+                name: '🔥무박일정',
               },
               {
                 id: '6',
-                name: '#성지순례',
+                name: '🚶🏻성지순례',
               },
             ],
           },
@@ -849,35 +953,39 @@ export const initData = async nextSeq => {
           },
           spot: [
             {
-              name: '충청북도',
-              id: '4',
+              name: '서울시',
+              id: '1',
             },
           ],
           themes: [
             {
-              name: '기타',
+              name: '💭기타',
               id: '15',
             },
             {
-              name: '축제',
-              id: '10',
+              name: '🍀힐링투어',
+              id: '4',
+            },
+            {
+              name: '📸사진여행',
+              id: '11',
             },
           ], //테마
           itineraryMaps: [
             {
               markers: [
                 {
-                  title: '',
+                  title: '반포한강야경',
                   latlng: {
-                    lat: 35.84836235279856,
-                    lng: 127.06494919899522,
+                    lat: 37.50758513918781,
+                    lng: 126.99287463303486,
                   },
                 },
                 {
-                  title: '',
+                  title: '강남역저녁🍺',
                   latlng: {
-                    lat: 35.81631727834969,
-                    lng: 127.10953850900516,
+                    lat: 37.49864537850799,
+                    lng: 127.02173543245195,
                   },
                 },
               ],
@@ -898,15 +1006,15 @@ export const initData = async nextSeq => {
             address: [
               {
                 id: '4',
-                name: '#힐링투어',
+                name: '🍀힐링투어',
               },
               {
                 id: '5',
-                name: '#무박일정',
+                name: '🔥무박일정',
               },
               {
                 id: '6',
-                name: '#성지순례',
+                name: '🚶🏻성지순례',
               },
             ],
           },
@@ -933,6 +1041,261 @@ export const initData = async nextSeq => {
               _id: 5,
               name: '김긴급',
               profile: 'user5.jpg',
+            },
+            createdAt: '2024.04.22 09:18:41',
+          },
+        ],
+      },
+      {
+        _id: await nextSeq('product'),
+        price: 130000, //경비
+        quantity: 4, //인원
+        show: true,
+        active: true,
+        name: '같이 서울에서 워터밤 가실 분 구합니다.', //제목
+        mainImages: [
+          //이미지업로드
+          {
+            path: '/files/01-Trip-with-me/seoul3.jpg',
+            name: 'seoul3.jpg',
+            originalname: 'seoul3.jpg',
+          },
+        ],
+        content: '워터밤에서 즐겁게 물총놀이 하실 분~ 신청주세요', //상세설명
+        extra: {
+          date: {
+            startDate: '2024.4.26.',
+            endDate: '2024.4.26.',
+          },
+          spot: [
+            {
+              name: '서울시',
+              id: '1',
+            },
+          ],
+          themes: [
+            {
+              name: '💭기타',
+              id: '15',
+            },
+            {
+              name: '🎇축제',
+              id: '10',
+            },
+          ], //테마
+          itineraryMaps: [
+            {
+              markers: [
+                {
+                  title: '워터밤 시작지점',
+                  latlng: {
+                    lat: 37.50758513918781,
+                    lng: 126.99287463303486,
+                  },
+                },
+                {
+                  title: '뒷풀이 장소🍺',
+                  latlng: {
+                    lat: 37.49864537850799,
+                    lng: 127.02173543245195,
+                  },
+                },
+              ],
+            },
+          ], //지도정보
+        },
+        seller_id: 3,
+        buyQuantity: 0,
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        seller: {
+          _id: 3,
+          email: 'testApp6@test.com',
+          name: '빔캠프',
+          extra: {
+            introduce: '여50분이 되면 칼같이 출발한다. 안...녕',
+            birthday: '20',
+            address: [
+              {
+                id: '7',
+                name: '🏔️트레킹',
+              },
+              {
+                id: '8',
+                name: '🏖️물놀이',
+              },
+              {
+                id: '10',
+                name: '🎇축제',
+              },
+            ],
+          },
+          address: 'male',
+          profileImage: 'user6.jpg',
+        },
+        replies: [
+          {
+            _id: 1,
+            rating: 5,
+            content: '이 분은 역시 전문가이시구나 느꼈습니다.',
+            user: {
+              _id: 7,
+              name: '신선범',
+              profile: 'user7.jpg',
+            },
+            createdAt: '2024.04.21 20:21:46',
+          },
+          {
+            _id: 2,
+            rating: 4,
+            content: '아주 매너 굳 이십니다',
+            user: {
+              _id: 8,
+              name: 'GD',
+              profile: 'user8.jpg',
+            },
+            createdAt: '2024.04.22 09:18:41',
+          },
+        ],
+      },
+      {
+        _id: await nextSeq('product'),
+        price: 130000, //경비
+        quantity: 4, //인원
+        show: true,
+        active: true,
+        name: '5월, 순천으로 같이 떠나실래요?', //제목
+        mainImages: [
+          //이미지업로드
+          {
+            path: '/files/01-Trip-with-me/sooncheon.jpeg',
+            name: 'sooncheon.jpeg',
+            originalname: 'sooncheon.jpeg',
+          },
+        ],
+        content:
+          '순천에 엄청나게 아름다운 절경을 함께 볼 분들! 힐링 가득 투어 선물할게요', //상세설명
+        extra: {
+          date: {
+            startDate: '2024.5.4.',
+            endDate: '2024.5.5.',
+          },
+          spot: [
+            {
+              name: '🍖맛집탐방',
+              id: '2',
+            },
+            {
+              name: '🍀힐링투어',
+              id: '4',
+            },
+            {
+              name: '📸사진여행',
+              id: '11',
+            },
+          ], //테마
+          itineraryMaps: [
+            {
+              markers: [
+                {
+                  title: '순천역(점심은 찌개🥘)',
+                  latlng: {
+                    lat: 34.94555077636031,
+                    lng: 127.50340995780796,
+                  },
+                },
+                {
+                  title: '순천만습지☘️',
+                  latlng: {
+                    lat: 34.928911737539764,
+                    lng: 127.49893041106004,
+                  },
+                },
+                {
+                  title: '호수정원🌈',
+                  latlng: {
+                    lat: 34.93044311874832,
+                    lng: 127.51216114589093,
+                  },
+                },
+              ],
+            },
+            {
+              markers: [
+                {
+                  title: '낙안읍성🛖',
+                  latlng: {
+                    lat: 34.906091329162365,
+                    lng: 127.34180036094352,
+                  },
+                },
+                {
+                  title: '사또밥상🍜',
+                  latlng: {
+                    lat: 34.90457120635063,
+                    lng: 127.34385107645117,
+                  },
+                },
+                {
+                  title: '박물관',
+                  latlng: {
+                    lat: 34.90355477191597,
+                    lng: 127.33988604138563,
+                  },
+                },
+              ],
+            },
+          ], //지도정보
+        },
+        seller_id: 3,
+        buyQuantity: 0,
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        seller: {
+          _id: 3,
+          email: 'testApp6@test.com',
+          name: 'GD',
+          extra: {
+            introduce: '짭GD 아니고 제가 진짜GD',
+            birthday: '40',
+            address: [
+              {
+                id: '11',
+                name: '📸사진여행',
+              },
+              {
+                id: '14',
+                name: '#🔭별자리 관측',
+              },
+              {
+                id: '13',
+                name: '⛷️스키/보드',
+              },
+            ],
+          },
+          address: 'male',
+          profileImage: 'user8.jpg',
+        },
+        replies: [
+          {
+            _id: 1,
+            rating: 5,
+            content: '사진을 너무 잘 찍어주십니다~',
+            user: {
+              _id: 2,
+              name: '양선생님',
+              profile: 'user2.jpg',
+            },
+            createdAt: '2024.04.21 20:21:46',
+          },
+          {
+            _id: 2,
+            rating: 1,
+            content: '즐거웠으나 맛집은 별로',
+            user: {
+              _id: 1,
+              name: '여행덕후',
+              profile: 'user1.jpg',
             },
             createdAt: '2024.04.22 09:18:41',
           },
@@ -973,7 +1336,7 @@ export const initData = async nextSeq => {
       },
       {
         _id: await nextSeq('order'),
-        user_id: 3,
+        user_id: 6,
         products: [
           {
             _id: 1,
@@ -988,6 +1351,96 @@ export const initData = async nextSeq => {
               date: {
                 startDate: '2024.4.4.',
                 endDate: '2024.4.6.',
+              },
+            },
+            price: 1000, //경비
+            quantity: 2,
+          },
+        ],
+        cost: {
+          products: 1000,
+          total: 2000,
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('order'),
+        user_id: 7,
+        products: [
+          {
+            _id: 1,
+            seller_id: 1,
+            name: '2040까지 함께 떠나는 전주 여행',
+            image: {
+              path: '/files/01-Trip-with-me/jeonju.jpg',
+              name: 'jeonju.jpg',
+              originalname: 'jeonju.jpg',
+            },
+            extra: {
+              date: {
+                startDate: '2024.4.4.',
+                endDate: '2024.4.6.',
+              },
+            },
+            price: 1000, //경비
+            quantity: 2,
+          },
+        ],
+        cost: {
+          products: 1000,
+          total: 1000,
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('order'),
+        user_id: 8,
+        products: [
+          {
+            _id: 1,
+            seller_id: 1,
+            name: '2040까지 함께 떠나는 전주 여행',
+            image: {
+              path: '/files/01-Trip-with-me/jeonju.jpg',
+              name: 'jeonju.jpg',
+              originalname: 'jeonju.jpg',
+            },
+            extra: {
+              date: {
+                startDate: '2024.4.4.',
+                endDate: '2024.4.6.',
+              },
+            },
+            price: 1000, //경비
+            quantity: 1,
+          },
+        ],
+        cost: {
+          products: 1000,
+          total: 1000,
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('order'),
+        user_id: 3,
+        products: [
+          {
+            _id: 1,
+            seller_id: 1,
+            name: '전주비빔밥 먹으러 떠나볼까요?',
+            image: {
+              path: '/files/01-Trip-with-me/jeonju.jpg',
+              name: 'jeonju.jpg',
+              originalname: 'jeonju.jpg',
+            },
+            extra: {
+              date: {
+                startDate: '2024.4.19.',
+                endDate: '2024.4.20.',
               },
             },
             price: 1000, //경비
@@ -1451,6 +1904,66 @@ export const initData = async nextSeq => {
         createdAt: getTime(-6, -60 * 60 * 3),
         updatedAt: getTime(-6, -60 * 60 * 3),
       },
+      {
+        _id: await nextSeq('order'),
+        user_id: 4,
+        products: [
+          {
+            _id: 7,
+            seller_id: 3,
+            name: '같이 서울에서 워터밤 가실 분 구합니다.',
+            image: {
+              path: '/files/01-Trip-with-me/seoul3.jpg',
+              name: 'seoul3.jpg',
+              originalname: 'seoul3.jpg',
+            },
+            extra: {
+              date: {
+                startDate: '2024.4.26.',
+                endDate: '2024.4.26.',
+              },
+            },
+            price: 130000, //경비
+            quantity: 1,
+          },
+        ],
+        cost: {
+          products: 130000,
+          total: 130000,
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
+      {
+        _id: await nextSeq('order'),
+        user_id: 1,
+        products: [
+          {
+            _id: 7,
+            seller_id: 3,
+            name: '같이 서울에서 워터밤 가실 분 구합니다.',
+            image: {
+              path: '/files/01-Trip-with-me/seoul3.jpg',
+              name: 'seoul3.jpg',
+              originalname: 'seoul3.jpg',
+            },
+            extra: {
+              date: {
+                startDate: '2024.4.26.',
+                endDate: '2024.4.26.',
+              },
+            },
+            price: 130000, //경비
+            quantity: 1,
+          },
+        ],
+        cost: {
+          products: 130000,
+          total: 130000,
+        },
+        createdAt: getTime(-6, -60 * 60 * 3),
+        updatedAt: getTime(-6, -60 * 60 * 3),
+      },
     ],
     // 후기
     reply: [
@@ -1585,66 +2098,66 @@ export const initData = async nextSeq => {
     cart: [],
     // 즐겨찾기/북마크
     bookmark: [
-      {
-        _id: await nextSeq('bookmark'),
-        user_id: 1,
-        type: 'product',
-        target_id: 2,
-        product: {
-          _id: 2,
-          name: '부산 사나이가 소개하는 진짜 부산~ 이야기',
-          price: 1000,
-          quantity: 10,
-          buyQuantity: 4,
-          image: {
-            path: '/files/01-Trip-with-me/busan.jpg',
-            name: 'busan.jpg',
-            originalname: 'busan.jpg',
-          },
-        },
-        memo: {},
-        createdAt: getTime(-3, -60 * 60 * 2),
-      },
-      {
-        _id: await nextSeq('bookmark'),
-        user_id: 1,
-        type: 'product',
-        target_id: 3,
-        product: {
-          _id: 3,
-          name: '서울->부산 여행 같이가실 여성 동행 구합니다.',
-          price: 50000,
-          quantity: 3,
-          buyQuantity: 0,
-          image: {
-            path: '/files/01-Trip-with-me/busan2.jpg',
-            name: 'busan2.jpg',
-            originalname: 'busan2.jpg',
-          },
-        },
-        memo: {},
-        createdAt: getTime(-3, -60 * 60 * 2),
-      },
-      {
-        _id: await nextSeq('bookmark'),
-        user_id: 1,
-        type: 'product',
-        target_id: 4,
-        product: {
-          _id: 4,
-          name: '대전에서 축제 같이 즐기실 분',
-          price: 30000,
-          quantity: 4,
-          buyQuantity: 0,
-          image: {
-            path: '/files/01-Trip-with-me/daejeon.jpg',
-            name: 'daejeon.jpg',
-            originalname: 'daejeon.jpg',
-          },
-        },
-        memo: {},
-        createdAt: getTime(-3, -60 * 60 * 2),
-      },
+      // {
+      //   _id: await nextSeq('bookmark'),
+      //   user_id: 1,
+      //   type: 'product',
+      //   target_id: 2,
+      //   product: {
+      //     _id: 2,
+      //     name: '부산 사나이가 소개하는 진짜 부산~ 이야기',
+      //     price: 1000,
+      //     quantity: 10,
+      //     buyQuantity: 4,
+      //     image: {
+      //       path: '/files/01-Trip-with-me/busan.jpg',
+      //       name: 'busan.jpg',
+      //       originalname: 'busan.jpg',
+      //     },
+      //   },
+      //   memo: {},
+      //   createdAt: getTime(-3, -60 * 60 * 2),
+      // },
+      // {
+      //   _id: await nextSeq('bookmark'),
+      //   user_id: 1,
+      //   type: 'product',
+      //   target_id: 3,
+      //   product: {
+      //     _id: 3,
+      //     name: '서울->부산 여행 같이가실 여성 동행 구합니다.',
+      //     price: 50000,
+      //     quantity: 3,
+      //     buyQuantity: 0,
+      //     image: {
+      //       path: '/files/01-Trip-with-me/busan2.jpg',
+      //       name: 'busan2.jpg',
+      //       originalname: 'busan2.jpg',
+      //     },
+      //   },
+      //   memo: {},
+      //   createdAt: getTime(-3, -60 * 60 * 2),
+      // },
+      // {
+      //   _id: await nextSeq('bookmark'),
+      //   user_id: 1,
+      //   type: 'product',
+      //   target_id: 4,
+      //   product: {
+      //     _id: 4,
+      //     name: '대전에서 축제 같이 즐기실 분',
+      //     price: 30000,
+      //     quantity: 4,
+      //     buyQuantity: 0,
+      //     image: {
+      //       path: '/files/01-Trip-with-me/daejeon.jpg',
+      //       name: 'daejeon.jpg',
+      //       originalname: 'daejeon.jpg',
+      //     },
+      //   },
+      //   memo: {},
+      //   createdAt: getTime(-3, -60 * 60 * 2),
+      // },
     ],
     // QnA, 공지사항, 게시판
     post: [
@@ -1661,24 +2174,35 @@ export const initData = async nextSeq => {
       },
       {
         _id: await nextSeq('post'),
-        content: '재미있어보여요 대박',
+        content: '안...녕 즐거운 여행 되세요',
         type: 'comment',
         product_id: 1,
         user: {
-          _id: 2,
-          name: '양선생님',
-          profile: 'user2.jpg',
+          _id: 6,
+          name: '빔캠프',
+          profile: 'user6.jpg',
         },
       },
       {
         _id: await nextSeq('post'),
-        content: '여행 계획 노선이 아주 좋아보입니다.',
+        content: '재미있어보여요 대박',
+        type: 'comment',
+        product_id: 1,
+        user: {
+          _id: 7,
+          name: '신선범',
+          profile: 'user7.jpg',
+        },
+      },
+      {
+        _id: await nextSeq('post'),
+        content: '제 제자들과 함께 가도 될까요?',
         type: 'comment',
         product_id: 1,
         user: {
           _id: 3,
-          name: '박팀장',
-          profile: 'user3.png',
+          name: 'GD',
+          profile: 'user8.jpg',
         },
       },
       {

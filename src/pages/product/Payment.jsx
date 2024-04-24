@@ -21,7 +21,7 @@ function Payment() {
   const navigate = useNavigate();
   const item = useLocation();
 
-  console.log('item', item?.state?.item);
+  console.log('item', item?.state?.item?.mainImages[0]?.name);
   const leftQuantity =
     +item?.state?.item.quantity - +item?.state?.item.buyQuantity;
   //
@@ -115,7 +115,7 @@ function Payment() {
             <div className="h-56 mx-auto mt-6 mb-6 border-2  bg-mainbg-color border-gray-300 shadow-xl rounded-2xl w-96 ">
               <img
                 className="w-full h-full rounded-2xl"
-                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${productImage.name}`}
+                src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.state?.item?.mainImages[0]?.name}`}
               />
               <p className="my-4 text-2xl font-bold">{productData?.name}</p>
               <div className="flex gap-2">
