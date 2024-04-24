@@ -1,3 +1,4 @@
+import Header from '@components/layout/Header';
 import { Submit } from '@components/style/StyledButton';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
@@ -54,7 +55,7 @@ function Signup() {
     if (e.target.getAttribute('is_active') === 'true') {
       e.target.setAttribute('is_active', 'false');
       e.target.className =
-        'is_active  border-2 rounded-full py-1 px-2 m-1  border-gray-300 ';
+        'px-2 py-1 m-1 border-2 border-gray-300 rounded-full is_active ';
       count--;
     } else {
       if (selectValid(count) === false) {
@@ -63,7 +64,7 @@ function Signup() {
       }
       e.target.setAttribute('is_active', 'true');
       e.target.className =
-        ' border-main-color border-2 rounded-full py-1 px-2 m-1  border-main-color ';
+        'px-2 py-1 m-1 border-2 rounded-full border-main-color';
       count++;
     }
 
@@ -74,13 +75,13 @@ function Signup() {
   const setTheme = data => {
     const themeList = data?.map(item => (
       <button
-        className="border-2 rounded-full py-1 px-2 m-1"
+        className="px-2 py-1 m-1 border-2 rounded-full"
         key={item.id}
         id={item.id}
         type="button"
         onClick={handleClick}
       >
-        #{item.name}
+        {item.name}
       </button>
     ));
     setThemeData(themeList);
@@ -145,12 +146,19 @@ function Signup() {
     }
   }
 
+  const handlePrevButton = () => {
+    navigate('/users/login');
+  };
+
   //성별값은 API의 address에 저장
   return (
-    <div className="justify-center flex flex-col  bg-mainbg-color font-notosans layout ">
+    <div className="flex flex-col justify-center bg-mainbg-color font-notosans layout ">
       <div className="p-10 m-auto max-w-[440px] w-full bg-mainbg-color scrollbar ">
+        <button type="button " onClick={handlePrevButton}>
+          <img src="/src/assets/icons/icon-arrow-back.svg" />
+        </button>
         <div className="mb-10">
-          <div className="flex flex-col w-fit mx-auto">
+          <div className="flex flex-col mx-auto w-fit">
             <img
               className="-mb-2.5 ml-auto w-8 h-6"
               src="/src/assets/icons/icon-logo.svg"
@@ -175,7 +183,7 @@ function Signup() {
           </label>
           <div className="flex">
             <input
-              className="h-10 w-4/5 px-2 rounded-lg mr-2"
+              className="w-4/5 h-10 px-2 mr-2 rounded-lg"
               type="email"
               id="email"
               placeholder="이메일 형식으로 입력해주세요."
@@ -188,7 +196,7 @@ function Signup() {
               })}
             />
             <button
-              className="font-bold text-white text-sm w-1/5 bg-main-color rounded"
+              className="w-1/5 text-sm font-bold text-white rounded bg-main-color"
               type="button"
               onClick={handleEmailCheck}
             >
@@ -196,7 +204,7 @@ function Signup() {
             </button>
           </div>
           {errors.email && (
-            <p className=" text-sm font-medium text-warning-color">
+            <p className="text-sm font-medium text-warning-color">
               {errors.email.message}
             </p>
           )}
@@ -205,7 +213,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full px-2 rounded-lg"
+              className="w-full h-10 px-2 rounded-lg"
               type="password"
               id="password"
               placeholder="최소 8자리 이상 입력해주세요."
@@ -229,7 +237,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full rounded-lg"
+              className="w-full h-10 rounded-lg"
               type="password"
               id="passwordConfirm"
             />
@@ -246,7 +254,7 @@ function Signup() {
           </label>
           <div>
             <input
-              className="h-10 w-full rounded-lg"
+              className="w-full h-10 rounded-lg"
               type="text"
               id="name"
               {...register('name', { required: '닉네임을 입력하세요.' })}
@@ -328,17 +336,17 @@ function Signup() {
           <hr className="  border-b-[1px] border-white  mt-6" />
           <br />
           <div>
-            <div className=" relative">
-              <h3 className="text-xl text-center font-bold mb-10">
+            <div className="relative ">
+              <h3 className="mb-10 text-xl font-bold text-center">
                 관심사를 골라주세요 ({checkCount} / 3)
               </h3>
 
-              <div className=" absolute top-10 left-24 mb-4 text-sm font-medium text-warning-color">
+              <div className="absolute mb-4 text-sm font-medium top-10 left-24 text-warning-color">
                 {checkError && checkError}
               </div>
             </div>
 
-            <ul className="flex text-center rounded-full py-1 px-4  border-main-color">
+            <ul className="flex px-4 py-1 text-center rounded-full border-main-color">
               <li>{themeData}</li>
             </ul>
           </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { useState } from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import ProductLikeButton from '@components/ProductLikeButton';
 
 const MainProductItem = ({ item }) => {
   const isSoldOut = item.buyQuantity >= item.quantity;
@@ -98,7 +99,8 @@ const MainProductItem = ({ item }) => {
             </div>
 
             <div className="absolute top-8 right-7 text-center">
-              <button type="button">
+              <ProductLikeButton item={item} />
+              {/* <button type="button">
                 <img
                   onClick={handleLike}
                   src="/src/assets/icons/icon-heart-disabled.svg"

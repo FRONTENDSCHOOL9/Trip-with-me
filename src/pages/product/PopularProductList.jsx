@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import ProductLikeButton from '@components/ProductLikeButton';
 
 const PopularProductList = () => {
   const axios = useCustomAxios();
@@ -109,7 +110,8 @@ const PopularProductList = () => {
                   </div>
 
                   <div className="absolute top-8 right-7 text-center ">
-                    <button type="button">
+                    <ProductLikeButton item={item} />
+                    {/* <button type="button">
                       <img
                         src="../src/assets/icons/icon-heart-disabled.svg"
                         className="w-8"
