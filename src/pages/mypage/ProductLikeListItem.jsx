@@ -36,7 +36,7 @@ function ProductLikeListItem({ item }) {
                 <p className="text-lg  font-semibold">{won}원</p>
               </div>
             </Link>
-            <div className="absolute w-[386px] h-full top-[60px] -left-1 bg-light-gray -z-10 ">
+            <div className="absolute w-[388px] h-full top-[60px] -left-1 bg-light-gray -z-10 ">
               <div className="flex gap-2 items-center px-5 ml-auto mt-10 ">
                 {item?.product?.extra?.themes?.map(item => (
                   <p
