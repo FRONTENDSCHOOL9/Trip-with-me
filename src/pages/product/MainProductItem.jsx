@@ -19,7 +19,7 @@ const MainProductItem = ({ item }) => {
     if (likeState === false) {
       try {
         const res = await axios.delete(`/bookmarks/${likeId}`);
-        e.target.src = '/src/assets/icons/icon-heart-disabled.svg';
+        e.target.src = '/assets/icons/icon-heart-disabled.svg';
         console.log(res);
         console.log('좋아요 제거한 경우 item._id =>', likeId);
       } catch (err) {
@@ -35,7 +35,7 @@ const MainProductItem = ({ item }) => {
           res?.data?.item?._id,
         );
         // console.log('res =>', res);
-        e.target.src = '/src/assets/icons/icon-heart-full.svg';
+        e.target.src = '/assets/icons/icon-heart-full.svg';
       } catch (err) {
         console.log(err);
       }
@@ -79,10 +79,7 @@ const MainProductItem = ({ item }) => {
               </h3>
             </Link>
             <div className="flex text-sm ">
-              <img
-                src="../src/assets/icons/icon-group.svg"
-                className="w-5 mr-1"
-              />
+              <img src="/assets/icons/icon-group.svg" className="w-5 mr-1" />
               <p className="text-sm">{`${item?.buyQuantity}/${item?.quantity}`}</p>
             </div>
 
@@ -103,7 +100,7 @@ const MainProductItem = ({ item }) => {
               {/* <button type="button">
                 <img
                   onClick={handleLike}
-                  src="/src/assets/icons/icon-heart-disabled.svg"
+                  src="/assets/icons/icon-heart-disabled.svg"
                   className="w-8"
                 />
               </button> */}

@@ -12,7 +12,7 @@
   justify-content: center;
 } */
 .header-back {
-  background-image: url('/src/assets/icons/icon-arrow-back.svg');
+  background-image: url('/assets/icons/icon-arrow-back.svg');
   background-repeat: no-repeat;
   background-position: left 0px;
   width: 24px;

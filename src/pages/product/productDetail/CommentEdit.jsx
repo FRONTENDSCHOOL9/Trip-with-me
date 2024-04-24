@@ -20,13 +20,13 @@ function CommentEdit({ comment, onSave, onCancel }) {
         className="px-3 py-2 mr-1 text-main-color border-[1px] rounded-md"
         onClick={handleSave}
       >
-        <img src="/src/assets/icons/icon-check-line.svg" alt="저장" />
+        <img src="/assets/icons/icon-check-line.svg" alt="저장" />
       </button>
       <button
         className="px-3 py-2 border-[1px] rounded-md text-warning-color"
         onClick={onCancel}
       >
-        <img src="/src/assets/icons/icon-close-line.svg" alt="취소" />
+        <img src="/assets/icons/icon-close-line.svg" alt="취소" />
       </button>
     </div>
   );

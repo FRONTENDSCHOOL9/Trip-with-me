@@ -56,7 +56,7 @@ const Marker = ({
       <MapMarker
         position={marker.latlng}
         image={{
-          src: '/src/assets/icons/icon-map-pin.svg',
+          src: '/assets/icons/icon-map-pin.svg',
           size: {
             width: 35,
             height: 70,

@@ -125,7 +125,7 @@ function ProductImage({ productInfo, setProductInfo }) {
             />
             {!selectedFile && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <img src="/src/assets/icons/icon-image.png" alt="" />
+                <img src="/assets/icons/icon-image.png" alt="" />
               </div>
             )}
           </div>

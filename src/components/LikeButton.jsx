@@ -19,7 +19,7 @@ function LikeButton({ item }) {
     if (likeState === false) {
       try {
         const res = await axios.delete(`/bookmarks/${likeId}`);
-        e.target.src = '/src/assets/icons/icon-heart-disabled.svg';
+        e.target.src = '/assets/icons/icon-heart-disabled.svg';
         console.log(res);
         console.log('좋아요 제거한 경우 item._id =>', likeId);
       } catch (err) {
@@ -40,7 +40,7 @@ function LikeButton({ item }) {
           res?.data?.item?._id,
         );
         // console.log('res =>', res);
-        e.target.src = '/src/assets/icons/icon-heart-full.svg';
+        e.target.src = '/assets/icons/icon-heart-full.svg';
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +52,7 @@ function LikeButton({ item }) {
       <img
         onClick={handleLike}
         className="w-6 h-6 ml-auto mr-2 cursor-pointer"
-        src="/src/assets/icons/icon-heart-full.svg"
+        src="/assets/icons/icon-heart-full.svg"
         alt=""
       />
     </>

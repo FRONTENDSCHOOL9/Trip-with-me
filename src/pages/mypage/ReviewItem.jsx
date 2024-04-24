@@ -63,7 +63,7 @@ function ReviewItem({ item }) {
             num <= rating ? (
               <button
                 key={num}
-                className={`bg-[url('/src/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1`}
+                className={`bg-[url('/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1`}
                 type="button"
                 data-num={num}
                 onClick={handleStar}
@@ -71,7 +71,7 @@ function ReviewItem({ item }) {
             ) : (
               <button
                 key={num}
-                className={`bg-[url('/src/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1`}
+                className={`bg-[url('/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1`}
                 type="button"
                 data-num={num}
                 onClick={handleStar}
