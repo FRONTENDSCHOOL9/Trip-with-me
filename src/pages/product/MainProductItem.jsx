@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import ProductLikeButton from '@components/ProductLikeButton';
 
@@ -106,7 +106,7 @@ const MainProductItem = ({ item }) => {
                   src="/src/assets/icons/icon-heart-disabled.svg"
                   className="w-8"
                 />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

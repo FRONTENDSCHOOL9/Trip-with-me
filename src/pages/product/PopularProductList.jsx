@@ -116,7 +116,7 @@ const PopularProductList = () => {
                         src="../src/assets/icons/icon-heart-disabled.svg"
                         className="w-8"
                       />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
