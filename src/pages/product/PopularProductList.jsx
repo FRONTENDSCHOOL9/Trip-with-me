@@ -91,7 +91,7 @@ const PopularProductList = () => {
                   </Link>
                   <div className="flex text-sm">
                     <img
-                      src="../src/assets/icons/icon-group.svg"
+                      src="/assets/icons/icon-group.svg"
                       className="w-5 mr-1"
                     />
                     <p className="text-sm">{`${item.buyQuantity}/${item.quantity}`}</p>
@@ -113,7 +113,7 @@ const PopularProductList = () => {
                     <ProductLikeButton item={item} />
                     {/* <button type="button">
                       <img
-                        src="../src/assets/icons/icon-heart-disabled.svg"
+                        src="/assets/icons/icon-heart-disabled.svg"
                         className="w-8"
                       />
                     </button> */}

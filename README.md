@@ -19,7 +19,7 @@
 <b>1조 원더독(onederdog)</b>
 | [박지민(팀장)](https://github.com/aksenmi) | [류채영](https://github.com/chaeyoungg) | [양준호](https://github.com/yanggengjelly) | [김도하](https://github.com/D0-HA) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="200" height="150" src="./src/assets/readme/user-jimin.jpg" /> | <img width="200" height="150" src="./src/assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./src/assets/readme/user-junho.png" /> | <img width="200" height="150" src="./src/assets/readme/user-doha.png" /> |
+| <img width="200" height="150" src="./assets/readme/user-jimin.jpg" /> | <img width="200" height="150" src="./assets/readme/user-chaeyoung.png" /> | <img width="200" height="150" src="./assets/readme/user-junho.png" /> | <img width="200" height="150" src="./assets/readme/user-doha.png" /> |
 
 ---
 
@@ -219,33 +219,33 @@ const onederdog = "어쩌구저쩌구";
 
 ## 📲 화면 구성
 
-|                    시작화면                     |              둘러보기(메인 페이지)               |                    회원가입                     |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|                  시작화면                   |            둘러보기(메인 페이지)             |                  회원가입                   |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                     로그인                      |                   키워드 검색                    |                   필터링 검색                   |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|                   로그인                    |                 키워드 검색                  |                 필터링 검색                 |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                상품 상세 페이지                 |                 여행장 정보 조회                 |                  상품 예약하기                  |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|              상품 상세 페이지               |               여행장 정보 조회               |                상품 예약하기                |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                    댓글 등록                    |                    댓글 수정                     |                    댓글 삭제                    |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|                  댓글 등록                  |                  댓글 수정                   |                  댓글 삭제                  |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                     찜하기                      |                    마이페이지                    |                  회원정보 수정                  |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|                   찜하기                    |                  마이페이지                  |                회원정보 수정                |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                 찜 목록 페이지                  |                 구매 목록 페이지                 |                판매 목록 페이지                 |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|               찜 목록 페이지                |               구매 목록 페이지               |              판매 목록 페이지               |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
-|                등록한 상품 삭제                 |                타유저 프로필 조회                |              타유저 판매 목록 조회              |
-| :---------------------------------------------: | :----------------------------------------------: | :---------------------------------------------: |
-| <img src="./src/assets/readme/user-doha.jpg" /> | <img  src="./src/assets/readme/user-doha.jpg" /> | <img src="./src/assets/readme/user-doha.jpg" /> |
+|              등록한 상품 삭제               |              타유저 프로필 조회              |            타유저 판매 목록 조회            |
+| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
 ---
 

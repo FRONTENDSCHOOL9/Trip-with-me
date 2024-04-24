@@ -156,7 +156,7 @@ function ProductDetail() {
                   <div className="flex items-center ">
                     <img
                       className="w-5 h-5 mr-2"
-                      src="/src/assets/icons/icon-map-location.svg"
+                      src="/assets/icons/icon-map-location.svg"
                       alt="위치"
                     />
                     <p className="shrink">
@@ -166,7 +166,7 @@ function ProductDetail() {
                   <div className="flex items-center">
                     <img
                       className="w-5 h-5 mr-2"
-                      src="/src/assets/icons/icon-map-date.svg"
+                      src="/assets/icons/icon-map-date.svg"
                       alt="위치"
                     />
                     <p>
@@ -177,7 +177,7 @@ function ProductDetail() {
                   <div className="flex items-center">
                     <img
                       className="w-5 h-5 mr-2"
-                      src="/src/assets/icons/icon-map-people.svg"
+                      src="/assets/icons/icon-map-people.svg"
                       alt="위치"
                     />
                     <p>최대 {productInfo?.item?.quantity}명</p>
@@ -219,7 +219,7 @@ function ProductDetail() {
                               position={marker.latlng}
                               title={marker.title || 'No title'}
                               image={{
-                                src: '/src/assets/icons/icon-map-pin.svg',
+                                src: '/assets/icons/icon-map-pin.svg',
                                 size: {
                                   width: 35,
                                   height: 70,
@@ -290,13 +290,13 @@ function ProductDetail() {
                         : '여성'}
                     </p>
                   </div>
-                  <div className="w-full p-4 mt-16 bg-gray-300 rounded-2xl top-box-shadow profile-box-sub">
-                    <p className="text-lg font-semibold">여행 관심사</p>
+                  <div className="w-full py-4 mt-16 bg-gray-300 rounded-2xl top-box-shadow profile-box-sub">
+                    <p className="text-lg pl-4 font-semibold">여행 관심사</p>
                     <ul className="flex justify-center gap-2 my-2 text-sm ">
                       {productInfo?.item?.seller?.extra.address.map(theme => (
                         <li
                           key={theme.id}
-                          className="px-4 py-1 border-2 rounded-full"
+                          className="px-3 py-2 border-2 rounded-full"
                         >
                           {theme.name}
                         </li>

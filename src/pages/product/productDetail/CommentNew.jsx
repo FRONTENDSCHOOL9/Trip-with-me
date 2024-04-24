@@ -91,7 +91,7 @@ function CommentNew({ refetch }) {
           >
             <img
               className="w-10 h-10 "
-              src="/src/assets/icons/icon-submit.png"
+              src="/assets/icons/icon-submit.png"
               alt=""
             />
             <i className="ir">댓글 등록</i>

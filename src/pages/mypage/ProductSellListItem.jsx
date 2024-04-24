@@ -29,7 +29,7 @@ const productSellListItem = ({ item }) => {
           <div className="flex justify-between items-center gap-3 text-sm mx-6 mt-6">
             <div className="flex">
               <img
-                src="../src/assets/icons/icon-group.svg"
+                src="/assets/icons/icon-group.svg"
                 className="w-5 mr-1"
               ></img>
               {isSoldOut ? (
