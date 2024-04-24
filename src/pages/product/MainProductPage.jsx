@@ -15,7 +15,7 @@ function MainProductPage() {
       <div className="scrollbar px-4 pb-4">
         <div>
           <SubTitle
-            iconSrc="../src/assets/icons/icon-love.png"
+            iconSrc="/assets/icons/icon-love.png"
             title="지금 인기있는 여행지"
           />
           <PopularProductList />
@@ -23,7 +23,7 @@ function MainProductPage() {
         <hr className="w-full h-[2px] bg-light-gray mt-2" />
         <div className="mt-6">
           <SubTitle
-            iconSrc="../src/assets/icons/icon-tour-guide.png"
+            iconSrc="/assets/icons/icon-tour-guide.png"
             title="새로 올라왔어요"
           />
           <NewProduct />

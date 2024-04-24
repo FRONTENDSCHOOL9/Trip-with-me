@@ -31,14 +31,14 @@ function Review({ seller_id }) {
         return (
           <p
             key={i}
-            className="bg-[url('/src/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1"
+            className="bg-[url('/assets/icons/icon-star-full.svg')] w-6 h-6 mr-2 mb-1"
           ></p>
         );
       else if (i > rating)
         return (
           <p
             key={i}
-            className="bg-[url('/src/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1"
+            className="bg-[url('/assets/icons/icon-star.svg')] w-6 h-6 mr-2 mb-1"
           ></p>
         );
     });
@@ -64,12 +64,12 @@ function Review({ seller_id }) {
                     i <= item.rating ? (
                       <p
                         key={i}
-                        className="bg-[url('/src/assets/icons/icon-star-full.svg')] w-4 h-4  mb-1"
+                        className="bg-[url('/assets/icons/icon-star-full.svg')] w-4 h-4  mb-1"
                       ></p>
                     ) : (
                       <p
                         key={i}
-                        className="bg-[url('/src/assets/icons/icon-star.svg')] w-4 h-4 mb-1"
+                        className="bg-[url('/assets/icons/icon-star.svg')] w-4 h-4 mb-1"
                       ></p>
                     ),
                   )}

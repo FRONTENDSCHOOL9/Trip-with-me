@@ -37,7 +37,7 @@ function ProductAddModal({ productInfo }) {
       <div className="flex flex-col items-center justify-center w-4/5 bg-white border-4 rounded-3xl">
         <img
           className="my-14"
-          src="/src/assets/icons/icon-smile-modal.svg"
+          src="/assets/icons/icon-smile-modal.svg"
           alt=""
         />
         <p className="text-xl font-medium mb-14">등록 하시겠습니까?</p>

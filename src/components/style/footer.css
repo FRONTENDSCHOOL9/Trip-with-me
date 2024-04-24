@@ -21,16 +21,16 @@
 }
 
 .home {
-  background-image: url('/src/assets/icons/icon-home2.png');
+  background-image: url('/assets/icons/icon-home2.png');
 }
 
 .add {
-  background-image: url('/src/assets/icons/icon-add-circle2.svg');
+  background-image: url('/assets/icons/icon-add-circle2.svg');
   scale: 1.2;
 }
 
 .myinfo {
-  background-image: url('/src/assets/icons/icon-person2.png');
+  background-image: url('/assets/icons/icon-person2.png');
 }
 
 .footButton.footer-isactive {

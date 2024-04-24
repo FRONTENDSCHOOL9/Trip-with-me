@@ -120,7 +120,7 @@ function Comment() {
                   className="px-3 py-2 mr-1 text-main-color border-[1px] rounded-md"
                   onClick={() => setEditingCommentId(item._id)}
                 >
-                  <img src="/src/assets/icons/icon-edit-pen.svg" alt="수정" />
+                  <img src="/assets/icons/icon-edit-pen.svg" alt="수정" />
                 </button>
                 <CommentDelete
                   commentId={item._id}
