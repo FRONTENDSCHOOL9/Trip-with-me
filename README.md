@@ -219,6 +219,127 @@ Remove : 파일을 삭제하는 작업만 수행하는 경우
 
 ## 📌 주요 기능 및 코드
 
+- 로그인 페이지
+
+```
+로그인없이 둘러보기를 통해서 비회원도 메인페이지를 구경할 수 있게 만들었습니다.
+zustand를 사용하여 사용자의 정보를 관리하고, persist 미들웨어를 활용해 상태를 essionStorage에 저장함으로써 브라우저를 재시작해도 상태를 유지할 수 있도록 설정해줬습니다.
+```
+
+```Javascript
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+
+const useMemberState = create(
+  persist(
+    set => ({
+      user: null,
+      setUser: newUser => set({ user: newUser }),
+    }),
+    {
+      name: 'memberState', // 이 이름으로 스토리지에 저장됩니다.
+      storage: createJSONStorage(() => sessionStorage), // localStorage를 사용하여 상태를 저장합니다.
+    },
+  ),
+);
+
+export default useMemberState;
+
+```
+
+<br>
+
+- 지역, 테마 필터링 검색 기능
+
+```
+선택된 지역과 테마 ID를 바탕으로 검색 쿼리를 구성하고 API를 호출하여 검색 결과를 searchResults 상태에 저장하고, 검색 결과 페이지로 이동하게 됩니다.
+selectedThemes 배열의 각 요소를 순회하면서 { 'extra.themes.id': item } 형태의 객체를 생성합니다. 여기서 item은 각 테마의 ID입니다. 이 객체는 특정 테마 ID에 해당하는 데이터를 검색할 수 있는 쿼리 조건을 나타내고, 예생성된 테마 쿼리 조건 객체들을 themes 배열에 저장하고 이 themes 배열을 querylist 배열에 병합하면,
+이 querylist 배열을 통해 서버에 보내지면  서버가 이쿼리를 해석해서 조건에 맞는 여행 상품 데이터를 반환해줍니다.
+```
+
+```Javascript
+if (selectedThemes.length > 0) {
+    let themes = selectedThemes.map(item => {
+        return { 'extra.themes.id': item };
+    });
+    console.log('themelist', themes);
+    setThemeList(themes);
+    querylist = [...querylist, ...themes];
+}
+
+const handleSearch = async () => {
+    let querylist = [];     if (selectedSpots.length > 0) {
+        let spots = selectedSpots.map(item => {'extra.spot.id': item});
+        querylist = [...querylist, ...spots];
+    }
+    if (selectedThemes.length > 0) {
+        let themes = selectedThemes.map(item => {'extra.themes.id': item});
+        querylist = [...querylist, ...themes];
+    }
+
+    const jsonQueryList = querylist.map(item => JSON.stringify(item));
+    const url = `/products?custom={"$or":[${jsonQueryList.join(',')}]}`;
+    const response = await axios.get(url);
+    setSearchResults(response.data);
+    navigate('/product/search/result', { state: response?.data });
+};
+
+```
+
+<br>
+
+- 상품 등록 페이지
+
+```
+처음에는 스와이퍼로 만드려고 했었는데,
+생각대로 되지않아서 7개의 컴포넌트를 부모 페이지에서 useParams와 switch문을 이용해 이전,다음버튼을 통해 컴포넌트를 이동시키는 방식으로 만들었습니다.
+7개의 등록화면 정보들이 저장되게 하기 위해서 처음에는 zustand로 전역상태관리를 했었다가 전역으로 사용되는 값들이 아니다보니 상위에서 prop으로 내려주는 방식이 좋다는 피드백을 받아서 중간에 변경을 하게 되었고,
+상위컴포넌트에서 상품등록정보 state를 관리하고 7개의 각 컴포넌트에 prop으로 전달을 해서 상품등록값을 받아오도록 구현했습니다.
+```
+
+```Javascript
+// 수정 전
+      setProductInfo({
+        ...productInfo,
+        extra: {
+          date: {
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
+          },
+        },
+      });
+```
+
+```Javascript
+// 수정 후
+      setProductInfo({
+        ...productInfo,
+        extra: {
+          ...productInfo.extra,
+          date: {
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
+          },
+        },
+      });
+```
+
+```
+저희가 각 컴포넌트에서 상태를 저장하고 넘겨줄때 가장 중요한 점은
+다른 컴포넌트들에서 집어넣은 기존의 상품 정보를 유지하면서 새로운 정보만 업데이트를 해야한다는 점이었습니다.
+기본적인 부분이지만 Extra뎁스가 하나 더 있다보니 이부분을 간과해버려서 계속 extra 객체 내에 이미 존재하던 다른 필드들이 새로운 객체로 덮어쓰여져서 사라지는 문제가 발생했고 추후 발견하여 다행히 기존정보의 불변성을 유지하면서 정보를 저장할 수 있었습니다.
+
+또 카카오지도api를 통해서 여행동선을 만들었습니다.
+클릭하는 곳마다 좌표값을 얻어서 마커를 생성했고 마커와 마커끼리 선을 이어줘서 동선 표시를 해줬고 내용도 입력할 수 있습니다.
+또  이전 달력화면에서 3일이 지정됐으면 지도도 3일까지만 추가되게끔 validation을 설정했습니다.
+지도또한 세개의 컴포넌트로 이루어져있는데 zustand로 관리를 하다가 피드백을 받고나서 다시 prop으로 전달하는 방식으로 중간에 변경을 하였습니다.
+저희는 상품을 등록할때 validation을 명확히 주려고 노력했는데요.
+여행스팟과 테마부분도 최대갯수를 설정하여 더 선택할수 없게끔 만들었고 이전으로 넘어가도 기존 정보가 그대로 남아있게 각 상품의 초기값이 현재 데이터가 되게끔 구현했습니다.
+여기서 등록을 누르면 해당 id값을 가진 상품 상세페이지로 넘어가게됩니다.
+```
+
+<br>
+
 - 본인이 작성한 댓글일 경우에만 수정/삭제 버튼 생성
 
 ```
@@ -256,8 +377,8 @@ const { data, isLoading, refetch, error } = useQuery({
             onCancel={() => {
               setEditingCommentId(null);
               setEditCommentText('');
-            }}
-
+            }})
+}
 ```
 
 <br>
@@ -334,7 +455,6 @@ const { data, isLoading, refetch, error } = useQuery({
       });
       let newItemList = [...itemList, ...list];
       console.log('newItemList', newItemList);
-      // console.log('res', res);
       let endPage = res?.data?.pagination?.totalPages;
       let nowPage = res?.data?.pagination?.page;
       setIsEnd(endPage === nowPage);
@@ -371,14 +491,10 @@ ProductLikeButton.propTypes = {
 };
 
 function ProductLikeButton({ item }) {
-  // console.log('좋아요item', item);
-  // const [likeState, setLikeState] = useState(false);
   let likeState = false;
-  // const [productLikeId, setProductLikeId] = useState(0);
   let productLikeId = 0;
   const axios = useCustomAxios();
   const [initLikeState, setInitLikeState] = useState(false);
-  //icon-heart-full.svg
 
   useEffect(() => {
     checkInit();
@@ -394,11 +510,9 @@ function ProductLikeButton({ item }) {
           alt=""
         />,
       );
-      // setLikeState(false);
       likeState = false;
       productLikeId = item?.myBookmarkId;
     } else {
-      // console.log('false');
       setInitLikeState(
         <img
           onClick={handleLikeProduct}
@@ -407,14 +521,12 @@ function ProductLikeButton({ item }) {
           alt=""
         />,
       );
-      // setLikeState(true);
       likeState = true;
     }
   };
 
   const handleLikeProduct = async e => {
     console.log('변경 실행됨');
-    // console.log('item',item?.bookmarks);
     console.log('state 상태', likeState);
     if (likeState === false) {
       try {
@@ -434,9 +546,7 @@ function ProductLikeButton({ item }) {
           '좋아요 누른 경우 북마크 id 새로 세팅 =>',
           res?.data?.item?._id,
         );
-        // console.log('res =>', res);
         e.target.src = '/assets/icons/icon-heart-full.svg';
-        // setLikeState(prevState => !prevState);
         likeState = !likeState;
       } catch (err) {
         console.log(err);
@@ -479,7 +589,6 @@ Input text나 TextArea의 경우에는 defaultValue값을 통해 쉽게 기존 �
         const imageFormData = new FormData();
         imageFormData.append('attach', selectedFile[0]);
 
-        // console.log('formData =>', formData);
         console.log('imageFormData=>', imageFormData);
         const fileRes = await axios('/files', {
           method: 'post',
@@ -518,9 +627,9 @@ Input text나 TextArea의 경우에는 defaultValue값을 통해 쉽게 기존 �
 
 ## 📲 화면 구성
 
-|                  시작화면                   |            둘러보기(메인 페이지)             |                  회원가입                   |
-| :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
-| <img src="./assets/readme/user-doha.jpg" /> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
+|                 시작화면                  |            둘러보기(메인 페이지)             |                  회원가입                   |
+| :---------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
+| <img src="src/assets/readme/인트로.gif"/> | <img  src="./assets/readme/user-doha.jpg" /> | <img src="./assets/readme/user-doha.jpg" /> |
 
 |                   로그인                    |                 키워드 검색                  |                 필터링 검색                 |
 | :-----------------------------------------: | :------------------------------------------: | :-----------------------------------------: |
