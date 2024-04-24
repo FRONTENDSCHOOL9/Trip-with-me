@@ -14,6 +14,9 @@ function DetailedSearch() {
   const [selectedSpots, setSelectedSpots] = useState([]);
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [queryString, setQueryString] = useState([]);
+  const [themeList, setThemeList] = useState([]);
+  const [spotList, setSpotList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +53,8 @@ function DetailedSearch() {
     );
   };
 
+  console.log('selectedspot', selectedSpots);
+  console.log('selectedThemes', selectedThemes);
   const handleThemeChange = id => {
     setSelectedThemes(prevSelected =>
       prevSelected.includes(id)
@@ -61,27 +66,33 @@ function DetailedSearch() {
   const handleSearch = async () => {
     try {
       let queryParams = {};
-
-      // 선택된 spotIds 배열이 비어있지 않은지 확인
+      let querylist = [];
+      // 선택된 spotIds 배열이 비어있지 않은지 확인 후 객체 배열 정의
       if (selectedSpots.length > 0) {
-        const spotIds = selectedSpots.join(',');
-        queryParams['extra.spot.id'] = spotIds;
+        let spots = selectedThemes.map(item => {
+          return { 'extra.spot.id': item };
+        });
+        console.log('spotsid', spots);
+        setSpotList(spots);
+        querylist = [...querylist, ...spots];
       }
 
-      // 선택된 themeIds 배열이 비어있지 않은지 확인
+      // 선택된 themeIds 배열이 비어있지 않은지 확인 후 객체 배열 정의
       if (selectedThemes.length > 0) {
-        const themeIds = selectedThemes.join(',');
-        queryParams['extra.themes.id'] = themeIds;
+        let themes = selectedThemes.map(item => {
+          return { 'extra.themes.id': item };
+        });
+        console.log('themelist', themes);
+        setThemeList(themes);
+        querylist = [...querylist, ...themes];
       }
 
-      // queryParams를 기반으로 쿼리 문자열 생성
-      const queryString = Object.keys(queryParams)
-        .map(key => `"${key}":"${queryParams[key]}"`)
-        .join(',');
-      console.log('queryString', queryString);
+      // 쿼리 리스트 생성하기
+      console.log('querylist', querylist);
 
-      // API 요청 URL 생성
-      const url = `/products?custom={${queryString}}`;
+      const jsonQueryList = querylist.map(item => JSON.stringify(item));
+      const url = `/products?custom={"$or":[${jsonQueryList.join(',')}]}`;
+      console.log('url', url);
       const response = await axios.get(url);
       console.log('검색 결과:', response.data);
       setSearchResults(response.data);
