@@ -1,0 +1,16 @@
+.layout {
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollbar {
+  flex-grow: 1;
+  overflow-y: scroll;
+  height: auto;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 1px;
+}

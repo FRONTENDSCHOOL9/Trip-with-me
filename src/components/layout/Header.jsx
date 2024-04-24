@@ -1,22 +1,43 @@
 import usePageStore from '@zustand/pageName.mjs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+import '@components/style/header.css';
 
 function Header() {
+  const { pageName } = usePageStore();
+  const [pageTransition, setPageTransition] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const {pageName} = usePageStore();
-  console.log(pageName);
+  useEffect(() => {
+    const site = /^\/product\/add\/[1-8]$/;
+    setPageTransition(site.test(location.pathname));
+  }, [location.pathname]);
 
-  useEffect(()=>{
+  const onClickBack = () => {
+    navigate(-1);
+  };
 
-  }, [pageName]);
+  const onClickMain = () => {
+    if (pageTransition) {
+      navigate('/product/list');
+    }
+  };
 
   return (
-    <div className="mb-auto">
-      <h1>{pageName}</h1>
+    <div className="header font-notosans">
+      <div className="header-wrap">
+        <button
+          className="header-back"
+          onClick={pageTransition ? onClickMain : onClickBack}
+        >
+          <i className="ir">뒤로가기</i>
+        </button>
+        <h1 className="header-title  text-lg">{pageName}</h1>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Header;
-//zustand를 사용하는것보다는 props 를 사용하는게 좋다아~ 

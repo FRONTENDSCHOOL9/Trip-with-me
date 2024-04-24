@@ -1,0 +1,30 @@
+meta {
+  name: 필수-상품 구매
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "products": [
+          {
+              "_id": 3,
+              "quantity": 3
+          }
+      ],
+      "address": {
+          "name": "학교",
+          "value": "여기가 구매 요청 사항입니다."
+      }
+  }
+}

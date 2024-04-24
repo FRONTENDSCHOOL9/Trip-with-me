@@ -1,0 +1,36 @@
+meta {
+  name: 필수-회원 가입
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "test2@market.com",
+    "password": "11111111",
+    "name": "테스트계정",
+    "phone": "0118889999",
+    "address": "female", //성별값
+    "type": "seller", //필수값
+    "extra": {
+      "introduce": "", //프로필 자기소개 인삿말
+      "birthday": "10", //나이
+      "address": [ //여행 테마 들어갈 곳! id 는 테마 api 서버에서 지정된 id가 들어감
+        {
+          "id": 1,
+          "name": "음주가무"
+        },
+        {
+          "id": 2,
+          "name": "맛집탐방"
+        }
+      ]
+    }
+  }
+}

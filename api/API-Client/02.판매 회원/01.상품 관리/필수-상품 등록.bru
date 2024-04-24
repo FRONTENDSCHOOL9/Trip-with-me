@@ -1,0 +1,54 @@
+meta {
+  name: 필수-상품 등록
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/seller/products
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "price": 1000, //경비
+      "quantity": 10, //인원
+      "name": "ZOZOFO 테이블 게임 축구 보드 사커 게임기 보드게임 2인경기 완구 가족모임 미니 월드컵 스포츠 어린이 크리스마스 선물 생일 선물", //제목
+      "mainImages": [ //이미지업로드
+        {
+          "path" : "/files/01-Trip-with-me/qzPSMiIsg.jpg",
+          "name" : "qzPSMiIsg.jpg",
+          "originalname": "test.jpg"
+        }
+      ],
+      "content": "속초 토박이 여행", //상세설명
+      "extra": {
+          "date": ["2024-04-15", "2024-04-20"], //날짜
+          "spot": [ {
+              "id":1,
+              "name":"강원도"
+            }
+          ], //지역
+          "themes": [
+            {
+              "id":1,
+              "name":"음주가무"
+            },
+            {
+              "id":2,
+              "name":"친목다짐"
+            },
+            {
+              "id":3,
+              "name":"이색체험"
+            }
+          ], //테마
+          "itineraryMaps": [] //지도정보
+      }
+  }
+}
