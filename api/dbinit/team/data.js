@@ -1182,6 +1182,12 @@ export const initData = async nextSeq => {
           },
           spot: [
             {
+              name: '경상남도',
+              id: '7',
+            },
+          ],
+          themes: [
+            {
               name: '🍖맛집탐방',
               id: '2',
             },
