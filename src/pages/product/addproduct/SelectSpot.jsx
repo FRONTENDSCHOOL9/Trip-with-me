@@ -2,6 +2,7 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { produce } from 'immer';
 
 SelectSpot.propTypes = {
   productInfo: PropTypes.object,
@@ -65,13 +66,11 @@ function SelectSpot({ productInfo, setProductInfo }) {
     } else {
       // 선택되지 않은 여행지인 경우, 선택 추가 (단, 하나만 선택 가능하도록 함)
       setSelectedSpots([spot]);
-      setProductInfo({
-        ...productInfo,
-        extra: {
-          ...productInfo.extra,
-          spot: [spot],
-        },
-      });
+      setProductInfo(
+        produce(draft => {
+          draft.extra.spot = [spot];
+        }),
+      );
     }
     setShowUploadPrompt(false);
   };
