@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import './productStyle/Calendar.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import ProductImage from '@pages/product/addproduct/ProductImage';
+import { produce } from 'immer';
 
 Calendar.propTypes = {
   productInfo: PropTypes.object,
@@ -39,16 +40,14 @@ function Calendar({ productInfo, setProductInfo }) {
       .replace(/\s/g, '');
     if (selectedDateRange) {
       navigate(`/product/add/${+step + 1}`);
-      setProductInfo({
-        ...productInfo,
-        extra: {
-          ...productInfo.extra,
-          date: {
+      setProductInfo(
+        produce(draft => {
+          draft.extra.date = {
             startDate: formattedStartDate,
             endDate: formattedEndDate,
-          },
-        },
-      });
+          };
+        }),
+      );
     } else {
       setShowUploadPrompt(true);
     }

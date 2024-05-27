@@ -2,6 +2,7 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { memo, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { produce } from 'immer';
 
 SelectTheme.propTypes = {
   productInfo: PropTypes.object,
@@ -50,13 +51,11 @@ function SelectTheme({ productInfo, setProductInfo }) {
       selectedThemes.splice(themeIndex, 1);
     }
 
-    setProductInfo({
-      ...productInfo,
-      extra: {
-        ...productInfo.extra,
-        themes: selectedThemes,
-      },
-    });
+    setProductInfo(
+      produce(draft => {
+        draft.extra.themes = selectedThemes;
+      }),
+    );
 
     setShowUploadPrompt(false);
   };
