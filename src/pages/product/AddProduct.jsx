@@ -14,9 +14,8 @@ import usePageStore from '@zustand/pageName.mjs';
 import useMemberState from '@zustand/memberState.mjs';
 
 function AddProduct() {
-  let { step } = useParams();
-  const [components, setComponents] = useState(null);
-  let comp = null;
+  const { step } = useParams();
+
   const [productInfo, setProductInfo] = useState({
     price: 0,
     quantity: 0,
@@ -35,16 +34,16 @@ function AddProduct() {
 
   const page = '게시물 등록';
   const setPageName = usePageStore(state => state.setPageName);
-  const { user, setUser } = useMemberState();
+  const { user } = useMemberState();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
       setPageName(page);
-    } else if (!user) {
+    } else {
       noUser();
     }
-  }, []);
+  }, [user, setPageName]);
 
   function noUser() {
     alert('로그인 후 이용 가능합니다.');
@@ -54,72 +53,62 @@ function AddProduct() {
   function renderStep() {
     switch (step) {
       case '1':
-        comp = (
+        return (
           <ProductImage
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '2':
-        comp = (
+        return (
           <ProductName
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '3':
-        comp = (
+        return (
           <Calendar productInfo={productInfo} setProductInfo={setProductInfo} />
         );
-        return comp;
       case '4':
-        comp = (
+        return (
           <AddItinerary
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '5':
-        comp = (
+        return (
           <ProductSelectSpot
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '6':
-        comp = (
+        return (
           <SelectTheme
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '7':
-        comp = (
+        return (
           <ProductContent
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
       case '8':
-        comp = (
+        return (
           <ProductAddModal
             productInfo={productInfo}
             setProductInfo={setProductInfo}
           />
         );
-        return comp;
+      default:
+        return null;
     }
-    setComponents(comp);
   }
-
-  console.log('compo', components);
-  useState(() => {}, []);
 
   return (
     <div className="layout font-notosans">
