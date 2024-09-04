@@ -16,6 +16,7 @@ function MainProductPage() {
         <div>
           <SubTitle
             iconSrc="/assets/icons/icon-love.png"
+            iconAlt="인기있는 여행상품 아이콘"
             title="지금 인기있는 여행지"
           />
           <PopularProductList />
@@ -24,6 +25,7 @@ function MainProductPage() {
         <div className="mt-6">
           <SubTitle
             iconSrc="/assets/icons/icon-tour-guide.png"
+            iconAlt="신규 여행 상품 아이콘"
             title="새로 올라왔어요"
           />
           <NewProduct />
