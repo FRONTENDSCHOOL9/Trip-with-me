@@ -68,6 +68,7 @@ const MainProductItem = ({ item }) => {
               <img
                 className="size-full object-cover"
                 src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
+                alt="여행 컨텐츠 대표 이미지"
               />
             </Link>
           </div>
@@ -79,7 +80,11 @@ const MainProductItem = ({ item }) => {
               </h3>
             </Link>
             <div className="flex text-sm ">
-              <img src="/assets/icons/icon-group.svg" className="w-5 mr-1" />
+              <img
+                src="/assets/icons/icon-group.svg"
+                alt="인원수 아이콘"
+                className="w-5 mr-1"
+              />
               <p className="text-sm">{`${item?.buyQuantity}/${item?.quantity}`}</p>
             </div>
 
@@ -97,13 +102,6 @@ const MainProductItem = ({ item }) => {
 
             <div className="absolute top-8 right-7 text-center">
               <ProductLikeButton item={item} />
-              {/* <button type="button">
-                <img
-                  onClick={handleLike}
-                  src="/assets/icons/icon-heart-disabled.svg"
-                  className="w-8"
-                />
-              </button> */}
             </div>
           </div>
         </div>

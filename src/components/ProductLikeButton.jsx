@@ -27,7 +27,7 @@ function ProductLikeButton({ item }) {
           onClick={handleLikeProduct}
           className="w-6 h-6 ml-auto mr-2 cursor-pointer"
           src="/assets/icons/icon-heart-full.svg"
-          alt=""
+          alt="찜완료 채워진 하트 아이콘"
         />,
       );
       // setLikeState(false);
@@ -40,7 +40,7 @@ function ProductLikeButton({ item }) {
           onClick={handleLikeProduct}
           className="w-6 h-6 ml-auto mr-2 cursor-pointer"
           src="/assets/icons/icon-heart-disabled.svg"
-          alt=""
+          alt="비어있는 하트 아이콘"
         />,
       );
       // setLikeState(true);

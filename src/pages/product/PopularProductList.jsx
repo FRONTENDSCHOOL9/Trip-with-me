@@ -78,6 +78,7 @@ const PopularProductList = () => {
                   <Link to={`/product/${item._id}`}>
                     <img
                       className="size-full object-cover"
+                      alt="여행 컨텐츠 대표 이미지"
                       src={`${import.meta.env.VITE_API_SERVER}/files/01-Trip-with-me/${item?.mainImages[0]?.name}`}
                     />
                   </Link>
@@ -92,6 +93,7 @@ const PopularProductList = () => {
                   <div className="flex text-sm">
                     <img
                       src="/assets/icons/icon-group.svg"
+                      alt="인원수 아이콘"
                       className="w-5 mr-1"
                     />
                     <p className="text-sm">{`${item.buyQuantity}/${item.quantity}`}</p>
@@ -111,12 +113,6 @@ const PopularProductList = () => {
 
                   <div className="absolute top-8 right-7 text-center ">
                     <ProductLikeButton item={item} />
-                    {/* <button type="button">
-                      <img
-                        src="/assets/icons/icon-heart-disabled.svg"
-                        className="w-8"
-                      />
-                    </button> */}
                   </div>
                 </div>
               </div>

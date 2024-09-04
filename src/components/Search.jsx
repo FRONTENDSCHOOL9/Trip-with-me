@@ -22,6 +22,7 @@ const Search = () => {
     <div className="flex gap-2 relative font-notosans ml-5 pb-8">
       <img
         src="/assets/icons/icon-search.svg"
+        alt="검색 돋보기 아이콘"
         className="w-6 absolute top-2 left-2"
       ></img>
       <input
@@ -36,8 +37,12 @@ const Search = () => {
           }
         }}
       />
-      <button type="button" onClick={onClickDetail}>
-        <img src="/assets/icons/icon-search-bar.svg" className="w-8"></img>
+      <button aria-label="상세 검색" type="button" onClick={onClickDetail}>
+        <img
+          src="/assets/icons/icon-search-bar.svg"
+          alt="검색 돋보기 아이콘"
+          className="w-8"
+        ></img>
       </button>
     </div>
   );
