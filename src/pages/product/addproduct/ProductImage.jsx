@@ -30,22 +30,48 @@ function ProductImage({ productInfo, setProductInfo }) {
     sessionStorage.removeItem('selectedFile');
   }
 
+  const convertImageToWebP = file => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0);
+
+        canvas.toBlob(blob => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Image conversion failed'));
+          }
+        }, 'image/webp');
+      };
+      img.onerror = reject;
+    });
+  };
+
   window.addEventListener('beforeunload', handlePageUnload);
 
-  const handleFileChange = e => {
+  const handleFileChange = async e => {
     // 선택한 파일 데이터를 sessionStorage에 저장합니다.
     console.log('file=>', e.target.files[0]);
     const file = e.target.files[0];
-    const imgUrl = URL.createObjectURL(file);
+    const webpFile = await convertImageToWebP(file);
+    console.log('webpfile', webpFile);
+    const imgUrl = URL.createObjectURL(webpFile);
+    console.log('webpfile url', imgUrl);
     // console.log(imgUrl);/
     // sessionStorage.setItem('selectedFile', URL.createObjectURL(file));
     // setSelectedFile(URL.createObjectURL(file));
-    console.log('pr-imgview');
+    // console.log('pr-imgview');
     setSelectedFile(imgUrl);
-    setFileNamed(file);
+    setFileNamed(webpFile);
     setShowUploadPrompt(false);
   };
-  console.log(productInfo);
+  // console.log(productInfo);
 
   const onSubmit = async e => {
     e.preventDefault();
