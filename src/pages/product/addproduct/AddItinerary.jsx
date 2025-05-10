@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import './productStyle/Map.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import { produce } from 'immer';
 
 AddItinerary.propTypes = {
   productInfo: PropTypes.object.isRequired,
@@ -72,13 +73,11 @@ function AddItinerary({ productInfo, setProductInfo }) {
   const saveItineraryMaps = () => {
     if (productInfo && setProductInfo) {
       navigate(`/product/add/${+step + 1}`);
-      setProductInfo({
-        ...productInfo,
-        extra: {
-          ...productInfo.extra,
-          itineraryMaps: itineraryMaps,
-        },
-      });
+      setProductInfo(
+        produce(draft => {
+          draft.extra.itineraryMaps = itineraryMaps;
+        }),
+      );
     }
     navigate(`/product/add/${+step + 1}`);
   };
